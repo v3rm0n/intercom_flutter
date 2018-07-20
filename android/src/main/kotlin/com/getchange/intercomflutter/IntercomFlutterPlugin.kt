@@ -6,20 +6,20 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
-class IntercomFlutterPlugin(): MethodCallHandler {
-  companion object {
-    @JvmStatic
-    fun registerWith(registrar: Registrar): Unit {
-      val channel = MethodChannel(registrar.messenger(), "intercom_flutter")
-      channel.setMethodCallHandler(IntercomFlutterPlugin())
+class IntercomFlutterPlugin : MethodCallHandler {
+    companion object {
+        @JvmStatic
+        fun registerWith(registrar: Registrar) {
+            val channel = MethodChannel(registrar.messenger(), "intercom_flutter")
+            channel.setMethodCallHandler(IntercomFlutterPlugin())
+        }
     }
-  }
 
-  override fun onMethodCall(call: MethodCall, result: Result): Unit {
-    if (call.method.equals("getPlatformVersion")) {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    } else {
-      result.notImplemented()
+    override fun onMethodCall(call: MethodCall, result: Result) {
+        if (call.method == "getPlatformVersion") {
+            result.success("Android ${android.os.Build.VERSION.RELEASE}")
+        } else {
+            result.notImplemented()
+        }
     }
-  }
 }
