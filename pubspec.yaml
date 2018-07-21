@@ -1,4 +1,4 @@
-name: intercom_flutter
+name: intercom
 description: A new flutter plugin project.
 version: 0.0.1
 author:
@@ -14,8 +14,8 @@ dependencies:
 # The following section is specific to Flutter.
 flutter:
   plugin:
-    androidPackage: com.getchange.intercomflutter
-    pluginClass: IntercomFlutterPlugin
+    androidPackage: com.getchange.intercom
+    pluginClass: IntercomPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

@@ -1,4 +1,4 @@
-group 'com.getchange.intercomflutter'
+group 'com.getchange.intercom'
 version '1.0-SNAPSHOT'
 
 buildscript {

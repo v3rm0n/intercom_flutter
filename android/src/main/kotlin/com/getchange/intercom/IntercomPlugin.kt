@@ -1,4 +1,4 @@
-package com.getchange.intercomflutter
+package com.getchange.intercom
 
 import android.app.Application
 import io.flutter.plugin.common.MethodChannel
@@ -9,19 +9,19 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 import io.intercom.android.sdk.Intercom
 import io.intercom.android.sdk.identity.Registration
 
-class IntercomFlutterPlugin(private val application: Application) : MethodCallHandler {
+class IntercomPlugin(private val application: Application) : MethodCallHandler {
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar) {
             val channel = MethodChannel(registrar.messenger(), "intercom_flutter")
-            channel.setMethodCallHandler(IntercomFlutterPlugin(registrar.context() as Application))
+            channel.setMethodCallHandler(IntercomPlugin(registrar.context() as Application))
         }
     }
 
     override fun onMethodCall(call: MethodCall, result: Result) {
         when {
             call.method == "initialize" -> {
-                val apiKey = call.argument<String>("apiKey")
+                val apiKey = call.argument<String>("androidApiKey")
                 val appId = call.argument<String>("appId")
                 Intercom.initialize(application, apiKey, appId)
                 result.success("Intercom initialized")
@@ -42,7 +42,7 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
             }
             call.method == "setLauncherVisibility" -> {
                 val visibility = call.argument<String>("visibility")
-                Intercom.client().setLauncherVisibility(Intercom.Visibility.valueOf(visibility))
+                Intercom.client().setLauncherVisibility(Intercom.Visibility.valueOf(visibility.toUpperCase()))
                 result.success("Showing launcher")
             }
             call.method == "displayMessenger" -> {

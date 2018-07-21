@@ -2,12 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-class IntercomFlutter {
+enum IntercomLauncherVisibility { gone, visible }
+
+class Intercom {
   static const MethodChannel _channel = const MethodChannel('intercom_flutter');
 
-  static Future<dynamic> initialize(String appId, String apiKey) {
-    return _channel
-        .invokeMethod('initialize', {'appId': appId, 'apiKey': apiKey});
+  static Future<dynamic> initialize(String appId,
+      {String androidApiKey, String iosApiKey}) {
+    return _channel.invokeMethod('initialize', {
+      'appId': appId,
+      'androidApiKey': androidApiKey,
+      'iosApiKey': iosApiKey
+    });
   }
 
   static Future<dynamic> registerIdentifiedUser(String userId) {
@@ -22,9 +28,10 @@ class IntercomFlutter {
     return _channel.invokeMethod('logout');
   }
 
-  static Future<dynamic> setLauncherVisibility(String visibility) {
-    return _channel
-        .invokeMethod('setLauncherVisibility', {'visibility': visibility});
+  static Future<dynamic> setLauncherVisibility(
+      IntercomLauncherVisibility visibility) {
+    return _channel.invokeMethod(
+        'setLauncherVisibility', {'visibility': visibility.toString()});
   }
 
   static Future<dynamic> displayMessenger() {

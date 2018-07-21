@@ -4,17 +4,19 @@
 Pod::Spec.new do |s|
   s.name             = 'intercom_flutter'
   s.version          = '0.0.1'
-  s.summary          = 'A new flutter plugin project.'
+  s.summary          = 'Intercom integration for Flutter'
   s.description      = <<-DESC
 A new flutter plugin project.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://getchange.com'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Change Technologies' => 'maido@getchange.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
+  s.dependency 'Intercom'
+  s.static_framework = true
   
   s.ios.deployment_target = '8.0'
 end
