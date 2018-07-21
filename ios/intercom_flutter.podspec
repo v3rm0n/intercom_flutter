@@ -3,14 +3,14 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'intercom_flutter'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'Intercom integration for Flutter'
   s.description      = <<-DESC
 A new flutter plugin project.
                        DESC
-  s.homepage         = 'https://getchange.com'
+  s.homepage         = 'https://github.com/ChangeFinance/intercom_flutter'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Change Technologies' => 'maido@getchange.com' }
+  s.author           = { 'xChange OÜ' => 'maido@getchange.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
