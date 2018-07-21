@@ -19,9 +19,11 @@ class App extends StatelessWidget {
 
     @override 
     Widget build(BuildContext context) {
-        return FlatButton(child : Text('Open Intercom', onPressed: () {
-            Intercom.displayMessenger();
-        }));
+        return FlatButton(
+            child: Text('Open Intercom'),
+            onPressed: () {
+                Intercom.displayMessenger();
+            }));
     }
 }
 
