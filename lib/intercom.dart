@@ -7,7 +7,8 @@ import 'package:flutter/services.dart';
 enum IntercomLauncherVisibility { gone, visible }
 
 class Intercom {
-  static const MethodChannel _channel = const MethodChannel('app.getchange.com/intercom');
+  static const MethodChannel _channel =
+      const MethodChannel('app.getchange.com/intercom');
 
   static Future<dynamic> initialize(String appId,
       {String androidApiKey, String iosApiKey}) {

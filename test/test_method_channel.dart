@@ -1,0 +1,51 @@
+import 'package:flutter/services.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+final _log = <MethodCall>[];
+final _responses = <MethodCallStubbing, dynamic>{};
+
+var _expectCounter = 0;
+
+void setUpTestMethodChannel(String methodChannel) {
+  final channel = MethodChannel(methodChannel);
+  channel.setMockMethodCallHandler((methodCall) async {
+    _log.add(methodCall);
+    final matchingStubbing = _responses.keys
+        .firstWhere((s) => s.matches(methodCall), orElse: () => null);
+    if (matchingStubbing != null) {
+      return _responses[matchingStubbing];
+    }
+  });
+  addTearDown(() {
+    _log.clear();
+    _responses.clear();
+    _expectCounter = 0;
+  });
+}
+
+class MethodCallStubbing {
+  final Matcher nameMatcher;
+  final Matcher argMatcher;
+
+  const MethodCallStubbing(this.nameMatcher, this.argMatcher);
+
+  void thenReturn(dynamic answer) {
+    _responses[this] = answer;
+  }
+
+  bool matches(MethodCall methodCall) {
+    return nameMatcher.matches(methodCall.method, null) &&
+        argMatcher.matches(methodCall.arguments, null);
+  }
+}
+
+MethodCallStubbing whenMethodCall(Matcher nameMatcher, Matcher argMatcher) {
+  return MethodCallStubbing(nameMatcher, argMatcher);
+}
+
+void expectMethodCall(String name, {Map<String, Object> arguments}) {
+  expect(
+    _log[_expectCounter++],
+    isMethodCall(name, arguments: arguments),
+  );
+}
