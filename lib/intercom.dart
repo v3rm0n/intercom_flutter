@@ -1,3 +1,5 @@
+library intercom;
+
 import 'dart:async';
 
 import 'package:flutter/services.dart';
@@ -5,7 +7,7 @@ import 'package:flutter/services.dart';
 enum IntercomLauncherVisibility { gone, visible }
 
 class Intercom {
-  static const MethodChannel _channel = const MethodChannel('intercom_flutter');
+  static const MethodChannel _channel = const MethodChannel('app.getchange.com/intercom');
 
   static Future<dynamic> initialize(String appId,
       {String androidApiKey, String iosApiKey}) {
@@ -30,8 +32,10 @@ class Intercom {
 
   static Future<dynamic> setLauncherVisibility(
       IntercomLauncherVisibility visibility) {
+    String visibilityString =
+        visibility == IntercomLauncherVisibility.visible ? 'VISIBLE' : 'GONE';
     return _channel.invokeMethod(
-        'setLauncherVisibility', {'visibility': visibility.toString()});
+        'setLauncherVisibility', {'visibility': visibilityString});
   }
 
   static Future<dynamic> displayMessenger() {

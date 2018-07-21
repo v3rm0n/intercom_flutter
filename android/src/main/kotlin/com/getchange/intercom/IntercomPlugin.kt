@@ -13,7 +13,7 @@ class IntercomPlugin(private val application: Application) : MethodCallHandler {
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar) {
-            val channel = MethodChannel(registrar.messenger(), "intercom_flutter")
+            val channel = MethodChannel(registrar.messenger(), "app.getchange.com/intercom")
             channel.setMethodCallHandler(IntercomPlugin(registrar.context() as Application))
         }
     }
@@ -42,7 +42,7 @@ class IntercomPlugin(private val application: Application) : MethodCallHandler {
             }
             call.method == "setLauncherVisibility" -> {
                 val visibility = call.argument<String>("visibility")
-                Intercom.client().setLauncherVisibility(Intercom.Visibility.valueOf(visibility.toUpperCase()))
+                Intercom.client().setLauncherVisibility(Intercom.Visibility.valueOf(visibility))
                 result.success("Showing launcher")
             }
             call.method == "displayMessenger" -> {

@@ -1,8 +1,8 @@
 name: intercom
-description: Flutter Intercom integration.
+description: Flutter Intercom integration
 version: 0.0.1
 author: Maido Käära <maido@getchange.com>
-homepage: https://getchange.com
+homepage: https://github.com/ChangeFinance/intercom_flutter
 
 dependencies:
   flutter:

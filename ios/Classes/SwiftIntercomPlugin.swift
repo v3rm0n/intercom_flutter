@@ -4,7 +4,7 @@ import Intercom
     
 public class SwiftIntercomPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "intercom_flutter", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "app.getchange.com/intercom", binaryMessenger: registrar.messenger())
     let instance = SwiftIntercomPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
@@ -33,7 +33,7 @@ public class SwiftIntercomPlugin: NSObject, FlutterPlugin {
     } else if (call.method == "setLauncherVisibility") {
         if let args = call.arguments as? [String: String] {
             let visibility = args["visibility"]
-            Intercom.setLauncherVisible(visibility == "visible")
+            Intercom.setLauncherVisible(visibility == "VISIBLE")
             result("Set launcher visible")
         } else {
             result("Setting launcher visible failed")
