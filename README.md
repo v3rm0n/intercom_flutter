@@ -7,7 +7,7 @@ Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-andr
 Import `package:intercom/intercom.dart` and use the methods in `Intercom` class.
 
 Example:
-```
+```dart
 import 'package:intercom/intercom.dart';
 
 void main() {
