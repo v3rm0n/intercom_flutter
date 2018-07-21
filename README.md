@@ -10,8 +10,8 @@ Example:
 ```dart
 import 'package:intercom/intercom.dart';
 
-void main() {
-    Intercom.initialize('appIdHere', iosApiKey: 'iosKeyHere', androidApiKey: 'androidKeyHere');
+void main() async {
+    await Intercom.initialize('appIdHere', iosApiKey: 'iosKeyHere', androidApiKey: 'androidKeyHere');
     runApp(App());
 }
 
@@ -21,8 +21,8 @@ class App extends StatelessWidget {
     Widget build(BuildContext context) {
         return FlatButton(
             child: Text('Open Intercom'),
-            onPressed: () {
-                Intercom.displayMessenger();
+            onPressed: () async {
+                await Intercom.displayMessenger();
             }));
     }
 }
