@@ -9,14 +9,19 @@ void main() {
       setUpTestMethodChannel('app.getchange.com/intercom');
     });
 
-    test('test', () {
+    test('initialize', () {
       final appId = 'mock';
       final androidApiKey = 'android-key';
       final iosApiKey = 'ios-key';
+
       Intercom.initialize(appId,
           androidApiKey: androidApiKey, iosApiKey: iosApiKey);
 
-      expectMethodCall('initialize', arguments: {});
+      expectMethodCall('initialize', arguments: {
+        'appId': appId,
+        'androidApiKey': androidApiKey,
+        'iosApiKey': iosApiKey
+      });
     });
   });
 }
