@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Fixed pod name in podspec
+
 ## 0.0.3
 
 * Added example project

@@ -2,8 +2,8 @@
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
 #
 Pod::Spec.new do |s|
-  s.name             = 'intercom_flutter'
-  s.version          = '0.0.3'
+  s.name             = 'intercom'
+  s.version          = '0.0.4'
   s.summary          = 'Intercom integration for Flutter'
   s.description      = <<-DESC
 A new flutter plugin project.
