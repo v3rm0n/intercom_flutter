@@ -9,6 +9,7 @@ jobs:
       - checkout
       - run: flutter channel dev
       - run: flutter doctor
+      - run: flutter packages get
       - run: flutter analyze -v
       - run: flutter test --coverage
       - run: bash <(curl -s https://codecov.io/bash)
