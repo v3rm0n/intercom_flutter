@@ -4,5 +4,5 @@
 # This file should be version controlled and should not be manually edited.
 
 version:
-  revision: e154298e0ba9144ab5763659725586f0bd24e5f5
-  channel: master
+  revision: 66091f969653fd3535b265ddcd87436901858a1d
+  channel: dev
