@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/ChangeFinance/intercom_flutter.svg?style=svg)](https://circleci.com/gh/ChangeFinance/intercom_flutter)
 [![codecov](https://codecov.io/gh/ChangeFinance/intercom_flutter/branch/master/graph/badge.svg)](https://codecov.io/gh/ChangeFinance/intercom_flutter)
 
-Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android) and [iOS](https://github.com/intercom/intercom-ios) projects.
+Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android) and [iOS](https://github.com/intercom/intercom-ios) projects. Currently only supports registering users and opening Intercom messenger.
 
 ## Usage
 
@@ -26,7 +26,7 @@ class App extends StatelessWidget {
             child: Text('Open Intercom'),
             onPressed: () async {
                 await Intercom.displayMessenger();
-            }));
+            });
     }
 }
 

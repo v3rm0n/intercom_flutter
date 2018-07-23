@@ -1,3 +1,9 @@
+## 0.0.3
+
+* Added example project
+* Formatted code
+* Added test
+
 ## 0.0.2
 
 * Changed minimum SDK version to `2.0.0-dev.28.0`
