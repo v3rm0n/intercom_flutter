@@ -23,5 +23,41 @@ void main() {
         'iosApiKey': iosApiKey
       });
     });
+
+    test('registerIdentifiedUser', () {
+      Intercom.registerIdentifiedUser('test');
+      expectMethodCall('registerIdentifiedUser', arguments: {
+        'userId': 'test',
+      });
+    });
+
+    test('logout', () {
+      Intercom.logout();
+      expectMethodCall('logout');
+    });
+
+    test('displayMessenger', () {
+      Intercom.displayMessenger();
+      expectMethodCall('displayMessenger');
+    });
+
+    test('registerUnidentifiedUser', () {
+      Intercom.registerUnidentifiedUser();
+      expectMethodCall('registerUnidentifiedUser');
+    });
+
+    test('setLauncherVisibility - visible', () {
+      Intercom.setLauncherVisibility(IntercomLauncherVisibility.visible);
+      expectMethodCall('setLauncherVisibility', arguments: {
+        'visibility': 'VISIBLE',
+      });
+    });
+
+    test('setLauncherVisibility - gone', () {
+      Intercom.setLauncherVisibility(IntercomLauncherVisibility.gone);
+      expectMethodCall('setLauncherVisibility', arguments: {
+        'visibility': 'GONE',
+      });
+    });
   });
 }
