@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/ChangeFinance/intercom_flutter.svg?style=svg)](https://circleci.com/gh/ChangeFinance/intercom_flutter)
 [![codecov](https://codecov.io/gh/ChangeFinance/intercom_flutter/branch/master/graph/badge.svg)](https://codecov.io/gh/ChangeFinance/intercom_flutter)
-[![Pub](https://img.shields.io/badge/Pub-0.0.4-orange.svg)](https://pub.dartlang.org/packages/intercom_flutter)
+[![Pub](https://img.shields.io/badge/Pub-0.0.4-orange.svg)](https://pub.dartlang.org/packages/intercom)
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android) and [iOS](https://github.com/intercom/intercom-ios) projects. Currently only supports registering users and opening Intercom messenger.
 
