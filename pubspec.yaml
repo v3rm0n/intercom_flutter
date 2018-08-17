@@ -1,6 +1,6 @@
-name: intercom
+name: intercom_flutter
 description: Flutter Intercom integration
-version: 0.0.4
+version: 1.0.0
 author: Maido Käära <maido@getchange.com>
 homepage: https://github.com/ChangeFinance/intercom_flutter
 
@@ -11,7 +11,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^2.2.3
+  mockito: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

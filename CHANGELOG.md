@@ -1,3 +1,8 @@
+## 1.0.0
+
+* Added user attributes (name, email, phone, userId and company)
+* Renamed package to `intercom_flutter` because of the name clash with Intercom pod
+
 ## 0.0.4
 
 * Fixed pod name in podspec

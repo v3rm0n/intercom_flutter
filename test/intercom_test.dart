@@ -1,4 +1,4 @@
-import 'package:intercom/intercom.dart';
+import 'package:intercom_flutter/intercom.dart';
 import 'package:test/test.dart';
 
 import 'test_method_channel.dart';
@@ -57,6 +57,22 @@ void main() {
       Intercom.setLauncherVisibility(IntercomLauncherVisibility.gone);
       expectMethodCall('setLauncherVisibility', arguments: {
         'visibility': 'GONE',
+      });
+    });
+
+    test('updateUser', () {
+      Intercom.updateUser(
+          email: 'test@example.com',
+          name: 'John Doe',
+          userId: '1',
+          phone: '+37256123456',
+          company: 'Some Company LLC');
+      expectMethodCall('updateUser', arguments: {
+        'email': 'test@example.com',
+        'name': 'John Doe',
+        'userId': '1',
+        'phone': '+37256123456',
+        'company': 'Some Company LLC',
       });
     });
   });

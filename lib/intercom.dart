@@ -1,4 +1,4 @@
-library intercom;
+library intercom_flutter;
 
 import 'dart:async';
 
@@ -25,6 +25,21 @@ class Intercom {
 
   static Future<dynamic> registerUnidentifiedUser() {
     return _channel.invokeMethod('registerUnidentifiedUser');
+  }
+
+  static Future<dynamic> updateUser(
+      {String email,
+      String name,
+      String phone,
+      String company,
+      String userId}) {
+    return _channel.invokeMethod('updateUser', {
+      'email': email,
+      'name': name,
+      'phone': phone,
+      'company': company,
+      'userId': userId
+    });
   }
 
   static Future<dynamic> logout() {

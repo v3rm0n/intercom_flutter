@@ -41,6 +41,37 @@ public class SwiftIntercomPlugin: NSObject, FlutterPlugin {
     } else if (call.method == "displayMessenger") {
         Intercom.presentMessenger()
         result("Presenting messenger")
+    } else if (call.method == "updateUser") {
+        if let args = call.arguments as? [String: String] {
+            let email = args["email"]
+            let name = args["name"]
+            let userId = args["userId"]
+            let phone = args["phone"]
+            let company = args["company"]
+            let userAttributes = ICMUserAttributes()
+            if (email != nil) {
+                userAttributes.email = email
+            }
+            if (name != nil) {
+                userAttributes.name = name
+            }
+            if (phone != nil) {
+                userAttributes.phone = phone
+            }
+            if (userId != nil) {
+                userAttributes.userId = userId
+            }
+            if (company != nil) {
+                let icmCompany = ICMCompany()
+                icmCompany.name = company
+                userAttributes.companies = [icmCompany]
+            }
+            Intercom.updateUser(userAttributes)
+            result("User updates")
+        } else {
+            result("Updating user failed")
+        }
+
     } else if (call.method == "logout") {
         Intercom.logout()
         result("Logged out")
