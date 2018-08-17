@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Fixed ios headers
+
 ## 1.0.0
 
 * Added user attributes (name, email, phone, userId and company)
