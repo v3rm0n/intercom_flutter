@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Fixed plugin name in all places
+
 ## 1.0.1
 
 * Fixed ios headers

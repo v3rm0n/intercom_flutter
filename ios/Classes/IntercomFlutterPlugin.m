@@ -1,8 +1,8 @@
-#import "IntercomPlugin.h"
+#import "IntercomFlutterPlugin.h"
 #import <intercom_flutter/intercom_flutter-Swift.h>
 
-@implementation IntercomPlugin
+@implementation IntercomFlutterPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftIntercomPlugin registerWithRegistrar:registrar];
+  [SwiftIntercomFlutterPlugin registerWithRegistrar:registrar];
 }
 @end

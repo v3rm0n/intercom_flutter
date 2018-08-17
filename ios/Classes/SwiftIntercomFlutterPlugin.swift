@@ -2,10 +2,10 @@ import Flutter
 import UIKit
 import Intercom
     
-public class SwiftIntercomPlugin: NSObject, FlutterPlugin {
+public class SwiftIntercomFlutterPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "app.getchange.com/intercom", binaryMessenger: registrar.messenger())
-    let instance = SwiftIntercomPlugin()
+    let instance = SwiftIntercomFlutterPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

@@ -1,6 +1,6 @@
 name: intercom_flutter
 description: Flutter Intercom integration
-version: 1.0.1
+version: 1.0.2
 author: Maido Käära <maido@getchange.com>
 homepage: https://github.com/ChangeFinance/intercom_flutter
 
@@ -20,7 +20,7 @@ dev_dependencies:
 flutter:
   plugin:
     androidPackage: com.getchange.intercom
-    pluginClass: IntercomPlugin
+    pluginClass: IntercomFlutterPlugin
 
 environment:
   sdk: ">=2.0.0-dev.28.0 <3.0.0"
