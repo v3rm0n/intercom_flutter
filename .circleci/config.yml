@@ -7,7 +7,7 @@ jobs:
       CODECOV_TOKEN: a2c3e067-68e0-4d4f-a302-f68376c30232
     steps:
       - checkout
-      - run: flutter channel dev
+      - run: flutter channel master
       - run: flutter doctor
       - run: flutter packages get
       - run: flutter analyze -v
