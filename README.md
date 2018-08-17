@@ -2,17 +2,17 @@
 
 [![CircleCI](https://circleci.com/gh/ChangeFinance/intercom_flutter.svg?style=svg)](https://circleci.com/gh/ChangeFinance/intercom_flutter)
 [![codecov](https://codecov.io/gh/ChangeFinance/intercom_flutter/branch/master/graph/badge.svg)](https://codecov.io/gh/ChangeFinance/intercom_flutter)
-[![Pub](https://img.shields.io/badge/Pub-0.0.4-orange.svg)](https://pub.dartlang.org/packages/intercom)
+[![Pub](https://img.shields.io/badge/Pub-1.0.0-orange.svg)](https://pub.dartlang.org/packages/intercom_flutter)
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android) and [iOS](https://github.com/intercom/intercom-ios) projects. Currently only supports registering users and opening Intercom messenger.
 
 ## Usage
 
-Import `package:intercom/intercom.dart` and use the methods in `Intercom` class.
+Import `package:intercom_flutter/intercom_flutter.dart` and use the methods in `Intercom` class.
 
 Example:
 ```dart
-import 'package:intercom/intercom.dart';
+import 'package:intercom_flutter/intercom_flutter.dart';
 
 void main() async {
     await Intercom.initialize('appIdHere', iosApiKey: 'iosKeyHere', androidApiKey: 'androidKeyHere');
