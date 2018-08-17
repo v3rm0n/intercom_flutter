@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intercom_flutter/intercom.dart';
+import 'package:intercom_flutter/intercom_flutter.dart';
 
 void main() async {
   await Intercom.initialize('appId',

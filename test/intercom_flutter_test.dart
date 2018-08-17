@@ -1,4 +1,4 @@
-import 'package:intercom_flutter/intercom.dart';
+import 'package:intercom_flutter/intercom_flutter.dart';
 import 'package:test/test.dart';
 
 import 'test_method_channel.dart';
