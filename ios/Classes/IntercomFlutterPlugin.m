@@ -38,19 +38,19 @@
     else if([@"updateUser" isEqualToString:call.method]) {
         ICMUserAttributes *attributes = [ICMUserAttributes new];
         NSString *email = call.arguments[@"email"];
-        if(email) {
+        if(email != (id)[NSNull null]) {
             attributes.email = email;
         }
         NSString *name = call.arguments[@"name"];
-        if(name) {
+        if(name != (id)[NSNull null]) {
             attributes.name = name;
         }
         NSString *phone = call.arguments[@"phone"];
-        if(phone) {
+        if(phone != (id)[NSNull null]) {
             attributes.phone = phone;
         }
         NSString *userId = call.arguments[@"userId"];
-        if(userId) {
+        if(userId != (id)[NSNull null]) {
             attributes.userId = userId;
         }
         [Intercom updateUser:attributes];
