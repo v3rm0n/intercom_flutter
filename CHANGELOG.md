@@ -1,3 +1,7 @@
+## 1.0.5
+
+* Fixed ObjectiveC warnings
+
 ## 1.0.4
 
 * Converter Swift code to ObjectiveC
