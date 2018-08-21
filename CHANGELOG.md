@@ -1,3 +1,11 @@
+## 1.0.4
+
+* Converter Swift code to ObjectiveC
+
+## 1.0.3
+
+* Updated iOS project to Swift 4.2
+
 ## 1.0.2
 
 * Fixed plugin name in all places
