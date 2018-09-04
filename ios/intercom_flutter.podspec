@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'intercom_flutter'
-  s.version          = '1.0.0'
+  s.version          = '1.0.7'
   s.summary          = 'Intercom integration for Flutter'
   s.description      = <<-DESC
 A new flutter plugin project.

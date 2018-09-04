@@ -41,6 +41,11 @@ void main() {
       expectMethodCall('displayMessenger');
     });
 
+    test('displayHelpCenter', () {
+      Intercom.displayHelpCenter();
+      expectMethodCall('displayHelpCenter');
+    });
+
     test('registerUnidentifiedUser', () {
       Intercom.registerUnidentifiedUser();
       expectMethodCall('registerUnidentifiedUser');

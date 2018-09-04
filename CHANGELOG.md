@@ -1,3 +1,6 @@
+## 1.0.7
+* Added Help Center support
+
 ## 1.0.6
 
 * Fixed null check in ObjectiveC

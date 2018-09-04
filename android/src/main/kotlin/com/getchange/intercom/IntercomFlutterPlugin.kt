@@ -51,6 +51,10 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         Intercom.client().displayMessenger()
         result.success("Launched")
       }
+      call.method == "displayHelpCenter" -> {
+        Intercom.client().displayHelpCenter()
+        result.success("Launched")
+      }
       call.method == "updateUser" -> {
         val name = call.argument<String>("name")
         val email = call.argument<String>("email")

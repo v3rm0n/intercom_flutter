@@ -57,4 +57,8 @@ class Intercom {
   static Future<dynamic> displayMessenger() {
     return _channel.invokeMethod('displayMessenger');
   }
+
+  static Future<dynamic> displayHelpCenter() {
+    return _channel.invokeMethod('displayHelpCenter');
+  }
 }

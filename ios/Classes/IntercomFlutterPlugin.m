@@ -35,6 +35,10 @@
         [Intercom presentMessenger];
         result(@"Presented messenger");
     }
+    else if([@"displayHelpCenter" isEqualToString:call.method]) {
+        [Intercom presentHelpCenter];
+        result(@"Presented help center");
+    }
     else if([@"updateUser" isEqualToString:call.method]) {
         ICMUserAttributes *attributes = [ICMUserAttributes new];
         NSString *email = call.arguments[@"email"];
