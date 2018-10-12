@@ -30,9 +30,11 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
       }
       call.method == "registerIdentifiedUser" -> {
         val userId = call.argument<String>("userId")
-        val registration = Registration.create().withUserId(userId)
-        Intercom.client().registerIdentifiedUser(registration)
-        result.success("User created")
+        if(userId != null) {
+          val registration = Registration.create().withUserId(userId)
+          Intercom.client().registerIdentifiedUser(registration)
+          result.success("User created")
+        }
       }
       call.method == "registerUnidentifiedUser" -> {
         Intercom.client().registerUnidentifiedUser()
@@ -44,8 +46,10 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
       }
       call.method == "setLauncherVisibility" -> {
         val visibility = call.argument<String>("visibility")
-        Intercom.client().setLauncherVisibility(Intercom.Visibility.valueOf(visibility))
-        result.success("Showing launcher")
+        if(visibility != null) {
+          Intercom.client().setLauncherVisibility(Intercom.Visibility.valueOf(visibility))
+          result.success("Showing launcher")
+        }
       }
       call.method == "displayMessenger" -> {
         Intercom.client().displayMessenger()

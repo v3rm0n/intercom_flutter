@@ -1,3 +1,6 @@
+## 1.0.8
+* Fixed issues with nullability in Intercom Android SDK
+
 ## 1.0.7
 * Added Help Center support
 
