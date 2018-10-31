@@ -32,12 +32,14 @@ class Intercom {
       String name,
       String phone,
       String company,
+      String companyId,
       String userId}) {
     return _channel.invokeMethod('updateUser', {
       'email': email,
       'name': name,
       'phone': phone,
       'company': company,
+      'companyId': companyId,
       'userId': userId
     });
   }
