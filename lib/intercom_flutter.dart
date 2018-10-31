@@ -33,14 +33,16 @@ class Intercom {
       String phone,
       String company,
       String companyId,
-      String userId}) {
-    return _channel.invokeMethod('updateUser', {
+      String userId,
+      Map<String, dynamic> customAttributes}) {
+    return _channel.invokeMethod('updateUser', <String, dynamic>{
       'email': email,
       'name': name,
       'phone': phone,
       'company': company,
       'companyId': companyId,
-      'userId': userId
+      'userId': userId,
+      'customAttributes': customAttributes
     });
   }
 

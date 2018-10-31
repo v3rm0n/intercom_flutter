@@ -66,6 +66,7 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         val userId = call.argument<String>("userId")
         val company = call.argument<String>("company")
         val companyId = call.argument<String>("companyId")
+        val customAttributes = call.argument<Map<String, Any?>>("customAttributes")
         val userAttributes = UserAttributes.Builder()
         if (email != null) {
           userAttributes.withEmail(email)
@@ -85,7 +86,13 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
           icmCompany.withCompanyId(companyId)
           userAttributes.withCompany(icmCompany.build())
         }
+        if (customAttributes != null) {
+          for((key, value) in customAttributes){
+            userAttributes.withCustomAttribute(key, value)
+          }
+        }
         Intercom.client().updateUser(userAttributes.build())
+        result.success("User updated")
       }
       else -> result.notImplemented()
     }

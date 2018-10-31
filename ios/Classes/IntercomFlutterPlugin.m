@@ -65,8 +65,11 @@
           company.companyId = companyId;
           attributes.companies = @[company];
         }
+        NSDictionary *customAttributes = call.arguments[@"customAttributes"];
+        if(customAttributes != (id)[NSNull null]) {
+          attributes.customAttributes = customAttributes;
+        }
         [Intercom updateUser:attributes];
-        
         result(@"Updated user");
     }
     else if([@"logout" isEqualToString:call.method]) {
