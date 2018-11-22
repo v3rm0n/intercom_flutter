@@ -1,3 +1,6 @@
+## 1.0.9
+* Added support for companies
+* Added support for custom attributes
 ## 1.0.8
 * Fixed issues with nullability in Intercom Android SDK
 
