@@ -71,13 +71,15 @@ void main() {
           name: 'John Doe',
           userId: '1',
           phone: '+37256123456',
-          company: 'Some Company LLC');
+          company: 'Some Company LLC',
+          companyId: '2');
       expectMethodCall('updateUser', arguments: {
         'email': 'test@example.com',
         'name': 'John Doe',
         'userId': '1',
         'phone': '+37256123456',
         'company': 'Some Company LLC',
+        'companyId': '2',
       });
     });
   });

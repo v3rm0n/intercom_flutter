@@ -57,8 +57,19 @@
         if(userId != (id)[NSNull null]) {
             attributes.userId = userId;
         }
+        NSString *companyName = call.arguments[@"company"];
+        NSString *companyId = call.arguments[@"companyId"];
+        if(companyName != (id)[NSNull null] && companyId != (id)[NSNull null]) {
+          ICMCompany *company = [ICMCompany new];
+          company.name = companyName;
+          company.companyId = companyId;
+          attributes.companies = @[company];
+        }
+        NSDictionary *customAttributes = call.arguments[@"customAttributes"];
+        if(customAttributes != (id)[NSNull null]) {
+          attributes.customAttributes = customAttributes;
+        }
         [Intercom updateUser:attributes];
-        
         result(@"Updated user");
     }
     else if([@"logout" isEqualToString:call.method]) {
