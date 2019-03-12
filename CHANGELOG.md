@@ -1,5 +1,6 @@
 ## 1.0.11
 * Added unreadConversationCount and setInAppMessagesVisible
+* Migrated to AndroidX (thanks @LeonidVeremchuk and @Zazo032)
 
 ## 1.0.10
 * Updated author
