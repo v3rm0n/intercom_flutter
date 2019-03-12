@@ -31,6 +31,15 @@
         [Intercom setLauncherVisible:[@"VISIBLE" isEqualToString:visibility]];
         result(@"Setting launcher visibility");
     }
+    else if([@"setInAppMessagesVisibility" isEqualToString:call.method]) {
+        NSString *visibility = call.arguments[@"visibility"];
+        [Intercom setInAppMessagesVisible:[@"VISIBLE" isEqualToString:visibility]];
+        result(@"Setting in app messages visibility");
+    }
+    else if([@"unreadConversationCount" isEqualToString:call.method]) {
+        NSUInteger count = [Intercom unreadConversationCount];
+        result(@(count));
+    }
     else if([@"displayMessenger" isEqualToString:call.method]) {
         [Intercom presentMessenger];
         result(@"Presented messenger");

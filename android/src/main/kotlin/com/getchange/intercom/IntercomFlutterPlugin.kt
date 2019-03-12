@@ -48,7 +48,7 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         val visibility = call.argument<String>("visibility")
         if(visibility != null) {
           Intercom.client().setLauncherVisibility(Intercom.Visibility.valueOf(visibility))
-          result.success("Showing launcher")
+          result.success("Showing launcher: $visibility")
         }
       }
       call.method == "displayMessenger" -> {
@@ -58,6 +58,18 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
       call.method == "displayHelpCenter" -> {
         Intercom.client().displayHelpCenter()
         result.success("Launched")
+      }
+      call.method == "setInAppMessageVisibility" -> {
+        val visibility = call.argument<String>("visibility")
+        if(visibility != null) {
+          Intercom.client().setInAppMessageVisibility(Intercom.Visibility.valueOf(visibility))
+          result.success("Showing in app messages: $visibility")
+        }
+        result.success("Launched")
+      }
+      call.method == "unreadConversationCount" -> {
+        val count = Intercom.client().unreadConversationCount
+        result.success(count)
       }
       call.method == "updateUser" -> {
         val name = call.argument<String>("name")
