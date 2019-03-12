@@ -46,6 +46,16 @@ void main() {
       expectMethodCall('displayHelpCenter');
     });
 
+    test('unreadConversationCount', () {
+      Intercom.unreadConversationCount();
+      expectMethodCall('unreadConversationCount');
+    });
+
+    test('setInAppMessagesVisible', () {
+      Intercom.setInAppMessagesVisible();
+      expectMethodCall('setInAppMessagesVisible');
+    });
+
     test('registerUnidentifiedUser', () {
       Intercom.registerUnidentifiedUser();
       expectMethodCall('registerUnidentifiedUser');

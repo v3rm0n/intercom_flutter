@@ -58,6 +58,14 @@ class Intercom {
         'setLauncherVisibility', {'visibility': visibilityString});
   }
 
+  static Future<dynamic> unreadConversationCount() {
+    return _channel.invokeMethod('unreadConversationCount');
+  }
+
+  static Future<dynamic> setInAppMessagesVisible() {
+    return _channel.invokeMethod('setInAppMessagesVisible');
+  }
+
   static Future<dynamic> displayMessenger() {
     return _channel.invokeMethod('displayMessenger');
   }

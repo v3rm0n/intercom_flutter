@@ -1,3 +1,6 @@
+## 1.0.11
+* Added unreadConversationCount and setInAppMessagesVisible
+
 ## 1.0.10
 * Updated author
 
