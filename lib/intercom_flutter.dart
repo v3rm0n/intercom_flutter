@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-enum IntercomLauncherVisibility { gone, visible }
+enum IntercomVisibility { gone, visible }
 
 class Intercom {
   static const MethodChannel _channel =
@@ -50,12 +50,23 @@ class Intercom {
     return _channel.invokeMethod('logout');
   }
 
-  static Future<dynamic> setLauncherVisibility(
-      IntercomLauncherVisibility visibility) {
+  static Future<dynamic> setLauncherVisibility(IntercomVisibility visibility) {
     String visibilityString =
-        visibility == IntercomLauncherVisibility.visible ? 'VISIBLE' : 'GONE';
+        visibility == IntercomVisibility.visible ? 'VISIBLE' : 'GONE';
     return _channel.invokeMethod(
         'setLauncherVisibility', {'visibility': visibilityString});
+  }
+
+  static Future<int> unreadConversationCount() {
+    return _channel.invokeMethod('unreadConversationCount');
+  }
+
+  static Future<dynamic> setInAppMessagesVisibility(
+      IntercomVisibility visibility) {
+    String visibilityString =
+        visibility == IntercomVisibility.visible ? 'VISIBLE' : 'GONE';
+    return _channel.invokeMethod(
+        'setInAppMessagesVisibility', {'visibility': visibilityString});
   }
 
   static Future<dynamic> displayMessenger() {

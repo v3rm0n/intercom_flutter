@@ -46,20 +46,39 @@ void main() {
       expectMethodCall('displayHelpCenter');
     });
 
+    test('unreadConversationCount', () {
+      Intercom.unreadConversationCount();
+      expectMethodCall('unreadConversationCount');
+    });
+
+    test('setInAppMessagesVisibility - visible', () {
+      Intercom.setInAppMessagesVisibility(IntercomVisibility.visible);
+      expectMethodCall('setInAppMessagesVisibility', arguments: {
+        'visibility': 'VISIBLE',
+      });
+    });
+
+    test('setInAppMessagesVisibility - gone', () {
+      Intercom.setInAppMessagesVisibility(IntercomVisibility.gone);
+      expectMethodCall('setInAppMessagesVisibility', arguments: {
+        'visibility': 'GONE',
+      });
+    });
+
     test('registerUnidentifiedUser', () {
       Intercom.registerUnidentifiedUser();
       expectMethodCall('registerUnidentifiedUser');
     });
 
     test('setLauncherVisibility - visible', () {
-      Intercom.setLauncherVisibility(IntercomLauncherVisibility.visible);
+      Intercom.setLauncherVisibility(IntercomVisibility.visible);
       expectMethodCall('setLauncherVisibility', arguments: {
         'visibility': 'VISIBLE',
       });
     });
 
     test('setLauncherVisibility - gone', () {
-      Intercom.setLauncherVisibility(IntercomLauncherVisibility.gone);
+      Intercom.setLauncherVisibility(IntercomVisibility.gone);
       expectMethodCall('setLauncherVisibility', arguments: {
         'visibility': 'GONE',
       });

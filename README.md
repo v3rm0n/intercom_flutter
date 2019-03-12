@@ -1,6 +1,6 @@
 # intercom_flutter
 
-[![Pub](https://img.shields.io/badge/Pub-1.0.9-orange.svg)](https://pub.dartlang.org/packages/intercom_flutter)
+[![Pub](https://img.shields.io/badge/Pub-1.0.11-orange.svg)](https://pub.dartlang.org/packages/intercom_flutter)
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android) and [iOS](https://github.com/intercom/intercom-ios) projects. Currently only supports registering users and opening Intercom messenger.
 
