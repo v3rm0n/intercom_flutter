@@ -31,6 +31,13 @@ void main() {
       });
     });
 
+    test('setUserHash', () {
+      Intercom.setUserHash('test');
+      expectMethodCall('setUserHash', arguments: {
+        'userHash': 'test',
+      });
+    });
+
     test('logout', () {
       Intercom.logout();
       expectMethodCall('logout');

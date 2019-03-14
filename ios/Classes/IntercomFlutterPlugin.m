@@ -21,6 +21,11 @@
         [Intercom registerUnidentifiedUser];
         result(@"Registered unidentified user");
     }
+    else if([@"setUserHash" isEqualToString:call.method]) {
+        NSString *userHash = call.arguments[@"userHash"];
+        [Intercom setUserHash:userHash];
+        result(@"User hash added");
+    }
     else if([@"registerIdentifiedUser" isEqualToString:call.method]) {
         NSString *userId = call.arguments[@"userId"];
         [Intercom registerUserWithUserId:userId];
