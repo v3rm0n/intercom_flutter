@@ -28,6 +28,13 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         Intercom.initialize(application, apiKey, appId)
         result.success("Intercom initialized")
       }
+      call.method == "setUserHash" -> {
+        val userHash = call.argument<String>("userHash")
+        if(userHash != null) {
+          Intercom.client().setUserHash(userHash);
+          result.success("User hash added")
+        }
+      }
       call.method == "registerIdentifiedUser" -> {
         val userId = call.argument<String>("userId")
         if(userId != null) {
