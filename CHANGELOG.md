@@ -1,3 +1,6 @@
+## 1.0.12
+* Added setUserHash (thanks @Spikes042)
+
 ## 1.0.11
 * Added unreadConversationCount and setInAppMessagesVisible
 * Migrated to AndroidX (thanks @LeonidVeremchuk and @Zazo032)
