@@ -1,4 +1,4 @@
-package com.getchange.intercom
+package io.maido.intercom
 
 import android.app.Application
 import io.flutter.plugin.common.MethodChannel
@@ -15,7 +15,7 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "app.getchange.com/intercom")
+      val channel = MethodChannel(registrar.messenger(), "maido.io/intercom")
       channel.setMethodCallHandler(IntercomFlutterPlugin(registrar.context() as Application))
     }
   }

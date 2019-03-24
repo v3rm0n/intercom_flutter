@@ -1,4 +1,4 @@
-package com.getchange.intercomexample
+package io.maido.intercomexample
 
 import android.os.Bundle
 

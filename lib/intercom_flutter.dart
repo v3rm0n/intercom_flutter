@@ -8,7 +8,7 @@ enum IntercomVisibility { gone, visible }
 
 class Intercom {
   static const MethodChannel _channel =
-      const MethodChannel('app.getchange.com/intercom');
+      const MethodChannel('io.maido/intercom');
 
   static Future<dynamic> initialize(String appId,
       {String androidApiKey, String iosApiKey}) {
