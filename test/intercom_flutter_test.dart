@@ -6,7 +6,7 @@ import 'test_method_channel.dart';
 void main() {
   group('Intercom', () {
     setUp(() {
-      setUpTestMethodChannel('app.getchange.com/intercom');
+      setUpTestMethodChannel('maido.io/intercom');
     });
 
     test('initialize', () {
@@ -24,11 +24,16 @@ void main() {
       });
     });
 
-    test('registerIdentifiedUser', () {
-      Intercom.registerIdentifiedUser('test');
-      expectMethodCall('registerIdentifiedUser', arguments: {
-        'userId': 'test',
-      });
+    test('registerIdentifiedUser with userId', () {
+      Intercom.registerIdentifiedUser(userId: 'test');
+      expectMethodCall('registerIdentifiedUser',
+          arguments: {'userId': 'test', 'email': null});
+    });
+
+    test('registerIdentifiedUser with email', () {
+      Intercom.registerIdentifiedUser(email: 'test');
+      expectMethodCall('registerIdentifiedUser',
+          arguments: {'email': 'test', 'userId': null});
     });
 
     test('setUserHash', () {

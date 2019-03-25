@@ -8,7 +8,7 @@ enum IntercomVisibility { gone, visible }
 
 class Intercom {
   static const MethodChannel _channel =
-      const MethodChannel('io.maido/intercom');
+      const MethodChannel('maido.io/intercom');
 
   static Future<dynamic> initialize(String appId,
       {String androidApiKey, String iosApiKey}) {
@@ -23,8 +23,9 @@ class Intercom {
     return _channel.invokeMethod('setUserHash', {'userHash': userHash});
   }
 
-  static Future<dynamic> registerIdentifiedUser(String userId) {
-    return _channel.invokeMethod('registerIdentifiedUser', {'userId': userId});
+  static Future<dynamic> registerIdentifiedUser({String userId, String email}) {
+    return _channel.invokeMethod(
+        'registerIdentifiedUser', {'userId': userId, 'email': email});
   }
 
   static Future<dynamic> registerUnidentifiedUser() {

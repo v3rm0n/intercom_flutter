@@ -5,7 +5,7 @@
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     IntercomFlutterPlugin* instance = [[IntercomFlutterPlugin alloc] init];
     FlutterMethodChannel* channel =
-    [FlutterMethodChannel methodChannelWithName:@"app.getchange.com/intercom"
+    [FlutterMethodChannel methodChannelWithName:@"maido.io/intercom"
                                 binaryMessenger:[registrar messenger]];
     [registrar addMethodCallDelegate:instance channel:channel];
 }
@@ -28,8 +28,17 @@
     }
     else if([@"registerIdentifiedUser" isEqualToString:call.method]) {
         NSString *userId = call.arguments[@"userId"];
-        [Intercom registerUserWithUserId:userId];
-        result(@"Registered user");
+        NSString *email = call.arguments[@"email"];
+        if(userId != (id)[NSNull null] || email != (id)[NSNull null]) {
+            if(userId == (id)[NSNull null]) {
+                [Intercom registerUserWithEmail:email];
+            } else if(email == (id)[NSNull null]) {
+                [Intercom registerUserWithUserId:userId];
+            } else {
+                [Intercom registerUserWithUserId:userId email:email];
+            }
+            result(@"Registered user");
+        }
     }
     else if([@"setLauncherVisibility" isEqualToString:call.method]) {
         NSString *visibility = call.arguments[@"visibility"];
@@ -74,14 +83,14 @@
         NSString *companyName = call.arguments[@"company"];
         NSString *companyId = call.arguments[@"companyId"];
         if(companyName != (id)[NSNull null] && companyId != (id)[NSNull null]) {
-          ICMCompany *company = [ICMCompany new];
-          company.name = companyName;
-          company.companyId = companyId;
-          attributes.companies = @[company];
+            ICMCompany *company = [ICMCompany new];
+            company.name = companyName;
+            company.companyId = companyId;
+            attributes.companies = @[company];
         }
         NSDictionary *customAttributes = call.arguments[@"customAttributes"];
         if(customAttributes != (id)[NSNull null]) {
-          attributes.customAttributes = customAttributes;
+            attributes.customAttributes = customAttributes;
         }
         [Intercom updateUser:attributes];
         result(@"Updated user");

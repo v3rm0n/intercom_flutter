@@ -1,6 +1,6 @@
 root=true
 
-[*.{java,xml,yml,json,gradle}]
+[*.{java,xml,yml,json,gradle, dart}]
 charset = utf-8
 indent_style = space
 indent_size = 2

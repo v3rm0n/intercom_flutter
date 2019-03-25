@@ -1,3 +1,7 @@
+## 2.0.0
+* Changed message channel name
+* Added email to user registration
+
 ## 1.0.12
 * Added setUserHash (thanks @Spikes042)
 
