@@ -27,22 +27,22 @@ class Intercom {
   }
 
   static Future<dynamic> registerIdentifiedUser({String userId, String email}) {
-    if (userId.isNotEmpty) {
-      assert(email.isEmpty,
+    if (userId != null) {
+      assert(email == null,
           'The parameter `email` must be null if `userId` is provided.');
       return _channel.invokeMethod('registerIdentifiedUser', {
         'userId': userId,
       });
-    } else if (email.isNotEmpty) {
-      assert(userId.isEmpty,
+    } else if (email != null) {
+      assert(userId == null,
           'The parameter `userId` must be null if `email` is provided.');
       return _channel.invokeMethod('registerIdentifiedUser', {
         'email': email,
       });
     } else {
-      assert(userId.isNotEmpty || email.isNotEmpty,
+      assert(userId == null || email == null,
           'An identification method must be provided as a parameter, either `userId` or `email`.');
-      return registerUnidentifiedUser();
+      return _channel.invokeMapMethod('registerUnidentifiedUser');
     }
   }
 
