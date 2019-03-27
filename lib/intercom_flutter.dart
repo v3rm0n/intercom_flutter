@@ -28,8 +28,10 @@ class Intercom {
 
   static Future<dynamic> registerIdentifiedUser({String userId, String email}) {
     if (userId != null) {
-      assert(email == null,
-          'The parameter `email` must be null if `userId` is provided.');
+      if (email != null) {
+        throw ArgumentError(
+            'The parameter `email` must be null if `userId` is provided.');
+      }
       return _channel.invokeMethod('registerIdentifiedUser', {
         'userId': userId,
       });
