@@ -40,9 +40,8 @@ class Intercom {
         'email': email,
       });
     } else {
-      assert(userId == null || email == null,
+      throw new ArgumentError(
           'An identification method must be provided as a parameter, either `userId` or `email`.');
-      return _channel.invokeMethod('registerUnidentifiedUser');
     }
   }
 

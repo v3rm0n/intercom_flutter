@@ -45,8 +45,7 @@ void main() {
       test('with userId and email', () {}, skip: 'WIP');
 
       test('without parameters', () {
-        Intercom.registerIdentifiedUser();
-        expectMethodCall('registerUnidentifiedUser');
+        expect(() => Intercom.registerIdentifiedUser(), throwsArgumentError);
       });
     });
 
