@@ -42,7 +42,15 @@ void main() {
         });
       });
 
-      test('with userId and email', () {}, skip: 'WIP');
+      test('with userId and email', () {
+        expect(
+          () => Intercom.registerIdentifiedUser(
+                userId: 'testId',
+                email: 'testEmail',
+              ),
+          throwsArgumentError,
+        );
+      });
 
       test('without parameters', () {
         expect(() => Intercom.registerIdentifiedUser(), throwsArgumentError);
