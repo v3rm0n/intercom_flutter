@@ -34,13 +34,11 @@ class Intercom {
         'userId': userId,
       });
     } else if (email != null) {
-      assert(userId == null,
-          'The parameter `userId` must be null if `email` is provided.');
       return _channel.invokeMethod('registerIdentifiedUser', {
         'email': email,
       });
     } else {
-      throw new ArgumentError(
+      throw ArgumentError(
           'An identification method must be provided as a parameter, either `userId` or `email`.');
     }
   }
