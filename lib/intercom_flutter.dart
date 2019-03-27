@@ -10,12 +10,15 @@ class Intercom {
   static const MethodChannel _channel =
       const MethodChannel('maido.io/intercom');
 
-  static Future<dynamic> initialize(String appId,
-      {String androidApiKey, String iosApiKey}) {
+  static Future<dynamic> initialize(
+    String appId, {
+    String androidApiKey,
+    String iosApiKey,
+  }) {
     return _channel.invokeMethod('initialize', {
       'appId': appId,
       'androidApiKey': androidApiKey,
-      'iosApiKey': iosApiKey
+      'iosApiKey': iosApiKey,
     });
   }
 
@@ -24,22 +27,37 @@ class Intercom {
   }
 
   static Future<dynamic> registerIdentifiedUser({String userId, String email}) {
-    return _channel.invokeMethod(
-        'registerIdentifiedUser', {'userId': userId, 'email': email});
+    if (userId?.isNotEmpty ?? false) {
+      if (email?.isNotEmpty ?? false) {
+        throw ArgumentError(
+            'The parameter `email` must be null if `userId` is provided.');
+      }
+      return _channel.invokeMethod('registerIdentifiedUser', {
+        'userId': userId,
+      });
+    } else if (email?.isNotEmpty ?? false) {
+      return _channel.invokeMethod('registerIdentifiedUser', {
+        'email': email,
+      });
+    } else {
+      throw ArgumentError(
+          'An identification method must be provided as a parameter, either `userId` or `email`.');
+    }
   }
 
   static Future<dynamic> registerUnidentifiedUser() {
     return _channel.invokeMethod('registerUnidentifiedUser');
   }
 
-  static Future<dynamic> updateUser(
-      {String email,
-      String name,
-      String phone,
-      String company,
-      String companyId,
-      String userId,
-      Map<String, dynamic> customAttributes}) {
+  static Future<dynamic> updateUser({
+    String email,
+    String name,
+    String phone,
+    String company,
+    String companyId,
+    String userId,
+    Map<String, dynamic> customAttributes,
+  }) {
     return _channel.invokeMethod('updateUser', <String, dynamic>{
       'email': email,
       'name': name,
@@ -47,7 +65,7 @@ class Intercom {
       'company': company,
       'companyId': companyId,
       'userId': userId,
-      'customAttributes': customAttributes
+      'customAttributes': customAttributes,
     });
   }
 
@@ -58,8 +76,9 @@ class Intercom {
   static Future<dynamic> setLauncherVisibility(IntercomVisibility visibility) {
     String visibilityString =
         visibility == IntercomVisibility.visible ? 'VISIBLE' : 'GONE';
-    return _channel.invokeMethod(
-        'setLauncherVisibility', {'visibility': visibilityString});
+    return _channel.invokeMethod('setLauncherVisibility', {
+      'visibility': visibilityString,
+    });
   }
 
   static Future<int> unreadConversationCount() {
@@ -70,8 +89,9 @@ class Intercom {
       IntercomVisibility visibility) {
     String visibilityString =
         visibility == IntercomVisibility.visible ? 'VISIBLE' : 'GONE';
-    return _channel.invokeMethod(
-        'setInAppMessagesVisibility', {'visibility': visibilityString});
+    return _channel.invokeMethod('setInAppMessagesVisibility', {
+      'visibility': visibilityString,
+    });
   }
 
   static Future<dynamic> displayMessenger() {
