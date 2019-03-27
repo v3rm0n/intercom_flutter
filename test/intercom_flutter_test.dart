@@ -42,7 +42,7 @@ void main() {
         });
       });
 
-      test('with userId and email', () {
+      test('with userId and email should fail', () {
         expect(
           () => Intercom.registerIdentifiedUser(
                 userId: 'testId',

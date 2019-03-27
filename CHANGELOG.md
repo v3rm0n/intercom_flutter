@@ -1,3 +1,6 @@
+## 2.0.1
+* Added argument validation to registerIdentifiedUser (thanks @Zazo032)
+
 ## 2.0.0
 * Changed message channel name
 * Added email to user registration

@@ -1,6 +1,6 @@
 # intercom_flutter
 
-[![Pub](https://img.shields.io/badge/Pub-2.0.0-orange.svg)](https://pub.dartlang.org/packages/intercom_flutter)
+[![Pub](https://img.shields.io/badge/Pub-2.0.1-orange.svg)](https://pub.dartlang.org/packages/intercom_flutter)
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android) and [iOS](https://github.com/intercom/intercom-ios) projects.
 
