@@ -27,15 +27,15 @@ class Intercom {
   }
 
   static Future<dynamic> registerIdentifiedUser({String userId, String email}) {
-    if (userId != null) {
-      if (email != null) {
+    if (userId?.isNotEmpty ?? false) {
+      if (email?.isNotEmpty ?? false) {
         throw ArgumentError(
             'The parameter `email` must be null if `userId` is provided.');
       }
       return _channel.invokeMethod('registerIdentifiedUser', {
         'userId': userId,
       });
-    } else if (email != null) {
+    } else if (email?.isNotEmpty ?? false) {
       return _channel.invokeMethod('registerIdentifiedUser', {
         'email': email,
       });
