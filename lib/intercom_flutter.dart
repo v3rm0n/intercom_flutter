@@ -42,7 +42,7 @@ class Intercom {
     } else {
       assert(userId == null || email == null,
           'An identification method must be provided as a parameter, either `userId` or `email`.');
-      return _channel.invokeMapMethod('registerUnidentifiedUser');
+      return _channel.invokeMethod('registerUnidentifiedUser');
     }
   }
 
