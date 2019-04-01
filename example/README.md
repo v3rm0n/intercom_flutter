@@ -34,9 +34,9 @@ new FlatButton(
 
 ## Intercom Intstallation & Platform Configuration
 
-[iOS installation docs](https://developers.intercom.com/installing-intercom/docs/ios-installation)
+[iOS Installation](https://developers.intercom.com/installing-intercom/docs/ios-installation)
 
-[Android installation docs](https://developers.intercom.com/installing-intercom/docs/android-installation)
+[Android Installation](https://developers.intercom.com/installing-intercom/docs/android-installation)
 
 ## Getting Started with Flutter
 
