@@ -1,36 +1,42 @@
 # intercom_example
 
-Demonstrates how to use the intercom plugin in a Flutter project. 
+Demonstrates how to use the Intercom plugin in a Flutter project. 
 
-## initialize & identify user
+## Initialize Intercom & Identify User
 
-see example code at [lib/main.dart](lib/main.dart)
+See example code at [lib/main.dart](lib/main.dart)
 
 configure your app's main function as follows
 
-        void main() async {
-          await Intercom.initialize('appId',
-            androidApiKey: 'androidApiKey', iosApiKey: 'iosApiKey');
+```dart
+void main() async {
+    await Intercom.initialize('appId',
+      androidApiKey: 'androidApiKey', iosApiKey: 'iosApiKey');
 
-          await Intercom.registerIdentifiedUser(email: 'your_intercom_user@domain.com'); 
-          // you can also use intercom user name instead of email
+    await Intercom.registerIdentifiedUser(email: 'user_email@example.com'); 
 
-          runApp(MyApp());
-        }
+    // you can also use the userId instead of email address 
+    // await Intercom.registerIdentifiedUser(userId: 'intercomUserID'); 
 
-## trigger from button or Flutter UI element
+    runApp(MyApp());
+  }
+```
 
-        FlatButton(
-            child: Text('Open Intercom'),
-            onPressed: () async {
-              await Intercom.displayMessenger();
-        }),
+## Display Intercom Messenger from Flutter UI Element
 
-## intercom platform specific config
+```dart
+new FlatButton(
+  onPressed: () {
+    Intercom.displayMessenger();
+  },
+  child: Text('Show messenger')),
+```
 
-[intercom ios installation docs](https://developers.intercom.com/installing-intercom/docs/ios-installation)
+## Intercom Intstallation & Platform Configuration
 
-[intercom android installation docs](https://developers.intercom.com/installing-intercom/docs/android-installation)
+[iOS installation docs](https://developers.intercom.com/installing-intercom/docs/ios-installation)
+
+[Android installation docs](https://developers.intercom.com/installing-intercom/docs/android-installation)
 
 ## Getting Started with Flutter
 
