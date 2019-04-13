@@ -30,14 +30,14 @@ void main() {
     group('registerIdentifiedUser', () {
       test('with userId', () {
         Intercom.registerIdentifiedUser(userId: 'test');
-        expectMethodCall('registerIdentifiedUser', arguments: {
+        expectMethodCall('registerIdentifiedUserWithUserId', arguments: {
           'userId': 'test',
         });
       });
 
       test('with email', () {
         Intercom.registerIdentifiedUser(email: 'test');
-        expectMethodCall('registerIdentifiedUser', arguments: {
+        expectMethodCall('registerIdentifiedUserWithEmail', arguments: {
           'email': 'test',
         });
       });
