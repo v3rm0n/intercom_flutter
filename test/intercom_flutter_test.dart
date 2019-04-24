@@ -141,4 +141,25 @@ void main() {
       });
     });
   });
+
+  group('logEvent', () {
+    test('withoutMetaData', () {
+      Intercom.logEvent("TEST");
+      expectMethodCall('logEvent', arguments: {
+        'name': 'TEST',
+        'metaData': null,
+      });
+    });
+
+    test('withMetaData', () {
+      Intercom.logEvent(
+        "TEST",
+        {'string': 'A string', 'number': 10, 'bool': true},
+      );
+      expectMethodCall('logEvent', arguments: {
+        'name': 'TEST',
+        'metaData': {'string': 'A string', 'number': 10, 'bool': true},
+      });
+    });
+  });
 }
