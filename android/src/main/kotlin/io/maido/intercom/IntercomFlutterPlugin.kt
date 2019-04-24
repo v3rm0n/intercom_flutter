@@ -118,6 +118,14 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         Intercom.client().updateUser(userAttributes.build())
         result.success("User updated")
       }
+      call.method == "logEvent" -> {
+        val name = call.argument<String>("name")
+        val metaData = call.argument<Map<String, Any>>("metaData")
+        if(name != null) {
+          Intercom.client().logEvent(name, metaData);
+          result.success("Logged event")
+        }
+      }
       else -> result.notImplemented()
     }
   }
