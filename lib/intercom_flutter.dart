@@ -101,4 +101,10 @@ class Intercom {
   static Future<dynamic> displayHelpCenter() {
     return _channel.invokeMethod('displayHelpCenter');
   }
+
+  static Future<dynamic> logEvent(String name,
+      [Map<String, dynamic> metaData]) {
+    return _channel
+        .invokeMethod('logEvent', {'name': name, 'metaData': metaData});
+  }
 }
