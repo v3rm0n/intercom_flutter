@@ -26,19 +26,15 @@
         [Intercom setUserHash:userHash];
         result(@"User hash added");
     }
-    else if([@"registerIdentifiedUser" isEqualToString:call.method]) {
+    else if([@"registerIdentifiedUserWithUserId" isEqualToString:call.method]) {
         NSString *userId = call.arguments[@"userId"];
+        [Intercom registerUserWithUserId:userId];
+        result(@"Registered user");
+    }
+    else if([@"registerIdentifiedUserWithEmail" isEqualToString:call.method]) {
         NSString *email = call.arguments[@"email"];
-        if(userId != (id)[NSNull null] || email != (id)[NSNull null]) {
-            if(userId == (id)[NSNull null]) {
-                [Intercom registerUserWithEmail:email];
-            } else if(email == (id)[NSNull null]) {
-                [Intercom registerUserWithUserId:userId];
-            } else {
-                [Intercom registerUserWithUserId:userId email:email];
-            }
-            result(@"Registered user");
-        }
+        [Intercom registerUserWithEmail:email];
+        result(@"Registered user");
     }
     else if([@"setLauncherVisibility" isEqualToString:call.method]) {
         NSString *visibility = call.arguments[@"visibility"];

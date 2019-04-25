@@ -32,11 +32,11 @@ class Intercom {
         throw ArgumentError(
             'The parameter `email` must be null if `userId` is provided.');
       }
-      return _channel.invokeMethod('registerIdentifiedUser', {
+      return _channel.invokeMethod('registerIdentifiedUserWithUserId', {
         'userId': userId,
       });
     } else if (email?.isNotEmpty ?? false) {
-      return _channel.invokeMethod('registerIdentifiedUser', {
+      return _channel.invokeMethod('registerIdentifiedUserWithEmail', {
         'email': email,
       });
     } else {
