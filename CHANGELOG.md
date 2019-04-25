@@ -1,3 +1,7 @@
+## 2.0.2
+* Added logEvent method (thanks @MrAlek)
+* Fixed registerIdentifiedUser (thanks @Spikes042)
+
 ## 2.0.1
 * Added argument validation to registerIdentifiedUser (thanks @Zazo032)
 
