@@ -1,6 +1,6 @@
 # intercom_flutter
 
-[![Pub](https://img.shields.io/badge/Pub-2.0.2-orange.svg)](https://pub.dartlang.org/packages/intercom_flutter)
+[![Pub](https://img.shields.io/badge/Pub-2.0.3-orange.svg)](https://pub.dartlang.org/packages/intercom_flutter)
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android) and [iOS](https://github.com/intercom/intercom-ios) projects.
 
@@ -25,7 +25,8 @@ class App extends StatelessWidget {
             child: Text('Open Intercom'),
             onPressed: () async {
                 await Intercom.displayMessenger();
-            });
+            },
+        );
     }
 }
 

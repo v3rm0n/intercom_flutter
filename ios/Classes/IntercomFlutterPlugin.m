@@ -98,7 +98,7 @@
     else if ([@"logEvent" isEqualToString:call.method]) {
         NSString *name = call.arguments[@"name"];
         NSDictionary *metaData = call.arguments[@"metaData"];
-        if(name != (id)[NSNull null] && name != nil) {
+        if(name != (id)[NSNull null] && name != nil) {
             if(metaData != (id)[NSNull null] && metaData != nil) {
                 [Intercom logEventWithName:name metaData:metaData];
             } else {
