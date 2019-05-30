@@ -1,3 +1,10 @@
+## 2.0.3
+* Upgraded Intercom SDK to 5.3
+* Upgraded Kotlin, Android Studio, Gradle and CocoaPods to latest version
+* Upgraded minimum Flutter version to `1.0.0`
+* Upgraded minimum Dart version to `2.0.0`
+* Fixed iOS warning
+
 ## 2.0.2
 * Added logEvent method (thanks @MrAlek)
 * Fixed registerIdentifiedUser (thanks @Spikes042)
