@@ -49,5 +49,15 @@ Optional permissions:
 <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
 ```
 
+If you get `NoClassDefFoundError`s because of missing `AppCompatActivity`, enable AndroidX + Jetifier:
+
+```
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
+in your `gradle.properties` file (see example app)
+
+
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
