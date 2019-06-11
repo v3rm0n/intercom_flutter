@@ -49,5 +49,12 @@ Optional permissions:
 <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
 ```
 
+Enable AndroidX + Jetifier support in your android/gradle.properties file (see example app):
+
+```
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
