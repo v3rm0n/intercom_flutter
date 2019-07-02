@@ -107,4 +107,14 @@ class Intercom {
     return _channel
         .invokeMethod('logEvent', {'name': name, 'metaData': metaData});
   }
+
+   static Future<dynamic> sendTokenToIntercom(String token) {
+     print("Start sending token to Intercom");
+    return _channel
+        .invokeMethod('sendTokenToIntercom', {'token': token });
+  }
+
+  static Future<dynamic> handlePushMessage() {
+    return _channel.invokeMethod('handlePushMessage');
+  }
 }

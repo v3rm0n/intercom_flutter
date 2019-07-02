@@ -56,5 +56,35 @@ android.useAndroidX=true
 android.enableJetifier=true
 ```
 
+#### Push notifications in combination with FCM
+This plugin works in combination with the [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) plugin to receive Push Notifications. To set this up:
+
+* First, implement [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) and check if it works: https://pub.dev/packages/firebase_messaging#android-integration
+* Then, add the Firebase server key to Intercom, as described here: https://developers.intercom.com/installing-intercom/docs/android-fcm-push-notifications#section-step-3-add-your-server-key-to-intercom-for-android-settings (you can skip 1 and 2)
+* Add the following to your  `AndroidManifest.xml` file, so incoming messages are handled by Intercom:
+
+```
+    <service
+        android:name="io.maido.intercom.PushInterceptService"
+        android:enabled="true"
+        android:exported="true">
+        <intent-filter>
+          <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+    </service>
+```
+_just above the closing `</application>` tag._
+
+* Ask FireBaseMessaging for the FCM token that we need to send to Intercom, and give it to Intercom (so Intercam can send push messages to the correct device):
+
+```dart
+final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+token = await _firebaseMessaging.getToken();
+
+Intercom.sendTokenToIntercom(token);
+```
+
+Now, if either FireBase direct (e.g. by your own backend server) or Intercom sends you a message, it will be delivered your Android phone.
+
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.

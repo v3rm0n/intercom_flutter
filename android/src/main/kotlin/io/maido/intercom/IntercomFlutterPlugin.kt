@@ -10,6 +10,9 @@ import io.intercom.android.sdk.Company
 import io.intercom.android.sdk.Intercom
 import io.intercom.android.sdk.UserAttributes
 import io.intercom.android.sdk.identity.Registration
+import io.intercom.android.sdk.push.IntercomPushClient
+
+
 
 class IntercomFlutterPlugin(private val application: Application) : MethodCallHandler {
   companion object {
@@ -17,6 +20,7 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "maido.io/intercom")
       channel.setMethodCallHandler(IntercomFlutterPlugin(registrar.context() as Application))
+
     }
   }
 
@@ -130,6 +134,20 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
           Intercom.client().logEvent(name, metaData);
           result.success("Logged event")
         }
+      }
+
+      call.method == "sendTokenToIntercom" -> {
+        val token = call.argument<String>("token")
+        val metaData = call.argument<Map<String, Any>>("metaData")
+        if(token != null) {
+          IntercomPushClient().sendTokenToIntercom(application, token)
+
+          result.success("Token sent to Intercom")
+        }
+      }
+      call.method == "handlePushMessage" -> {
+        Intercom.client().handlePushMessage()
+        result.success("Push message handled")
       }
       else -> result.notImplemented()
     }
