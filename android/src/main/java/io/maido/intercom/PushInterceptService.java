@@ -20,7 +20,6 @@ public class PushInterceptService extends FirebaseMessagingService {
             intercomPushClient.handlePush(getApplication(), message);
         } else {
             Log.d(TAG, "Push message received, not for Intercom");
-//            super.onMessageReceived(remoteMessage);
         }
     }
 }
