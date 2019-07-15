@@ -107,6 +107,9 @@
             result(@"Logged event");
         }
     }
+    else if([@"handlePushMessage" isEqualToString:call.method]) {
+        result(@"No op");
+    }
     else {
         result(FlutterMethodNotImplemented);
     }
