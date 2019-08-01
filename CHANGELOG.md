@@ -1,3 +1,6 @@
+## 2.0.4
+* Support for push notifications
+
 ## 2.0.3
 * Upgraded Intercom SDK to 5.3
 * Upgraded Kotlin, Android Studio, Gradle and CocoaPods to latest version
