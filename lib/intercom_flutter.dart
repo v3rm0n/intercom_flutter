@@ -117,4 +117,8 @@ class Intercom {
   static Future<dynamic> handlePushMessage() {
     return _channel.invokeMethod('handlePushMessage');
   }
+
+  static Future<dynamic> displayMessageComposer(String message) {
+    return _channel.invokeMethod('displayMessageComposer', {'message': message});
+  }
 }
