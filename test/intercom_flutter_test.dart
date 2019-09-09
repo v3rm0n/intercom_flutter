@@ -89,6 +89,13 @@ void main() {
       expectMethodCall('unreadConversationCount');
     });
 
+    test('displayMessageComposer', () {
+      Intercom.displayMessageComposer("message");
+      expectMethodCall('displayMessageComposer', arguments: {
+        "message" : "message"
+      });
+    });
+
     group('setInAppMessagesVisibility', () {
       test('visible', () {
         Intercom.setInAppMessagesVisibility(IntercomVisibility.visible);
