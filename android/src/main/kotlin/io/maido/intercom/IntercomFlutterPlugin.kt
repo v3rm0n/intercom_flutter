@@ -80,7 +80,7 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         Intercom.client().displayHelpCenter()
         result.success("Launched")
       }
-      call.method == "setInAppMessageVisibility" -> {
+      call.method == "setInAppMessagesVisibility" -> {
         val visibility = call.argument<String>("visibility")
         if(visibility != null) {
           Intercom.client().setInAppMessageVisibility(Intercom.Visibility.valueOf(visibility))
@@ -148,6 +148,14 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
       call.method == "handlePushMessage" -> {
         Intercom.client().handlePushMessage()
         result.success("Push message handled")
+      }
+      call.method == "displayMessageComposer" -> {
+        if (call.hasArgument("message")) {
+          Intercom.client().displayMessageComposer(call.argument("message"))
+        } else {
+          Intercom.client().displayMessageComposer()
+        }
+        result.success("Message composer displayed")
       }
       else -> result.notImplemented()
     }
