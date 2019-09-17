@@ -80,7 +80,7 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         Intercom.client().displayHelpCenter()
         result.success("Launched")
       }
-      call.method == "setInAppMessageVisibility" -> {
+      call.method == "setInAppMessagesVisibility" -> {
         val visibility = call.argument<String>("visibility")
         if(visibility != null) {
           Intercom.client().setInAppMessageVisibility(Intercom.Visibility.valueOf(visibility))
