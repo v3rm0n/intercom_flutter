@@ -1,5 +1,5 @@
 ## 2.0.5
-* Add displayMessageComposer (thanks @@knaeckeKami)
+* Add displayMessageComposer (thanks @knaeckeKami)
 * Add support for Android 10
 * Add support for iOS 13
 
