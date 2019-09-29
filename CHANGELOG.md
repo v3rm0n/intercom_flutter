@@ -1,3 +1,6 @@
+## 2.0.5+2
+* Fix iOS build error
+
 ## 2.0.5+1
 * Fix example project dependencies
 

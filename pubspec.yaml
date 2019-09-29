@@ -1,7 +1,7 @@
 name: intercom_flutter
 description: Flutter plugin for Intercom integration. Provides in-app messaging
   and help-center Intercom services
-version: 2.0.5+1
+version: 2.0.5+2
 author: Maido Käära <m@maido.io>
 homepage: https://github.com/v3rm0n/intercom_flutter
 
@@ -12,12 +12,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  test: ^1.6.1
+  test: ^1.6.3
 
-# For information on the generic Dart part of this file, see the
-# following page: https://www.dartlang.org/tools/pub/pubspec
-
-# The following section is specific to Flutter.
 flutter:
   plugin:
     androidPackage: io.maido.intercom

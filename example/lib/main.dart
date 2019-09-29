@@ -2,25 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:intercom_flutter/intercom_flutter.dart';
 
 void main() async {
-  await Intercom.initialize('appId',
-      androidApiKey: 'androidApiKey', iosApiKey: 'iosApiKey');
-  runApp(App());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Intercom.initialize(
+    'appId',
+    androidApiKey: 'androidApiKey',
+    iosApiKey: 'iosApiKey',
+  );
+  runApp(SampleApp());
 }
 
-class App extends StatelessWidget {
+class SampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
           title: const Text('Intercom example app'),
         ),
-        body: new Center(
-          child: new FlatButton(
-              onPressed: () {
-                Intercom.displayMessenger();
-              },
-              child: Text('Show messenger')),
+        body: Center(
+          child: FlatButton(
+            onPressed: () {
+              Intercom.displayMessenger();
+            },
+            child: Text('Show messenger'),
+          ),
         ),
       ),
     );
