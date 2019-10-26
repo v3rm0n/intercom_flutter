@@ -54,6 +54,10 @@
         [Intercom presentMessenger];
         result(@"Presented messenger");
     }
+    else if([@"hideMessenger" isEqualToString:call.method]) {
+        [Intercom hideMessenger];
+        result(@"Messenger hidden");
+    }
     else if([@"displayHelpCenter" isEqualToString:call.method]) {
         [Intercom presentHelpCenter];
         result(@"Presented help center");

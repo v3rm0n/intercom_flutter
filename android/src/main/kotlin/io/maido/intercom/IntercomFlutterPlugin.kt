@@ -76,6 +76,10 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         Intercom.client().displayMessenger()
         result.success("Launched")
       }
+      call.method == "hideMessenger" -> {
+        Intercom.client().hideMessenger()
+        result.success("Hidden")
+      }
       call.method == "displayHelpCenter" -> {
         Intercom.client().displayHelpCenter()
         result.success("Launched")
