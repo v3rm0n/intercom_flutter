@@ -1,3 +1,6 @@
+## 2.0.6
+* Added hideMessenger (thanks @Spikes042)
+
 ## 2.0.5+2
 * Fix iOS build error
 
