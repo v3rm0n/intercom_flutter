@@ -98,6 +98,10 @@ class Intercom {
     return _channel.invokeMethod('displayMessenger');
   }
 
+  static Future<dynamic> hideMessenger() {
+    return _channel.invokeMethod('hideMessenger');
+  }
+
   static Future<dynamic> displayHelpCenter() {
     return _channel.invokeMethod('displayHelpCenter');
   }

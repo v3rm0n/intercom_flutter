@@ -74,9 +74,16 @@ void main() {
       expectMethodCall('logout');
     });
 
-    test('displayMessenger', () {
-      Intercom.displayMessenger();
-      expectMethodCall('displayMessenger');
+    group('toggleMessengerVisibility', () {
+      test('displayMessenger', () {
+        Intercom.displayMessenger();
+        expectMethodCall('displayMessenger');
+      });
+
+      test('hideMessenger', () {
+        Intercom.hideMessenger();
+        expectMethodCall('hideMessenger');
+      });
     });
 
     test('displayHelpCenter', () {
