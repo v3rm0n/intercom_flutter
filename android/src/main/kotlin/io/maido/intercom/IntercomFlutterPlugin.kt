@@ -24,6 +24,8 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
     }
   }
 
+  private val intercomPushClient = IntercomPushClient()
+
   override fun onMethodCall(call: MethodCall, result: Result) {
     when {
       call.method == "initialize" -> {
@@ -144,7 +146,7 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         val token = call.argument<String>("token")
         val metaData = call.argument<Map<String, Any>>("metaData")
         if(token != null) {
-          IntercomPushClient().sendTokenToIntercom(application, token)
+          intercomPushClient.sendTokenToIntercom(application, token)
 
           result.success("Token sent to Intercom")
         }
@@ -160,6 +162,13 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
           Intercom.client().displayMessageComposer()
         }
         result.success("Message composer displayed")
+      }
+      call.method == "isIntercomPush" -> {
+        result.success(intercomPushClient.isIntercomPush(call.argument<Map<String, String>>("message")!!))
+      }
+      call.method == "handlePush" -> {
+        intercomPushClient.handlePush(application, call.argument<Map<String, String>>("message")!!)
+        result.success(null)
       }
       else -> result.notImplemented()
     }

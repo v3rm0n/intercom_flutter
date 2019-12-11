@@ -20,7 +20,7 @@ void main() async {
 
 class App extends StatelessWidget {
 
-    @override 
+    @override
     Widget build(BuildContext context) {
         return FlatButton(
             child: Text('Open Intercom'),
@@ -85,6 +85,28 @@ Intercom.sendTokenToIntercom(token);
 ```
 
 Now, if either FireBase direct (e.g. by your own backend server) or Intercom sends you a message, it will be delivered your Android phone.
+
+#### Firebase Background Messages
+
+If you are [handling background messages in `firebase_messaging`](https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_messaging#optionally-handle-background-messages) you need to do some extra work for everything to work together:
+
+1. Remove the above mentioned `<service android:name="io.maido.intercom.PushInterceptService" ...` from your `AndroidManifest.xml`.
+2. In your background messages handler, pass the relevant messages to Intercom:
+
+```dart
+import 'package:intercom_flutter/intercom_flutter.dart' show Intercom;
+
+Future<dynamic> backgroundMessageHandler(Map<String, dynamic> message) async {
+    final data = (message['data'] as Map).cast<String, dynamic>();
+
+    if (await Intercom.isIntercomPush(data)) {
+        await Intercom.handlePush(data);
+        return;
+    }
+
+    // Here you can handle your own background messages
+}
+```
 
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
