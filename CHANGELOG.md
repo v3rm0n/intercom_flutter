@@ -1,3 +1,6 @@
+## 2.0.7
+* Fixed background notifications being swallowed by intercom_flutter in Android (thanks @LinusU)
+
 ## 2.0.6
 * Added hideMessenger (thanks @Spikes042)
 
