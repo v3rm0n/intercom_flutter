@@ -1,9 +1,11 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:intercom_flutter/intercom_flutter.dart';
-import 'package:test/test.dart';
 
 import 'test_method_channel.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('Intercom', () {
     setUp(() {
       setUpTestMethodChannel('maido.io/intercom');
