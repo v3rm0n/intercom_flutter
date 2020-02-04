@@ -1,3 +1,8 @@
+## 2.1.0
+* Bump Intercom SDK version to 6.0.0 (thanks @marbarroso)
+* Bump minimum Android supported version to Lollipop (API 21)
+* Bump minimum iOS supported version to iOS 10.0
+
 ## 2.0.7
 * Fixed background notifications being swallowed by intercom_flutter in Android (thanks @LinusU)
 

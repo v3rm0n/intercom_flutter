@@ -116,11 +116,7 @@
     }
     else if([@"displayMessageComposer" isEqualToString:call.method]) {
         NSString *message = call.arguments[@"message"];
-        if(message != (id)[NSNull null]) {
-            [Intercom presentMessageComposerWithInitialMessage:message];
-        }else{
-            [Intercom presentMessageComposer];
-        }
+        [Intercom presentMessageComposer:message];
     }
     else {
         result(FlutterMethodNotImplemented);
