@@ -46,7 +46,7 @@ Optional permissions:
 
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
+<uses-permission android:name="android.permission.VIBRATE"/>
 ```
 
 Enable AndroidX + Jetifier support in your android/gradle.properties file (see example app):
