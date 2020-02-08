@@ -1,6 +1,6 @@
 # intercom_flutter
 
-[![Pub](https://img.shields.io/badge/Pub-2.0.7-orange.svg)](https://pub.dev/packages/intercom_flutter)
+[![Pub](https://img.shields.io/badge/Pub-2.1.0-orange.svg)](https://pub.dev/packages/intercom_flutter)
 [![Codemagic build status](https://api.codemagic.io/apps/5cef7aa5a415930008ecf27b/5cef7aa5a415930008ecf27a/status_badge.svg)](https://codemagic.io/apps/5cef7aa5a415930008ecf27b/5cef7aa5a415930008ecf27a/latest_build)
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android) and [iOS](https://github.com/intercom/intercom-ios) projects.
@@ -46,7 +46,7 @@ Optional permissions:
 
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
+<uses-permission android:name="android.permission.VIBRATE"/>
 ```
 
 Enable AndroidX + Jetifier support in your android/gradle.properties file (see example app):
