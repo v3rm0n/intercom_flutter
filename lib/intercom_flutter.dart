@@ -131,14 +131,17 @@ class Intercom {
       return false;
     }
 
-    return await _channel.invokeMethod<bool>('isIntercomPush', {'message': message});
+    return await _channel
+        .invokeMethod<bool>('isIntercomPush', {'message': message});
   }
 
   static Future<void> handlePush(Map<String, dynamic> message) async {
     if (!message.values.every((item) => item is String)) {
-      throw new ArgumentError('Intercom push messages can only have string values');
+      throw new ArgumentError(
+          'Intercom push messages can only have string values');
     }
 
-    return await _channel.invokeMethod<void>('handlePush', {'message': message});
+    return await _channel
+        .invokeMethod<void>('handlePush', {'message': message});
   }
 }
