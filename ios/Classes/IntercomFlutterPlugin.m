@@ -139,18 +139,21 @@
         }
     }
     else if([@"requestNotificationPermissions" isEqualToString:call.method]) {
-        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        UNAuthorizationOptions authorizationOptions = 0;
-        authorizationOptions += UNAuthorizationOptionSound;
-        authorizationOptions += UNAuthorizationOptionAlert;
-        authorizationOptions += UNAuthorizationOptionBadge;
-        [center requestAuthorizationWithOptions:(authorizationOptions) completionHandler:^(BOOL granted, NSError * _Nullable error) {
-          if (!granted || error != nil) {
-            result(@(NO));
-            return;
-          }
-        }];
-        result(@(YES));
+    	dispatch_async(dispatch_get_main_queue(), ^{
+			UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+			UNAuthorizationOptions authorizationOptions = 0;
+			authorizationOptions += UNAuthorizationOptionSound;
+			authorizationOptions += UNAuthorizationOptionAlert;
+			authorizationOptions += UNAuthorizationOptionBadge;
+			[center requestAuthorizationWithOptions:(authorizationOptions) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+			  if (!granted || error != nil) {
+				result(@(NO));
+				return;
+			  } else {
+        		result(@(YES));
+			  }
+			}];
+    	});
     }
     else {
         result(FlutterMethodNotImplemented);
