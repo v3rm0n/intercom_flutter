@@ -110,3 +110,50 @@ Future<dynamic> backgroundMessageHandler(Map<String, dynamic> message) async {
 
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
+
+If you don't have any push notifications integrated in your application you need to:
+1. Enable push notification in you provisioning profile.
+2. Add Capability `Push Notifcations` in your mobile application.
+3. Request notifications permissions. This library allow you to request all (badge, alert, sound) at once. Just use `Intercom.requestIosNotificationPermissions()`. It will return Future<bool> if user allowed for requested permissions.
+4. Add this code to your AppDelegate (before return statement):
+
+Swift:
+```
+DispatchQueue.main.async {
+  application.registerForRemoteNotifications()
+}
+```
+obj-c:
+```
+dispatch_async(dispatch_get_main_queue(), ^{
+  [application registerForRemoteNotifications];
+});
+```
+If you have already working notifications in your application non of above is required.
+
+Sending device token to Intercom.
+
+When device token is generated on native side, flutter plugin will store this token (for convince).
+You can pass `onMessage` to `initialize` method. This method will be called when device token is generated and you can use if for
+your own purpose. Just use it like this:
+```
+Intercom.initialize("APP_ID",
+  iosApiKey: "IOS_TOKEN",
+  androidApiKey: "ANDROID_TOKEN",
+  onMessage: (Map<String, dynamic> data) {
+print("[Intercom] On message: $data");
+if (data["method"] == "iosDeviceToken") {
+  String token = data["token"];
+  // You can call this below method here, since we know token is ready
+  // Intercom.registerIosTokenToIntercom(); OR
+  // Intercom.sendTokenToIntercom(token);
+}
+});
+```
+
+There are two ways to register device token.
+1. You can call `Intercom.sendTokenToIntercom(token)` when you obtain iOS token
+2. You can call `Intercom.registerIosTokenToIntercom()` when you are sure that token is already generated on native side.
+ * you can listen for token in `onMessage` described above
+ * you can periodically check the token using `Intercom.getIosToken()` - it will return stored token or null
+ 

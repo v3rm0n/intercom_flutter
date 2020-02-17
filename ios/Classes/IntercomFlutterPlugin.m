@@ -2,12 +2,24 @@
 #import "Intercom.h"
 
 @implementation IntercomFlutterPlugin
+ FlutterMethodChannel *_channel;
+
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-    IntercomFlutterPlugin* instance = [[IntercomFlutterPlugin alloc] init];
     FlutterMethodChannel* channel =
     [FlutterMethodChannel methodChannelWithName:@"maido.io/intercom"
                                 binaryMessenger:[registrar messenger]];
+    id instance = [[IntercomFlutterPlugin alloc] initWithChannel:channel];
+    [registrar addApplicationDelegate:instance];
     [registrar addMethodCallDelegate:instance channel:channel];
+}
+
+- (instancetype)initWithChannel:(FlutterMethodChannel *)channel {
+    self = [super init];
+    
+    if (self) {
+        _channel = channel;
+    }
+    return self;
 }
 
 - (void) handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result{
@@ -118,8 +130,73 @@
         NSString *message = call.arguments[@"message"];
         [Intercom presentMessageComposer:message];
     }
+    else if([@"sendTokenToIntercom" isEqualToString:call.method]) {
+        NSString *token = call.arguments[@"token"];
+        if (token != nil) {
+            NSData * tokenData = [self dataFromHexString:token];
+            [Intercom setDeviceToken:tokenData];
+            result(@"Token sent to Intercom");
+        }
+    }
+    else if([@"requestNotificationPermissions" isEqualToString:call.method]) {
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        UNAuthorizationOptions authorizationOptions = 0;
+        authorizationOptions += UNAuthorizationOptionSound;
+        authorizationOptions += UNAuthorizationOptionAlert;
+        authorizationOptions += UNAuthorizationOptionBadge;
+        [center requestAuthorizationWithOptions:(authorizationOptions) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+          if (!granted || error != nil) {
+            result(@(NO));
+            return;
+          }
+        }];
+        result(@(YES));
+    }
     else {
         result(FlutterMethodNotImplemented);
     }
 }
+
+// Convert token to string
+// Source: https://stackoverflow.com/a/16411517/1123085
+- (NSString *)stringWithDeviceToken:(NSData *)deviceToken {
+    const char *data = [deviceToken bytes];
+    NSMutableString *token = [NSMutableString string];
+
+    for (NSUInteger i = 0; i < [deviceToken length]; i++) {
+        [token appendFormat:@"%02.2hhX", data[i]];
+    }
+
+    return [token copy];
+}
+
+// Needed to change string token back to NSData
+// Source: https://iphoneappcode.blogspot.com/2012/04/nsdata-to-hexstring-and-hexstring-to.html
+- (NSData *)dataFromHexString:(NSString *)string
+{
+    NSMutableData *stringData = [[NSMutableData alloc] init];
+    unsigned char whole_byte;
+    char byte_chars[3] = {'\0','\0','\0'};
+    int i;
+    for (i=0; i < [string length] / 2; i++) {
+        byte_chars[0] = [string characterAtIndex:i*2];
+        byte_chars[1] = [string characterAtIndex:i*2+1];
+        whole_byte = strtol(byte_chars, NULL, 16);
+        [stringData appendBytes:&whole_byte length:1];
+    }
+    return stringData;
+}
+
+#pragma mark - AppDelegate
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString * token = [self stringWithDeviceToken:deviceToken];
+    [_channel invokeMethod:@"iosDeviceToken" arguments:token];
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    NSLog(@"Failed to register for notifications %@", str);
+}
+
 @end

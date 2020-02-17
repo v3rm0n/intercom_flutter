@@ -2,24 +2,50 @@ library intercom_flutter;
 
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 enum IntercomVisibility { gone, visible }
 
+typedef void MessageHandler(Map<String, dynamic> message);
+
 class Intercom {
   static const MethodChannel _channel =
       const MethodChannel('maido.io/intercom');
+  static MessageHandler _messageHandler;
 
-  static Future<dynamic> initialize(
-    String appId, {
-    String androidApiKey,
-    String iosApiKey,
-  }) {
+  /// This is useful since end application don't need to store the token by itself.
+  /// It will be send through message handler so application can use it in any way it wants.
+  static String _iosDeviceToken;
+
+  static Future<dynamic> initialize(String appId,
+      {String androidApiKey, String iosApiKey, MessageHandler onMessage}) {
+    // Backward compatibility, show new feature in debug mode.
+    if (onMessage == null && !kReleaseMode) {
+      _messageHandler = (data) => print("[INTERCOM_FLUTTER] On message: $data");
+    }
+    _messageHandler = onMessage;
+    _channel.setMethodCallHandler(_handleMethod);
     return _channel.invokeMethod('initialize', {
       'appId': appId,
       'androidApiKey': androidApiKey,
       'iosApiKey': iosApiKey,
     });
+  }
+
+  /// Handle messages from native library.
+  static Future<dynamic> _handleMethod(MethodCall call) async {
+    switch (call.method) {
+      case 'iosDeviceToken':
+        String token = call.arguments;
+        _iosDeviceToken = token;
+        if (_messageHandler != null) {
+          _messageHandler({"method": "iosDeviceToken", "token": token});
+        }
+        return null;
+      default:
+        throw UnsupportedError('Unrecognized JSON message');
+    }
   }
 
   static Future<dynamic> setUserHash(String userHash) {
@@ -117,6 +143,20 @@ class Intercom {
     return _channel.invokeMethod('sendTokenToIntercom', {'token': token});
   }
 
+  static Future<dynamic> registerIosTokenToIntercom() {
+    print("[INTERCOM_FLUTTER] Start sending iOS token to Intercom");
+    if (_iosDeviceToken != null) {
+      return _channel
+          .invokeMethod('sendTokenToIntercom', {'token': _iosDeviceToken});
+    } else {
+      return throw ErrorDescription("[INTERCOM_FLUTTER] No iOS Device token");
+    }
+  }
+
+  static Future<String> getIosToken() {
+    return Future.value(_iosDeviceToken);
+  }
+
   static Future<dynamic> handlePushMessage() {
     return _channel.invokeMethod('handlePushMessage');
   }
@@ -143,5 +183,9 @@ class Intercom {
 
     return await _channel
         .invokeMethod<void>('handlePush', {'message': message});
+  }
+
+  static Future<bool> requestIosNotificationPermissions() {
+    return _channel.invokeMethod('requestNotificationPermissions');
   }
 }
