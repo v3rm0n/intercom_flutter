@@ -23,8 +23,9 @@ class Intercom {
     // Backward compatibility, show new feature in debug mode.
     if (onMessage == null && !kReleaseMode) {
       _messageHandler = (data) => print("[INTERCOM_FLUTTER] On message: $data");
+    } else {
+      _messageHandler = onMessage;
     }
-    _messageHandler = onMessage;
     _channel.setMethodCallHandler(_handleMethod);
     return _channel.invokeMethod('initialize', {
       'appId': appId,
@@ -143,16 +144,20 @@ class Intercom {
     return _channel.invokeMethod('sendTokenToIntercom', {'token': token});
   }
 
+  /// Send stored iOS 'deviceToken' to Intercom.
+  /// This is equivalent to use [sendTokenToIntercom] with iOS token as an argument.
   static Future<dynamic> registerIosTokenToIntercom() {
-    print("[INTERCOM_FLUTTER] Start sending iOS token to Intercom");
     if (_iosDeviceToken != null) {
-      return _channel
-          .invokeMethod('sendTokenToIntercom', {'token': _iosDeviceToken});
+      return Intercom.sendTokenToIntercom(_iosDeviceToken);
     } else {
-      return throw ErrorDescription("[INTERCOM_FLUTTER] No iOS Device token");
+      return throw ErrorDescription(
+          "No iOS device token was generated. You have called this method before iOS generate device token or your iOS project configuration is not set up properly.");
     }
   }
 
+  /// Get iOS 'deviceToken' stored in the plugin. You can use this method
+  /// instead of listening for token using 'onMessage' method from plugin configuration.
+  /// Returns null if token is not available.
   static Future<String> getIosToken() {
     return Future.value(_iosDeviceToken);
   }
@@ -185,6 +190,11 @@ class Intercom {
         .invokeMethod<void>('handlePush', {'message': message});
   }
 
+  /// Show native iOS popup for user that requests notifications permissions.
+  /// If user denies he we won't receive any notifications.
+  /// If users denies, calling this multiple times won't work. He needs to enter
+  /// settings, find your application and turn notifications by himself.
+  /// Return true if permissions are granted.
   static Future<bool> requestIosNotificationPermissions() {
     return _channel.invokeMethod('requestNotificationPermissions');
   }
