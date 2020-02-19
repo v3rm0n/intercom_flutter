@@ -1,3 +1,6 @@
+## 2.2.0
+* Support for iOS push notifications
+
 ## 2.1.0
 * Bump Intercom SDK version to 6.0.0 (thanks @marbarroso)
 * Bump minimum Android supported version to Lollipop (API 21)
