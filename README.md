@@ -131,7 +131,7 @@ dispatch_async(dispatch_get_main_queue(), ^{
 });
 ```
 
-####Sending device token to Intercom.
+#### Sending device token to Intercom.
 
 When device token is generated on native side, the plugin will store it. You can pass `onMessage` parameter to the `initialize` method. This method will be called when device token is generated.
 ```dart
