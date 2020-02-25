@@ -1,5 +1,5 @@
 #import "IntercomFlutterPlugin.h"
-#import "Intercom.h"
+#import <Intercom/Intercom.h>
 
 @implementation IntercomFlutterPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
