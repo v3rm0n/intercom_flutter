@@ -1,7 +1,7 @@
 name: intercom_flutter
 description: Flutter plugin for Intercom integration. Provides in-app messaging
   and help-center Intercom services
-version: 2.1.0
+version: 2.1.1
 homepage: https://github.com/v3rm0n/intercom_flutter
 
 dependencies:
