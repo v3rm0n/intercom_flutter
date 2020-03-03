@@ -1,6 +1,3 @@
-## 2.1.1
-* Fix incremental installation error
-
 ## 2.1.0
 * Bump Intercom SDK version to 6.0.0 (thanks @marbarroso)
 * Bump minimum Android supported version to Lollipop (API 21)
