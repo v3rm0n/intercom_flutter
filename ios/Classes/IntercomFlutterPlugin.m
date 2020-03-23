@@ -1,6 +1,23 @@
 #import "IntercomFlutterPlugin.h"
 #import <Intercom/Intercom.h>
 
+id unread;
+
+@implementation UnreadStreamHandler
+- (FlutterError*)onListenWithArguments:(id)arguments eventSink:(FlutterEventSink)eventSink {
+    unread = [[NSNotificationCenter defaultCenter] addObserverForName:IntercomUnreadConversationCountDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        NSNumber *myNum = @([Intercom unreadConversationCount]);
+        eventSink(myNum);
+    }];
+  return nil;
+}
+
+- (FlutterError*)onCancelWithArguments:(id)arguments {
+    [[NSNotificationCenter defaultCenter] removeObserver:unread];
+  return nil;
+}
+@end
+
 @implementation IntercomFlutterPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     IntercomFlutterPlugin* instance = [[IntercomFlutterPlugin alloc] init];
@@ -8,6 +25,12 @@
     [FlutterMethodChannel methodChannelWithName:@"maido.io/intercom"
                                 binaryMessenger:[registrar messenger]];
     [registrar addMethodCallDelegate:instance channel:channel];
+    FlutterEventChannel* unreadChannel = [FlutterEventChannel eventChannelWithName:@"maido.io/intercom/unread"
+    binaryMessenger:[registrar messenger]];
+    UnreadStreamHandler* unreadStreamHandler =
+        [[UnreadStreamHandler alloc] init];
+    [unreadChannel setStreamHandler:unreadStreamHandler];
+    
 }
 
 - (void) handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result{

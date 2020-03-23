@@ -1,3 +1,6 @@
+## 2.2.0
+* Added unread messages count listener
+
 ## 2.1.1
 * Fix incremental installation error
 

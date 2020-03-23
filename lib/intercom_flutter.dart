@@ -9,6 +9,8 @@ enum IntercomVisibility { gone, visible }
 class Intercom {
   static const MethodChannel _channel =
       const MethodChannel('maido.io/intercom');
+  static const EventChannel _unreadChannel =
+      const EventChannel('maido.io/intercom/unread');
 
   static Future<dynamic> initialize(
     String appId, {
@@ -20,6 +22,10 @@ class Intercom {
       'androidApiKey': androidApiKey,
       'iosApiKey': iosApiKey,
     });
+  }
+
+  static Stream<dynamic> getUnreadStream() {
+    return _unreadChannel.receiveBroadcastStream();
   }
 
   static Future<dynamic> setUserHash(String userHash) {
