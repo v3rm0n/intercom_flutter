@@ -1,5 +1,6 @@
 #import "IntercomFlutterPlugin.h"
 #import "Intercom.h"
+#import <UserNotifications/UserNotifications.h>
 
 @implementation IntercomFlutterPlugin
  FlutterMethodChannel *_channel;
@@ -201,5 +202,37 @@
     NSString *str = [NSString stringWithFormat: @"Error: %@", err];
     NSLog(@"Failed to register for notifications %@", str);
 }
+
+- (BOOL)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+    if ([Intercom isIntercomPushNotification:userInfo]) {
+        [Intercom handleIntercomPushNotification:userInfo];
+        completionHandler(UIBackgroundFetchResultNoData);
+        return true;
+    }
+    return false;
+}
+
+#if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+    didReceiveNotificationResponse:(UNNotificationResponse *)response
+             withCompletionHandler:(void (^)(void))completionHandler NS_AVAILABLE_IOS(10.0) {
+  NSDictionary *userInfo = response.notification.request.content.userInfo;
+  if ([Intercom isIntercomPushNotification:userInfo]) {
+          [Intercom handleIntercomPushNotification:userInfo];
+          completionHandler();
+      }
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+       willPresentNotification:(UNNotification *)notification
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+    NS_AVAILABLE_IOS(10.0) {
+  NSDictionary *userInfo = notification.request.content.userInfo;
+  if ([Intercom isIntercomPushNotification:userInfo]) {
+          [Intercom handleIntercomPushNotification:userInfo];
+          completionHandler(UNNotificationPresentationOptionNone);
+      }
+}
+#endif
 
 @end

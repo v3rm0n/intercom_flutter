@@ -111,6 +111,9 @@ Future<dynamic> backgroundMessageHandler(Map<String, dynamic> message) async {
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
 
+#### Important! 
+To make this library work properly use `IntercomAutoIntegratePushNotifications` set to false in your `Info.plist`. (method swizzling turned off)
+
 If you have already implemented notifications in your project, you can skip this section.
 
 If you haven't implemented any kind of push notifications in your project, you'll need to follow this steps:
