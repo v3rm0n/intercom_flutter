@@ -107,6 +107,12 @@ void main() {
       );
     });
 
+    test('setBottomPadding', () {
+      final padding = 12;
+      Intercom.setBottomPadding(padding);
+      expectMethodCall('setBottomPadding', arguments: {'padding': padding});
+    });
+
     group('setInAppMessagesVisibility', () {
       test('visible', () {
         Intercom.setInAppMessagesVisibility(IntercomVisibility.visible);

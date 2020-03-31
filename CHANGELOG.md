@@ -1,3 +1,7 @@
+## 2.2.1
+* Added support for setting fixed bottom padding for in app messages
+and the launcher
+
 ## 2.2.0
 * Added unread messages count listener
 
