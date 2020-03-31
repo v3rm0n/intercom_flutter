@@ -69,6 +69,12 @@ id unread;
         [Intercom setInAppMessagesVisible:[@"VISIBLE" isEqualToString:visibility]];
         result(@"Setting in app messages visibility");
     }
+    else if([@"setBottomPadding" isEqualToString:call.method]) {
+        NSInteger value = call.arguments[@"padding"];
+        CGFloat padding = (CGFloat)value;
+        [Intercom setBottomPadding:padding]
+        result(@"Set bottom padding");
+    }
     else if([@"unreadConversationCount" isEqualToString:call.method]) {
         NSUInteger count = [Intercom unreadConversationCount];
         result(@(count));

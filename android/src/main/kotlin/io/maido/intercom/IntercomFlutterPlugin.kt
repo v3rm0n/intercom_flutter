@@ -45,6 +45,12 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
           result.success("User hash added")
         }
       }
+      call.method == "setBottomPadding"-> {
+        val padding = call.argument<Int>("padding");
+        if (padding != null) {
+          Intercom.client().setBottomPadding(padding);
+        }
+      }
       call.method == "registerIdentifiedUserWithUserId" -> {
         val userId = call.argument<String>("userId")
         if(userId != null) {

@@ -100,6 +100,10 @@ class Intercom {
     });
   }
 
+  static Future<void> setBottomPadding(int padding) {
+    return _channel.invokeMethod('setBottomPadding', {'padding': padding});
+  }
+
   static Future<dynamic> displayMessenger() {
     return _channel.invokeMethod('displayMessenger');
   }
