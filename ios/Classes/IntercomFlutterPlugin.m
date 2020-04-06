@@ -72,7 +72,7 @@ id unread;
     else if([@"setBottomPadding" isEqualToString:call.method]) {
         NSInteger value = call.arguments[@"padding"];
         CGFloat padding = (CGFloat)value;
-        [Intercom setBottomPadding:padding]
+        [Intercom setBottomPadding:padding];
         result(@"Set bottom padding");
     }
     else if([@"unreadConversationCount" isEqualToString:call.method]) {
