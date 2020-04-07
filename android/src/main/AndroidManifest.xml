@@ -1,3 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="io.maido.intercom">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="io.maido.intercom">
+  <uses-sdk android:minSdkVersion="21" />
 </manifest>
