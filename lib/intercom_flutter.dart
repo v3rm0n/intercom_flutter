@@ -12,6 +12,8 @@ typedef void MessageHandler(Map<String, dynamic> message);
 class Intercom {
   static const MethodChannel _channel =
       const MethodChannel('maido.io/intercom');
+  static const EventChannel _unreadChannel =
+      const EventChannel('maido.io/intercom/unread');
   static MessageHandler _messageHandler;
 
   /// This is useful since end application don't need to store the token by itself.
@@ -32,6 +34,10 @@ class Intercom {
       'androidApiKey': androidApiKey,
       'iosApiKey': iosApiKey,
     });
+  }
+
+  static Stream<dynamic> getUnreadStream() {
+    return _unreadChannel.receiveBroadcastStream();
   }
 
   /// Handle messages from native library.

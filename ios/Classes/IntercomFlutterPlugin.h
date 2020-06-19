@@ -2,3 +2,6 @@
 
 @interface IntercomFlutterPlugin : NSObject<FlutterPlugin>
 @end
+
+@interface UnreadStreamHandler : NSObject <FlutterStreamHandler>
+@end

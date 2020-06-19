@@ -1,5 +1,11 @@
-## 2.2.0
+## 2.3.0
 * Support for iOS push notifications
+
+## 2.2.0
+* Added unread messages count listener
+
+## 2.1.1
+* Fix incremental installation error
 
 ## 2.1.0
 * Bump Intercom SDK version to 6.0.0 (thanks @marbarroso)

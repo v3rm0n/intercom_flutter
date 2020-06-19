@@ -1,6 +1,7 @@
 package io.maido.intercom
 
 import android.app.Application
+import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
@@ -8,23 +9,26 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.PluginRegistry.Registrar
 import io.intercom.android.sdk.Company
 import io.intercom.android.sdk.Intercom
+import io.intercom.android.sdk.UnreadConversationCountListener
 import io.intercom.android.sdk.UserAttributes
 import io.intercom.android.sdk.identity.Registration
 import io.intercom.android.sdk.push.IntercomPushClient
 
+class IntercomFlutterPlugin(private val application: Application) : MethodCallHandler, EventChannel.StreamHandler {
 
 
-class IntercomFlutterPlugin(private val application: Application) : MethodCallHandler {
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "maido.io/intercom")
       channel.setMethodCallHandler(IntercomFlutterPlugin(registrar.context() as Application))
-
+      val unreadEventChannel = EventChannel(registrar.messenger(), "maido.io/intercom/unread")
+      unreadEventChannel.setStreamHandler(IntercomFlutterPlugin(registrar.context() as Application))
     }
   }
 
   private val intercomPushClient = IntercomPushClient()
+  private lateinit var unreadConversationCountListener: UnreadConversationCountListener
 
   override fun onMethodCall(call: MethodCall, result: Result) {
     when {
@@ -172,5 +176,14 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
       }
       else -> result.notImplemented()
     }
+  }
+
+  override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
+    unreadConversationCountListener = UnreadConversationCountListener { count -> events?.success(count) }
+    Intercom.client().addUnreadConversationCountListener(unreadConversationCountListener)
+  }
+
+  override fun onCancel(arguments: Any?) {
+    Intercom.client().removeUnreadConversationCountListener(unreadConversationCountListener)
   }
 }
