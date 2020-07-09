@@ -1,6 +1,7 @@
 package io.maido.intercom
 
 import android.app.Application
+import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -13,23 +14,38 @@ import io.intercom.android.sdk.UnreadConversationCountListener
 import io.intercom.android.sdk.UserAttributes
 import io.intercom.android.sdk.identity.Registration
 import io.intercom.android.sdk.push.IntercomPushClient
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
-class IntercomFlutterPlugin(private val application: Application) : MethodCallHandler, EventChannel.StreamHandler {
-
-
+class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.StreamHandler, ActivityAware {
   companion object {
+    @JvmStatic lateinit var application: Application
+
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "maido.io/intercom")
-      channel.setMethodCallHandler(IntercomFlutterPlugin(registrar.context() as Application))
+      application = registrar.context() as Application
+      channel.setMethodCallHandler(IntercomFlutterPlugin()
       val unreadEventChannel = EventChannel(registrar.messenger(), "maido.io/intercom/unread")
-      unreadEventChannel.setStreamHandler(IntercomFlutterPlugin(registrar.context() as Application))
+      unreadEventChannel.setStreamHandler(IntercomFlutterPlugin()
     }
   }
 
   private val intercomPushClient = IntercomPushClient()
   private lateinit var unreadConversationCountListener: UnreadConversationCountListener
 
+  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "maido.io/intercom")
+    channel.setMethodCallHandler(IntercomFlutterPlugin()
+    val unreadEventChannel = EventChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "maido.io/intercom/unread")
+    unreadEventChannel.setStreamHandler(IntercomFlutterPlugin()
+  }
+
+  // https://stackoverflow.com/a/62206235
+  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+    application = binding.activity.getApplication();
+  }
+  
   override fun onMethodCall(call: MethodCall, result: Result) {
     when {
       call.method == "initialize" -> {
@@ -185,5 +201,18 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
 
   override fun onCancel(arguments: Any?) {
     Intercom.client().removeUnreadConversationCountListener(unreadConversationCountListener)
+  }
+  
+  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+    Intercom.client().removeUnreadConversationCountListener(unreadConversationCountListener)
+  }
+  
+  override fun onDetachedFromActivity() {
+  }
+
+  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+  }
+
+  override fun onDetachedFromActivityForConfigChanges() {
   }
 }
