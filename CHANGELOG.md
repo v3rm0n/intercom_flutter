@@ -1,3 +1,6 @@
+## 2.2.0+1
+* Fix project dependencies
+
 ## 2.2.0
 * Added unread messages count listener
 
