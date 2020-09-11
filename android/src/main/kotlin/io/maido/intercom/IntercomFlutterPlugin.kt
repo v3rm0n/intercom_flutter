@@ -95,8 +95,9 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         if(visibility != null) {
           Intercom.client().setInAppMessageVisibility(Intercom.Visibility.valueOf(visibility))
           result.success("Showing in app messages: $visibility")
+        } else {
+          result.success("Launched")
         }
-        result.success("Launched")
       }
       call.method == "unreadConversationCount" -> {
         val count = Intercom.client().unreadConversationCount
