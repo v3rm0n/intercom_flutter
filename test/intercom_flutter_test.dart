@@ -30,6 +30,13 @@ void main() {
       });
     });
 
+    test('testSendingAPNTokenToIntercom', () {
+      Intercom.sendTokenToIntercom('mock_apn_token');
+      expectMethodCall('sendTokenToIntercom', arguments: {
+        'token': 'mock_apn_token',
+      });
+    });
+
     group('registerIdentifiedUser', () {
       test('with userId', () {
         Intercom.registerIdentifiedUser(userId: 'test');

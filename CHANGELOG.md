@@ -1,3 +1,6 @@
+## 2.2.1
+* Implement sendTokenToIntercom method on iOS side to support push notifications
+
 ## 2.2.0+1
 * Fix project dependencies
 

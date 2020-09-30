@@ -140,6 +140,11 @@ id unread;
     else if([@"displayMessageComposer" isEqualToString:call.method]) {
         NSString *message = call.arguments[@"message"];
         [Intercom presentMessageComposer:message];
+    } else if([@"sendTokenToIntercom" isEqualToString:call.method]){
+        NSString *token = call.arguments[@"token"];
+        NSData* encodedToken=[token dataUsingEncoding:NSUTF8StringEncoding];
+        [Intercom setDeviceToken:encodedToken];
+        result(@"Token set");
     }
     else {
         result(FlutterMethodNotImplemented);
