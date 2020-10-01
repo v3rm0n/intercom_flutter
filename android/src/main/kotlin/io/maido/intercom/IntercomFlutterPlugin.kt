@@ -25,9 +25,9 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "maido.io/intercom")
       application = registrar.context() as Application
-      channel.setMethodCallHandler(IntercomFlutterPlugin()
+      channel.setMethodCallHandler(IntercomFlutterPlugin())
       val unreadEventChannel = EventChannel(registrar.messenger(), "maido.io/intercom/unread")
-      unreadEventChannel.setStreamHandler(IntercomFlutterPlugin()
+      unreadEventChannel.setStreamHandler(IntercomFlutterPlugin())
     }
   }
 
@@ -36,16 +36,16 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "maido.io/intercom")
-    channel.setMethodCallHandler(IntercomFlutterPlugin()
+    channel.setMethodCallHandler(IntercomFlutterPlugin())
     val unreadEventChannel = EventChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "maido.io/intercom/unread")
-    unreadEventChannel.setStreamHandler(IntercomFlutterPlugin()
+    unreadEventChannel.setStreamHandler(IntercomFlutterPlugin())
   }
 
   // https://stackoverflow.com/a/62206235
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    application = binding.activity.getApplication();
+    application = binding.activity.getApplication()
   }
-  
+
   override fun onMethodCall(call: MethodCall, result: Result) {
     when {
       call.method == "initialize" -> {
@@ -203,11 +203,11 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
   override fun onCancel(arguments: Any?) {
     Intercom.client().removeUnreadConversationCountListener(unreadConversationCountListener)
   }
-  
+
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     Intercom.client().removeUnreadConversationCountListener(unreadConversationCountListener)
   }
-  
+
   override fun onDetachedFromActivity() {
   }
 
