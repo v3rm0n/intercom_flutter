@@ -1,3 +1,6 @@
+## 2.3.0
+* Migrate Android side to Flutter's v2 Android Plugin APIs
+
 ## 2.2.1
 * Implement sendTokenToIntercom method on iOS side to support push notifications
 
