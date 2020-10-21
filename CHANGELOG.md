@@ -1,3 +1,7 @@
+## 2.3.1
+* Fix Android build issue
+* Updated Android dependencies
+
 ## 2.3.0
 * Migrate Android side to Flutter's v2 Android Plugin APIs
 
