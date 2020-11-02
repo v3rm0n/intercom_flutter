@@ -1,3 +1,6 @@
+## 2.3.2
+* Fix crash if app is closed before fully initialised
+
 ## 2.3.1
 * Fix Android build issue
 * Updated Android dependencies
