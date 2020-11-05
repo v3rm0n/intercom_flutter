@@ -28,4 +28,3 @@ jobs:
         flutter-version: '1.22.3'
     - run: flutter pub get
     - run: flutter test
-    - run: flutter build apk
