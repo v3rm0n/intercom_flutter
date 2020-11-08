@@ -119,6 +119,13 @@ class Intercom {
   }
 
   static Future<dynamic> sendTokenToIntercom(String token) {
+    assert(token?.isNotEmpty == true);
+
+    // empty token let the app crash, so prevent before invoking method
+    if (token?.isNotEmpty == false) {
+      throw 'Push token must not be empty.';
+    }
+
     print("Start sending token to Intercom");
     return _channel.invokeMethod('sendTokenToIntercom', {'token': token});
   }
