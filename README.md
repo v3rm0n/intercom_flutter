@@ -1,7 +1,7 @@
 # intercom_flutter
 
-[![Pub](https://img.shields.io/badge/Pub-2.1.0-orange.svg)](https://pub.dev/packages/intercom_flutter)
-[![Codemagic build status](https://api.codemagic.io/apps/5cef7aa5a415930008ecf27b/5cef7aa5a415930008ecf27a/status_badge.svg)](https://codemagic.io/apps/5cef7aa5a415930008ecf27b/5cef7aa5a415930008ecf27a/latest_build)
+[![Pub](https://img.shields.io/pub/v/intercom_flutter.svg)](https://pub.dev/packages/intercom_flutter)
+![CI](https://github.com/v3rm0n/intercom_flutter/workflows/CI/badge.svg)
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android) and [iOS](https://github.com/intercom/intercom-ios) projects.
 

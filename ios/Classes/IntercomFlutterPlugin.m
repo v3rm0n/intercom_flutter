@@ -1,6 +1,23 @@
 #import "IntercomFlutterPlugin.h"
-#import "Intercom.h"
 #import <UserNotifications/UserNotifications.h>
+#import <Intercom/Intercom.h>
+
+id unread;
+
+@implementation UnreadStreamHandler
+- (FlutterError*)onListenWithArguments:(id)arguments eventSink:(FlutterEventSink)eventSink {
+    unread = [[NSNotificationCenter defaultCenter] addObserverForName:IntercomUnreadConversationCountDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+        NSNumber *myNum = @([Intercom unreadConversationCount]);
+        eventSink(myNum);
+    }];
+  return nil;
+}
+
+- (FlutterError*)onCancelWithArguments:(id)arguments {
+    [[NSNotificationCenter defaultCenter] removeObserver:unread];
+  return nil;
+}
+@end
 
 @implementation IntercomFlutterPlugin
  FlutterMethodChannel *_channel;
@@ -12,6 +29,12 @@
     id instance = [[IntercomFlutterPlugin alloc] initWithChannel:channel];
     [registrar addApplicationDelegate:instance];
     [registrar addMethodCallDelegate:instance channel:channel];
+    FlutterEventChannel* unreadChannel = [FlutterEventChannel eventChannelWithName:@"maido.io/intercom/unread"
+    binaryMessenger:[registrar messenger]];
+    UnreadStreamHandler* unreadStreamHandler =
+        [[UnreadStreamHandler alloc] init];
+    [unreadChannel setStreamHandler:unreadStreamHandler];
+    
 }
 
 - (instancetype)initWithChannel:(FlutterMethodChannel *)channel {
@@ -130,6 +153,11 @@
     else if([@"displayMessageComposer" isEqualToString:call.method]) {
         NSString *message = call.arguments[@"message"];
         [Intercom presentMessageComposer:message];
+    } else if([@"sendTokenToIntercom" isEqualToString:call.method]){
+        NSString *token = call.arguments[@"token"];
+        NSData* encodedToken=[token dataUsingEncoding:NSUTF8StringEncoding];
+        [Intercom setDeviceToken:encodedToken];
+        result(@"Token set");
     }
     else if([@"sendTokenToIntercom" isEqualToString:call.method]) {
         NSString *token = call.arguments[@"token"];

@@ -1,5 +1,25 @@
+## 2.3.2
+* Fix crash if app is closed before fully initialised
+
+## 2.3.1
+* Fix Android build issue
+* Updated Android dependencies
+
+## 2.3.0
+* Migrate Android side to Flutter's v2 Android Plugin APIs
+
+## 2.2.1
+* Implement sendTokenToIntercom method on iOS side to support push notifications
+
+## 2.2.0+1
+* Fix project dependencies
+
 ## 2.2.0
+* Added unread messages count listener
 * Support for iOS push notifications
+
+## 2.1.1
+* Fix incremental installation error
 
 ## 2.1.0
 * Bump Intercom SDK version to 6.0.0 (thanks @marbarroso)

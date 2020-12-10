@@ -13,6 +13,8 @@ class Intercom {
   static const MethodChannel _channel =
       const MethodChannel('maido.io/intercom');
   static MessageHandler _messageHandler;
+  static const EventChannel _unreadChannel =
+      const EventChannel('maido.io/intercom/unread');
 
   /// This is useful since end application don't need to store the token by itself.
   /// It will be send through message handler so application can use it in any way it wants.
@@ -47,6 +49,9 @@ class Intercom {
       default:
         throw UnsupportedError('Unrecognized JSON message');
     }
+
+  static Stream<dynamic> getUnreadStream() {
+    return _unreadChannel.receiveBroadcastStream();
   }
 
   static Future<dynamic> setUserHash(String userHash) {

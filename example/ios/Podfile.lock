@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - Intercom (6.0.1)
-  - intercom_flutter (2.1.0):
+  - Intercom (7.1.0)
+  - intercom_flutter (2.2.0):
     - Flutter
-    - Intercom (~> 6.0.1)
+    - Intercom (~> 7.1.0)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
