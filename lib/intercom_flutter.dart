@@ -49,6 +49,7 @@ class Intercom {
       default:
         throw UnsupportedError('Unrecognized JSON message');
     }
+  }
 
   static Stream<dynamic> getUnreadStream() {
     return _unreadChannel.receiveBroadcastStream();
