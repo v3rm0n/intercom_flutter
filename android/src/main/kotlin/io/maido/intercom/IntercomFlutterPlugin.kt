@@ -121,38 +121,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         result.success(count)
       }
       call.method == "updateUser" -> {
-        val name = call.argument<String>("name")
-        val email = call.argument<String>("email")
-        val phone = call.argument<String>("phone")
-        val userId = call.argument<String>("userId")
-        val company = call.argument<String>("company")
-        val companyId = call.argument<String>("companyId")
-        val customAttributes = call.argument<Map<String, Any?>>("customAttributes")
-        val userAttributes = UserAttributes.Builder()
-        if (email != null) {
-          userAttributes.withEmail(email)
-        }
-        if (name != null) {
-          userAttributes.withName(name)
-        }
-        if (phone != null) {
-          userAttributes.withPhone(phone)
-        }
-        if (userId != null) {
-          userAttributes.withUserId(userId)
-        }
-        if (company != null && companyId != null) {
-          val icmCompany = Company.Builder()
-          icmCompany.withName(company)
-          icmCompany.withCompanyId(companyId)
-          userAttributes.withCompany(icmCompany.build())
-        }
-        if (customAttributes != null) {
-          for((key, value) in customAttributes){
-            userAttributes.withCustomAttribute(key, value)
-          }
-        }
-        Intercom.client().updateUser(userAttributes.build())
+        Intercom.client().updateUser(getUserAttributes(call))
         result.success("User updated")
       }
       call.method == "logEvent" -> {
@@ -194,6 +163,56 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       }
       else -> result.notImplemented()
     }
+  }
+
+  // generate the user attributes
+  private fun getUserAttributes(call: MethodCall): UserAttributes {
+    // user attributes
+    val name = call.argument<String>("name")
+    val email = call.argument<String>("email")
+    val phone = call.argument<String>("phone")
+    val userId = call.argument<String>("userId")
+    val company = call.argument<String>("company")
+    val companyId = call.argument<String>("companyId")
+    val customAttributes = call.argument<Map<String, Any?>>("customAttributes")
+    val signedUpAt = call.argument<Any?>("signedUpAt")
+
+    val userAttributes = UserAttributes.Builder()
+
+    if (name != null) {
+      userAttributes.withName(name)
+    }
+
+    if (email != null) {
+      userAttributes.withEmail(email)
+    }
+
+    if (phone != null) {
+      userAttributes.withPhone(phone)
+    }
+
+    if (userId != null) {
+      userAttributes.withUserId(userId)
+    }
+
+    if (company != null && companyId != null) {
+      val icmCompany = Company.Builder()
+      icmCompany.withName(company)
+      icmCompany.withCompanyId(companyId)
+      userAttributes.withCompany(icmCompany.build())
+    }
+
+    if (customAttributes != null) {
+      for ((key, value) in customAttributes) {
+        userAttributes.withCustomAttribute(key, value)
+      }
+    }
+
+    val seconds: Long? = signedUpAt?.toString()?.toLongOrNull()
+    if (seconds != null)
+      userAttributes.withSignedUpAt(seconds)
+
+    return userAttributes.build()
   }
 
   override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
