@@ -86,36 +86,7 @@ id unread;
         result(@"Presented help center");
     }
     else if([@"updateUser" isEqualToString:call.method]) {
-        ICMUserAttributes *attributes = [ICMUserAttributes new];
-        NSString *email = call.arguments[@"email"];
-        if(email != (id)[NSNull null]) {
-            attributes.email = email;
-        }
-        NSString *name = call.arguments[@"name"];
-        if(name != (id)[NSNull null]) {
-            attributes.name = name;
-        }
-        NSString *phone = call.arguments[@"phone"];
-        if(phone != (id)[NSNull null]) {
-            attributes.phone = phone;
-        }
-        NSString *userId = call.arguments[@"userId"];
-        if(userId != (id)[NSNull null]) {
-            attributes.userId = userId;
-        }
-        NSString *companyName = call.arguments[@"company"];
-        NSString *companyId = call.arguments[@"companyId"];
-        if(companyName != (id)[NSNull null] && companyId != (id)[NSNull null]) {
-            ICMCompany *company = [ICMCompany new];
-            company.name = companyName;
-            company.companyId = companyId;
-            attributes.companies = @[company];
-        }
-        NSDictionary *customAttributes = call.arguments[@"customAttributes"];
-        if(customAttributes != (id)[NSNull null]) {
-            attributes.customAttributes = customAttributes;
-        }
-        [Intercom updateUser:attributes];
+        [Intercom updateUser:[self getAttributes:call]];
         result(@"Updated user");
     }
     else if([@"logout" isEqualToString:call.method]) {
@@ -149,5 +120,44 @@ id unread;
     else {
         result(FlutterMethodNotImplemented);
     }
+}
+
+- (ICMUserAttributes *) getAttributes:(FlutterMethodCall *)call {
+    ICMUserAttributes *attributes = [ICMUserAttributes new];
+    NSString *email = call.arguments[@"email"];
+    if(email != (id)[NSNull null]) {
+        attributes.email = email;
+    }
+    NSString *name = call.arguments[@"name"];
+    if(name != (id)[NSNull null]) {
+        attributes.name = name;
+    }
+    NSString *phone = call.arguments[@"phone"];
+    if(phone != (id)[NSNull null]) {
+        attributes.phone = phone;
+    }
+    NSString *userId = call.arguments[@"userId"];
+    if(userId != (id)[NSNull null]) {
+        attributes.userId = userId;
+    }
+    NSString *companyName = call.arguments[@"company"];
+    NSString *companyId = call.arguments[@"companyId"];
+    if(companyName != (id)[NSNull null] && companyId != (id)[NSNull null]) {
+        ICMCompany *company = [ICMCompany new];
+        company.name = companyName;
+        company.companyId = companyId;
+        attributes.companies = @[company];
+    }
+    NSDictionary *customAttributes = call.arguments[@"customAttributes"];
+    if(customAttributes != (id)[NSNull null]) {
+        attributes.customAttributes = customAttributes;
+    }
+    
+    NSNumber *signedUpAt = call.arguments[@"signedUpAt"];
+    if(signedUpAt != (id)[NSNull null]) {
+        attributes.signedUpAt = [NSDate dateWithTimeIntervalSince1970: signedUpAt.doubleValue];
+    }
+    
+    return attributes;
 }
 @end

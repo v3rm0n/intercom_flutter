@@ -1,3 +1,6 @@
+## 2.3.3
+* Added signedUpAt user attribute
+
 ## 2.3.2
 * Fix crash if app is closed before fully initialised
 
