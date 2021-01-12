@@ -7,6 +7,10 @@ homepage: https://github.com/v3rm0n/intercom_flutter
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  plugin_platform_interface: ^1.1.0-nullsafety.1
+  uuid: ^2.2.2 # to get the random uuid for registerUnidentifiedUser in web
 
 dev_dependencies:
   flutter_test:
@@ -20,6 +24,9 @@ flutter:
         pluginClass: IntercomFlutterPlugin
       ios:
         pluginClass: IntercomFlutterPlugin
+      web:
+        pluginClass: IntercomFlutterWeb
+        fileName: intercom_flutter_web.dart
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
