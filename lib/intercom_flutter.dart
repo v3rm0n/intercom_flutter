@@ -2,57 +2,35 @@ library intercom_flutter;
 
 import 'dart:async';
 
-import 'package:flutter/services.dart';
+import 'package:intercom_flutter/intercom_flutter_platform_interface.dart';
 
 enum IntercomVisibility { gone, visible }
 
 class Intercom {
-  static const MethodChannel _channel =
-      const MethodChannel('maido.io/intercom');
-  static const EventChannel _unreadChannel =
-      const EventChannel('maido.io/intercom/unread');
-
   static Future<dynamic> initialize(
     String appId, {
     String androidApiKey,
     String iosApiKey,
   }) {
-    return _channel.invokeMethod('initialize', {
-      'appId': appId,
-      'androidApiKey': androidApiKey,
-      'iosApiKey': iosApiKey,
-    });
+    return IntercomFlutterPlatform.instance
+        .initialize(appId, androidApiKey: androidApiKey, iosApiKey: iosApiKey);
   }
 
   static Stream<dynamic> getUnreadStream() {
-    return _unreadChannel.receiveBroadcastStream();
+    return IntercomFlutterPlatform.instance.getUnreadStream();
   }
 
   static Future<dynamic> setUserHash(String userHash) {
-    return _channel.invokeMethod('setUserHash', {'userHash': userHash});
+    return IntercomFlutterPlatform.instance.setUserHash(userHash);
   }
 
   static Future<dynamic> registerIdentifiedUser({String userId, String email}) {
-    if (userId?.isNotEmpty ?? false) {
-      if (email?.isNotEmpty ?? false) {
-        throw ArgumentError(
-            'The parameter `email` must be null if `userId` is provided.');
-      }
-      return _channel.invokeMethod('registerIdentifiedUserWithUserId', {
-        'userId': userId,
-      });
-    } else if (email?.isNotEmpty ?? false) {
-      return _channel.invokeMethod('registerIdentifiedUserWithEmail', {
-        'email': email,
-      });
-    } else {
-      throw ArgumentError(
-          'An identification method must be provided as a parameter, either `userId` or `email`.');
-    }
+    return IntercomFlutterPlatform.instance
+        .registerIdentifiedUser(userId: userId, email: email);
   }
 
   static Future<dynamic> registerUnidentifiedUser() {
-    return _channel.invokeMethod('registerUnidentifiedUser');
+    return IntercomFlutterPlatform.instance.registerUnidentifiedUser();
   }
 
   static Future<dynamic> updateUser({
@@ -65,91 +43,70 @@ class Intercom {
     int signedUpAt,
     Map<String, dynamic> customAttributes,
   }) {
-    return _channel.invokeMethod('updateUser', <String, dynamic>{
-      'email': email,
-      'name': name,
-      'phone': phone,
-      'company': company,
-      'companyId': companyId,
-      'userId': userId,
-      'signedUpAt': signedUpAt,
-      'customAttributes': customAttributes,
-    });
+    return IntercomFlutterPlatform.instance.updateUser(
+      email: email,
+      name: name,
+      phone: phone,
+      company: company,
+      companyId: companyId,
+      userId: userId,
+      signedUpAt: signedUpAt,
+      customAttributes: customAttributes,
+    );
   }
 
   static Future<dynamic> logout() {
-    return _channel.invokeMethod('logout');
+    return IntercomFlutterPlatform.instance.logout();
   }
 
   static Future<dynamic> setLauncherVisibility(IntercomVisibility visibility) {
-    String visibilityString =
-        visibility == IntercomVisibility.visible ? 'VISIBLE' : 'GONE';
-    return _channel.invokeMethod('setLauncherVisibility', {
-      'visibility': visibilityString,
-    });
+    return IntercomFlutterPlatform.instance.setLauncherVisibility(visibility);
   }
 
   static Future<int> unreadConversationCount() {
-    return _channel.invokeMethod('unreadConversationCount');
+    return IntercomFlutterPlatform.instance.unreadConversationCount();
   }
 
   static Future<dynamic> setInAppMessagesVisibility(
       IntercomVisibility visibility) {
-    String visibilityString =
-        visibility == IntercomVisibility.visible ? 'VISIBLE' : 'GONE';
-    return _channel.invokeMethod('setInAppMessagesVisibility', {
-      'visibility': visibilityString,
-    });
+    return IntercomFlutterPlatform.instance
+        .setInAppMessagesVisibility(visibility);
   }
 
   static Future<dynamic> displayMessenger() {
-    return _channel.invokeMethod('displayMessenger');
+    return IntercomFlutterPlatform.instance.displayMessenger();
   }
 
   static Future<dynamic> hideMessenger() {
-    return _channel.invokeMethod('hideMessenger');
+    return IntercomFlutterPlatform.instance.hideMessenger();
   }
 
   static Future<dynamic> displayHelpCenter() {
-    return _channel.invokeMethod('displayHelpCenter');
+    return IntercomFlutterPlatform.instance.displayHelpCenter();
   }
 
   static Future<dynamic> logEvent(String name,
       [Map<String, dynamic> metaData]) {
-    return _channel
-        .invokeMethod('logEvent', {'name': name, 'metaData': metaData});
+    return IntercomFlutterPlatform.instance.logEvent(name, metaData);
   }
 
   static Future<dynamic> sendTokenToIntercom(String token) {
-    print("Start sending token to Intercom");
-    return _channel.invokeMethod('sendTokenToIntercom', {'token': token});
+    return IntercomFlutterPlatform.instance.sendTokenToIntercom(token);
   }
 
   static Future<dynamic> handlePushMessage() {
-    return _channel.invokeMethod('handlePushMessage');
+    return IntercomFlutterPlatform.instance.handlePushMessage();
   }
 
   static Future<dynamic> displayMessageComposer(String message) {
-    return _channel
-        .invokeMethod('displayMessageComposer', {'message': message});
+    return IntercomFlutterPlatform.instance.displayMessageComposer(message);
   }
 
   static Future<bool> isIntercomPush(Map<String, dynamic> message) async {
-    if (!message.values.every((item) => item is String)) {
-      return false;
-    }
-
-    return await _channel
-        .invokeMethod<bool>('isIntercomPush', {'message': message});
+    return IntercomFlutterPlatform.instance.isIntercomPush(message);
   }
 
   static Future<void> handlePush(Map<String, dynamic> message) async {
-    if (!message.values.every((item) => item is String)) {
-      throw new ArgumentError(
-          'Intercom push messages can only have string values');
-    }
-
-    return await _channel
-        .invokeMethod<void>('handlePush', {'message': message});
+    return IntercomFlutterPlatform.instance.handlePush(message);
   }
 }
