@@ -13,6 +13,24 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
   }
 
   @override
+  Stream<dynamic> getUnreadStream() {
+    // It's fine to let the StreamController be garbage collected once all the
+    // subscribers have cancelled; this analyzer warning is safe to ignore.
+    // ignore: close_sinks
+    StreamController<dynamic> _unreadController =
+        StreamController<dynamic>.broadcast();
+    _unreadController.onListen = () {
+      js.context.callMethod('Intercom', [
+        'onUnreadCountChange',
+        js.allowInterop((unreadCount) {
+          _unreadController.add(unreadCount);
+        }),
+      ]);
+    };
+    return _unreadController.stream;
+  }
+
+  @override
   Future<dynamic> initialize(
     String appId, {
     String androidApiKey,

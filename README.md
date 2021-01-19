@@ -129,7 +129,6 @@ Add the below script inside body tag in the index.html file located under web fo
 ```
 #### Following functions are yet not supported or work on Web:
 
-- [ ] getUnreadStream
 - [ ] unreadConversationCount
 - [ ] setInAppMessagesVisibility
 - [ ] displayHelpCenter
