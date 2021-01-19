@@ -127,7 +127,7 @@ Add the below script inside body tag in the index.html file located under web fo
 
 </script>
 ```
-#### Following functions are yet not supported or work on Web:
+#### Following functions are not yet supported on Web:
 
 - [ ] unreadConversationCount
 - [ ] setInAppMessagesVisibility
