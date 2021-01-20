@@ -121,9 +121,8 @@ class Intercom {
   }
 
   static Future<dynamic> sendTokenToIntercom(String token) {
-    if (token != null && token.isNotEmpty) {
-      print("Start sending token to Intercom");
-    }
+    assert(token != null && token.isNotEmpty);
+    print("Start sending token to Intercom");
     return _channel.invokeMethod('sendTokenToIntercom', {'token': token});
   }
 
