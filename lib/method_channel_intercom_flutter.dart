@@ -129,6 +129,7 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
 
   @override
   Future<dynamic> sendTokenToIntercom(String token) {
+    assert(token != null && token.isNotEmpty);
     print("Start sending token to Intercom");
     return _channel.invokeMethod('sendTokenToIntercom', {'token': token});
   }
