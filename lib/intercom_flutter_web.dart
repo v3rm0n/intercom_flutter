@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:js' as js;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:intercom_flutter/intercom_flutter.dart';
 import 'package:intercom_flutter/intercom_flutter_platform_interface.dart';
 import 'package:uuid/uuid.dart';
 

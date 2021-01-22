@@ -4,8 +4,6 @@ import 'dart:async';
 
 import 'package:intercom_flutter/intercom_flutter_platform_interface.dart';
 
-enum IntercomVisibility { gone, visible }
-
 class Intercom {
   static Future<dynamic> initialize(
     String appId, {

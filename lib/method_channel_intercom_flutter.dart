@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:intercom_flutter/intercom_flutter.dart';
 import 'package:intercom_flutter/intercom_flutter_platform_interface.dart';
 
 const MethodChannel _channel = MethodChannel('maido.io/intercom');

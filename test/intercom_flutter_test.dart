@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intercom_flutter/intercom_flutter.dart';
+import 'package:intercom_flutter/intercom_flutter_platform_interface.dart';
 
 import 'test_method_channel.dart';
 
@@ -154,7 +155,7 @@ void main() {
         phone: '+37256123456',
         company: 'Some Company LLC',
         companyId: '2',
-        signedUpAt: 1590949800
+        signedUpAt: 1590949800,
       );
       expectMethodCall('updateUser', arguments: {
         'email': 'test@example.com',

@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:intercom_flutter/intercom_flutter.dart';
 import 'package:intercom_flutter/intercom_flutter_platform_interface.dart';
 import 'package:intercom_flutter/method_channel_intercom_flutter.dart';
 import 'package:mockito/mockito.dart';

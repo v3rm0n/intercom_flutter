@@ -1,6 +1,7 @@
-import 'package:intercom_flutter/intercom_flutter.dart';
 import 'package:intercom_flutter/method_channel_intercom_flutter.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+
+enum IntercomVisibility { gone, visible }
 
 abstract class IntercomFlutterPlatform extends PlatformInterface {
   IntercomFlutterPlatform() : super(token: _token);
