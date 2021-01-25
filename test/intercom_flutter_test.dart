@@ -72,6 +72,14 @@ void main() {
       expectMethodCall('registerUnidentifiedUser');
     });
 
+    test('setBottomPadding', () {
+      final padding = 64;
+      Intercom.setBottomPadding(padding);
+      expectMethodCall('setBottomPadding', arguments: {
+        'bottomPadding': padding,
+      });
+    });
+
     test('setUserHash', () {
       Intercom.setUserHash('test');
       expectMethodCall('setUserHash', arguments: {

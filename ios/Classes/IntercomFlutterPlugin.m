@@ -44,6 +44,14 @@ id unread;
         [Intercom registerUnidentifiedUser];
         result(@"Registered unidentified user");
     }
+    else if([@"setBottomPadding" isEqualToString:call.method]) {
+        NSNumber *value = call.arguments[@"bottomPadding"];
+        if(value != (id)[NSNull null] && value != nil) {
+            CGFloat padding = [value doubleValue];
+            [Intercom setBottomPadding:padding];
+            result(@"Set bottom padding");
+        }
+    }
     else if([@"setUserHash" isEqualToString:call.method]) {
         NSString *userHash = call.arguments[@"userHash"];
         [Intercom setUserHash:userHash];
