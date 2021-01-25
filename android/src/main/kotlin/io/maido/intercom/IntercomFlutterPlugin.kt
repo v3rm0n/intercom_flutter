@@ -55,6 +55,13 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         Intercom.initialize(application, apiKey, appId)
         result.success("Intercom initialized")
       }
+      call.method == "setBottomPadding" -> {
+        val padding = call.argument<Int>("bottomPadding")
+        if(padding != null) {
+          Intercom.client().setBottomPadding(padding)
+          result.success("Bottom padding set")
+        }
+      }
       call.method == "setUserHash" -> {
         val userHash = call.argument<String>("userHash")
         if(userHash != null) {

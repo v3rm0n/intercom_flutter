@@ -1,3 +1,6 @@
+## 2.3.4
+* Added  support for setting bottom padding
+
 ## 2.3.3
 * Added signedUpAt user attribute
 

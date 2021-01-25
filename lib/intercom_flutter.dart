@@ -28,6 +28,10 @@ class Intercom {
     return _unreadChannel.receiveBroadcastStream();
   }
 
+  static Future<dynamic> setBottomPadding(int padding) {
+    return _channel.invokeMethod('setBottomPadding', {'bottomPadding': padding});
+  }
+
   static Future<dynamic> setUserHash(String userHash) {
     return _channel.invokeMethod('setUserHash', {'userHash': userHash});
   }
