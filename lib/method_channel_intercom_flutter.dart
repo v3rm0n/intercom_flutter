@@ -164,4 +164,10 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     return await _channel
         .invokeMethod<void>('handlePush', {'message': message});
   }
+
+  @override
+  Future setBottomPadding(int padding) {
+    return _channel
+        .invokeMethod('setBottomPadding', {'bottomPadding': padding});
+  }
 }
