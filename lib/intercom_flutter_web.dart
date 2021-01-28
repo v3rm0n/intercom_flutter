@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:js' as js;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -206,5 +207,42 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
   Future<dynamic> displayMessageComposer(String message) async {
     js.context.callMethod('Intercom', ['showNewMessage', message]);
     return "Message composer displayed";
+  }
+
+  @override
+  Future<dynamic> setBottomPadding(int padding) async {
+    js.context.callMethod('Intercom', [
+      'update',
+      convertJsObjectToDartObject(updateIntercomSettings(
+        'vertical_padding',
+        padding,
+      ))
+    ]);
+
+    return "Bottom padding set";
+  }
+
+  /// get the [window.IntercomSettings]
+  js.JsObject getIntercomSettings() {
+    if (js.context.hasProperty('intercomSettings')) {
+      return js.JsObject.fromBrowserObject(js.context['intercomSettings']);
+    }
+
+    return js.JsObject.jsify({});
+  }
+
+  /// add/update property to [window.IntercomSettings]
+  /// and returns the updated object
+  js.JsObject updateIntercomSettings(String key, dynamic value) {
+    var intercomSettings = getIntercomSettings();
+    intercomSettings[key] = value;
+    return intercomSettings;
+  }
+
+  /// convert the [js.JsObject] to [Map]
+  Object convertJsObjectToDartObject(js.JsObject jsObject) {
+    return json.decode(js.context["JSON"].callMethod("stringify", [
+      jsObject,
+    ]));
   }
 }
