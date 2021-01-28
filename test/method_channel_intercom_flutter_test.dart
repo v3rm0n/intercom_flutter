@@ -131,6 +131,19 @@ void main() {
       );
     });
 
+    test('setBottomPadding', () async {
+      final padding = 64;
+      await intercom.setBottomPadding(padding);
+      expect(
+        log,
+        <Matcher>[
+          isMethodCall('setBottomPadding', arguments: {
+            'bottomPadding': padding,
+          })
+        ],
+      );
+    });
+
     test('setUserHash', () async {
       await intercom.setUserHash('test');
       expect(
