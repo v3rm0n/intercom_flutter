@@ -37,10 +37,8 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     String iosApiKey,
   }) async {
     js.context.callMethod('Intercom', [
-      'boot',
-      js.JsObject.jsify({
-        'app_id': appId,
-      }),
+      'update',
+      convertJsObjectToDartObject(updateIntercomSettings('app_id', appId)),
     ]);
     return "initialized";
   }
@@ -175,10 +173,10 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     if (visibility != null) {
       js.context.callMethod('Intercom', [
         'update',
-        js.JsObject.jsify({
-          'hide_default_launcher':
-              visibility == IntercomVisibility.visible ? false : true
-        }),
+        convertJsObjectToDartObject(updateIntercomSettings(
+          'hide_default_launcher',
+          visibility == IntercomVisibility.visible ? false : true,
+        )),
       ]);
 
       return "Showing launcher: $visibility";
