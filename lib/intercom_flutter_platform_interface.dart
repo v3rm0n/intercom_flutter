@@ -114,4 +114,12 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   Future<void> handlePush(Map<String, dynamic> message) async {
     throw UnimplementedError('handlePush() has not been implemented.');
   }
+
+  /// This method allows you to set a fixed bottom padding for in app messages and the launcher.
+  ///
+  /// It is useful if your app has a tab bar or similar UI at the bottom of your window.
+  /// [padding] is the size of the bottom padding in points.
+  Future<dynamic> setBottomPadding(int padding) {
+    throw UnimplementedError('setBottomPadding() has not been implemented.');
+  }
 }

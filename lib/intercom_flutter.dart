@@ -17,13 +17,9 @@ class Intercom {
   static Stream<dynamic> getUnreadStream() {
     return IntercomFlutterPlatform.instance.getUnreadStream();
   }
-  
-  /// This method allows you to set a fixed bottom padding for in app messages and the launcher.
-  ///
-  /// It is useful if your app has a tab bar or similar UI at the bottom of your window.
-  /// [padding] is the size of the bottom padding in points.
+
   static Future<dynamic> setBottomPadding(int padding) {
-    return _channel.invokeMethod('setBottomPadding', {'bottomPadding': padding});
+    return IntercomFlutterPlatform.instance.setBottomPadding(padding);
   }
 
   static Future<dynamic> setUserHash(String userHash) {
