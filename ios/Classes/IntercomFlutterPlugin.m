@@ -57,6 +57,14 @@ id unread;
         [Intercom registerUnidentifiedUser];
         result(@"Registered unidentified user");
     }
+    else if([@"setBottomPadding" isEqualToString:call.method]) {
+        NSNumber *value = call.arguments[@"bottomPadding"];
+        if(value != (id)[NSNull null] && value != nil) {
+            CGFloat padding = [value doubleValue];
+            [Intercom setBottomPadding:padding];
+            result(@"Set bottom padding");
+        }
+    }
     else if([@"setUserHash" isEqualToString:call.method]) {
         NSString *userHash = call.arguments[@"userHash"];
         [Intercom setUserHash:userHash];
@@ -99,36 +107,7 @@ id unread;
         result(@"Presented help center");
     }
     else if([@"updateUser" isEqualToString:call.method]) {
-        ICMUserAttributes *attributes = [ICMUserAttributes new];
-        NSString *email = call.arguments[@"email"];
-        if(email != (id)[NSNull null]) {
-            attributes.email = email;
-        }
-        NSString *name = call.arguments[@"name"];
-        if(name != (id)[NSNull null]) {
-            attributes.name = name;
-        }
-        NSString *phone = call.arguments[@"phone"];
-        if(phone != (id)[NSNull null]) {
-            attributes.phone = phone;
-        }
-        NSString *userId = call.arguments[@"userId"];
-        if(userId != (id)[NSNull null]) {
-            attributes.userId = userId;
-        }
-        NSString *companyName = call.arguments[@"company"];
-        NSString *companyId = call.arguments[@"companyId"];
-        if(companyName != (id)[NSNull null] && companyId != (id)[NSNull null]) {
-            ICMCompany *company = [ICMCompany new];
-            company.name = companyName;
-            company.companyId = companyId;
-            attributes.companies = @[company];
-        }
-        NSDictionary *customAttributes = call.arguments[@"customAttributes"];
-        if(customAttributes != (id)[NSNull null]) {
-            attributes.customAttributes = customAttributes;
-        }
-        [Intercom updateUser:attributes];
+        [Intercom updateUser:[self getAttributes:call]];
         result(@"Updated user");
     }
     else if([@"logout" isEqualToString:call.method]) {
@@ -153,6 +132,13 @@ id unread;
     else if([@"displayMessageComposer" isEqualToString:call.method]) {
         NSString *message = call.arguments[@"message"];
         [Intercom presentMessageComposer:message];
+    } else if([@"sendTokenToIntercom" isEqualToString:call.method]){
+        NSString *token = call.arguments[@"token"];
+        if(token != (id)[NSNull null] && token != nil) {
+            NSData* encodedToken=[token dataUsingEncoding:NSUTF8StringEncoding];
+            [Intercom setDeviceToken:encodedToken];
+            result(@"Token set");
+        }
     }
     else if([@"sendTokenToIntercom" isEqualToString:call.method]) {
         NSString *token = call.arguments[@"token"];
@@ -183,6 +169,7 @@ id unread;
         result(FlutterMethodNotImplemented);
     }
 }
+
 
 // Convert token to string
 // Source: https://stackoverflow.com/a/16411517/1123085
@@ -257,5 +244,45 @@ id unread;
       }
 }
 #endif
+
+
+- (ICMUserAttributes *) getAttributes:(FlutterMethodCall *)call {
+    ICMUserAttributes *attributes = [ICMUserAttributes new];
+    NSString *email = call.arguments[@"email"];
+    if(email != (id)[NSNull null]) {
+        attributes.email = email;
+    }
+    NSString *name = call.arguments[@"name"];
+    if(name != (id)[NSNull null]) {
+        attributes.name = name;
+    }
+    NSString *phone = call.arguments[@"phone"];
+    if(phone != (id)[NSNull null]) {
+        attributes.phone = phone;
+    }
+    NSString *userId = call.arguments[@"userId"];
+    if(userId != (id)[NSNull null]) {
+        attributes.userId = userId;
+    }
+    NSString *companyName = call.arguments[@"company"];
+    NSString *companyId = call.arguments[@"companyId"];
+    if(companyName != (id)[NSNull null] && companyId != (id)[NSNull null]) {
+        ICMCompany *company = [ICMCompany new];
+        company.name = companyName;
+        company.companyId = companyId;
+        attributes.companies = @[company];
+    }
+    NSDictionary *customAttributes = call.arguments[@"customAttributes"];
+    if(customAttributes != (id)[NSNull null]) {
+        attributes.customAttributes = customAttributes;
+    }
+    
+    NSNumber *signedUpAt = call.arguments[@"signedUpAt"];
+    if(signedUpAt != (id)[NSNull null]) {
+        attributes.signedUpAt = [NSDate dateWithTimeIntervalSince1970: signedUpAt.doubleValue];
+    }
+    
+    return attributes;
+}
 
 @end

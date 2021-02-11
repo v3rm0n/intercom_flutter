@@ -39,6 +39,14 @@ class Intercom {
   static Stream<dynamic> getUnreadStream() {
     return _unreadChannel.receiveBroadcastStream();
   }
+  
+  /// This method allows you to set a fixed bottom padding for in app messages and the launcher.
+  ///
+  /// It is useful if your app has a tab bar or similar UI at the bottom of your window.
+  /// [padding] is the size of the bottom padding in points.
+  static Future<dynamic> setBottomPadding(int padding) {
+    return _channel.invokeMethod('setBottomPadding', {'bottomPadding': padding});
+  }
 
   /// Handle messages from native library.
   static Future<dynamic> _handleMethod(MethodCall call) async {
@@ -89,6 +97,7 @@ class Intercom {
     String company,
     String companyId,
     String userId,
+    int signedUpAt,
     Map<String, dynamic> customAttributes,
   }) {
     return _channel.invokeMethod('updateUser', <String, dynamic>{
@@ -98,6 +107,7 @@ class Intercom {
       'company': company,
       'companyId': companyId,
       'userId': userId,
+      'signedUpAt': signedUpAt,
       'customAttributes': customAttributes,
     });
   }
@@ -146,6 +156,7 @@ class Intercom {
   }
 
   static Future<dynamic> sendTokenToIntercom(String token) {
+    assert(token != null && token.isNotEmpty);
     print("Start sending token to Intercom");
     return _channel.invokeMethod('sendTokenToIntercom', {'token': token});
   }

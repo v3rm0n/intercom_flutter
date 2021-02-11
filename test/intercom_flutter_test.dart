@@ -30,6 +30,13 @@ void main() {
       });
     });
 
+    test('testSendingAPNTokenToIntercom', () {
+      Intercom.sendTokenToIntercom('mock_apn_token');
+      expectMethodCall('sendTokenToIntercom', arguments: {
+        'token': 'mock_apn_token',
+      });
+    });
+
     group('registerIdentifiedUser', () {
       test('with userId', () {
         Intercom.registerIdentifiedUser(userId: 'test');
@@ -63,6 +70,14 @@ void main() {
     test('registerUnidentifiedUser', () {
       Intercom.registerUnidentifiedUser();
       expectMethodCall('registerUnidentifiedUser');
+    });
+
+    test('setBottomPadding', () {
+      final padding = 64;
+      Intercom.setBottomPadding(padding);
+      expectMethodCall('setBottomPadding', arguments: {
+        'bottomPadding': padding,
+      });
     });
 
     test('setUserHash', () {
@@ -147,6 +162,7 @@ void main() {
         phone: '+37256123456',
         company: 'Some Company LLC',
         companyId: '2',
+        signedUpAt: 1590949800
       );
       expectMethodCall('updateUser', arguments: {
         'email': 'test@example.com',
@@ -155,6 +171,7 @@ void main() {
         'phone': '+37256123456',
         'company': 'Some Company LLC',
         'companyId': '2',
+        'signedUpAt': 1590949800,
         'customAttributes': null,
       });
     });

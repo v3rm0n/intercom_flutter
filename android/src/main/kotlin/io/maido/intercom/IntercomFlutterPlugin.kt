@@ -1,6 +1,8 @@
 package io.maido.intercom
 
 import android.app.Application
+import androidx.annotation.NonNull
+import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -13,22 +15,37 @@ import io.intercom.android.sdk.UnreadConversationCountListener
 import io.intercom.android.sdk.UserAttributes
 import io.intercom.android.sdk.identity.Registration
 import io.intercom.android.sdk.push.IntercomPushClient
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
-class IntercomFlutterPlugin(private val application: Application) : MethodCallHandler, EventChannel.StreamHandler {
-
-
+class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.StreamHandler, ActivityAware {
   companion object {
+    @JvmStatic lateinit var application: Application
+
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "maido.io/intercom")
-      channel.setMethodCallHandler(IntercomFlutterPlugin(registrar.context() as Application))
+      application = registrar.context() as Application
+      channel.setMethodCallHandler(IntercomFlutterPlugin())
       val unreadEventChannel = EventChannel(registrar.messenger(), "maido.io/intercom/unread")
-      unreadEventChannel.setStreamHandler(IntercomFlutterPlugin(registrar.context() as Application))
+      unreadEventChannel.setStreamHandler(IntercomFlutterPlugin())
     }
   }
 
   private val intercomPushClient = IntercomPushClient()
-  private lateinit var unreadConversationCountListener: UnreadConversationCountListener
+  private var unreadConversationCountListener: UnreadConversationCountListener? = null
+
+  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "maido.io/intercom")
+    channel.setMethodCallHandler(IntercomFlutterPlugin())
+    val unreadEventChannel = EventChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "maido.io/intercom/unread")
+    unreadEventChannel.setStreamHandler(IntercomFlutterPlugin())
+  }
+
+  // https://stackoverflow.com/a/62206235
+  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+    application = binding.activity.getApplication()
+  }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
     when {
@@ -37,6 +54,13 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         val appId = call.argument<String>("appId")
         Intercom.initialize(application, apiKey, appId)
         result.success("Intercom initialized")
+      }
+      call.method == "setBottomPadding" -> {
+        val padding = call.argument<Int>("bottomPadding")
+        if(padding != null) {
+          Intercom.client().setBottomPadding(padding)
+          result.success("Bottom padding set")
+        }
       }
       call.method == "setUserHash" -> {
         val userHash = call.argument<String>("userHash")
@@ -95,46 +119,16 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
         if(visibility != null) {
           Intercom.client().setInAppMessageVisibility(Intercom.Visibility.valueOf(visibility))
           result.success("Showing in app messages: $visibility")
+        } else {
+          result.success("Launched")
         }
-        result.success("Launched")
       }
       call.method == "unreadConversationCount" -> {
         val count = Intercom.client().unreadConversationCount
         result.success(count)
       }
       call.method == "updateUser" -> {
-        val name = call.argument<String>("name")
-        val email = call.argument<String>("email")
-        val phone = call.argument<String>("phone")
-        val userId = call.argument<String>("userId")
-        val company = call.argument<String>("company")
-        val companyId = call.argument<String>("companyId")
-        val customAttributes = call.argument<Map<String, Any?>>("customAttributes")
-        val userAttributes = UserAttributes.Builder()
-        if (email != null) {
-          userAttributes.withEmail(email)
-        }
-        if (name != null) {
-          userAttributes.withName(name)
-        }
-        if (phone != null) {
-          userAttributes.withPhone(phone)
-        }
-        if (userId != null) {
-          userAttributes.withUserId(userId)
-        }
-        if (company != null && companyId != null) {
-          val icmCompany = Company.Builder()
-          icmCompany.withName(company)
-          icmCompany.withCompanyId(companyId)
-          userAttributes.withCompany(icmCompany.build())
-        }
-        if (customAttributes != null) {
-          for((key, value) in customAttributes){
-            userAttributes.withCustomAttribute(key, value)
-          }
-        }
-        Intercom.client().updateUser(userAttributes.build())
+        Intercom.client().updateUser(getUserAttributes(call))
         result.success("User updated")
       }
       call.method == "logEvent" -> {
@@ -178,12 +172,81 @@ class IntercomFlutterPlugin(private val application: Application) : MethodCallHa
     }
   }
 
+  // generate the user attributes
+  private fun getUserAttributes(call: MethodCall): UserAttributes {
+    // user attributes
+    val name = call.argument<String>("name")
+    val email = call.argument<String>("email")
+    val phone = call.argument<String>("phone")
+    val userId = call.argument<String>("userId")
+    val company = call.argument<String>("company")
+    val companyId = call.argument<String>("companyId")
+    val customAttributes = call.argument<Map<String, Any?>>("customAttributes")
+    val signedUpAt = call.argument<Any?>("signedUpAt")
+
+    val userAttributes = UserAttributes.Builder()
+
+    if (name != null) {
+      userAttributes.withName(name)
+    }
+
+    if (email != null) {
+      userAttributes.withEmail(email)
+    }
+
+    if (phone != null) {
+      userAttributes.withPhone(phone)
+    }
+
+    if (userId != null) {
+      userAttributes.withUserId(userId)
+    }
+
+    if (company != null && companyId != null) {
+      val icmCompany = Company.Builder()
+      icmCompany.withName(company)
+      icmCompany.withCompanyId(companyId)
+      userAttributes.withCompany(icmCompany.build())
+    }
+
+    if (customAttributes != null) {
+      for ((key, value) in customAttributes) {
+        userAttributes.withCustomAttribute(key, value)
+      }
+    }
+
+    val seconds: Long? = signedUpAt?.toString()?.toLongOrNull()
+    if (seconds != null)
+      userAttributes.withSignedUpAt(seconds)
+
+    return userAttributes.build()
+  }
+
   override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
     unreadConversationCountListener = UnreadConversationCountListener { count -> events?.success(count) }
-    Intercom.client().addUnreadConversationCountListener(unreadConversationCountListener)
+        .also {
+          Intercom.client().addUnreadConversationCountListener(it)
+        }
   }
 
   override fun onCancel(arguments: Any?) {
-    Intercom.client().removeUnreadConversationCountListener(unreadConversationCountListener)
+    if (unreadConversationCountListener != null) {
+      Intercom.client().removeUnreadConversationCountListener(unreadConversationCountListener)
+    }
+  }
+
+  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+    if (unreadConversationCountListener != null) {
+      Intercom.client().removeUnreadConversationCountListener(unreadConversationCountListener)
+    }
+  }
+
+  override fun onDetachedFromActivity() {
+  }
+
+  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+  }
+
+  override fun onDetachedFromActivityForConfigChanges() {
   }
 }
