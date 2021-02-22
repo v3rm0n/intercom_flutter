@@ -29,20 +29,24 @@ class Intercom {
   }
 
   static Future<dynamic> setUserHash(String userHash) {
-    return _channel.invokeMethod('setUserHash', {'userHash': userHash});
+    return _channel
+        .invokeMethod('setUserHash', {'userHash': userHash});
   }
 
-  static Future<dynamic> registerIdentifiedUser({String userId, String email}) {
+  static Future<dynamic> registerIdentifiedUser(
+      {String userId, String email}) {
     if (userId?.isNotEmpty ?? false) {
       if (email?.isNotEmpty ?? false) {
         throw ArgumentError(
             'The parameter `email` must be null if `userId` is provided.');
       }
-      return _channel.invokeMethod('registerIdentifiedUserWithUserId', {
+      return _channel
+          .invokeMethod('registerIdentifiedUserWithUserId', {
         'userId': userId,
       });
     } else if (email?.isNotEmpty ?? false) {
-      return _channel.invokeMethod('registerIdentifiedUserWithEmail', {
+      return _channel
+          .invokeMethod('registerIdentifiedUserWithEmail', {
         'email': email,
       });
     } else {
@@ -62,6 +66,7 @@ class Intercom {
     String company,
     String companyId,
     String userId,
+    String lang,
     Map<String, dynamic> customAttributes,
   }) {
     return _channel.invokeMethod('updateUser', <String, dynamic>{
@@ -71,6 +76,7 @@ class Intercom {
       'company': company,
       'companyId': companyId,
       'userId': userId,
+      'lang': lang,
       'customAttributes': customAttributes,
     });
   }
@@ -79,7 +85,8 @@ class Intercom {
     return _channel.invokeMethod('logout');
   }
 
-  static Future<dynamic> setLauncherVisibility(IntercomVisibility visibility) {
+  static Future<dynamic> setLauncherVisibility(
+      IntercomVisibility visibility) {
     String visibilityString =
         visibility == IntercomVisibility.visible ? 'VISIBLE' : 'GONE';
     return _channel.invokeMethod('setLauncherVisibility', {
@@ -114,13 +121,14 @@ class Intercom {
 
   static Future<dynamic> logEvent(String name,
       [Map<String, dynamic> metaData]) {
-    return _channel
-        .invokeMethod('logEvent', {'name': name, 'metaData': metaData});
+    return _channel.invokeMethod(
+        'logEvent', {'name': name, 'metaData': metaData});
   }
 
   static Future<dynamic> sendTokenToIntercom(String token) {
     print("Start sending token to Intercom");
-    return _channel.invokeMethod('sendTokenToIntercom', {'token': token});
+    return _channel
+        .invokeMethod('sendTokenToIntercom', {'token': token});
   }
 
   static Future<dynamic> handlePushMessage() {
@@ -132,7 +140,8 @@ class Intercom {
         .invokeMethod('displayMessageComposer', {'message': message});
   }
 
-  static Future<bool> isIntercomPush(Map<String, dynamic> message) async {
+  static Future<bool> isIntercomPush(
+      Map<String, dynamic> message) async {
     if (!message.values.every((item) => item is String)) {
       return false;
     }
