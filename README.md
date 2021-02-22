@@ -40,9 +40,6 @@ you can update language and other prob of the intercom user using updateUser() m
 import 'package:intercom_flutter/intercom_flutter.dart' show Intercom;
 
  await Intercom.updateUser(lang: isAr ? 'ar' : 'en');
-
-    // Here you can handle your app language
-}
 ```
 
 See Intercom Android and iOS package documentation for more information.
