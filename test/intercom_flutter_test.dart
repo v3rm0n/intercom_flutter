@@ -154,6 +154,7 @@ void main() {
         phone: '+37256123456',
         company: 'Some Company LLC',
         companyId: '2',
+        lang: 'en'
       );
       expectMethodCall('updateUser', arguments: {
         'email': 'test@example.com',
@@ -163,6 +164,7 @@ void main() {
         'company': 'Some Company LLC',
         'companyId': '2',
         'customAttributes': null,
+        'lang':'en',
       });
     });
   });
