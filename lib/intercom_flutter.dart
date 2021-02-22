@@ -29,8 +29,7 @@ class Intercom {
   }
 
   static Future<dynamic> setUserHash(String userHash) {
-    return _channel
-        .invokeMethod('setUserHash', {'userHash': userHash});
+    return _channel.invokeMethod('setUserHash', {'userHash': userHash});
   }
 
   static Future<dynamic> registerIdentifiedUser(
