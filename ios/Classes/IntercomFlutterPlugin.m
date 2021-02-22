@@ -105,6 +105,10 @@ id unread;
         }
         NSString *companyName = call.arguments[@"company"];
         NSString *companyId = call.arguments[@"companyId"];
+        NSString *lang = call.arguments[@"lang"];
+          if(lang != (id)[NSNull null]) {
+            attributes.languageOverride = lang;
+        }
         if(companyName != (id)[NSNull null] && companyId != (id)[NSNull null]) {
             ICMCompany *company = [ICMCompany new];
             company.name = companyName;
