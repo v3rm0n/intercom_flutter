@@ -19,7 +19,8 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
 class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.StreamHandler, ActivityAware {
   companion object {
-    @JvmStatic lateinit var application: Application
+    @JvmStatic
+    lateinit var application: Application
 
     @JvmStatic
     fun registerWith(registrar: Registrar) {
@@ -56,14 +57,14 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       }
       call.method == "setUserHash" -> {
         val userHash = call.argument<String>("userHash")
-        if(userHash != null) {
+        if (userHash != null) {
           Intercom.client().setUserHash(userHash);
           result.success("User hash added")
         }
       }
       call.method == "registerIdentifiedUserWithUserId" -> {
         val userId = call.argument<String>("userId")
-        if(userId != null) {
+        if (userId != null) {
           var registration = Registration.create()
           registration = registration.withUserId(userId)
           Intercom.client().registerIdentifiedUser(registration)
@@ -72,7 +73,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       }
       call.method == "registerIdentifiedUserWithEmail" -> {
         val email = call.argument<String>("email")
-        if(email != null) {
+        if (email != null) {
           var registration = Registration.create()
           registration = registration.withEmail(email)
           Intercom.client().registerIdentifiedUser(registration)
@@ -89,7 +90,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       }
       call.method == "setLauncherVisibility" -> {
         val visibility = call.argument<String>("visibility")
-        if(visibility != null) {
+        if (visibility != null) {
           Intercom.client().setLauncherVisibility(Intercom.Visibility.valueOf(visibility))
           result.success("Showing launcher: $visibility")
         }
@@ -108,7 +109,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       }
       call.method == "setInAppMessagesVisibility" -> {
         val visibility = call.argument<String>("visibility")
-        if(visibility != null) {
+        if (visibility != null) {
           Intercom.client().setInAppMessageVisibility(Intercom.Visibility.valueOf(visibility))
           result.success("Showing in app messages: $visibility")
         } else {
@@ -126,6 +127,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         val userId = call.argument<String>("userId")
         val company = call.argument<String>("company")
         val companyId = call.argument<String>("companyId")
+        val lang = call.argument<String>("lang")
         val customAttributes = call.argument<Map<String, Any?>>("customAttributes")
         val userAttributes = UserAttributes.Builder()
         if (email != null) {
@@ -140,6 +142,9 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         if (userId != null) {
           userAttributes.withUserId(userId)
         }
+        if (lang != null) {
+          userAttributes.withLanguageOverride(lang)
+        }
         if (company != null && companyId != null) {
           val icmCompany = Company.Builder()
           icmCompany.withName(company)
@@ -147,7 +152,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
           userAttributes.withCompany(icmCompany.build())
         }
         if (customAttributes != null) {
-          for((key, value) in customAttributes){
+          for ((key, value) in customAttributes) {
             userAttributes.withCustomAttribute(key, value)
           }
         }
@@ -157,7 +162,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       call.method == "logEvent" -> {
         val name = call.argument<String>("name")
         val metaData = call.argument<Map<String, Any>>("metaData")
-        if(name != null) {
+        if (name != null) {
           Intercom.client().logEvent(name, metaData);
           result.success("Logged event")
         }
@@ -166,7 +171,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       call.method == "sendTokenToIntercom" -> {
         val token = call.argument<String>("token")
         val metaData = call.argument<Map<String, Any>>("metaData")
-        if(token != null) {
+        if (token != null) {
           intercomPushClient.sendTokenToIntercom(application, token)
 
           result.success("Token sent to Intercom")
