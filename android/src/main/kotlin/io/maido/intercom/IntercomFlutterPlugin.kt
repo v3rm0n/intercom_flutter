@@ -1,6 +1,7 @@
 package io.maido.intercom
 
 import android.app.Application
+import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
