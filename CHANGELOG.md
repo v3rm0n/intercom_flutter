@@ -1,5 +1,5 @@
 ##2.4.0
-* added language override feature to change language based on app locale
+* Added language override feature to `updateUser` method.
 
 ## 2.3.0
 * Migrate Android side to Flutter's v2 Android Plugin APIs
