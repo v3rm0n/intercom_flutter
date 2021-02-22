@@ -84,8 +84,7 @@ class Intercom {
     return _channel.invokeMethod('logout');
   }
 
-  static Future<dynamic> setLauncherVisibility(
-      IntercomVisibility visibility) {
+  static Future<dynamic> setLauncherVisibility(IntercomVisibility visibility) {
     String visibilityString =
         visibility == IntercomVisibility.visible ? 'VISIBLE' : 'GONE';
     return _channel.invokeMethod('setLauncherVisibility', {
@@ -126,8 +125,7 @@ class Intercom {
 
   static Future<dynamic> sendTokenToIntercom(String token) {
     print("Start sending token to Intercom");
-    return _channel
-        .invokeMethod('sendTokenToIntercom', {'token': token});
+    return _channel.invokeMethod('sendTokenToIntercom', {'token': token});
   }
 
   static Future<dynamic> handlePushMessage() {
@@ -139,8 +137,7 @@ class Intercom {
         .invokeMethod('displayMessageComposer', {'message': message});
   }
 
-  static Future<bool> isIntercomPush(
-      Map<String, dynamic> message) async {
+  static Future<bool> isIntercomPush(Map<String, dynamic> message) async {
     if (!message.values.every((item) => item is String)) {
       return false;
     }
