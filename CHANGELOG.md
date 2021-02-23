@@ -1,6 +1,19 @@
 ##2.4.0
 * Added language override feature to `updateUser` method.
 
+## 2.3.4
+* Added support for setting bottom padding
+
+## 2.3.3
+* Added signedUpAt user attribute
+
+## 2.3.2
+* Fix crash if app is closed before fully initialised
+
+## 2.3.1
+* Fix Android build issue
+* Updated Android dependencies
+
 ## 2.3.0
 * Migrate Android side to Flutter's v2 Android Plugin APIs
 

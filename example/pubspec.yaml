@@ -12,3 +12,6 @@ dependencies:
 
 flutter:
   uses-material-design: true
+
+environment:
+  sdk: '>=2.10.0 <3.0.0'

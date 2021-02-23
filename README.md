@@ -1,7 +1,7 @@
 # intercom_flutter
 
 [![Pub](https://img.shields.io/pub/v/intercom_flutter.svg)](https://pub.dev/packages/intercom_flutter)
-[![Codemagic build status](https://api.codemagic.io/apps/5cef7aa5a415930008ecf27b/5cef7aa5a415930008ecf27a/status_badge.svg)](https://codemagic.io/apps/5cef7aa5a415930008ecf27b/5cef7aa5a415930008ecf27a/latest_build)
+![CI](https://github.com/v3rm0n/intercom_flutter/workflows/CI/badge.svg)
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android) and [iOS](https://github.com/intercom/intercom-ios) projects.
 
@@ -31,6 +31,15 @@ class App extends StatelessWidget {
     }
 }
 
+```
+
+### Change Language
+
+you can update language and other prob of the intercom user using updateUser() method
+```dart
+import 'package:intercom_flutter/intercom_flutter.dart' show Intercom;
+
+ await Intercom.updateUser(lang: isAr ? 'ar' : 'en');
 ```
 
 See Intercom Android and iOS package documentation for more information.

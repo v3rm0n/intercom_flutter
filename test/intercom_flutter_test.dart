@@ -72,6 +72,14 @@ void main() {
       expectMethodCall('registerUnidentifiedUser');
     });
 
+    test('setBottomPadding', () {
+      final padding = 64;
+      Intercom.setBottomPadding(padding);
+      expectMethodCall('setBottomPadding', arguments: {
+        'bottomPadding': padding,
+      });
+    });
+
     test('setUserHash', () {
       Intercom.setUserHash('test');
       expectMethodCall('setUserHash', arguments: {
@@ -154,6 +162,7 @@ void main() {
         phone: '+37256123456',
         company: 'Some Company LLC',
         companyId: '2',
+        signedUpAt: 1590949800,
         lang: 'en',
       );
       expectMethodCall('updateUser', arguments: {
@@ -163,6 +172,7 @@ void main() {
         'phone': '+37256123456',
         'company': 'Some Company LLC',
         'companyId': '2',
+        'signedUpAt': 1590949800,
         'customAttributes': null,
         'lang':'en',
       });
