@@ -33,7 +33,8 @@ class Intercom {
   /// It is useful if your app has a tab bar or similar UI at the bottom of your window.
   /// [padding] is the size of the bottom padding in points.
   static Future<dynamic> setBottomPadding(int padding) {
-    return _channel.invokeMethod('setBottomPadding', {'bottomPadding': padding});
+    return _channel
+        .invokeMethod('setBottomPadding', {'bottomPadding': padding});
   }
 
   static Future<dynamic> setUserHash(String userHash) {
@@ -126,8 +127,8 @@ class Intercom {
 
   static Future<dynamic> logEvent(String name,
       [Map<String, dynamic> metaData]) {
-    return _channel.invokeMethod(
-        'logEvent', {'name': name, 'metaData': metaData});
+    return _channel
+        .invokeMethod('logEvent', {'name': name, 'metaData': metaData});
   }
 
   static Future<dynamic> sendTokenToIntercom(String token) {

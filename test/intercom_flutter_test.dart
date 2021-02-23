@@ -174,7 +174,7 @@ void main() {
         'companyId': '2',
         'signedUpAt': 1590949800,
         'customAttributes': null,
-        'lang':'en',
+        'lang': 'en',
       });
     });
   });
