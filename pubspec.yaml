@@ -11,6 +11,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  collection: ^1.15.0-nullsafety.4
 
 flutter:
   plugin:
@@ -22,5 +23,5 @@ flutter:
         pluginClass: IntercomFlutterPlugin
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0-133.7.beta <3.0.0'
   flutter: ">=1.12.13+hotfix.7 <2.0.0"
