@@ -20,7 +20,7 @@ class SampleApp extends StatelessWidget {
           title: const Text('Intercom example app'),
         ),
         body: Center(
-          child: FlatButton(
+          child: TextButton(
             onPressed: () {
               Intercom.displayMessenger();
             },
