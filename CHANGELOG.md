@@ -1,3 +1,6 @@
+##2.5.0
+* Added Null Safety Support
+
 ##2.4.0
 * Added language override feature to `updateUser` method.
 

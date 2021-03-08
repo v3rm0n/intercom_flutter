@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -10,8 +11,8 @@ void setUpTestMethodChannel(String methodChannel) {
   final channel = MethodChannel(methodChannel);
   channel.setMockMethodCallHandler((methodCall) async {
     _log.add(methodCall);
-    final matchingStubbing = _responses.keys
-        .firstWhere((s) => s.matches(methodCall), orElse: () => null);
+    final matchingStubbing =
+        _responses.keys.firstWhereOrNull((s) => s.matches(methodCall));
     if (matchingStubbing != null) {
       return _responses[matchingStubbing];
     }
@@ -34,8 +35,8 @@ class MethodCallStubbing {
   }
 
   bool matches(MethodCall methodCall) {
-    return nameMatcher.matches(methodCall.method, null) &&
-        argMatcher.matches(methodCall.arguments, null);
+    return nameMatcher.matches(methodCall.method, Map()) &&
+        argMatcher.matches(methodCall.arguments, Map());
   }
 }
 
@@ -43,7 +44,7 @@ MethodCallStubbing whenMethodCall(Matcher nameMatcher, Matcher argMatcher) {
   return MethodCallStubbing(nameMatcher, argMatcher);
 }
 
-void expectMethodCall(String name, {Map<String, Object> arguments}) {
+void expectMethodCall(String name, {Map<String, Object?>? arguments}) {
   expect(
     _log[_expectCounter++],
     isMethodCall(name, arguments: arguments),

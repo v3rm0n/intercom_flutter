@@ -14,8 +14,8 @@ class Intercom {
 
   static Future<dynamic> initialize(
     String appId, {
-    String androidApiKey,
-    String iosApiKey,
+    required String androidApiKey,
+    required String iosApiKey,
   }) {
     return _channel.invokeMethod('initialize', {
       'appId': appId,
@@ -41,7 +41,7 @@ class Intercom {
     return _channel.invokeMethod('setUserHash', {'userHash': userHash});
   }
 
-  static Future<dynamic> registerIdentifiedUser({String userId, String email}) {
+  static Future<dynamic> registerIdentifiedUser({String? userId, String? email}) {
     if (userId?.isNotEmpty ?? false) {
       if (email?.isNotEmpty ?? false) {
         throw ArgumentError(
@@ -65,15 +65,15 @@ class Intercom {
   }
 
   static Future<dynamic> updateUser({
-    String email,
-    String name,
-    String phone,
-    String company,
-    String companyId,
-    String userId,
-    int signedUpAt,
-    String lang,
-    Map<String, dynamic> customAttributes,
+    String? email,
+    String? name,
+    String? phone,
+    String? company,
+    String? companyId,
+    String? userId,
+    int? signedUpAt,
+    String? lang,
+    Map<String, dynamic>? customAttributes,
   }) {
     return _channel.invokeMethod('updateUser', <String, dynamic>{
       'email': email,
@@ -100,7 +100,7 @@ class Intercom {
     });
   }
 
-  static Future<int> unreadConversationCount() {
+  static Future<int?> unreadConversationCount() {
     return _channel.invokeMethod('unreadConversationCount');
   }
 
@@ -126,7 +126,7 @@ class Intercom {
   }
 
   static Future<dynamic> logEvent(String name,
-      [Map<String, dynamic> metaData]) {
+      [Map<String, dynamic>? metaData]) {
     return _channel
         .invokeMethod('logEvent', {'name': name, 'metaData': metaData});
   }
@@ -146,7 +146,7 @@ class Intercom {
         .invokeMethod('displayMessageComposer', {'message': message});
   }
 
-  static Future<bool> isIntercomPush(Map<String, dynamic> message) async {
+  static Future<bool?> isIntercomPush(Map<String, dynamic> message) async {
     if (!message.values.every((item) => item is String)) {
       return false;
     }
