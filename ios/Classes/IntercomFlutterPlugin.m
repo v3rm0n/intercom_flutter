@@ -126,12 +126,6 @@ id unread;
             [Intercom setDeviceToken:encodedToken];
             result(@"Token set");
         }
-    } else if([@"overrideLanguage" isEqualToString:call.method]){
-        NSString *language = call.arguments[@"language"];
-        ICMUserAttributes *attributes = [ICMUserAttributes new];
-        attributes.languageOverride = language;
-        [Intercom updateUser:attributes];
-        result(@"language Updated");
     }
     else {
         result(FlutterMethodNotImplemented);
@@ -172,6 +166,11 @@ id unread;
     NSNumber *signedUpAt = call.arguments[@"signedUpAt"];
     if(signedUpAt != (id)[NSNull null]) {
         attributes.signedUpAt = [NSDate dateWithTimeIntervalSince1970: signedUpAt.doubleValue];
+    }
+    
+    NSString *language = call.arguments[@"language"];
+    if(language != (id)[NSNull null]) {
+        attributes.languageOverride = language;
     }
     
     return attributes;

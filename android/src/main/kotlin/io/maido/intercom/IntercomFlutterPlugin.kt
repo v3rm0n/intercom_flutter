@@ -168,13 +168,6 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         intercomPushClient.handlePush(application, call.argument<Map<String, String>>("message")!!)
         result.success(null)
       }
-      call.method == "overrideLanguage" -> {
-        val language = call.argument<String>("language")
-        val userAttributes = UserAttributes.Builder()
-        userAttributes.withLanguageOverride(language)
-        Intercom.client().updateUser(userAttributes.build())
-        result.success("language Updated")
-      }
       else -> result.notImplemented()
     }
   }
@@ -190,6 +183,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
     val companyId = call.argument<String>("companyId")
     val customAttributes = call.argument<Map<String, Any?>>("customAttributes")
     val signedUpAt = call.argument<Any?>("signedUpAt")
+    val language = call.argument<String>("language")
 
     val userAttributes = UserAttributes.Builder()
 
@@ -225,6 +219,10 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
     val seconds: Long? = signedUpAt?.toString()?.toLongOrNull()
     if (seconds != null)
       userAttributes.withSignedUpAt(seconds)
+    
+    if(language != null){
+      userAttributes.withLanguageOverride(language);
+    }
 
     return userAttributes.build()
   }

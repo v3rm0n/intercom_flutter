@@ -63,6 +63,11 @@ class Intercom {
     await _channel.invokeMethod('registerUnidentifiedUser');
   }
 
+  /// Update the Intercom user
+  ///
+  /// The [language] should be an an ISO 639-1 two-letter code such as 'en' for English or 'fr' for French.
+  /// You’ll need to use a four-letter code for Chinese like 'zh-CN'.
+  /// check this link https://www.intercom.com/help/en/articles/180-localize-intercom-to-work-with-multiple-languages
   static Future<void> updateUser({
     String? email,
     String? name,
@@ -71,6 +76,7 @@ class Intercom {
     String? companyId,
     String? userId,
     int? signedUpAt,
+    String? language,
     Map<String, dynamic>? customAttributes,
   }) async {
     await _channel.invokeMethod('updateUser', <String, dynamic>{
@@ -81,6 +87,7 @@ class Intercom {
       'companyId': companyId,
       'userId': userId,
       'signedUpAt': signedUpAt,
+      'language': language,
       'customAttributes': customAttributes,
     });
   }
@@ -161,14 +168,5 @@ class Intercom {
 
     return await _channel
         .invokeMethod<void>('handlePush', {'message': message});
-  }
-
-  /// override the language of Intercom messenger.
-  ///
-  /// The [language] should be an an ISO 639-1 two-letter code such as 'en' for English or 'fr' for French.
-  /// You’ll need to use a four-letter code for Chinese like 'zh-CN'.
-  static Future<void> overrideLanguage(String language) async {
-    await _channel
-        .invokeMethod<void>('overrideLanguage', {'language': language});
   }
 }
