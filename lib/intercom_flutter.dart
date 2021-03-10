@@ -18,6 +18,10 @@ class Intercom {
     return IntercomFlutterPlatform.instance.getUnreadStream();
   }
 
+  /// This method allows you to set a fixed bottom padding for in app messages and the launcher.
+  ///
+  /// It is useful if your app has a tab bar or similar UI at the bottom of your window.
+  /// [padding] is the size of the bottom padding in points.
   static Future<void> setBottomPadding(int padding) {
     return IntercomFlutterPlatform.instance.setBottomPadding(padding);
   }
@@ -35,6 +39,14 @@ class Intercom {
     return IntercomFlutterPlatform.instance.registerUnidentifiedUser();
   }
 
+  /// Updates the attributes of the current Intercom user.
+  ///
+  /// The [language] param should be an an ISO 639-1 two-letter code such as `en` for English or `fr` for French.
+  /// You’ll need to use a four-letter code for Chinese like `zh-CN`.
+  /// check this link https://www.intercom.com/help/en/articles/180-localize-intercom-to-work-with-multiple-languages.
+  ///
+  /// See also:
+  ///  * [Localize Intercom to work with multiple languages](https://www.intercom.com/help/en/articles/180-localize-intercom-to-work-with-multiple-languages)
   static Future<void> updateUser({
     String? email,
     String? name,
@@ -89,8 +101,7 @@ class Intercom {
     return IntercomFlutterPlatform.instance.displayHelpCenter();
   }
 
-  static Future<void> logEvent(String name,
-      [Map<String, dynamic>? metaData]) {
+  static Future<void> logEvent(String name, [Map<String, dynamic>? metaData]) {
     return IntercomFlutterPlatform.instance.logEvent(name, metaData);
   }
 
