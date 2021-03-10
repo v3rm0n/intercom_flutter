@@ -43,6 +43,7 @@ class Intercom {
     String? companyId,
     String? userId,
     int? signedUpAt,
+    String? language,
     Map<String, dynamic>? customAttributes,
   }) {
     return IntercomFlutterPlatform.instance.updateUser(
@@ -53,6 +54,7 @@ class Intercom {
       companyId: companyId,
       userId: userId,
       signedUpAt: signedUpAt,
+      language: language,
       customAttributes: customAttributes,
     );
   }

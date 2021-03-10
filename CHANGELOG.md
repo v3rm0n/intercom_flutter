@@ -1,3 +1,6 @@
+## 3.1.0
+* Added support for language_override
+
 ## 3.0.0
 * Migrate to null-safety
 
