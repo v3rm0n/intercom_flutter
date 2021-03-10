@@ -105,6 +105,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     String? company,
     String? companyId,
     String? userId,
+    String? language,
     int? signedUpAt,
     Map<String, dynamic>? customAttributes,
   }) async {
@@ -142,6 +143,10 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
 
     if (signedUpAt != null) {
       userAttributes['created_at'] = signedUpAt;
+    }
+
+    if (language != null) {
+      userAttributes['language_override'] = language;
     }
 
     await js.context.callMethod('Intercom', [

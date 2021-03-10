@@ -63,6 +63,7 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     String? companyId,
     String? userId,
     int? signedUpAt,
+    String? language,
     Map<String, dynamic>? customAttributes,
   }) async {
     await _channel.invokeMethod('updateUser', <String, dynamic>{
@@ -73,6 +74,7 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
       'companyId': companyId,
       'userId': userId,
       'signedUpAt': signedUpAt,
+      'language': language,
       'customAttributes': customAttributes,
     });
   }

@@ -265,13 +265,15 @@ void main() {
 
     test('updateUser', () async {
       await intercom.updateUser(
-          email: 'test@example.com',
-          name: 'John Doe',
-          userId: '1',
-          phone: '+37256123456',
-          company: 'Some Company LLC',
-          companyId: '2',
-          signedUpAt: 1590949800);
+        email: 'test@example.com',
+        name: 'John Doe',
+        userId: '1',
+        phone: '+37256123456',
+        company: 'Some Company LLC',
+        companyId: '2',
+        signedUpAt: 1590949800,
+        language: 'en',
+      );
       expect(
         log,
         <Matcher>[
@@ -283,6 +285,7 @@ void main() {
             'company': 'Some Company LLC',
             'companyId': '2',
             'signedUpAt': 1590949800,
+            'language': 'en',
             'customAttributes': null,
           })
         ],
