@@ -162,4 +162,13 @@ class Intercom {
     return await _channel
         .invokeMethod<void>('handlePush', {'message': message});
   }
+
+  /// override the language of Intercom messenger.
+  ///
+  /// The [language] should be an an ISO 639-1 two-letter code such as 'en' for English or 'fr' for French.
+  /// You’ll need to use a four-letter code for Chinese like 'zh-CN'.
+  static Future<void> overrideLanguage(String language) async {
+    await _channel
+        .invokeMethod<void>('overrideLanguage', {'language': language});
+  }
 }

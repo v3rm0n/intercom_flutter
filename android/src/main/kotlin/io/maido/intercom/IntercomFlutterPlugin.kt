@@ -168,6 +168,13 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         intercomPushClient.handlePush(application, call.argument<Map<String, String>>("message")!!)
         result.success(null)
       }
+      call.method == "overrideLanguage" -> {
+        val language = call.argument<String>("language")
+        val userAttributes = UserAttributes.Builder()
+        userAttributes.withLanguageOverride(language)
+        Intercom.client().updateUser(userAttributes.build())
+        result.success("language Updated")
+      }
       else -> result.notImplemented()
     }
   }

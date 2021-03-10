@@ -126,6 +126,12 @@ id unread;
             [Intercom setDeviceToken:encodedToken];
             result(@"Token set");
         }
+    } else if([@"overrideLanguage" isEqualToString:call.method]){
+        NSString *language = call.arguments[@"language"];
+        ICMUserAttributes *attributes = [ICMUserAttributes new];
+        attributes.languageOverride = language;
+        [Intercom updateUser:attributes];
+        result(@"language Updated");
     }
     else {
         result(FlutterMethodNotImplemented);
