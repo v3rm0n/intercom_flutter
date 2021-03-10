@@ -220,7 +220,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
     if (seconds != null)
       userAttributes.withSignedUpAt(seconds)
     
-    if(language != null){
+    if (language != null) {
       userAttributes.withLanguageOverride(language);
     }
 
