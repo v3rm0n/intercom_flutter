@@ -221,4 +221,11 @@ void main() {
       expect(await Intercom.getUnreadStream().first, value);
     });
   });
+
+  test('overrideLanguage', () {
+    Intercom.overrideLanguage('en');
+    expectMethodCall('overrideLanguage', arguments: {
+      'language': 'en',
+    });
+  });
 }
