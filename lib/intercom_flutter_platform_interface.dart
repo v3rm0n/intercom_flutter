@@ -20,10 +20,10 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   }
 
   /// function to initialize the Intercom SDK
-  Future<dynamic> initialize(
+  Future<void> initialize(
     String appId, {
-    String androidApiKey,
-    String iosApiKey,
+    String? androidApiKey,
+    String? iosApiKey,
   }) {
     throw UnimplementedError('initialize() has not been implemented.');
   }
@@ -32,38 +32,38 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('getUnreadStream() has not been implemented.');
   }
 
-  Future<dynamic> setUserHash(String userHash) {
+  Future<void> setUserHash(String userHash) {
     throw UnimplementedError('setUserHash() has not been implemented.');
   }
 
-  Future<dynamic> registerIdentifiedUser({String userId, String email}) {
+  Future<void> registerIdentifiedUser({String? userId, String? email}) {
     throw UnimplementedError(
         'registerIdentifiedUser() has not been implemented.');
   }
 
-  Future<dynamic> registerUnidentifiedUser() {
+  Future<void> registerUnidentifiedUser() {
     throw UnimplementedError(
         'registerUnidentifiedUser() has not been implemented.');
   }
 
-  Future<dynamic> updateUser({
-    String email,
-    String name,
-    String phone,
-    String company,
-    String companyId,
-    String userId,
-    int signedUpAt,
-    Map<String, dynamic> customAttributes,
+  Future<void> updateUser({
+    String? email,
+    String? name,
+    String? phone,
+    String? company,
+    String? companyId,
+    String? userId,
+    int? signedUpAt,
+    Map<String, dynamic>? customAttributes,
   }) {
     throw UnimplementedError('updateUser() has not been implemented.');
   }
 
-  Future<dynamic> logout() {
+  Future<void> logout() {
     throw UnimplementedError('logout() has not been implemented.');
   }
 
-  Future<dynamic> setLauncherVisibility(IntercomVisibility visibility) {
+  Future<void> setLauncherVisibility(IntercomVisibility visibility) {
     throw UnimplementedError(
         'setLauncherVisibility() has not been implemented.');
   }
@@ -73,36 +73,36 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
         'unreadConversationCount() has not been implemented.');
   }
 
-  Future<dynamic> setInAppMessagesVisibility(IntercomVisibility visibility) {
+  Future<void> setInAppMessagesVisibility(IntercomVisibility visibility) {
     throw UnimplementedError(
         'setInAppMessagesVisibility() has not been implemented.');
   }
 
-  Future<dynamic> displayMessenger() {
+  Future<void> displayMessenger() {
     throw UnimplementedError('displayMessenger() has not been implemented.');
   }
 
-  Future<dynamic> hideMessenger() {
+  Future<void> hideMessenger() {
     throw UnimplementedError('hideMessenger() has not been implemented.');
   }
 
-  Future<dynamic> displayHelpCenter() {
+  Future<void> displayHelpCenter() {
     throw UnimplementedError('displayHelpCenter() has not been implemented.');
   }
 
-  Future<dynamic> logEvent(String name, [Map<String, dynamic> metaData]) {
+  Future<void> logEvent(String name, [Map<String, dynamic>? metaData]) {
     throw UnimplementedError('logEvent() has not been implemented.');
   }
 
-  Future<dynamic> sendTokenToIntercom(String token) {
+  Future<void> sendTokenToIntercom(String token) {
     throw UnimplementedError('sendTokenToIntercom() has not been implemented.');
   }
 
-  Future<dynamic> handlePushMessage() {
+  Future<void> handlePushMessage() {
     throw UnimplementedError('handlePushMessage() has not been implemented.');
   }
 
-  Future<dynamic> displayMessageComposer(String message) {
+  Future<void> displayMessageComposer(String message) {
     throw UnimplementedError(
         'displayMessageComposer() has not been implemented.');
   }
@@ -119,7 +119,7 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   ///
   /// It is useful if your app has a tab bar or similar UI at the bottom of your window.
   /// [padding] is the size of the bottom padding in points.
-  Future<dynamic> setBottomPadding(int padding) {
+  Future<void> setBottomPadding(int padding) {
     throw UnimplementedError('setBottomPadding() has not been implemented.');
   }
 }

@@ -327,10 +327,11 @@ void main() {
 
       setUp(() {
         channel.setMockMethodCallHandler((MethodCall methodCall) async {
-          ServicesBinding.instance.defaultBinaryMessenger.handlePlatformMessage(
+          ServicesBinding.instance!.defaultBinaryMessenger
+              .handlePlatformMessage(
             channelName,
             const StandardMethodCodec().encodeSuccessEnvelope(value),
-            (ByteData data) {},
+            (ByteData? data) {},
           );
         });
       });

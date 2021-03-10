@@ -31,55 +31,53 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
   }
 
   @override
-  Future<dynamic> initialize(
+  Future<void> initialize(
     String appId, {
-    String androidApiKey,
-    String iosApiKey,
+    String? androidApiKey,
+    String? iosApiKey,
   }) async {
-    js.context.callMethod('Intercom', [
+    await js.context.callMethod('Intercom', [
       'update',
       convertJsObjectToDartObject(updateIntercomSettings('app_id', appId)),
     ]);
-    return "initialized";
+    print("initialized");
   }
 
   @override
-  Future<dynamic> setUserHash(String userHash) async {
-    if (userHash != null) {
-      js.context.callMethod('Intercom', [
-        'update',
-        js.JsObject.jsify({
-          'user_hash': userHash,
-        }),
-      ]);
-      return "user hash added";
-    }
+  Future<void> setUserHash(String userHash) async {
+    await js.context.callMethod('Intercom', [
+      'update',
+      js.JsObject.jsify({
+        'user_hash': userHash,
+      }),
+    ]);
+    print("user hash added");
   }
 
   @override
-  Future<dynamic> registerIdentifiedUser({String userId, String email}) async {
+  Future<void> registerIdentifiedUser({String? userId, String? email}) async {
     if (userId?.isNotEmpty ?? false) {
       if (email?.isNotEmpty ?? false) {
         throw ArgumentError(
             'The parameter `email` must be null if `userId` is provided.');
       }
       // register the user with userId
-      js.context.callMethod('Intercom', [
+      await js.context.callMethod('Intercom', [
         'update',
         js.JsObject.jsify({
           'user_id': userId,
         }),
       ]);
-      return "user created";
+      print("user created");
     } else if (email?.isNotEmpty ?? false) {
       // register the user with email
-      js.context.callMethod('Intercom', [
+      await js.context.callMethod('Intercom', [
         'update',
         js.JsObject.jsify({
           'email': email,
         }),
       ]);
-      return "user created";
+      print("user created");
     } else {
       throw ArgumentError(
           'An identification method must be provided as a parameter, either `userId` or `email`.');
@@ -87,30 +85,28 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
   }
 
   @override
-  Future<dynamic> registerUnidentifiedUser() async {
+  Future<void> registerUnidentifiedUser() async {
     // to register an unidentified user, a unique id will be created using the package uuid
     String userId = Uuid().v1();
-    if (userId != null) {
-      js.context.callMethod('Intercom', [
-        'update',
-        js.JsObject.jsify({
-          'user_id': userId,
-        }),
-      ]);
-      return "user created";
-    }
+    await js.context.callMethod('Intercom', [
+      'update',
+      js.JsObject.jsify({
+        'user_id': userId,
+      }),
+    ]);
+    print("user created");
   }
 
   @override
-  Future<dynamic> updateUser({
-    String email,
-    String name,
-    String phone,
-    String company,
-    String companyId,
-    String userId,
-    int signedUpAt,
-    Map<String, dynamic> customAttributes,
+  Future<void> updateUser({
+    String? email,
+    String? name,
+    String? phone,
+    String? company,
+    String? companyId,
+    String? userId,
+    int? signedUpAt,
+    Map<String, dynamic>? customAttributes,
   }) async {
     Map<String, dynamic> userAttributes = {};
 
@@ -148,68 +144,64 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       userAttributes['created_at'] = signedUpAt;
     }
 
-    js.context.callMethod('Intercom', [
+    await js.context.callMethod('Intercom', [
       'update',
       js.JsObject.jsify(userAttributes),
     ]);
-    return "User updated";
+    print("User updated");
   }
 
   @override
-  Future<dynamic> logEvent(String name, [Map<String, dynamic> metaData]) async {
-    if (name != null) {
-      js.context.callMethod('Intercom', [
-        'trackEvent',
-        name,
-        metaData != null ? js.JsObject.jsify(metaData) : null,
-      ]);
+  Future<void> logEvent(String name, [Map<String, dynamic>? metaData]) async {
+    await js.context.callMethod('Intercom', [
+      'trackEvent',
+      name,
+      metaData != null ? js.JsObject.jsify(metaData) : null,
+    ]);
 
-      return "Logged event";
-    }
+    print("Logged event");
   }
 
   @override
-  Future<dynamic> setLauncherVisibility(IntercomVisibility visibility) async {
-    if (visibility != null) {
-      js.context.callMethod('Intercom', [
-        'update',
-        convertJsObjectToDartObject(updateIntercomSettings(
-          'hide_default_launcher',
-          visibility == IntercomVisibility.visible ? false : true,
-        )),
-      ]);
+  Future<void> setLauncherVisibility(IntercomVisibility visibility) async {
+    await js.context.callMethod('Intercom', [
+      'update',
+      convertJsObjectToDartObject(updateIntercomSettings(
+        'hide_default_launcher',
+        visibility == IntercomVisibility.visible ? false : true,
+      )),
+    ]);
 
-      return "Showing launcher: $visibility";
-    }
+    print("Showing launcher: $visibility");
   }
 
   @override
-  Future<dynamic> logout() async {
-    js.context.callMethod('Intercom', ['shutdown']);
-    return "logout";
+  Future<void> logout() async {
+    await js.context.callMethod('Intercom', ['shutdown']);
+    print("logout");
   }
 
   @override
-  Future<dynamic> displayMessenger() async {
-    js.context.callMethod('Intercom', ['show']);
-    return "Launched";
+  Future<void> displayMessenger() async {
+    await js.context.callMethod('Intercom', ['show']);
+    print("Launched");
   }
 
   @override
-  Future<dynamic> hideMessenger() async {
-    js.context.callMethod('Intercom', ['hide']);
-    return "Hidden";
+  Future<void> hideMessenger() async {
+    await js.context.callMethod('Intercom', ['hide']);
+    print("Hidden");
   }
 
   @override
-  Future<dynamic> displayMessageComposer(String message) async {
-    js.context.callMethod('Intercom', ['showNewMessage', message]);
-    return "Message composer displayed";
+  Future<void> displayMessageComposer(String message) async {
+    await js.context.callMethod('Intercom', ['showNewMessage', message]);
+    print("Message composer displayed");
   }
 
   @override
-  Future<dynamic> setBottomPadding(int padding) async {
-    js.context.callMethod('Intercom', [
+  Future<void> setBottomPadding(int padding) async {
+    await js.context.callMethod('Intercom', [
       'update',
       convertJsObjectToDartObject(updateIntercomSettings(
         'vertical_padding',
@@ -217,7 +209,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       ))
     ]);
 
-    return "Bottom padding set";
+    print("Bottom padding set");
   }
 
   /// get the [window.IntercomSettings]

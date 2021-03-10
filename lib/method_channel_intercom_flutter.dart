@@ -7,12 +7,12 @@ const EventChannel _unreadChannel = EventChannel('maido.io/intercom/unread');
 /// An implementation of [IntercomFlutterPlatform] that uses method channels.
 class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   @override
-  Future<dynamic> initialize(
+  Future<void> initialize(
     String appId, {
-    String androidApiKey,
-    String iosApiKey,
-  }) {
-    return _channel.invokeMethod('initialize', {
+    String? androidApiKey,
+    String? iosApiKey,
+  }) async {
+    await _channel.invokeMethod('initialize', {
       'appId': appId,
       'androidApiKey': androidApiKey,
       'iosApiKey': iosApiKey,
@@ -25,12 +25,12 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   }
 
   @override
-  Future<dynamic> setUserHash(String userHash) {
-    return _channel.invokeMethod('setUserHash', {'userHash': userHash});
+  Future<void> setUserHash(String userHash) async {
+    await _channel.invokeMethod('setUserHash', {'userHash': userHash});
   }
 
   @override
-  Future<dynamic> registerIdentifiedUser({String userId, String email}) {
+  Future<void> registerIdentifiedUser({String? userId, String? email}) {
     if (userId?.isNotEmpty ?? false) {
       if (email?.isNotEmpty ?? false) {
         throw ArgumentError(
@@ -50,22 +50,22 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   }
 
   @override
-  Future<dynamic> registerUnidentifiedUser() {
-    return _channel.invokeMethod('registerUnidentifiedUser');
+  Future<void> registerUnidentifiedUser() async {
+    await _channel.invokeMethod('registerUnidentifiedUser');
   }
 
   @override
-  Future<dynamic> updateUser({
-    String email,
-    String name,
-    String phone,
-    String company,
-    String companyId,
-    String userId,
-    int signedUpAt,
-    Map<String, dynamic> customAttributes,
-  }) {
-    return _channel.invokeMethod('updateUser', <String, dynamic>{
+  Future<void> updateUser({
+    String? email,
+    String? name,
+    String? phone,
+    String? company,
+    String? companyId,
+    String? userId,
+    int? signedUpAt,
+    Map<String, dynamic>? customAttributes,
+  }) async {
+    await _channel.invokeMethod('updateUser', <String, dynamic>{
       'email': email,
       'name': name,
       'phone': phone,
@@ -78,70 +78,70 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   }
 
   @override
-  Future<dynamic> logout() {
-    return _channel.invokeMethod('logout');
+  Future<void> logout() async {
+    await _channel.invokeMethod('logout');
   }
 
   @override
-  Future<dynamic> setLauncherVisibility(IntercomVisibility visibility) {
+  Future<void> setLauncherVisibility(IntercomVisibility visibility) async {
     String visibilityString =
         visibility == IntercomVisibility.visible ? 'VISIBLE' : 'GONE';
-    return _channel.invokeMethod('setLauncherVisibility', {
+    await _channel.invokeMethod('setLauncherVisibility', {
       'visibility': visibilityString,
     });
   }
 
   @override
-  Future<int> unreadConversationCount() {
-    return _channel.invokeMethod('unreadConversationCount');
+  Future<int> unreadConversationCount() async {
+    final result = await _channel.invokeMethod<int>('unreadConversationCount');
+    return result ?? 0;
   }
 
   @override
-  Future<dynamic> setInAppMessagesVisibility(IntercomVisibility visibility) {
+  Future<void> setInAppMessagesVisibility(IntercomVisibility visibility) async {
     String visibilityString =
         visibility == IntercomVisibility.visible ? 'VISIBLE' : 'GONE';
-    return _channel.invokeMethod('setInAppMessagesVisibility', {
+    await _channel.invokeMethod('setInAppMessagesVisibility', {
       'visibility': visibilityString,
     });
   }
 
   @override
-  Future<dynamic> displayMessenger() {
-    return _channel.invokeMethod('displayMessenger');
+  Future<void> displayMessenger() async {
+    await _channel.invokeMethod('displayMessenger');
   }
 
   @override
-  Future<dynamic> hideMessenger() {
-    return _channel.invokeMethod('hideMessenger');
+  Future<void> hideMessenger() async {
+    await _channel.invokeMethod('hideMessenger');
   }
 
   @override
-  Future<dynamic> displayHelpCenter() {
-    return _channel.invokeMethod('displayHelpCenter');
+  Future<void> displayHelpCenter() async {
+    await _channel.invokeMethod('displayHelpCenter');
   }
 
   @override
-  Future<dynamic> logEvent(String name, [Map<String, dynamic> metaData]) {
-    return _channel
+  Future<void> logEvent(String name, [Map<String, dynamic>? metaData]) async {
+    await _channel
         .invokeMethod('logEvent', {'name': name, 'metaData': metaData});
   }
 
   @override
-  Future<dynamic> sendTokenToIntercom(String token) {
-    assert(token != null && token.isNotEmpty);
+  Future<void> sendTokenToIntercom(String token) async {
+    assert(token.isNotEmpty);
     print("Start sending token to Intercom");
-    return _channel.invokeMethod('sendTokenToIntercom', {'token': token});
+    await _channel.invokeMethod('sendTokenToIntercom', {'token': token});
   }
 
   @override
-  Future<dynamic> handlePushMessage() {
-    return _channel.invokeMethod('handlePushMessage');
+  Future<void> handlePushMessage() async {
+    await _channel.invokeMethod('handlePushMessage');
   }
 
   @override
-  Future<dynamic> displayMessageComposer(String message) {
-    return _channel
-        .invokeMethod('displayMessageComposer', {'message': message});
+  Future<void> displayMessageComposer(String message) async {
+    await _channel.invokeMethod('displayMessageComposer', {'message': message});
   }
 
   @override
@@ -149,9 +149,9 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     if (!message.values.every((item) => item is String)) {
       return false;
     }
-
-    return await _channel
+    final result = await _channel
         .invokeMethod<bool>('isIntercomPush', {'message': message});
+    return result ?? false;
   }
 
   @override
@@ -166,8 +166,7 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   }
 
   @override
-  Future setBottomPadding(int padding) {
-    return _channel
-        .invokeMethod('setBottomPadding', {'bottomPadding': padding});
+  Future<void> setBottomPadding(int padding) async {
+    await _channel.invokeMethod('setBottomPadding', {'bottomPadding': padding});
   }
 }
