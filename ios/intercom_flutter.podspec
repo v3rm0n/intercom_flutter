@@ -3,12 +3,12 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'intercom_flutter'
-  s.version          = '2.2.0+1'
+  s.version          = '3.2.0'
   s.summary          = 'Intercom integration for Flutter'
   s.description      = <<-DESC
 A new flutter plugin project.
                        DESC
-  s.homepage         = 'https://github.com/ChangeFinance/intercom_flutter'
+  s.homepage         = 'https://github.com/v3rm0n/intercom_flutter'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'xChange OÜ' => 'maido@getchange.com' }
   s.source           = { :path => '.' }
@@ -17,7 +17,7 @@ A new flutter plugin project.
   s.dependency 'Flutter'
   s.dependency 'Intercom'
   s.static_framework = true
-  s.dependency 'Intercom', '~> 7.1.0'
+  s.dependency 'Intercom', '~> 9.3.3'
   s.ios.deployment_target = '10.0'
 end
 
