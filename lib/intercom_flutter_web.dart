@@ -105,8 +105,8 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     String? company,
     String? companyId,
     String? userId,
-    String? language,
     int? signedUpAt,
+    String? language,
     Map<String, dynamic>? customAttributes,
   }) async {
     Map<String, dynamic> userAttributes = {};
