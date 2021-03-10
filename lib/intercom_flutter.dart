@@ -63,6 +63,14 @@ class Intercom {
     await _channel.invokeMethod('registerUnidentifiedUser');
   }
 
+  /// Updates the attributes of the current Intercom user.
+  ///
+  /// The [language] param should be an an ISO 639-1 two-letter code such as `en` for English or `fr` for French.
+  /// You’ll need to use a four-letter code for Chinese like `zh-CN`.
+  /// check this link https://www.intercom.com/help/en/articles/180-localize-intercom-to-work-with-multiple-languages.
+  ///
+  /// See also:
+  ///  * [Localize Intercom to work with multiple languages](https://www.intercom.com/help/en/articles/180-localize-intercom-to-work-with-multiple-languages)
   static Future<void> updateUser({
     String? email,
     String? name,
@@ -71,6 +79,7 @@ class Intercom {
     String? companyId,
     String? userId,
     int? signedUpAt,
+    String? language,
     Map<String, dynamic>? customAttributes,
   }) async {
     await _channel.invokeMethod('updateUser', <String, dynamic>{
@@ -81,6 +90,7 @@ class Intercom {
       'companyId': companyId,
       'userId': userId,
       'signedUpAt': signedUpAt,
+      'language': language,
       'customAttributes': customAttributes,
     });
   }

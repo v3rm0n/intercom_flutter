@@ -168,6 +168,11 @@ id unread;
         attributes.signedUpAt = [NSDate dateWithTimeIntervalSince1970: signedUpAt.doubleValue];
     }
     
+    NSString *language = call.arguments[@"language"];
+    if(language != (id)[NSNull null]) {
+        attributes.languageOverride = language;
+    }
+    
     return attributes;
 }
 @end

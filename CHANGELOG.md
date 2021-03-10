@@ -1,6 +1,9 @@
 ## 3.2.0
 * Update native SDKs
 
+## 3.1.0
+* Added support for `language` override on `updateUser`
+
 ## 3.0.0
 * Migrate to null-safety
 
