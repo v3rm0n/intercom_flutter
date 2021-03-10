@@ -1,3 +1,6 @@
+## 3.0.0
+* Migrate to null-safety
+
 ## 2.3.4
 * Added support for setting bottom padding
 
