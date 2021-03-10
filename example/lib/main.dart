@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intercom_flutter/intercom_flutter.dart';
-import 'package:intercom_flutter/intercom_flutter_platform_interface.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
