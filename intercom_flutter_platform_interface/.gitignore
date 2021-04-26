@@ -1,0 +1,12 @@
+.DS_Store
+.dart_tool/
+
+.packages
+.pub/
+pubspec.lock
+
+build/
+.idea/
+android/bin/
+example/.flutter-plugins-dependencies
+example/ios/Flutter/flutter_export_environment.sh
