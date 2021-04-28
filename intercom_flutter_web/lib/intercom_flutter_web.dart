@@ -6,6 +6,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
 import 'package:uuid/uuid.dart';
 
+/// export the enum [IntercomVisibility]
 export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart'
     show IntercomVisibility;
 
