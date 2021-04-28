@@ -81,8 +81,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: nanasess/setup-chromedriver@master
-    - run: chromedriver --url-base=/wd/hub --port=4444 &
-
     - uses: actions/checkout@v2
     - uses: subosito/flutter-action@v1
       with:
@@ -97,6 +95,10 @@ jobs:
     - name: Run Flutter Analyzer
       run: flutter analyze
       working-directory: ${{env.source-directory}}/example
+
+    # Run the chromedrive
+    - name: Run Chrome Driver
+      run: chromedriver --url-base=/wd/hub --port=4444 &
 
     # Run all integration tests
     - name: Run integration tests
