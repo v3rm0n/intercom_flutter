@@ -73,35 +73,35 @@ jobs:
       working-directory: ${{env.source-directory}}
 
   # job for plugin intercom_flutter_web
-  intercom_flutter_web:
-    runs-on: ubuntu-latest
-    env:
-      source-directory: ./intercom_flutter_web
+  # intercom_flutter_web:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     source-directory: ./intercom_flutter_web
 
-    steps:
-    - uses: actions/checkout@v2
-    - uses: nanasess/setup-chromedriver@master
-    - run: |
-      export DISPLAY=:99
-      chromedriver --url-base=/wd/hub &
-      sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - uses: nanasess/setup-chromedriver@master
+  #   - run: |
+  #     export DISPLAY=:99
+  #     chromedriver --url-base=/wd/hub &
+  #     sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
 
-    - uses: actions/checkout@v2
-    - uses: subosito/flutter-action@v1
-      with:
-        channel: 'stable'
+  #   - uses: actions/checkout@v2
+  #   - uses: subosito/flutter-action@v1
+  #     with:
+  #       channel: 'stable'
     
-    # Download all Flutter packages
-    - name: Download dependencies
-      run: flutter pub get
-      working-directory: ${{env.source-directory}}/example
+  #   # Download all Flutter packages
+  #   - name: Download dependencies
+  #     run: flutter pub get
+  #     working-directory: ${{env.source-directory}}/example
 
-    # Run Flutter Analyzer
-    - name: Run Flutter Analyzer
-      run: flutter analyze
-      working-directory: ${{env.source-directory}}/example
+  #   # Run Flutter Analyzer
+  #   - name: Run Flutter Analyzer
+  #     run: flutter analyze
+  #     working-directory: ${{env.source-directory}}/example
 
-    # Run all integration tests
-    - name: Run integration tests
-      run: flutter drive -d web-server --browser-name=chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart
-      working-directory: ${{env.source-directory}}/example
+  #   # Run all integration tests
+  #   - name: Run integration tests
+  #     run: flutter drive -d web-server --browser-name=chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart
+  #     working-directory: ${{env.source-directory}}/example
