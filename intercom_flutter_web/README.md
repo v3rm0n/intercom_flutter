@@ -18,14 +18,13 @@ But if you want to use this package as alone, first add the dependency `intercom
 ```
 #### Following functions are not yet supported on Web:
 
-- [ ] unreadConversationCount
-- [ ] setInAppMessagesVisibility
-- [ ] displayHelpCenter
-- [ ] sendTokenToIntercom
-- [ ] handlePushMessage
-- [ ] isIntercomPush
-- [ ] handlePush
+- unreadConversationCount
+- setInAppMessagesVisibility
+- displayHelpCenter
+- sendTokenToIntercom
+- handlePushMessage
+- isIntercomPush
+- handlePush
 
 [1]: ../intercom_flutter
-
 
