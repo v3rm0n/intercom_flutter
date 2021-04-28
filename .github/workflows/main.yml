@@ -76,7 +76,7 @@ jobs:
   intercom_flutter_web:
     runs-on: ubuntu-latest
     env:
-      source-directory: ./intercom_flutter_web
+      source-directory: ./intercom_flutter_web/example
 
     steps:
     - uses: actions/checkout@v2
@@ -102,12 +102,12 @@ jobs:
     # Download all Flutter packages
     - name: Download dependencies
       run: flutter pub get
-      working-directory: ${{env.source-directory}}/example
+      working-directory: ${{env.source-directory}}
 
     # Run Flutter Analyzer
     - name: Run Flutter Analyzer
       run: flutter analyze
-      working-directory: ${{env.source-directory}}/example
+      working-directory: ${{env.source-directory}}
 
     # Run the chromedrive
     - name: Run Chrome Driver
@@ -116,4 +116,4 @@ jobs:
     # Run all integration tests
     - name: Run integration tests
       run: flutter drive -d web-server --browser-name=chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart
-      working-directory: ${{env.source-directory}}/example
+      working-directory: ${{env.source-directory}}
