@@ -111,7 +111,7 @@ jobs:
 
     # Run chrome driver
     - name: Run chrome driver
-      run: chromedriver --port=4444
+      run: chromedriver --port=4444 &
       working-directory: ${{env.source-directory}}
 
     # Run all integration tests
