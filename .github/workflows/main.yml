@@ -73,35 +73,48 @@ jobs:
       working-directory: ${{env.source-directory}}
 
   # job for plugin intercom_flutter_web
-  # intercom_flutter_web:
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     source-directory: ./intercom_flutter_web
+  intercom_flutter_web:
+    runs-on: ubuntu-latest
+    env:
+      source-directory: ./intercom_flutter_web
 
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - uses: nanasess/setup-chromedriver@master
-  #   - run: |
-  #     export DISPLAY=:99
-  #     chromedriver --url-base=/wd/hub &
-  #     sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
-
-  #   - uses: actions/checkout@v2
-  #   - uses: subosito/flutter-action@v1
-  #     with:
-  #       channel: 'stable'
+    steps:
+    - uses: actions/checkout@v2
     
-  #   # Download all Flutter packages
-  #   - name: Download dependencies
-  #     run: flutter pub get
-  #     working-directory: ${{env.source-directory}}/example
+    # intsall chrome driver
+    - name: Install ChromeDriver
+      run: |
+        CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1) \
+        && CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}) \
+        && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_RELEASE/chromedriver_linux64.zip" \
+        && cd /tmp \
+        && unzip chromedriver_linux64.zip \
+        && rm -rf chromedriver_linux64.zip \
+        && sudo mv chromedriver /usr/local/bin/chromedriver \
+        && sudo chmod +x /usr/local/bin/chromedriver \
+        && chromedriver --version
 
-  #   # Run Flutter Analyzer
-  #   - name: Run Flutter Analyzer
-  #     run: flutter analyze
-  #     working-directory: ${{env.source-directory}}/example
+    - uses: actions/checkout@v2
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: 'stable'
+    
+    # Download all Flutter packages
+    - name: Download dependencies
+      run: flutter pub get
+      working-directory: ${{env.source-directory}}/example
 
-  #   # Run all integration tests
-  #   - name: Run integration tests
-  #     run: flutter drive -d web-server --browser-name=chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart
-  #     working-directory: ${{env.source-directory}}/example
+    # Run Flutter Analyzer
+    - name: Run Flutter Analyzer
+      run: flutter analyze
+      working-directory: ${{env.source-directory}}/example
+
+    # Run chrome driver
+    - name: Run chrome driver
+      run: chromedriver --port=4444
+      working-directory: ${{env.source-directory}}/example
+
+    # Run all integration tests
+    - name: Run integration tests
+      run: flutter drive -d web-server --browser-name=chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart
+      working-directory: ${{env.source-directory}}/example
