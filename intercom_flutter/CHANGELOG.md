@@ -1,3 +1,6 @@
+## 3.2.0
+* Migrate to use intercom_flutter_platform_interface
+
 ## 3.1.0
 * Added support for language_override
 
