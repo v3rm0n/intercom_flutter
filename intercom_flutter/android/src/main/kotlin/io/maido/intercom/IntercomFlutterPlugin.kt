@@ -168,6 +168,20 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         intercomPushClient.handlePush(application, call.argument<Map<String, String>>("message")!!)
         result.success(null)
       }
+      call.method == "displayArticle" -> {
+        val articleId = call.argument<String>("articleId")
+        if(articleId != null){
+          Intercom.client().displayArticle(articleId)
+          result.success("displaying article $articleId")
+        }
+      }
+      call.method == "displayCarousel" -> {
+        val carouselId = call.argument<String>("carouselId")
+        if(carouselId != null){
+          Intercom.client().displayCarousel(carouselId)
+          result.success("displaying carousel $carouselId")
+        }
+      }
       else -> result.notImplemented()
     }
   }
