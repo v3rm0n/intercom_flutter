@@ -171,4 +171,14 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   Future<void> setBottomPadding(int padding) async {
     await _channel.invokeMethod('setBottomPadding', {'bottomPadding': padding});
   }
+
+  @override
+  Future<void> displayArticle(String articleId) async {
+    await _channel.invokeMethod('displayArticle', {'articleId': articleId});
+  }
+
+  @override
+  Future<void> displayCarousel(String carouselId) async {
+    await _channel.invokeMethod('displayCarousel', {'carouselId': carouselId});
+  }
 }
