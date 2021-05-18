@@ -347,6 +347,32 @@ void main() {
         expect(await intercom.getUnreadStream().first, value);
       });
     });
+
+    String testArticleId = "123456";
+    test('displayArticle', () async {
+      await intercom.displayArticle(testArticleId);
+      expect(
+        log,
+        <Matcher>[
+          isMethodCall('displayArticle', arguments: {
+            'articleId': testArticleId,
+          })
+        ],
+      );
+    });
+
+    String testCarouselId = "123456";
+    test('displayCarousel', () async {
+      await intercom.displayCarousel(testCarouselId);
+      expect(
+        log,
+        <Matcher>[
+          isMethodCall('displayCarousel', arguments: {
+            'carouselId': testCarouselId,
+          })
+        ],
+      );
+    });
   });
 }
 
