@@ -1,3 +1,8 @@
-## 0.0.1
+# Changelog
 
-* - Initial open-source release.
+# 1.0.0
+- displayCarousel
+- displayArticle
+
+# 0.0.1
+- Initial open source release
