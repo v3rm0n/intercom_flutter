@@ -131,4 +131,22 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   Future<void> setBottomPadding(int padding) {
     throw UnimplementedError('setBottomPadding() has not been implemented.');
   }
+
+  /// To display an Article, pass in an [articleId] from your Intercom workspace.
+  ///
+  /// An article must be ‘live’ to be used in this feature.
+  /// If it is in a draft or paused state,
+  /// end-users will see an error if the app tries to open the content.
+  Future<void> displayArticle(String articleId) {
+    throw UnimplementedError('displayArticle() has not been implemented.');
+  }
+
+  /// To display a Carousel, pass in a [carouselId] from your Intercom workspace.
+  ///
+  /// A carousel must be ‘live’ to be used in this feature.
+  /// If it is in a draft or paused state,
+  /// end-users will see an error if the app tries to open the content.
+  Future<void> displayCarousel(String carouselId) {
+    throw UnimplementedError('displayCarousel() has not been implemented.');
+  }
 }
