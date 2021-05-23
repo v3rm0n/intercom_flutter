@@ -1,3 +1,9 @@
+# Changelog
+
+## 3.3.0
+* Added support for displayCarousel
+* Added support for displayArticle
+
 ## 3.2.0
 * Migrate to use intercom_flutter_platform_interface
 
