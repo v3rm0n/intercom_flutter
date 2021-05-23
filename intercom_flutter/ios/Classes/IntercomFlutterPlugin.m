@@ -126,6 +126,19 @@ id unread;
             [Intercom setDeviceToken:encodedToken];
             result(@"Token set");
         }
+    } else if([@"displayArticle" isEqualToString:call.method]) {
+        NSString *articleId = call.arguments[@"articleId"];
+        NSLog(@"%@", articleId);
+        if(articleId != (id)[NSNull null] && articleId != nil) {
+            [Intercom presentArticle:articleId];
+            result(@"displaying article");
+        }
+    } else if([@"displayCarousel" isEqualToString:call.method]) {
+        NSString *carouselId = call.arguments[@"carouselId"];
+        if(carouselId != (id)[NSNull null] && carouselId != nil) {
+            [Intercom presentCarousel:carouselId];
+            result(@"displaying carousel");
+        }
     }
     else {
         result(FlutterMethodNotImplemented);
