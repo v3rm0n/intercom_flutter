@@ -4,6 +4,9 @@
 * Added support for displayCarousel
 * Added support for displayArticle
 
+## 3.2.1
+* Fix `application has not been initialized` crash on Android when calling from background isolate.
+
 ## 3.2.0
 * Migrate to use intercom_flutter_platform_interface
 
