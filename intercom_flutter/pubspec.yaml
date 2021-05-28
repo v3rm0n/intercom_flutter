@@ -7,7 +7,7 @@ homepage: https://github.com/v3rm0n/intercom_flutter
 dependencies:
   flutter:
     sdk: flutter
-  intercom_flutter_platform_interface: ^0.0.1
+  intercom_flutter_platform_interface: ^1.0.0
 
 dev_dependencies:
   flutter_test:
