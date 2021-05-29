@@ -1,6 +1,7 @@
 # Changelog
 
 ## 3.3.0
+* Bump Intercom Android SDK version to 9.2.0
 * Added support for displayCarousel
 * Added support for displayArticle
 
