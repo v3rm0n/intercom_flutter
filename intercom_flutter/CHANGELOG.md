@@ -2,6 +2,7 @@
 
 ## 3.3.0
 * Bump Intercom Android SDK version to 9.2.0
+* Bump Intercom iOS SDK version to 9.3.6
 * Added support for displayCarousel
 * Added support for displayArticle
 
