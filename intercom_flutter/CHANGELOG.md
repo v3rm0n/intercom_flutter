@@ -1,10 +1,13 @@
 # Changelog
 
-## 3.3.0
-* Bump Intercom Android SDK version to 9.2.0
-* Bump Intercom iOS SDK version to 9.3.6
+## 4.0.0
+* Bump Intercom Android SDK version to 10.0.0
+* Bump Intercom iOS SDK version to 10.0.0
 * Added support for displayCarousel
 * Added support for displayArticle
+* Internal Changes:
+    - used `hideIntercom()` as `hideMessenger()` is deprecated and removed in Intercom SDK 10.0.0
+    - Android - updated gradle version and dependencies.
 
 ## 3.2.1
 * Fix `application has not been initialized` crash on Android when calling from background isolate.
