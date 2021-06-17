@@ -36,9 +36,9 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
   private var unreadConversationCountListener: UnreadConversationCountListener? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().dartExecutor, "maido.io/intercom")
+    val channel = MethodChannel(flutterPluginBinding.binaryMessenger, "maido.io/intercom")
     channel.setMethodCallHandler(IntercomFlutterPlugin())
-    val unreadEventChannel = EventChannel(flutterPluginBinding.getFlutterEngine().dartExecutor, "maido.io/intercom/unread")
+    val unreadEventChannel = EventChannel(flutterPluginBinding.binaryMessenger, "maido.io/intercom/unread")
     unreadEventChannel.setStreamHandler(IntercomFlutterPlugin())
     application = flutterPluginBinding.applicationContext as Application
   }
