@@ -86,7 +86,7 @@ id unread;
         result(@"Presented messenger");
     }
     else if([@"hideMessenger" isEqualToString:call.method]) {
-        [Intercom hideMessenger];
+        [Intercom hideIntercom];
         result(@"Messenger hidden");
     }
     else if([@"displayHelpCenter" isEqualToString:call.method]) {
