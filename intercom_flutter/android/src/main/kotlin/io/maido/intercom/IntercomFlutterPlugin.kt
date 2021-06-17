@@ -36,154 +36,153 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
   private var unreadConversationCountListener: UnreadConversationCountListener? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "maido.io/intercom")
+    val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().dartExecutor, "maido.io/intercom")
     channel.setMethodCallHandler(IntercomFlutterPlugin())
-    val unreadEventChannel = EventChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "maido.io/intercom/unread")
+    val unreadEventChannel = EventChannel(flutterPluginBinding.getFlutterEngine().dartExecutor, "maido.io/intercom/unread")
     unreadEventChannel.setStreamHandler(IntercomFlutterPlugin())
     application = flutterPluginBinding.applicationContext as Application
   }
 
   // https://stackoverflow.com/a/62206235
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    application = binding.activity.getApplication()
+    application = binding.activity.application
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
-    when {
-      call.method == "initialize" -> {
-        val apiKey = call.argument<String>("androidApiKey")
-        val appId = call.argument<String>("appId")
-        Intercom.initialize(application, apiKey, appId)
-        result.success("Intercom initialized")
-      }
-      call.method == "setBottomPadding" -> {
-        val padding = call.argument<Int>("bottomPadding")
-        if(padding != null) {
-          Intercom.client().setBottomPadding(padding)
-          result.success("Bottom padding set")
+    when (call.method) {
+        "initialize" -> {
+          val apiKey = call.argument<String>("androidApiKey")
+          val appId = call.argument<String>("appId")
+          Intercom.initialize(application, apiKey, appId)
+          result.success("Intercom initialized")
         }
-      }
-      call.method == "setUserHash" -> {
-        val userHash = call.argument<String>("userHash")
-        if(userHash != null) {
-          Intercom.client().setUserHash(userHash);
-          result.success("User hash added")
+        "setBottomPadding" -> {
+          val padding = call.argument<Int>("bottomPadding")
+          if(padding != null) {
+            Intercom.client().setBottomPadding(padding)
+            result.success("Bottom padding set")
+          }
         }
-      }
-      call.method == "registerIdentifiedUserWithUserId" -> {
-        val userId = call.argument<String>("userId")
-        if(userId != null) {
-          var registration = Registration.create()
-          registration = registration.withUserId(userId)
-          Intercom.client().registerIdentifiedUser(registration)
+        "setUserHash" -> {
+          val userHash = call.argument<String>("userHash")
+          if(userHash != null) {
+            Intercom.client().setUserHash(userHash)
+            result.success("User hash added")
+          }
+        }
+        "registerIdentifiedUserWithUserId" -> {
+          val userId = call.argument<String>("userId")
+          if(userId != null) {
+            var registration = Registration.create()
+            registration = registration.withUserId(userId)
+            Intercom.client().registerIdentifiedUser(registration)
+            result.success("User created")
+          }
+        }
+        "registerIdentifiedUserWithEmail" -> {
+          val email = call.argument<String>("email")
+          if(email != null) {
+            var registration = Registration.create()
+            registration = registration.withEmail(email)
+            Intercom.client().registerIdentifiedUser(registration)
+            result.success("User created")
+          }
+        }
+        "registerUnidentifiedUser" -> {
+          Intercom.client().registerUnidentifiedUser()
           result.success("User created")
         }
-      }
-      call.method == "registerIdentifiedUserWithEmail" -> {
-        val email = call.argument<String>("email")
-        if(email != null) {
-          var registration = Registration.create()
-          registration = registration.withEmail(email)
-          Intercom.client().registerIdentifiedUser(registration)
-          result.success("User created")
+        "logout" -> {
+          Intercom.client().logout()
+          result.success("logout")
         }
-      }
-      call.method == "registerUnidentifiedUser" -> {
-        Intercom.client().registerUnidentifiedUser()
-        result.success("User created")
-      }
-      call.method == "logout" -> {
-        Intercom.client().logout()
-        result.success("logout")
-      }
-      call.method == "setLauncherVisibility" -> {
-        val visibility = call.argument<String>("visibility")
-        if(visibility != null) {
-          Intercom.client().setLauncherVisibility(Intercom.Visibility.valueOf(visibility))
-          result.success("Showing launcher: $visibility")
+        "setLauncherVisibility" -> {
+          val visibility = call.argument<String>("visibility")
+          if(visibility != null) {
+            Intercom.client().setLauncherVisibility(Intercom.Visibility.valueOf(visibility))
+            result.success("Showing launcher: $visibility")
+          }
         }
-      }
-      call.method == "displayMessenger" -> {
-        Intercom.client().displayMessenger()
-        result.success("Launched")
-      }
-      call.method == "hideMessenger" -> {
-        Intercom.client().hideMessenger()
-        result.success("Hidden")
-      }
-      call.method == "displayHelpCenter" -> {
-        Intercom.client().displayHelpCenter()
-        result.success("Launched")
-      }
-      call.method == "setInAppMessagesVisibility" -> {
-        val visibility = call.argument<String>("visibility")
-        if(visibility != null) {
-          Intercom.client().setInAppMessageVisibility(Intercom.Visibility.valueOf(visibility))
-          result.success("Showing in app messages: $visibility")
-        } else {
+        "displayMessenger" -> {
+          Intercom.client().displayMessenger()
           result.success("Launched")
         }
-      }
-      call.method == "unreadConversationCount" -> {
-        val count = Intercom.client().unreadConversationCount
-        result.success(count)
-      }
-      call.method == "updateUser" -> {
-        Intercom.client().updateUser(getUserAttributes(call))
-        result.success("User updated")
-      }
-      call.method == "logEvent" -> {
-        val name = call.argument<String>("name")
-        val metaData = call.argument<Map<String, Any>>("metaData")
-        if(name != null) {
-          Intercom.client().logEvent(name, metaData);
-          result.success("Logged event")
+        "hideMessenger" -> {
+          Intercom.client().hideIntercom()
+          result.success("Hidden")
         }
-      }
+        "displayHelpCenter" -> {
+          Intercom.client().displayHelpCenter()
+          result.success("Launched")
+        }
+        "setInAppMessagesVisibility" -> {
+          val visibility = call.argument<String>("visibility")
+          if(visibility != null) {
+            Intercom.client().setInAppMessageVisibility(Intercom.Visibility.valueOf(visibility))
+            result.success("Showing in app messages: $visibility")
+          } else {
+            result.success("Launched")
+          }
+        }
+        "unreadConversationCount" -> {
+          val count = Intercom.client().unreadConversationCount
+          result.success(count)
+        }
+        "updateUser" -> {
+          Intercom.client().updateUser(getUserAttributes(call))
+          result.success("User updated")
+        }
+        "logEvent" -> {
+          val name = call.argument<String>("name")
+          val metaData = call.argument<Map<String, Any>>("metaData")
+          if(name != null) {
+            Intercom.client().logEvent(name, metaData)
+            result.success("Logged event")
+          }
+        }
+        "sendTokenToIntercom" -> {
+          val token = call.argument<String>("token")
+          val metaData = call.argument<Map<String, Any>>("metaData")
+          if(token != null) {
+            intercomPushClient.sendTokenToIntercom(application, token)
 
-      call.method == "sendTokenToIntercom" -> {
-        val token = call.argument<String>("token")
-        val metaData = call.argument<Map<String, Any>>("metaData")
-        if(token != null) {
-          intercomPushClient.sendTokenToIntercom(application, token)
-
-          result.success("Token sent to Intercom")
+            result.success("Token sent to Intercom")
+          }
         }
-      }
-      call.method == "handlePushMessage" -> {
-        Intercom.client().handlePushMessage()
-        result.success("Push message handled")
-      }
-      call.method == "displayMessageComposer" -> {
-        if (call.hasArgument("message")) {
-          Intercom.client().displayMessageComposer(call.argument("message"))
-        } else {
-          Intercom.client().displayMessageComposer()
+        "handlePushMessage" -> {
+          Intercom.client().handlePushMessage()
+          result.success("Push message handled")
         }
-        result.success("Message composer displayed")
-      }
-      call.method == "isIntercomPush" -> {
-        result.success(intercomPushClient.isIntercomPush(call.argument<Map<String, String>>("message")!!))
-      }
-      call.method == "handlePush" -> {
-        intercomPushClient.handlePush(application, call.argument<Map<String, String>>("message")!!)
-        result.success(null)
-      }
-      call.method == "displayArticle" -> {
-        val articleId = call.argument<String>("articleId")
-        if(articleId != null){
-          Intercom.client().displayArticle(articleId)
-          result.success("displaying article $articleId")
+        "displayMessageComposer" -> {
+          if (call.hasArgument("message")) {
+            Intercom.client().displayMessageComposer(call.argument("message"))
+          } else {
+            Intercom.client().displayMessageComposer()
+          }
+          result.success("Message composer displayed")
         }
-      }
-      call.method == "displayCarousel" -> {
-        val carouselId = call.argument<String>("carouselId")
-        if(carouselId != null){
-          Intercom.client().displayCarousel(carouselId)
-          result.success("displaying carousel $carouselId")
+        "isIntercomPush" -> {
+          result.success(intercomPushClient.isIntercomPush(call.argument<Map<String, String>>("message")!!))
         }
-      }
-      else -> result.notImplemented()
+        "handlePush" -> {
+          intercomPushClient.handlePush(application, call.argument<Map<String, String>>("message")!!)
+          result.success(null)
+        }
+        "displayArticle" -> {
+          val articleId = call.argument<String>("articleId")
+          if(articleId != null){
+            Intercom.client().displayArticle(articleId)
+            result.success("displaying article $articleId")
+          }
+        }
+        "displayCarousel" -> {
+          val carouselId = call.argument<String>("carouselId")
+          if(carouselId != null){
+            Intercom.client().displayCarousel(carouselId)
+            result.success("displaying carousel $carouselId")
+          }
+        }
+        else -> result.notImplemented()
     }
   }
 
@@ -236,7 +235,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       userAttributes.withSignedUpAt(seconds)
     
     if (language != null) {
-      userAttributes.withLanguageOverride(language);
+      userAttributes.withLanguageOverride(language)
     }
 
     return userAttributes.build()
