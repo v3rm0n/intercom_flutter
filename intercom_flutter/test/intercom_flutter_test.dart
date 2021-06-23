@@ -223,4 +223,20 @@ void main() {
       expect(await Intercom.getUnreadStream().first, value);
     });
   });
+
+  test('displayArticle', () async {
+    final String testArticleId = "123456";
+    await Intercom.displayArticle(testArticleId);
+    expectMethodCall('displayArticle', arguments: {
+      'articleId': testArticleId,
+    });
+  });
+
+  test('displayCarousel', () async {
+    final String testCarouselId = "123456";
+    await Intercom.displayCarousel(testCarouselId);
+    expectMethodCall('displayCarousel', arguments: {
+      'carouselId': testCarouselId,
+    });
+  });
 }
