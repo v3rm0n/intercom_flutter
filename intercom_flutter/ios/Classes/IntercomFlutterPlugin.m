@@ -122,7 +122,9 @@ id unread;
     } else if([@"sendTokenToIntercom" isEqualToString:call.method]){
         NSString *token = call.arguments[@"token"];
         if(token != (id)[NSNull null] && token != nil) {
-            NSData* encodedToken=[token dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *encodedToken=[self createDataWithHexString:token];
+            // NSData* encodedToken=[token dataUsingEncoding:NSUTF8StringEncoding];
+            NSLog(@"%@", encodedToken);
             [Intercom setDeviceToken:encodedToken];
             result(@"Token set");
         }
@@ -187,5 +189,41 @@ id unread;
     }
     
     return attributes;
+}
+
+- (NSData *) createDataWithHexString:(NSString*)inputString {
+    NSUInteger inLength = [inputString length];
+
+    unichar *inCharacters = alloca(sizeof(unichar) * inLength);
+    [inputString getCharacters:inCharacters range:NSMakeRange(0, inLength)];
+
+    UInt8 *outBytes = malloc(sizeof(UInt8) * ((inLength / 2) + 1));
+
+    NSInteger i, o = 0;
+    UInt8 outByte = 0;
+
+    for (i = 0; i < inLength; i++) {
+        UInt8 c = inCharacters[i];
+        SInt8 value = -1;
+
+        if      (c >= '0' && c <= '9') value =      (c - '0');
+        else if (c >= 'A' && c <= 'F') value = 10 + (c - 'A');
+        else if (c >= 'a' && c <= 'f') value = 10 + (c - 'a');
+
+        if (value >= 0) {
+            if (i % 2 == 1) {
+                outBytes[o++] = (outByte << 4) | value;
+                outByte = 0;
+            } else {
+                outByte = value;
+            }
+
+        } else {
+            if (o != 0) break;
+        }
+    }
+
+    NSData *a = [[NSData alloc] initWithBytesNoCopy:outBytes length:o freeWhenDone:YES];
+    return a;
 }
 @end
