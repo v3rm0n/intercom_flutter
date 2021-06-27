@@ -109,6 +109,10 @@ class Intercom {
     return IntercomFlutterPlatform.instance.logEvent(name, metaData);
   }
 
+  /// The [token] to send to the Intercom to receive the notifications.
+  ///
+  /// For the Android, this [token] must be a FCM (Firebase cloud messaging) token.
+  /// For the iOS, this [token] must be a APNS token.
   static Future<void> sendTokenToIntercom(String token) {
     return IntercomFlutterPlatform.instance.sendTokenToIntercom(token);
   }

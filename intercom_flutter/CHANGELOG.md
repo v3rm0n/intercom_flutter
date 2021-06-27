@@ -3,6 +3,7 @@
 ## 4.0.0
 * Bump Intercom Android SDK version to 10.0.0
 * Bump Intercom iOS SDK version to 10.0.0
+* Adjustment to encode the iOS device token with HexString.
 * Added support for displayCarousel
 * Added support for displayArticle
     - Note: Intercom iOS SDK has an issue with displayArticle if your Intercom account does have that feature enabled. It crashes the app. The bug is already reported at https://forum.intercom.com/s/question/0D52G000050ZFNoSAO/intercom-display-article-crash-on-ios. As per the conversation with Intercom support, they are working on the issue. The fix may take some time.
