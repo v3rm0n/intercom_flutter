@@ -9,9 +9,8 @@ export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_in
     show IntercomVisibility;
 
 class Intercom {
-    
   Intercom._();
-    
+
   static Future<void> initialize(
     String appId, {
     String? androidApiKey,
