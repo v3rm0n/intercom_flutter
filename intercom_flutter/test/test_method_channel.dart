@@ -11,8 +11,8 @@ void setUpTestMethodChannel(String methodChannel) {
   final channel = MethodChannel(methodChannel);
   channel.setMockMethodCallHandler((methodCall) async {
     _log.add(methodCall);
-    final matchingStubbing = _responses.keys
-        .firstWhereOrNull((s) => s.matches(methodCall));
+    final matchingStubbing =
+        _responses.keys.firstWhereOrNull((s) => s.matches(methodCall));
     if (matchingStubbing != null) {
       return _responses[matchingStubbing];
     }
