@@ -32,6 +32,11 @@ jobs:
       run: flutter pub get
       working-directory: ${{env.source-directory}}
 
+    # Check for any formatting issues in the code.
+    - name: check code format
+      run: flutter format --set-exit-if-changed .
+      working-directory: ${{env.source-directory}}
+
     # Run Flutter Analyzer
     - name: Run Flutter Analyzer
       run: flutter analyze
@@ -60,6 +65,11 @@ jobs:
     # Download all Flutter packages
     - name: Download dependencies
       run: flutter pub get
+      working-directory: ${{env.source-directory}}
+
+    # Check for any formatting issues in the code.
+    - name: check code format
+      run: flutter format --set-exit-if-changed .
       working-directory: ${{env.source-directory}}
 
     # Run Flutter Analyzer
@@ -102,6 +112,11 @@ jobs:
     # Download all Flutter packages
     - name: Download dependencies
       run: flutter pub get
+      working-directory: ${{env.source-directory}}
+
+    # Check for any formatting issues in the code.
+    - name: check code format
+      run: flutter format --set-exit-if-changed .
       working-directory: ${{env.source-directory}}
 
     # Run Flutter Analyzer
