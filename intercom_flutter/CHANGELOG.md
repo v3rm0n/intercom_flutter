@@ -1,5 +1,8 @@
 # Changelog
 
+## 5.1.0+1
+* resolved issue [#181](https://github.com/v3rm0n/intercom_flutter/issues/181)
+
 ## 5.1.0
 * Bump Intercom Android SDK version to 10.4.0 ([#178](https://github.com/v3rm0n/intercom_flutter/pull/178))
 * Bump Intercom iOS SDK version to 10.3.0 ([#178](https://github.com/v3rm0n/intercom_flutter/pull/178))
