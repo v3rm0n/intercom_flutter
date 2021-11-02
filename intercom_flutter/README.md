@@ -12,9 +12,13 @@ Import `package:intercom_flutter/intercom_flutter.dart` and use the methods in `
 
 Example:
 ```dart
+import 'package:flutter/material.dart';
 import 'package:intercom_flutter/intercom_flutter.dart';
 
 void main() async {
+    // initialize the flutter binding.
+    WidgetsFlutterBinding.ensureInitialized();
+    // initialize the Intercom.
     await Intercom.initialize('appIdHere', iosApiKey: 'iosKeyHere', androidApiKey: 'androidKeyHere');
     runApp(App());
 }
