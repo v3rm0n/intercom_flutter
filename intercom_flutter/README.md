@@ -66,60 +66,19 @@ This plugin works in combination with the [`firebase_messaging`](https://pub.dev
 
 * First, implement [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) and check if it works: https://pub.dev/packages/firebase_messaging#android-integration
 * Then, add the Firebase server key to Intercom, as described here: https://developers.intercom.com/installing-intercom/docs/android-fcm-push-notifications#section-step-3-add-your-server-key-to-intercom-for-android-settings (you can skip 1 and 2)
-* Add the following to your  `AndroidManifest.xml` file, so incoming messages are handled by Intercom:
-
-```
-    <service
-        android:name="io.maido.intercom.PushInterceptService"
-        android:enabled="true"
-        android:exported="true">
-        <intent-filter>
-          <action android:name="com.google.firebase.MESSAGING_EVENT" />
-        </intent-filter>
-    </service>
-```
-_just above the closing `</application>` tag._
-
-* Ask FireBaseMessaging for the FCM token that we need to send to Intercom, and give it to Intercom (so Intercam can send push messages to the correct device):
+* Ask FirebaseMessaging for the FCM token that we need to send to Intercom, and give it to Intercom (so Intercom can send push messages to the correct device), please note that in order to receive push notifications in your iOS app, you have to send the APNS token to Intercom. Below example uses [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) to get either the FCM or APNS token based on the platform:
 
 ```dart
-String token = await FirebaseMessaging.instance.getToken();
-Intercom.sendTokenToIntercom(token);
+final firebaseMessaging = FirebaseMessaging.instance;
+final intercomToken = Platform.isIOS ? await firebaseMessaging.getToken() : await firebaseMessaging.getAPNSToken();
+
+Intercom.sendTokenToIntercom(intercomToken);
 ```
 
 Now, if either FireBase direct (e.g. by your own backend server) or Intercom sends you a message, it will be delivered your Android phone.
 
-#### Firebase Background Messages
-
-If you are [handling background messages in `firebase_messaging`](https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_messaging#optionally-handle-background-messages) you need to do some extra work for everything to work together:
-
-1. Remove the above mentioned `<service android:name="io.maido.intercom.PushInterceptService" ...` from your `AndroidManifest.xml`.
-2. In your background messages handler, pass the relevant messages to Intercom:
-
-```dart
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:intercom_flutter/intercom_flutter.dart' show Intercom;
-
-Future<dynamic> backgroundMessageHandler(RemoteMessage message) async {
-
-    if (await Intercom.isIntercomPush(message.data)) {
-        await Intercom.handlePush(message.data);
-        return;
-    }
-
-    // Here you can handle your own background messages
-}
-```
-
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
-
-In order to receive push notifications in your iOS app, you have to send the APNS token to Intercom. Below example uses [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) to get the APNS.
-
-```dart
-String apns = await FirebaseMessaging.instance.getAPNSToken();
-Intercom.sendTokenToIntercom(apns);
-```
 
 ### Web
 Add the below script inside body tag in the index.html file located under web folder
