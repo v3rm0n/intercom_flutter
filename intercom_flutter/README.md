@@ -83,9 +83,7 @@ _just above the closing `</application>` tag._
 * Ask FireBaseMessaging for the FCM token that we need to send to Intercom, and give it to Intercom (so Intercam can send push messages to the correct device):
 
 ```dart
-final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-token = await _firebaseMessaging.getToken();
-
+String token = await FirebaseMessaging.instance.getToken();
 Intercom.sendTokenToIntercom(token);
 ```
 
@@ -99,13 +97,13 @@ If you are [handling background messages in `firebase_messaging`](https://github
 2. In your background messages handler, pass the relevant messages to Intercom:
 
 ```dart
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intercom_flutter/intercom_flutter.dart' show Intercom;
 
-Future<dynamic> backgroundMessageHandler(Map<String, dynamic> message) async {
-    final data = (message['data'] as Map).cast<String, dynamic>();
+Future<dynamic> backgroundMessageHandler(RemoteMessage message) async {
 
-    if (await Intercom.isIntercomPush(data)) {
-        await Intercom.handlePush(data);
+    if (await Intercom.isIntercomPush(message.data)) {
+        await Intercom.handlePush(message.data);
         return;
     }
 
@@ -115,6 +113,13 @@ Future<dynamic> backgroundMessageHandler(Map<String, dynamic> message) async {
 
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
+
+In order to receive push notifications in your iOS app, you have send the APNS token to Intercom. Below example uses [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) to get the APNS.
+
+```dart
+String apns = await FirebaseMessaging.instance.getAPNSToken();
+Intercom.sendTokenToIntercom(apns);
+```
 
 ### Web
 Add the below script inside body tag in the index.html file located under web folder
