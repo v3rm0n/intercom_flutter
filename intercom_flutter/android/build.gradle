@@ -2,7 +2,7 @@ group 'io.maido.intercom'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.5.10'
+    ext.kotlin_version = '1.5.30'
     repositories {
         google()
         mavenCentral()
