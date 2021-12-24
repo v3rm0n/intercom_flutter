@@ -19,7 +19,17 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  /// function to initialize the Intercom SDK
+  /// Function to initialize the Intercom SDK.
+  ///
+  /// First, you'll need to get your Intercom [appId].
+  /// [androidApiKey] is required if you want to use Intercom in Android.
+  /// [iosApiKey] is required if you want to use Intercom in iOS.
+  ///
+  /// You can get these from Intercom settings:
+  /// * [Android](https://app.intercom.com/a/apps/_/settings/android)
+  /// * [iOS](https://app.intercom.com/a/apps/_/settings/ios)
+  ///
+  /// Then, initialize Intercom in main method.
   Future<void> initialize(
     String appId, {
     String? androidApiKey,
@@ -28,25 +38,53 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('initialize() has not been implemented.');
   }
 
+  /// You can check how many unread conversations a user has
+  /// even if a user dismisses a notification.
+  ///
+  /// You can listen for unread conversation count with this method.
   Stream<dynamic> getUnreadStream() {
     throw UnimplementedError('getUnreadStream() has not been implemented.');
   }
 
+  /// To make sure that conversations between you and your users are kept private
+  /// and that one user can't impersonate another then you need you need to setup
+  /// the identity verification.
+  ///
+  /// This function helps to set up the identity verification.
+  /// Here you need to pass hash (HMAC) of the user.
+  ///
+  /// This must be called before registering the user in Intercom.
+  ///
+  /// To generate the user hash (HMAC) see
+  /// <https://gist.github.com/thewheat/7342c76ade46e7322c3e>
+  ///
+  /// Note: identity verification does not apply to unidentified users.
   Future<void> setUserHash(String userHash) {
     throw UnimplementedError('setUserHash() has not been implemented.');
   }
 
+  /// Function to create a identified user in Intercom.
+  /// You need to register your users before you can talk to them and
+  /// track their activity in your app.
+  ///
+  /// You can register a identified user either with [userId] or with [email],
+  /// but not with both.
   Future<void> registerIdentifiedUser({String? userId, String? email}) {
     throw UnimplementedError(
         'registerIdentifiedUser() has not been implemented.');
   }
 
+  /// Function to create a unidentified user in Intercom.
+  /// You need to register your users before you can talk to them and
+  /// track their activity in your app.
   Future<void> registerUnidentifiedUser() {
     throw UnimplementedError(
         'registerUnidentifiedUser() has not been implemented.');
   }
 
   /// Updates the attributes of the current Intercom user.
+  ///
+  /// The [signedUpAt] param should be seconds since epoch.
   ///
   /// The [language] param should be an an ISO 639-1 two-letter code such as `en` for English or `fr` for French.
   /// You’ll need to use a four-letter code for Chinese like `zh-CN`.
@@ -68,58 +106,96 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('updateUser() has not been implemented.');
   }
 
+  /// To logout a user from Intercom.
+  /// This clears the Intercom SDK's cache of your user's identity.
   Future<void> logout() {
     throw UnimplementedError('logout() has not been implemented.');
   }
 
+  /// To hide or show the standard launcher on the bottom right-hand side of the screen.
   Future<void> setLauncherVisibility(IntercomVisibility visibility) {
     throw UnimplementedError(
         'setLauncherVisibility() has not been implemented.');
   }
 
+  /// You can check how many unread conversations a user has
+  /// even if a user dismisses a notification.
+  ///
+  /// You can get the current unread conversation count with this method.
   Future<int> unreadConversationCount() {
     throw UnimplementedError(
         'unreadConversationCount() has not been implemented.');
   }
 
+  /// To allow or prevent in app messages from popping up in certain parts of your app.
   Future<void> setInAppMessagesVisibility(IntercomVisibility visibility) {
     throw UnimplementedError(
         'setInAppMessagesVisibility() has not been implemented.');
   }
 
+  /// To open the Intercom messenger.
+  ///
+  /// This is used when you manually want to launch Intercom messenger.
+  /// for e.g: from your custom launcher (Help & Support) or (Talk to us).
   Future<void> displayMessenger() {
     throw UnimplementedError('displayMessenger() has not been implemented.');
   }
 
+  /// To close the Intercom messenger.
+  ///
+  /// This is used when you manually want to close Intercom messenger.
   Future<void> hideMessenger() {
     throw UnimplementedError('hideMessenger() has not been implemented.');
   }
 
+  /// To display an Activity with your Help Center content.
+  ///
+  /// Make sure Help Center is turned on.
+  /// If you don't have Help Center enabled in your Intercom settings the method
+  /// displayHelpCenter will fail to load.
   Future<void> displayHelpCenter() {
     throw UnimplementedError('displayHelpCenter() has not been implemented.');
   }
 
+  /// To log events in Intercom that record what users do in your app and when they do it.
+  /// For example, you can record when user opened a specific screen in your app.
+  /// You can also pass [metaData] about the event.
   Future<void> logEvent(String name, [Map<String, dynamic>? metaData]) {
     throw UnimplementedError('logEvent() has not been implemented.');
   }
 
+  /// The [token] to send to the Intercom to receive the notifications.
+  ///
+  /// For the Android, this [token] must be a FCM (Firebase cloud messaging) token.
+  /// For the iOS, this [token] must be a APNS token.
   Future<void> sendTokenToIntercom(String token) {
     throw UnimplementedError('sendTokenToIntercom() has not been implemented.');
   }
 
+  /// When a user taps on a push notification Intercom hold onto data
+  /// such as the URI in your message or the conversation to open.
+  ///
+  /// When you want Intercom to act on that data, use this method.
   Future<void> handlePushMessage() {
     throw UnimplementedError('handlePushMessage() has not been implemented.');
   }
 
+  /// To open the Intercom messenger to the composer screen with [message]
+  /// field pre-populated.
   Future<void> displayMessageComposer(String message) {
     throw UnimplementedError(
         'displayMessageComposer() has not been implemented.');
   }
 
+  /// To check if the push [message] is for Intercom or not.
+  /// This is useful when your app is also configured to receive push messages
+  /// from third parties.
   Future<bool> isIntercomPush(Map<String, dynamic> message) async {
     throw UnimplementedError('isIntercomPush() has not been implemented.');
   }
 
+  /// If the push [message] is for Intercom then use this method to let
+  /// Intercom handle that push.
   Future<void> handlePush(Map<String, dynamic> message) async {
     throw UnimplementedError('handlePush() has not been implemented.');
   }
