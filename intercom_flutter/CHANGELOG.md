@@ -1,5 +1,17 @@
 # Changelog
 
+## 5.3.0
+* Added API documentation ([#194](https://github.com/v3rm0n/intercom_flutter/pull/194))
+* Bump Intercom Android SDK version to 10.6.0 ([#195](https://github.com/v3rm0n/intercom_flutter/pull/195))
+* Bump Intercom iOS SDK version to 10.4.0 ([#195](https://github.com/v3rm0n/intercom_flutter/pull/195))
+* Bump android kotlin version to 1.5.30 ([#196](https://github.com/v3rm0n/intercom_flutter/pull/196))
+* Bump android `com.android.tools.build:gradle` to 7.0.4 ([#196](https://github.com/v3rm0n/intercom_flutter/pull/196))
+* Bump android `compileSdkVersion` to 31 ([#196](https://github.com/v3rm0n/intercom_flutter/pull/196))
+* Bump android `gradle` plugin version to 7.3.3 ([#196](https://github.com/v3rm0n/intercom_flutter/pull/196))
+* Updated README ([#197](https://github.com/v3rm0n/intercom_flutter/pull/197))
+* Updated dependency `intercom_flutter_platform_interface: ^1.0.1`
+* Updated dependency `intercom_flutter_web: ^0.0.4`
+
 ## 5.2.0
 * Bump Intercom Android SDK version to 10.4.2 ([#187](https://github.com/v3rm0n/intercom_flutter/pull/187))
 * Bump Intercom iOS SDK version to 10.3.4 ([#187](https://github.com/v3rm0n/intercom_flutter/pull/187))
