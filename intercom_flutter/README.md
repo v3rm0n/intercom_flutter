@@ -114,7 +114,7 @@ Future<dynamic> backgroundMessageHandler(RemoteMessage message) async {
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
 
-In order to receive push notifications in your iOS app, you have send the APNS token to Intercom. Below example uses [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) to get the APNS.
+In order to receive push notifications in your iOS app, you have to send the APNS token to Intercom. Below example uses [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) to get the APNS.
 
 ```dart
 String apns = await FirebaseMessaging.instance.getAPNSToken();
