@@ -11,7 +11,7 @@ export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_in
 class Intercom {
   Intercom._();
 
-  /// function to initialize the Intercom SDK.
+  /// Function to initialize the Intercom SDK.
   ///
   /// First, you'll need to get your Intercom [appId].
   /// [androidApiKey] is required if you want to use Intercom in Android.
@@ -31,7 +31,7 @@ class Intercom {
         .initialize(appId, androidApiKey: androidApiKey, iosApiKey: iosApiKey);
   }
 
-  /// you can check how many unread conversations a user has
+  /// You can check how many unread conversations a user has
   /// even if a user dismisses a notification.
   ///
   /// You can listen for unread conversation count with this method.
@@ -64,7 +64,7 @@ class Intercom {
     return IntercomFlutterPlatform.instance.setUserHash(userHash);
   }
 
-  /// function to create a identified user in Intercom.
+  /// Function to create a identified user in Intercom.
   /// You need to register your users before you can talk to them and
   /// track their activity in your app.
   ///
@@ -75,7 +75,7 @@ class Intercom {
         .registerIdentifiedUser(userId: userId, email: email);
   }
 
-  /// function to create a unidentified user in Intercom.
+  /// Function to create a unidentified user in Intercom.
   /// You need to register your users before you can talk to them and
   /// track their activity in your app.
   static Future<void> registerUnidentifiedUser() {
@@ -127,7 +127,7 @@ class Intercom {
     return IntercomFlutterPlatform.instance.setLauncherVisibility(visibility);
   }
 
-  /// you can check how many unread conversations a user has
+  /// You can check how many unread conversations a user has
   /// even if a user dismisses a notification.
   ///
   /// You can get the current unread conversation count with this method.
@@ -202,7 +202,7 @@ class Intercom {
     return IntercomFlutterPlatform.instance.isIntercomPush(message);
   }
 
-  /// if the push [message] is for Intercom then use this method to let
+  /// If the push [message] is for Intercom then use this method to let
   /// Intercom handle that push.
   static Future<void> handlePush(Map<String, dynamic> message) async {
     return IntercomFlutterPlatform.instance.handlePush(message);

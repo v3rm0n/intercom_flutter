@@ -19,7 +19,7 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  /// function to initialize the Intercom SDK.
+  /// Function to initialize the Intercom SDK.
   ///
   /// First, you'll need to get your Intercom [appId].
   /// [androidApiKey] is required if you want to use Intercom in Android.
@@ -38,7 +38,7 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('initialize() has not been implemented.');
   }
 
-  /// you can check how many unread conversations a user has
+  /// You can check how many unread conversations a user has
   /// even if a user dismisses a notification.
   ///
   /// You can listen for unread conversation count with this method.
@@ -63,7 +63,7 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('setUserHash() has not been implemented.');
   }
 
-  /// function to create a identified user in Intercom.
+  /// Function to create a identified user in Intercom.
   /// You need to register your users before you can talk to them and
   /// track their activity in your app.
   ///
@@ -74,7 +74,7 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
         'registerIdentifiedUser() has not been implemented.');
   }
 
-  /// function to create a unidentified user in Intercom.
+  /// Function to create a unidentified user in Intercom.
   /// You need to register your users before you can talk to them and
   /// track their activity in your app.
   Future<void> registerUnidentifiedUser() {
@@ -118,7 +118,7 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
         'setLauncherVisibility() has not been implemented.');
   }
 
-  /// you can check how many unread conversations a user has
+  /// You can check how many unread conversations a user has
   /// even if a user dismisses a notification.
   ///
   /// You can get the current unread conversation count with this method.
@@ -194,7 +194,7 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('isIntercomPush() has not been implemented.');
   }
 
-  /// if the push [message] is for Intercom then use this method to let
+  /// If the push [message] is for Intercom then use this method to let
   /// Intercom handle that push.
   Future<void> handlePush(Map<String, dynamic> message) async {
     throw UnimplementedError('handlePush() has not been implemented.');
