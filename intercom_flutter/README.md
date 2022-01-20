@@ -87,7 +87,7 @@ final intercomToken = Platform.isIOS ? await firebaseMessaging.getAPNSToken() : 
 Intercom.sendTokenToIntercom(intercomToken);
 ```
 
-Now, if either FireBase direct (e.g. by your own backend server) or Intercom sends you a message, it will be delivered to your app.
+Now, if either Firebase direct (e.g. by your own backend server) or Intercom sends you a message, it will be delivered to your app.
 
 ### Web
 Add the below script inside body tag in the index.html file located under web folder
