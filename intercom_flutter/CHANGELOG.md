@@ -1,5 +1,18 @@
 # Changelog
 
+## 6.0.0
+> Note: This release has breaking changes.
+* Bump Intercom Android SDK version to 10.6.1 ([#204](https://github.com/v3rm0n/intercom_flutter/pull/204))
+* Bump Intercom iOS SDK version to 11.0.1 ([#204](https://github.com/v3rm0n/intercom_flutter/pull/204))
+* Resolved issue [#151](https://github.com/v3rm0n/intercom_flutter/issues/151)
+* Changed Android push intercepting technique ([#192](https://github.com/v3rm0n/intercom_flutter/pull/192))
+* Updated README ([#205](https://github.com/v3rm0n/intercom_flutter/pull/205))
+* **BREAKING**
+    - Intercom iOS SDK v11 requires minimum deployment target version 13. So iOS minimum version is updated from 10 to 13. See https://github.com/intercom/intercom-ios/blob/master/CHANGELOG.md#1100
+    - The service `io.maido.intercom.PushInterceptService` is deleted. Now plugin itself will handle the push messages using the new added receiver `io.maido.intercom.PushInterceptReceiver`.
+      - remove the service `io.maido.intercom.PushInterceptService`, if you have, from your `AndroidManifest.xml`.
+      - remove the code to handle the background Intercom push from your `firebase_messaging` background handler. Now it is not required to handle manually.
+  
 ## 5.3.0
 * Added API documentation ([#194](https://github.com/v3rm0n/intercom_flutter/pull/194))
 * Bump Intercom Android SDK version to 10.6.0 ([#195](https://github.com/v3rm0n/intercom_flutter/pull/195))
