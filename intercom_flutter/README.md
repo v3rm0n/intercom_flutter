@@ -24,6 +24,7 @@ void main() async {
     // initialize the flutter binding.
     WidgetsFlutterBinding.ensureInitialized();
     // initialize the Intercom.
+    // make sure to add keys from your Intercom workspace.
     await Intercom.initialize('appIdHere', iosApiKey: 'iosKeyHere', androidApiKey: 'androidKeyHere');
     runApp(App());
 }
@@ -35,6 +36,8 @@ class App extends StatelessWidget {
         return FlatButton(
             child: Text('Open Intercom'),
             onPressed: () async {
+                // messenger will load the messages only if the user is registered in Intercom.
+                // either identified or unidentified.
                 await Intercom.displayMessenger();
             },
         );
@@ -43,7 +46,7 @@ class App extends StatelessWidget {
 
 ```
 
-See Intercom Android and iOS package documentation for more information.
+See Intercom [Android](https://developers.intercom.com/installing-intercom/docs/intercom-for-android) and [iOS](https://developers.intercom.com/installing-intercom/docs/intercom-for-ios) package documentation for more information.
 
 ### Android
 
@@ -66,24 +69,25 @@ android.useAndroidX=true
 android.enableJetifier=true
 ```
 
-#### Push notifications in combination with FCM
+### iOS
+Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
+
+### Push notifications setup
 This plugin works in combination with the [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) plugin to receive Push Notifications. To set this up:
 
-* First, implement [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) and check if it works: https://pub.dev/packages/firebase_messaging#android-integration
-* Then, add the Firebase server key to Intercom, as described here: https://developers.intercom.com/installing-intercom/docs/android-fcm-push-notifications#section-step-3-add-your-server-key-to-intercom-for-android-settings (you can skip 1 and 2)
-* Ask FirebaseMessaging for the FCM token that we need to send to Intercom, and give it to Intercom (so Intercom can send push messages to the correct device), please note that in order to receive push notifications in your iOS app, you have to send the APNS token to Intercom. Below example uses [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) to get either the FCM or APNS token based on the platform:
+* First, implement [`firebase_messaging`](https://pub.dev/packages/firebase_messaging)
+* Then, add the Firebase server key to Intercom, as described [here](https://developers.intercom.com/installing-intercom/docs/android-fcm-push-notifications#section-step-3-add-your-server-key-to-intercom-for-android-settings) (you can skip 1 and 2)
+* Follow the steps as described [here](https://developers.intercom.com/installing-intercom/docs/ios-push-notifications) to enable push notification in iOS.
+* Ask FirebaseMessaging for the token that we need to send to Intercom, and give it to Intercom (so Intercom can send push messages to the correct device), please note that in order to receive push notifications in your iOS app, you have to send the APNS token to Intercom. Below example uses [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) to get either the FCM or APNS token based on the platform:
 
 ```dart
 final firebaseMessaging = FirebaseMessaging.instance;
-final intercomToken = Platform.isIOS ? await firebaseMessaging.getToken() : await firebaseMessaging.getAPNSToken();
+final intercomToken = Platform.isIOS ? await firebaseMessaging.getAPNSToken() : await firebaseMessaging.getToken();
 
 Intercom.sendTokenToIntercom(intercomToken);
 ```
 
-Now, if either FireBase direct (e.g. by your own backend server) or Intercom sends you a message, it will be delivered your Android phone.
-
-### iOS
-Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
+Now, if either Firebase direct (e.g. by your own backend server) or Intercom sends you a message, it will be delivered to your app.
 
 ### Web
 Add the below script inside body tag in the index.html file located under web folder
