@@ -213,11 +213,6 @@ class Intercom {
   /// An article must be ‘live’ to be used in this feature.
   /// If it is in a draft or paused state,
   /// end-users will see an error if the app tries to open the content.
-  ///
-  /// known issue:
-  /// If the articles feature is not enabled on Intercom account
-  /// then opening the article will crash the app on iOS.
-  /// see https://forum.intercom.com/s/question/0D52G000050ZFNoSAO/intercom-display-article-crash-on-ios
   static Future<void> displayArticle(String articleId) async {
     return IntercomFlutterPlatform.instance.displayArticle(articleId);
   }
