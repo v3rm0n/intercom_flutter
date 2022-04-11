@@ -25,7 +25,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     // initialize the Intercom.
     // make sure to add keys from your Intercom workspace.
-    await Intercom.initialize('appIdHere', iosApiKey: 'iosKeyHere', androidApiKey: 'androidKeyHere');
+    await Intercom.instance.initialize('appIdHere', iosApiKey: 'iosKeyHere', androidApiKey: 'androidKeyHere');
     runApp(App());
 }
 
@@ -38,7 +38,7 @@ class App extends StatelessWidget {
             onPressed: () async {
                 // messenger will load the messages only if the user is registered in Intercom.
                 // either identified or unidentified.
-                await Intercom.displayMessenger();
+                await Intercom.instance.displayMessenger();
             },
         );
     }
@@ -84,7 +84,7 @@ This plugin works in combination with the [`firebase_messaging`](https://pub.dev
 final firebaseMessaging = FirebaseMessaging.instance;
 final intercomToken = Platform.isIOS ? await firebaseMessaging.getAPNSToken() : await firebaseMessaging.getToken();
 
-Intercom.sendTokenToIntercom(intercomToken);
+Intercom.instance.sendTokenToIntercom(intercomToken);
 ```
 
 Now, if either Firebase direct (e.g. by your own backend server) or Intercom sends you a message, it will be delivered to your app.
