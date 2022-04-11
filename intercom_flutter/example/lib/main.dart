@@ -3,7 +3,7 @@ import 'package:intercom_flutter/intercom_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Intercom.initialize(
+  await Intercom.instance.initialize(
     'appId',
     androidApiKey: 'androidApiKey',
     iosApiKey: 'iosApiKey',
@@ -22,7 +22,7 @@ class SampleApp extends StatelessWidget {
         body: Center(
           child: TextButton(
             onPressed: () {
-              Intercom.displayMessenger();
+              Intercom.instance.displayMessenger();
             },
             child: Text('Show messenger'),
           ),
