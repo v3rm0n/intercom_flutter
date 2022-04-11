@@ -3,7 +3,7 @@
 ## 7.0.0
 > Note: This release has breaking changes.
 
-* corrected `displayArticle` method documentation. ([#224](https://github.com/v3rm0n/intercom_flutter/pull/224))
+* updated `displayArticle` method documentation. ([#224](https://github.com/v3rm0n/intercom_flutter/pull/224))
 * API methods are now available at instance level instead of static. ([#226](https://github.com/v3rm0n/intercom_flutter/pull/226))
     - Now use `Intercom.instance` instead of just `Intercom`, for e.g: `Intercom.instance.displayMessenger()`.
 
