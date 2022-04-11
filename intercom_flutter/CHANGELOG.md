@@ -1,5 +1,11 @@
 # Changelog
 
+## 7.0.0
+> Note: This release has breaking changes.
+
+* API methods are now available at instance level instead of static. ([#226](https://github.com/v3rm0n/intercom_flutter/pull/226))
+    - Now use `Intercom.instance` instead of just `Intercom`, for e.g: `Intercom.instance.displayMessenger()`.
+
 ## 6.2.0
 
 * Bump Intercom Android SDK version to 12.0.0 ([#220](https://github.com/v3rm0n/intercom_flutter/pull/220))
