@@ -17,7 +17,7 @@ void main() {
       final androidApiKey = 'android-key';
       final iosApiKey = 'ios-key';
 
-      Intercom.initialize(
+      Intercom.instance.initialize(
         appId,
         androidApiKey: androidApiKey,
         iosApiKey: iosApiKey,
@@ -31,7 +31,7 @@ void main() {
     });
 
     test('testSendingAPNTokenToIntercom', () {
-      Intercom.sendTokenToIntercom('mock_apn_token');
+      Intercom.instance.sendTokenToIntercom('mock_apn_token');
       expectMethodCall('sendTokenToIntercom', arguments: {
         'token': 'mock_apn_token',
       });
@@ -39,14 +39,14 @@ void main() {
 
     group('registerIdentifiedUser', () {
       test('with userId', () {
-        Intercom.registerIdentifiedUser(userId: 'test');
+        Intercom.instance.registerIdentifiedUser(userId: 'test');
         expectMethodCall('registerIdentifiedUserWithUserId', arguments: {
           'userId': 'test',
         });
       });
 
       test('with email', () {
-        Intercom.registerIdentifiedUser(email: 'test');
+        Intercom.instance.registerIdentifiedUser(email: 'test');
         expectMethodCall('registerIdentifiedUserWithEmail', arguments: {
           'email': 'test',
         });
@@ -54,7 +54,7 @@ void main() {
 
       test('with userId and email should fail', () {
         expect(
-          () => Intercom.registerIdentifiedUser(
+          () => Intercom.instance.registerIdentifiedUser(
             userId: 'testId',
             email: 'testEmail',
           ),
@@ -63,59 +63,60 @@ void main() {
       });
 
       test('without parameters', () {
-        expect(() => Intercom.registerIdentifiedUser(), throwsArgumentError);
+        expect(() => Intercom.instance.registerIdentifiedUser(),
+            throwsArgumentError);
       });
     });
 
     test('registerUnidentifiedUser', () {
-      Intercom.registerUnidentifiedUser();
+      Intercom.instance.registerUnidentifiedUser();
       expectMethodCall('registerUnidentifiedUser');
     });
 
     test('setBottomPadding', () {
       final padding = 64;
-      Intercom.setBottomPadding(padding);
+      Intercom.instance.setBottomPadding(padding);
       expectMethodCall('setBottomPadding', arguments: {
         'bottomPadding': padding,
       });
     });
 
     test('setUserHash', () {
-      Intercom.setUserHash('test');
+      Intercom.instance.setUserHash('test');
       expectMethodCall('setUserHash', arguments: {
         'userHash': 'test',
       });
     });
 
     test('logout', () {
-      Intercom.logout();
+      Intercom.instance.logout();
       expectMethodCall('logout');
     });
 
     group('toggleMessengerVisibility', () {
       test('displayMessenger', () {
-        Intercom.displayMessenger();
+        Intercom.instance.displayMessenger();
         expectMethodCall('displayMessenger');
       });
 
       test('hideMessenger', () {
-        Intercom.hideMessenger();
+        Intercom.instance.hideMessenger();
         expectMethodCall('hideMessenger');
       });
     });
 
     test('displayHelpCenter', () {
-      Intercom.displayHelpCenter();
+      Intercom.instance.displayHelpCenter();
       expectMethodCall('displayHelpCenter');
     });
 
     test('unreadConversationCount', () {
-      Intercom.unreadConversationCount();
+      Intercom.instance.unreadConversationCount();
       expectMethodCall('unreadConversationCount');
     });
 
     test('displayMessageComposer', () {
-      Intercom.displayMessageComposer("message");
+      Intercom.instance.displayMessageComposer("message");
       expectMethodCall(
         'displayMessageComposer',
         arguments: {"message": "message"},
@@ -124,14 +125,15 @@ void main() {
 
     group('setInAppMessagesVisibility', () {
       test('visible', () {
-        Intercom.setInAppMessagesVisibility(IntercomVisibility.visible);
+        Intercom.instance
+            .setInAppMessagesVisibility(IntercomVisibility.visible);
         expectMethodCall('setInAppMessagesVisibility', arguments: {
           'visibility': 'VISIBLE',
         });
       });
 
       test('gone', () {
-        Intercom.setInAppMessagesVisibility(IntercomVisibility.gone);
+        Intercom.instance.setInAppMessagesVisibility(IntercomVisibility.gone);
         expectMethodCall('setInAppMessagesVisibility', arguments: {
           'visibility': 'GONE',
         });
@@ -140,14 +142,14 @@ void main() {
 
     group('setLauncherVisibility', () {
       test('visible', () {
-        Intercom.setLauncherVisibility(IntercomVisibility.visible);
+        Intercom.instance.setLauncherVisibility(IntercomVisibility.visible);
         expectMethodCall('setLauncherVisibility', arguments: {
           'visibility': 'VISIBLE',
         });
       });
 
       test('gone', () {
-        Intercom.setLauncherVisibility(IntercomVisibility.gone);
+        Intercom.instance.setLauncherVisibility(IntercomVisibility.gone);
         expectMethodCall('setLauncherVisibility', arguments: {
           'visibility': 'GONE',
         });
@@ -155,7 +157,7 @@ void main() {
     });
 
     test('updateUser', () {
-      Intercom.updateUser(
+      Intercom.instance.updateUser(
         email: 'test@example.com',
         name: 'John Doe',
         userId: '1',
@@ -181,7 +183,7 @@ void main() {
 
   group('logEvent', () {
     test('withoutMetaData', () {
-      Intercom.logEvent("TEST");
+      Intercom.instance.logEvent("TEST");
       expectMethodCall('logEvent', arguments: {
         'name': 'TEST',
         'metaData': null,
@@ -189,7 +191,7 @@ void main() {
     });
 
     test('withMetaData', () {
-      Intercom.logEvent(
+      Intercom.instance.logEvent(
         "TEST",
         {'string': 'A string', 'number': 10, 'bool': true},
       );
@@ -220,13 +222,13 @@ void main() {
     });
 
     test('testStream', () async {
-      expect(await Intercom.getUnreadStream().first, value);
+      expect(await Intercom.instance.getUnreadStream().first, value);
     });
   });
 
   test('displayArticle', () async {
     final String testArticleId = "123456";
-    await Intercom.displayArticle(testArticleId);
+    await Intercom.instance.displayArticle(testArticleId);
     expectMethodCall('displayArticle', arguments: {
       'articleId': testArticleId,
     });
@@ -234,7 +236,7 @@ void main() {
 
   test('displayCarousel', () async {
     final String testCarouselId = "123456";
-    await Intercom.displayCarousel(testCarouselId);
+    await Intercom.instance.displayCarousel(testCarouselId);
     expectMethodCall('displayCarousel', arguments: {
       'carouselId': testCarouselId,
     });
