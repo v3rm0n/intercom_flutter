@@ -1,5 +1,9 @@
 # Changelog
 
+# 0.0.5
+
+- implemented `displayArticle` [(showArticle)](https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomshowarticle-articleid)
+
 # 0.0.4
 
 - updated dependency `intercom_flutter_platform_interface: ^1.0.1`
