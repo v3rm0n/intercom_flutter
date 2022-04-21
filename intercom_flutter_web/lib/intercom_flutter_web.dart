@@ -221,6 +221,11 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     print("Bottom padding set");
   }
 
+  @override
+  Future<void> displayArticle(String articleId) async {
+    await js.context.callMethod('Intercom', ['showArticle', articleId]);
+  }
+
   /// get the [window.IntercomSettings]
   js.JsObject getIntercomSettings() {
     if (js.context.hasProperty('intercomSettings')) {
