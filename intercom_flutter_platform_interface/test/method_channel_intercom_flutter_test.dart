@@ -83,13 +83,13 @@ void main() {
       );
     });
 
-    group('registerIdentifiedUser', () {
+    group('loginIdentifiedUser', () {
       test('with userId', () async {
-        await intercom.registerIdentifiedUser(userId: 'test');
+        await intercom.loginIdentifiedUser(userId: 'test');
         expect(
           log,
           <Matcher>[
-            isMethodCall('registerIdentifiedUserWithUserId', arguments: {
+            isMethodCall('loginIdentifiedUserWithUserId', arguments: {
               'userId': 'test',
             })
           ],
@@ -97,11 +97,11 @@ void main() {
       });
 
       test('with email', () async {
-        await intercom.registerIdentifiedUser(email: 'test');
+        await intercom.loginIdentifiedUser(email: 'test');
         expect(
           log,
           <Matcher>[
-            isMethodCall('registerIdentifiedUserWithEmail', arguments: {
+            isMethodCall('loginIdentifiedUserWithEmail', arguments: {
               'email': 'test',
             })
           ],
@@ -110,7 +110,7 @@ void main() {
 
       test('with userId and email should fail', () {
         expect(
-          () => intercom.registerIdentifiedUser(
+          () => intercom.loginIdentifiedUser(
             userId: 'testId',
             email: 'testEmail',
           ),
@@ -119,15 +119,15 @@ void main() {
       });
 
       test('without parameters', () {
-        expect(() => intercom.registerIdentifiedUser(), throwsArgumentError);
+        expect(() => intercom.loginIdentifiedUser(), throwsArgumentError);
       });
     });
 
-    test('registerUnidentifiedUser', () async {
-      await intercom.registerUnidentifiedUser();
+    test('loginUnidentifiedUser', () async {
+      await intercom.loginUnidentifiedUser();
       expect(
         log,
-        <Matcher>[isMethodCall('registerUnidentifiedUser', arguments: null)],
+        <Matcher>[isMethodCall('loginUnidentifiedUser', arguments: null)],
       );
     });
 
