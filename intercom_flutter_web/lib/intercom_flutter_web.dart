@@ -133,6 +133,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     int? signedUpAt,
     String? language,
     Map<String, dynamic>? customAttributes,
+    IntercomStatusCallback? statusCallback,
   }) async {
     Map<String, dynamic> userAttributes = {};
 
@@ -178,7 +179,8 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       'update',
       js.JsObject.jsify(userAttributes),
     ]);
-    print("User updated");
+    // send the success callback only as web doesnot support the statusCallback.
+    statusCallback?.onSuccess?.call();
   }
 
   @override
