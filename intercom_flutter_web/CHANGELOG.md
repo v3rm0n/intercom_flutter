@@ -1,5 +1,14 @@
 # Changelog
 
+# 0.1.0
+
+- added method `loginIdentifiedUser` with `IntercomStatusCallback` support.
+- deprecated `registerIdentifiedUser` in favor of `loginIdentifiedUser`.
+- added method `loginUnidentifiedUser` with `IntercomStatusCallback` support.
+- deprecated `registerUnidentifiedUser` in favor of `loginUnidentifiedUser`.
+- added parameter `statusCallback` in updateUser to support `IntercomStatusCallback`.
+- updated `intercom_flutter_platform_interface` version to `1.1.0`.
+
 # 0.0.5
 
 - implemented `displayArticle` [(showArticle)](https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomshowarticle-articleid)
