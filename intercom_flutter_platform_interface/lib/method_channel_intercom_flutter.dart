@@ -98,18 +98,24 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     int? signedUpAt,
     String? language,
     Map<String, dynamic>? customAttributes,
+    IntercomStatusCallback? statusCallback,
   }) async {
-    await _channel.invokeMethod('updateUser', <String, dynamic>{
-      'email': email,
-      'name': name,
-      'phone': phone,
-      'company': company,
-      'companyId': companyId,
-      'userId': userId,
-      'signedUpAt': signedUpAt,
-      'language': language,
-      'customAttributes': customAttributes,
-    });
+    try {
+      await _channel.invokeMethod('updateUser', <String, dynamic>{
+        'email': email,
+        'name': name,
+        'phone': phone,
+        'company': company,
+        'companyId': companyId,
+        'userId': userId,
+        'signedUpAt': signedUpAt,
+        'language': language,
+        'customAttributes': customAttributes,
+      });
+      statusCallback?.onSuccess?.call();
+    } on PlatformException catch (e) {
+      statusCallback?.onFailure?.call(_convertExceptionToIntercomError(e));
+    }
   }
 
   @override
