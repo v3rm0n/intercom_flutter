@@ -70,9 +70,21 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     }
   }
 
+  @Deprecated("use loginUnidentifiedUser")
   @override
-  Future<void> registerUnidentifiedUser() async {
-    await _channel.invokeMethod('registerUnidentifiedUser');
+  Future<void> registerUnidentifiedUser() {
+    return loginUnidentifiedUser();
+  }
+
+  @override
+  Future<void> loginUnidentifiedUser(
+      {IntercomStatusCallback? statusCallback}) async {
+    try {
+      await _channel.invokeMethod('registerUnidentifiedUser');
+      statusCallback?.onSuccess?.call();
+    } on PlatformException catch (e) {
+      statusCallback?.onFailure?.call(_convertExceptionToIntercomError(e));
+    }
   }
 
   @override
