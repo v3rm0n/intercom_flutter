@@ -101,8 +101,15 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     }
   }
 
+  @Deprecated("use loginUnidentifiedUser")
   @override
-  Future<void> registerUnidentifiedUser() async {
+  Future<void> registerUnidentifiedUser() {
+    return loginUnidentifiedUser();
+  }
+
+  @override
+  Future<void> loginUnidentifiedUser(
+      {IntercomStatusCallback? statusCallback}) async {
     // to register an unidentified user, a unique id will be created using the package uuid
     String userId = Uuid().v1();
     await js.context.callMethod('Intercom', [
@@ -111,7 +118,8 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
         'user_id': userId,
       }),
     ]);
-    print("user created");
+    // send the success callback only as web doesnot support the statusCallback.
+    statusCallback?.onSuccess?.call();
   }
 
   @override
