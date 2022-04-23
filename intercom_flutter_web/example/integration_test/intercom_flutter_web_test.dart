@@ -16,28 +16,27 @@ void main() {
       expect(plugin.initialize("mock"), completes);
     });
 
-    group('registerIdentifiedUser', () {
+    group('loginIdentifiedUser', () {
       testWidgets('with userId', (WidgetTester _) async {
-        expect(plugin.registerIdentifiedUser(userId: 'test'), completes);
+        expect(plugin.loginIdentifiedUser(userId: 'test'), completes);
       });
 
       testWidgets('with email', (WidgetTester _) async {
-        expect(plugin.registerIdentifiedUser(email: 'test'), completes);
+        expect(plugin.loginIdentifiedUser(email: 'test'), completes);
       });
 
       testWidgets('with userId and email should fail', (WidgetTester _) async {
-        expect(
-            plugin.registerIdentifiedUser(userId: 'testId', email: 'testEmail'),
+        expect(plugin.loginIdentifiedUser(userId: 'testId', email: 'testEmail'),
             throwsArgumentError);
       });
 
       testWidgets('without parameters', (WidgetTester _) async {
-        expect(plugin.registerIdentifiedUser(), throwsArgumentError);
+        expect(plugin.loginIdentifiedUser(), throwsArgumentError);
       });
     });
 
-    testWidgets('registerUnidentifiedUser', (WidgetTester _) async {
-      expect(plugin.registerUnidentifiedUser(), completes);
+    testWidgets('loginUnidentifiedUser', (WidgetTester _) async {
+      expect(plugin.loginUnidentifiedUser(), completes);
     });
 
     testWidgets('setBottomPadding', (WidgetTester _) async {
