@@ -90,9 +90,18 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   /// Function to create a unidentified user in Intercom.
   /// You need to register your users before you can talk to them and
   /// track their activity in your app.
+  @Deprecated("use loginUnidentifiedUser")
   Future<void> registerUnidentifiedUser() {
     throw UnimplementedError(
         'registerUnidentifiedUser() has not been implemented.');
+  }
+
+  /// Function to create a unidentified user in Intercom.
+  /// You need to register your users before you can talk to them and
+  /// track their activity in your app.
+  Future<void> loginUnidentifiedUser({IntercomStatusCallback? statusCallback}) {
+    throw UnimplementedError(
+        'loginUnidentifiedUser() has not been implemented.');
   }
 
   /// Updates the attributes of the current Intercom user.
