@@ -48,7 +48,7 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
             'The parameter `email` must be null if `userId` is provided.');
       }
       try {
-        await _channel.invokeMethod('registerIdentifiedUserWithUserId', {
+        await _channel.invokeMethod('loginIdentifiedUserWithUserId', {
           'userId': userId,
         });
         statusCallback?.onSuccess?.call();
@@ -57,7 +57,7 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
       }
     } else if (email?.isNotEmpty ?? false) {
       try {
-        _channel.invokeMethod('registerIdentifiedUserWithEmail', {
+        _channel.invokeMethod('loginIdentifiedUserWithEmail', {
           'email': email,
         });
         statusCallback?.onSuccess?.call();
@@ -80,7 +80,7 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   Future<void> loginUnidentifiedUser(
       {IntercomStatusCallback? statusCallback}) async {
     try {
-      await _channel.invokeMethod('registerUnidentifiedUser');
+      await _channel.invokeMethod('loginUnidentifiedUser');
       statusCallback?.onSuccess?.call();
     } on PlatformException catch (e) {
       statusCallback?.onFailure?.call(_convertExceptionToIntercomError(e));
