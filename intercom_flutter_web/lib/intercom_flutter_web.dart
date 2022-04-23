@@ -10,6 +10,8 @@ import 'package:uuid/uuid.dart';
 /// export the enum [IntercomVisibility]
 export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart'
     show IntercomVisibility;
+export 'package:intercom_flutter_platform_interface/intercom_status_callback.dart'
+    show IntercomStatusCallback, IntercomError;
 
 /// A web implementation of the IntercomFlutter plugin.
 class IntercomFlutterWeb extends IntercomFlutterPlatform {
