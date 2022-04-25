@@ -8,6 +8,8 @@ import 'package:intercom_flutter_platform_interface/intercom_status_callback.dar
 /// export the [IntercomVisibility] enum
 export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart'
     show IntercomVisibility;
+export 'package:intercom_flutter_platform_interface/intercom_status_callback.dart'
+    show IntercomStatusCallback, IntercomError;
 
 class Intercom {
   /// private constructor to not allow the object creation from outside.
