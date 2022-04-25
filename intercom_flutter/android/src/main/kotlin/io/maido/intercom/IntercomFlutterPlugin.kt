@@ -67,7 +67,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
             result.success("User hash added")
           }
         }
-        "registerIdentifiedUserWithUserId" -> {
+        "loginIdentifiedUserWithUserId" -> {
           val userId = call.argument<String>("userId")
           if(userId != null) {
             var registration = Registration.create()
@@ -88,7 +88,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
             })
           }
         }
-        "registerIdentifiedUserWithEmail" -> {
+        "loginIdentifiedUserWithEmail" -> {
           val email = call.argument<String>("email")
           if(email != null) {
             var registration = Registration.create()
@@ -109,7 +109,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
             })
           }
         }
-        "registerUnidentifiedUser" -> {
+        "loginUnidentifiedUser" -> {
           Intercom.client().loginUnidentifiedUser(intercomStatusCallback = object : IntercomStatusCallback {
             override fun onFailure(intercomError: IntercomError) {
               // Handle failure
