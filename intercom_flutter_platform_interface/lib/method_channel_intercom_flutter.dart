@@ -57,7 +57,7 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
       }
     } else if (email?.isNotEmpty ?? false) {
       try {
-        _channel.invokeMethod('loginIdentifiedUserWithEmail', {
+        await _channel.invokeMethod('loginIdentifiedUserWithEmail', {
           'email': email,
         });
         statusCallback?.onSuccess?.call();
