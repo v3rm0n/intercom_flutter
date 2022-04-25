@@ -187,7 +187,6 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         }
         "sendTokenToIntercom" -> {
           val token = call.argument<String>("token")
-          val metaData = call.argument<Map<String, Any>>("metaData")
           if(token != null) {
             intercomPushClient.sendTokenToIntercom(application, token)
 
