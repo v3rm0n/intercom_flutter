@@ -3,6 +3,7 @@ library intercom_flutter;
 import 'dart:async';
 
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
+import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 
 /// export the [IntercomVisibility] enum
 export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart'
@@ -76,9 +77,21 @@ class Intercom {
   ///
   /// You can register a identified user either with [userId] or with [email],
   /// but not with both.
+  @Deprecated("use loginIdentifiedUser")
   Future<void> registerIdentifiedUser({String? userId, String? email}) {
-    return IntercomFlutterPlatform.instance
-        .registerIdentifiedUser(userId: userId, email: email);
+    return loginIdentifiedUser(userId: userId, email: email);
+  }
+
+  /// Function to create a identified user in Intercom.
+  /// You need to register your users before you can talk to them and
+  /// track their activity in your app.
+  ///
+  /// You can register a identified user either with [userId] or with [email],
+  /// but not with both.
+  Future<void> loginIdentifiedUser(
+      {String? userId, String? email, IntercomStatusCallback? statusCallback}) {
+    return IntercomFlutterPlatform.instance.loginIdentifiedUser(
+        userId: userId, email: email, statusCallback: statusCallback);
   }
 
   /// Function to create a unidentified user in Intercom.
