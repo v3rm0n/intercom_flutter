@@ -169,7 +169,10 @@ id unread;
             NSData *encodedToken=[self createDataWithHexString:token];
             // NSData* encodedToken=[token dataUsingEncoding:NSUTF8StringEncoding];
             NSLog(@"%@", encodedToken);
-            [Intercom setDeviceToken:encodedToken];
+            [Intercom setDeviceToken:encodedToken failure:^(NSError * _Nonnull error) {
+                // Handle failure
+                NSLog(@"Error setting device token: %@", error.localizedDescription);
+            }];
             result(@"Token set");
         }
     } else if([@"displayArticle" isEqualToString:call.method]) {
