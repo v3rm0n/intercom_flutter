@@ -179,7 +179,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         }
         "logEvent" -> {
           val name = call.argument<String>("name")
-          val metaData = call.argument<Map<String, Any>>("metaData")
+          val metaData = call.argument<Map<String?, *>>("metaData")
           if(name != null) {
             Intercom.client().logEvent(name, metaData)
             result.success("Logged event")
