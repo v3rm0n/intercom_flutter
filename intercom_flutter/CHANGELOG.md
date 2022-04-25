@@ -1,5 +1,22 @@
 # Changelog
 
+## 7.1.0
+
+* implemented `displayArticle` for web ([#231](https://github.com/v3rm0n/intercom_flutter/pull/231)).
+* Bump Intercom Android SDK version to 12.1.1
+* Bump Intercom iOS SDK version to 12.1.1
+* Updated dependency `intercom_flutter_platform_interface: ^1.1.0`
+* Updated dependency `intercom_flutter_web: ^0.1.0`
+* added method `loginIdentifiedUser` with `IntercomStatusCallback` support.
+* deprecated `registerIdentifiedUser` in favor of `loginIdentifiedUser`.
+* added method `loginUnidentifiedUser` with `IntercomStatusCallback` support.
+* deprecated `registerUnidentifiedUser` in favor of `loginUnidentifiedUser`.
+* added parameter `statusCallback` in `updateUser` to support `IntercomStatusCallback`.
+* renamed the following methods in the MethodChannel:
+    - `registerIdentifiedUserWithUserId` to `loginIdentifiedUserWithUserId`.
+    - `regsiterIdentifiedUserWithEmail` to `loginIdentifiedUserWithEmail`.
+    - `registerUnidentifiedUser` to `loginUnidentifiedUser`.
+
 ## 7.0.0
 > Note: This release has breaking changes.
 
