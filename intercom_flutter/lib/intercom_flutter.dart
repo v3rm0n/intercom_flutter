@@ -130,6 +130,7 @@ class Intercom {
     int? signedUpAt,
     String? language,
     Map<String, dynamic>? customAttributes,
+    IntercomStatusCallback? statusCallback,
   }) {
     return IntercomFlutterPlatform.instance.updateUser(
       email: email,
@@ -141,6 +142,7 @@ class Intercom {
       signedUpAt: signedUpAt,
       language: language,
       customAttributes: customAttributes,
+      statusCallback: statusCallback,
     );
   }
 
