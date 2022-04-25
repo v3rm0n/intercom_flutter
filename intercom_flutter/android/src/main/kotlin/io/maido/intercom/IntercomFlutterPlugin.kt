@@ -9,14 +9,11 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.PluginRegistry.Registrar
-import io.intercom.android.sdk.Company
-import io.intercom.android.sdk.Intercom
-import io.intercom.android.sdk.UnreadConversationCountListener
-import io.intercom.android.sdk.UserAttributes
 import io.intercom.android.sdk.identity.Registration
 import io.intercom.android.sdk.push.IntercomPushClient
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
+import io.intercom.android.sdk.*
 
 class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.StreamHandler, ActivityAware {
   companion object {
@@ -75,8 +72,20 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
           if(userId != null) {
             var registration = Registration.create()
             registration = registration.withUserId(userId)
-            Intercom.client().registerIdentifiedUser(registration)
-            result.success("User created")
+            Intercom.client().loginIdentifiedUser(registration, intercomStatusCallback = object : IntercomStatusCallback {
+              override fun onFailure(intercomError: IntercomError) {
+                // Handle failure
+                result.error(intercomError.errorCode.toString(), intercomError.errorMessage, getIntercomError(
+                    errorCode = intercomError.errorCode,
+                    errorMessage = intercomError.errorMessage,
+                ))
+              }
+
+              override fun onSuccess() {
+                // Handle success
+                result.success("User created")
+              }
+            })
           }
         }
         "registerIdentifiedUserWithEmail" -> {
@@ -84,13 +93,37 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
           if(email != null) {
             var registration = Registration.create()
             registration = registration.withEmail(email)
-            Intercom.client().registerIdentifiedUser(registration)
-            result.success("User created")
+            Intercom.client().loginIdentifiedUser(registration, intercomStatusCallback = object : IntercomStatusCallback {
+              override fun onFailure(intercomError: IntercomError) {
+                // Handle failure
+                result.error(intercomError.errorCode.toString(), intercomError.errorMessage, getIntercomError(
+                    errorCode = intercomError.errorCode,
+                    errorMessage = intercomError.errorMessage,
+                ))
+              }
+
+              override fun onSuccess() {
+                // Handle success
+                result.success("User created")
+              }
+            })
           }
         }
         "registerUnidentifiedUser" -> {
-          Intercom.client().registerUnidentifiedUser()
-          result.success("User created")
+          Intercom.client().loginUnidentifiedUser(intercomStatusCallback = object : IntercomStatusCallback {
+            override fun onFailure(intercomError: IntercomError) {
+              // Handle failure
+              result.error(intercomError.errorCode.toString(), intercomError.errorMessage, getIntercomError(
+                  errorCode = intercomError.errorCode,
+                  errorMessage = intercomError.errorMessage,
+              ))
+            }
+
+            override fun onSuccess() {
+              // Handle success
+              result.success("User created")
+            }
+          })
         }
         "logout" -> {
           Intercom.client().logout()
@@ -129,8 +162,20 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
           result.success(count)
         }
         "updateUser" -> {
-          Intercom.client().updateUser(getUserAttributes(call))
-          result.success("User updated")
+          Intercom.client().updateUser(getUserAttributes(call), intercomStatusCallback = object : IntercomStatusCallback {
+            override fun onFailure(intercomError: IntercomError) {
+              // Handle failure
+              result.error(intercomError.errorCode.toString(), intercomError.errorMessage, getIntercomError(
+                  errorCode = intercomError.errorCode,
+                  errorMessage = intercomError.errorMessage,
+              ))
+            }
+
+            override fun onSuccess() {
+              // Handle success
+              result.success("User updated")
+            }
+          })
         }
         "logEvent" -> {
           val name = call.argument<String>("name")
@@ -184,6 +229,14 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         }
         else -> result.notImplemented()
     }
+  }
+
+  // generate a errorDetails object to pass
+  private fun getIntercomError(errorCode: Int = -1, errorMessage: String = ""): Map<String, *> {
+    return mapOf(
+        "errorCode" to errorCode,
+        "errorMessage" to errorMessage,
+    )
   }
 
   // generate the user attributes
