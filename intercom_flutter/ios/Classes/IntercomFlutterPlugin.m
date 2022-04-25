@@ -40,7 +40,7 @@ id unread;
         [Intercom setApiKey:iosApiKey forAppId:appId];
         result(@"Initialized Intercom");
     }
-    else if([@"registerUnidentifiedUser" isEqualToString:call.method]) {
+    else if([@"loginUnidentifiedUser" isEqualToString:call.method]) {
         [Intercom loginUnidentifiedUserWithSuccess:^{
             // Handle success
             result(@"Registered unidentified user");
@@ -67,7 +67,7 @@ id unread;
         [Intercom setUserHash:userHash];
         result(@"User hash added");
     }
-    else if([@"registerIdentifiedUserWithUserId" isEqualToString:call.method]) {
+    else if([@"loginIdentifiedUserWithUserId" isEqualToString:call.method]) {
         NSString *userId = call.arguments[@"userId"];
         ICMUserAttributes *attributes = [ICMUserAttributes new];
         attributes.userId = userId;
@@ -84,7 +84,7 @@ id unread;
                                        details: [self getIntercomError:errorCode:errorMsg]]);
         }];
     }
-    else if([@"registerIdentifiedUserWithEmail" isEqualToString:call.method]) {
+    else if([@"loginIdentifiedUserWithEmail" isEqualToString:call.method]) {
         NSString *email = call.arguments[@"email"];
         ICMUserAttributes *attributes = [ICMUserAttributes new];
         attributes.email = email;
