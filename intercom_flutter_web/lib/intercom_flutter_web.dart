@@ -4,11 +4,14 @@ import 'dart:js' as js;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
+import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 import 'package:uuid/uuid.dart';
 
 /// export the enum [IntercomVisibility]
 export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart'
     show IntercomVisibility;
+export 'package:intercom_flutter_platform_interface/intercom_status_callback.dart'
+    show IntercomStatusCallback, IntercomError;
 
 /// A web implementation of the IntercomFlutter plugin.
 class IntercomFlutterWeb extends IntercomFlutterPlatform {
@@ -58,8 +61,18 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     print("user hash added");
   }
 
+  @Deprecated("use loginIdentifiedUser")
   @override
-  Future<void> registerIdentifiedUser({String? userId, String? email}) async {
+  Future<void> registerIdentifiedUser({String? userId, String? email}) {
+    return loginIdentifiedUser(userId: userId, email: email);
+  }
+
+  @override
+  Future<void> loginIdentifiedUser({
+    String? userId,
+    String? email,
+    IntercomStatusCallback? statusCallback,
+  }) async {
     if (userId?.isNotEmpty ?? false) {
       if (email?.isNotEmpty ?? false) {
         throw ArgumentError(
@@ -72,7 +85,8 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
           'user_id': userId,
         }),
       ]);
-      print("user created");
+      // send the success callback only as web doesnot support the statusCallback.
+      statusCallback?.onSuccess?.call();
     } else if (email?.isNotEmpty ?? false) {
       // register the user with email
       await js.context.callMethod('Intercom', [
@@ -81,15 +95,23 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
           'email': email,
         }),
       ]);
-      print("user created");
+      // send the success callback only as web doesnot support the statusCallback.
+      statusCallback?.onSuccess?.call();
     } else {
       throw ArgumentError(
           'An identification method must be provided as a parameter, either `userId` or `email`.');
     }
   }
 
+  @Deprecated("use loginUnidentifiedUser")
   @override
-  Future<void> registerUnidentifiedUser() async {
+  Future<void> registerUnidentifiedUser() {
+    return loginUnidentifiedUser();
+  }
+
+  @override
+  Future<void> loginUnidentifiedUser(
+      {IntercomStatusCallback? statusCallback}) async {
     // to register an unidentified user, a unique id will be created using the package uuid
     String userId = Uuid().v1();
     await js.context.callMethod('Intercom', [
@@ -98,7 +120,8 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
         'user_id': userId,
       }),
     ]);
-    print("user created");
+    // send the success callback only as web doesnot support the statusCallback.
+    statusCallback?.onSuccess?.call();
   }
 
   @override
@@ -112,6 +135,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     int? signedUpAt,
     String? language,
     Map<String, dynamic>? customAttributes,
+    IntercomStatusCallback? statusCallback,
   }) async {
     Map<String, dynamic> userAttributes = {};
 
@@ -157,7 +181,8 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       'update',
       js.JsObject.jsify(userAttributes),
     ]);
-    print("User updated");
+    // send the success callback only as web doesnot support the statusCallback.
+    statusCallback?.onSuccess?.call();
   }
 
   @override

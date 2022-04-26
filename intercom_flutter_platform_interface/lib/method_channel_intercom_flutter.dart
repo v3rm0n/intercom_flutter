@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
+import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 
 const MethodChannel _channel = MethodChannel('maido.io/intercom');
 const EventChannel _unreadChannel = EventChannel('maido.io/intercom/unread');
@@ -29,29 +30,61 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     await _channel.invokeMethod('setUserHash', {'userHash': userHash});
   }
 
+  @Deprecated("use loginIdentifiedUser")
   @override
   Future<void> registerIdentifiedUser({String? userId, String? email}) {
+    return loginIdentifiedUser(userId: userId, email: email);
+  }
+
+  @override
+  Future<void> loginIdentifiedUser({
+    String? userId,
+    String? email,
+    IntercomStatusCallback? statusCallback,
+  }) async {
     if (userId?.isNotEmpty ?? false) {
       if (email?.isNotEmpty ?? false) {
         throw ArgumentError(
             'The parameter `email` must be null if `userId` is provided.');
       }
-      return _channel.invokeMethod('registerIdentifiedUserWithUserId', {
-        'userId': userId,
-      });
+      try {
+        await _channel.invokeMethod('loginIdentifiedUserWithUserId', {
+          'userId': userId,
+        });
+        statusCallback?.onSuccess?.call();
+      } on PlatformException catch (e) {
+        statusCallback?.onFailure?.call(_convertExceptionToIntercomError(e));
+      }
     } else if (email?.isNotEmpty ?? false) {
-      return _channel.invokeMethod('registerIdentifiedUserWithEmail', {
-        'email': email,
-      });
+      try {
+        await _channel.invokeMethod('loginIdentifiedUserWithEmail', {
+          'email': email,
+        });
+        statusCallback?.onSuccess?.call();
+      } on PlatformException catch (e) {
+        statusCallback?.onFailure?.call(_convertExceptionToIntercomError(e));
+      }
     } else {
       throw ArgumentError(
           'An identification method must be provided as a parameter, either `userId` or `email`.');
     }
   }
 
+  @Deprecated("use loginUnidentifiedUser")
   @override
-  Future<void> registerUnidentifiedUser() async {
-    await _channel.invokeMethod('registerUnidentifiedUser');
+  Future<void> registerUnidentifiedUser() {
+    return loginUnidentifiedUser();
+  }
+
+  @override
+  Future<void> loginUnidentifiedUser(
+      {IntercomStatusCallback? statusCallback}) async {
+    try {
+      await _channel.invokeMethod('loginUnidentifiedUser');
+      statusCallback?.onSuccess?.call();
+    } on PlatformException catch (e) {
+      statusCallback?.onFailure?.call(_convertExceptionToIntercomError(e));
+    }
   }
 
   @override
@@ -65,18 +98,24 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     int? signedUpAt,
     String? language,
     Map<String, dynamic>? customAttributes,
+    IntercomStatusCallback? statusCallback,
   }) async {
-    await _channel.invokeMethod('updateUser', <String, dynamic>{
-      'email': email,
-      'name': name,
-      'phone': phone,
-      'company': company,
-      'companyId': companyId,
-      'userId': userId,
-      'signedUpAt': signedUpAt,
-      'language': language,
-      'customAttributes': customAttributes,
-    });
+    try {
+      await _channel.invokeMethod('updateUser', <String, dynamic>{
+        'email': email,
+        'name': name,
+        'phone': phone,
+        'company': company,
+        'companyId': companyId,
+        'userId': userId,
+        'signedUpAt': signedUpAt,
+        'language': language,
+        'customAttributes': customAttributes,
+      });
+      statusCallback?.onSuccess?.call();
+    } on PlatformException catch (e) {
+      statusCallback?.onFailure?.call(_convertExceptionToIntercomError(e));
+    }
   }
 
   @override
@@ -180,5 +219,15 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   @override
   Future<void> displayCarousel(String carouselId) async {
     await _channel.invokeMethod('displayCarousel', {'carouselId': carouselId});
+  }
+
+  /// Convert the [PlatformException] details to [IntercomError].
+  /// From the Platform side if the intercom operation failed then error details
+  /// will be sent as details in [PlatformException].
+  IntercomError _convertExceptionToIntercomError(PlatformException e) {
+    var details = e.details ?? {};
+
+    return IntercomError(
+        details['errorCode'] ?? -1, details['errorMessage'] ?? e.message ?? "");
   }
 }
