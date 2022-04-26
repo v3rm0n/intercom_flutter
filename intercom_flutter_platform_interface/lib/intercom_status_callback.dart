@@ -1,15 +1,14 @@
 class IntercomStatusCallback {
-  /// callback when intercom operation is failed.
-  /// will contain the error information.
+  /// Callback when intercom operation is failed.
+  /// It will contain the error information.
   final Function(IntercomError error)? onFailure;
 
-  /// callback when intercom operation is success.
+  /// Callback when intercom operation is success.
   final Function()? onSuccess;
 
-  /// class for intercom status to check if the operation is success or failure.
-  /// if the operation failed then [onFailure] callback will be executed with
+  /// Class for intercom status to check if the operation is success or failure.
+  /// If the operation failed then [onFailure] callback will be executed with
   /// [IntercomError] details.
-  ///
   IntercomStatusCallback({
     this.onSuccess,
     this.onFailure,
@@ -23,7 +22,7 @@ class IntercomError {
   /// error message
   final String errorMessage;
 
-  /// class for the Intercom error data.
+  /// Class for the Intercom error data.
   IntercomError(this.errorCode, this.errorMessage);
 
   @override
