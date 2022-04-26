@@ -78,14 +78,14 @@ class Intercom {
   /// but not with both.
   Future<void> registerIdentifiedUser({String? userId, String? email}) {
     return IntercomFlutterPlatform.instance
-        .registerIdentifiedUser(userId: userId, email: email);
+        .loginIdentifiedUser(userId: userId, email: email);
   }
 
   /// Function to create a unidentified user in Intercom.
   /// You need to register your users before you can talk to them and
   /// track their activity in your app.
   Future<void> registerUnidentifiedUser() {
-    return IntercomFlutterPlatform.instance.registerUnidentifiedUser();
+    return IntercomFlutterPlatform.instance.loginUnidentifiedUser();
   }
 
   /// Updates the attributes of the current Intercom user.

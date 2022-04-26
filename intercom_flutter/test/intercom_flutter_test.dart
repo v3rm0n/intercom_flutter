@@ -40,14 +40,14 @@ void main() {
     group('registerIdentifiedUser', () {
       test('with userId', () {
         Intercom.instance.registerIdentifiedUser(userId: 'test');
-        expectMethodCall('registerIdentifiedUserWithUserId', arguments: {
+        expectMethodCall('loginIdentifiedUserWithUserId', arguments: {
           'userId': 'test',
         });
       });
 
       test('with email', () {
         Intercom.instance.registerIdentifiedUser(email: 'test');
-        expectMethodCall('registerIdentifiedUserWithEmail', arguments: {
+        expectMethodCall('loginIdentifiedUserWithEmail', arguments: {
           'email': 'test',
         });
       });
@@ -70,7 +70,7 @@ void main() {
 
     test('registerUnidentifiedUser', () {
       Intercom.instance.registerUnidentifiedUser();
-      expectMethodCall('registerUnidentifiedUser');
+      expectMethodCall('loginUnidentifiedUser');
     });
 
     test('setBottomPadding', () {
