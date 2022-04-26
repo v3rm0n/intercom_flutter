@@ -3,10 +3,13 @@ library intercom_flutter;
 import 'dart:async';
 
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
+import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 
 /// export the [IntercomVisibility] enum
 export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart'
     show IntercomVisibility;
+export 'package:intercom_flutter_platform_interface/intercom_status_callback.dart'
+    show IntercomStatusCallback, IntercomError;
 
 class Intercom {
   /// private constructor to not allow the object creation from outside.
@@ -76,16 +79,37 @@ class Intercom {
   ///
   /// You can register a identified user either with [userId] or with [email],
   /// but not with both.
+  @Deprecated("use loginIdentifiedUser")
   Future<void> registerIdentifiedUser({String? userId, String? email}) {
-    return IntercomFlutterPlatform.instance
-        .loginIdentifiedUser(userId: userId, email: email);
+    return loginIdentifiedUser(userId: userId, email: email);
+  }
+
+  /// Function to create a identified user in Intercom.
+  /// You need to register your users before you can talk to them and
+  /// track their activity in your app.
+  ///
+  /// You can register a identified user either with [userId] or with [email],
+  /// but not with both.
+  Future<void> loginIdentifiedUser(
+      {String? userId, String? email, IntercomStatusCallback? statusCallback}) {
+    return IntercomFlutterPlatform.instance.loginIdentifiedUser(
+        userId: userId, email: email, statusCallback: statusCallback);
   }
 
   /// Function to create a unidentified user in Intercom.
   /// You need to register your users before you can talk to them and
   /// track their activity in your app.
+  @Deprecated("use loginUnidentifiedUser")
   Future<void> registerUnidentifiedUser() {
-    return IntercomFlutterPlatform.instance.loginUnidentifiedUser();
+    return loginUnidentifiedUser();
+  }
+
+  /// Function to create a unidentified user in Intercom.
+  /// You need to register your users before you can talk to them and
+  /// track their activity in your app.
+  Future<void> loginUnidentifiedUser({IntercomStatusCallback? statusCallback}) {
+    return IntercomFlutterPlatform.instance
+        .loginUnidentifiedUser(statusCallback: statusCallback);
   }
 
   /// Updates the attributes of the current Intercom user.
@@ -108,6 +132,7 @@ class Intercom {
     int? signedUpAt,
     String? language,
     Map<String, dynamic>? customAttributes,
+    IntercomStatusCallback? statusCallback,
   }) {
     return IntercomFlutterPlatform.instance.updateUser(
       email: email,
@@ -119,6 +144,7 @@ class Intercom {
       signedUpAt: signedUpAt,
       language: language,
       customAttributes: customAttributes,
+      statusCallback: statusCallback,
     );
   }
 

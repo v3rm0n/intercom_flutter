@@ -5,9 +5,9 @@
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android), [iOS](https://github.com/intercom/intercom-ios), and [Web](https://developers.intercom.com/installing-intercom/docs/basic-javascript) projects.
 
-- Uses Intercom Android SDK Version `12.0.0`.
+- Uses Intercom Android SDK Version `12.1.1`.
 - The minimum Android SDK `minSdkVersion` required is 21.
-- Uses Intercom iOS SDK Version `12.0.0`.
+- Uses Intercom iOS SDK Version `12.1.1`.
 - The minimum iOS target version required is 13.
 
 
@@ -108,3 +108,4 @@ Add the below script inside body tag in the index.html file located under web fo
 - [ ] handlePushMessage
 - [ ] isIntercomPush
 - [ ] handlePush
+- [ ] displayCarousel

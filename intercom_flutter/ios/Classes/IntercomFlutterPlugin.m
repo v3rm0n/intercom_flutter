@@ -40,9 +40,19 @@ id unread;
         [Intercom setApiKey:iosApiKey forAppId:appId];
         result(@"Initialized Intercom");
     }
-    else if([@"registerUnidentifiedUser" isEqualToString:call.method]) {
-        [Intercom registerUnidentifiedUser];
-        result(@"Registered unidentified user");
+    else if([@"loginUnidentifiedUser" isEqualToString:call.method]) {
+        [Intercom loginUnidentifiedUserWithSuccess:^{
+            // Handle success
+            result(@"Registered unidentified user");
+        } failure:^(NSError * _Nonnull error) {
+            // Handle error
+            NSInteger errorCode = error.code;
+            NSString *errorMsg = error.localizedDescription;
+            
+            result([FlutterError errorWithCode:[@(errorCode) stringValue]
+                                       message:errorMsg
+                                       details: [self getIntercomError:errorCode:errorMsg]]);
+        }];
     }
     else if([@"setBottomPadding" isEqualToString:call.method]) {
         NSNumber *value = call.arguments[@"bottomPadding"];
@@ -57,15 +67,39 @@ id unread;
         [Intercom setUserHash:userHash];
         result(@"User hash added");
     }
-    else if([@"registerIdentifiedUserWithUserId" isEqualToString:call.method]) {
+    else if([@"loginIdentifiedUserWithUserId" isEqualToString:call.method]) {
         NSString *userId = call.arguments[@"userId"];
-        [Intercom registerUserWithUserId:userId];
-        result(@"Registered user");
+        ICMUserAttributes *attributes = [ICMUserAttributes new];
+        attributes.userId = userId;
+        [Intercom loginUserWithUserAttributes:attributes success:^{
+            // Handle success
+            result(@"Registered user");
+        } failure:^(NSError * _Nonnull error) {
+            // Handle failure
+            NSInteger errorCode = error.code;
+            NSString *errorMsg = error.localizedDescription;
+            
+            result([FlutterError errorWithCode:[@(errorCode) stringValue]
+                                       message:errorMsg
+                                       details: [self getIntercomError:errorCode:errorMsg]]);
+        }];
     }
-    else if([@"registerIdentifiedUserWithEmail" isEqualToString:call.method]) {
+    else if([@"loginIdentifiedUserWithEmail" isEqualToString:call.method]) {
         NSString *email = call.arguments[@"email"];
-        [Intercom registerUserWithEmail:email];
-        result(@"Registered user");
+        ICMUserAttributes *attributes = [ICMUserAttributes new];
+        attributes.email = email;
+        [Intercom loginUserWithUserAttributes:attributes success:^{
+            // Handle success
+            result(@"Registered user");
+        } failure:^(NSError * _Nonnull error) {
+            // Handle failure
+            NSInteger errorCode = error.code;
+            NSString *errorMsg = error.localizedDescription;
+            
+            result([FlutterError errorWithCode:[@(errorCode) stringValue]
+                                       message:errorMsg
+                                       details: [self getIntercomError:errorCode:errorMsg]]);
+        }];
     }
     else if([@"setLauncherVisibility" isEqualToString:call.method]) {
         NSString *visibility = call.arguments[@"visibility"];
@@ -94,8 +128,18 @@ id unread;
         result(@"Presented help center");
     }
     else if([@"updateUser" isEqualToString:call.method]) {
-        [Intercom updateUser:[self getAttributes:call]];
-        result(@"Updated user");
+        [Intercom updateUser:[self getAttributes:call] success:^{
+            // Handle success
+            result(@"Updated user");
+        } failure:^(NSError * _Nonnull error) {
+            // Handle failure
+            NSInteger errorCode = error.code;
+            NSString *errorMsg = error.localizedDescription;
+            
+            result([FlutterError errorWithCode:[@(errorCode) stringValue]
+                                       message:errorMsg
+                                       details: [self getIntercomError:errorCode:errorMsg]]);
+        }];
     }
     else if([@"logout" isEqualToString:call.method]) {
         [Intercom logout];
@@ -125,7 +169,10 @@ id unread;
             NSData *encodedToken=[self createDataWithHexString:token];
             // NSData* encodedToken=[token dataUsingEncoding:NSUTF8StringEncoding];
             NSLog(@"%@", encodedToken);
-            [Intercom setDeviceToken:encodedToken];
+            [Intercom setDeviceToken:encodedToken failure:^(NSError * _Nonnull error) {
+                // Handle failure
+                NSLog(@"Error setting device token: %@", error.localizedDescription);
+            }];
             result(@"Token set");
         }
     } else if([@"displayArticle" isEqualToString:call.method]) {
@@ -145,6 +192,14 @@ id unread;
     else {
         result(FlutterMethodNotImplemented);
     }
+}
+
+- (NSMutableDictionary *) getIntercomError:(NSInteger)errorCode :(NSString *)errorMessage {
+    NSMutableDictionary *details = [NSMutableDictionary dictionary];
+    [details setObject:[NSNumber numberWithInteger:errorCode]  forKey: @"errorCode"];
+    [details setObject: errorMessage forKey:  @"errorMessage"];
+    
+    return details;
 }
 
 - (ICMUserAttributes *) getAttributes:(FlutterMethodCall *)call {

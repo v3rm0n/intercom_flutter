@@ -1,9 +1,26 @@
 # Changelog
 
+## 7.1.0
+
+* Implemented `displayArticle` for web ([#231](https://github.com/v3rm0n/intercom_flutter/pull/231)).
+* Bump Intercom Android SDK version to 12.1.1
+* Bump Intercom iOS SDK version to 12.1.1
+* Updated dependency `intercom_flutter_platform_interface: ^1.1.0`
+* Updated dependency `intercom_flutter_web: ^0.1.0`
+* Added method `loginIdentifiedUser` with `IntercomStatusCallback` support.
+* Deprecated `registerIdentifiedUser` in favor of `loginIdentifiedUser`.
+* Added method `loginUnidentifiedUser` with `IntercomStatusCallback` support.
+* Deprecated `registerUnidentifiedUser` in favor of `loginUnidentifiedUser`.
+* Added parameter `statusCallback` in `updateUser` to support `IntercomStatusCallback`.
+* Renamed the following methods in the MethodChannel:
+    - `registerIdentifiedUserWithUserId` to `loginIdentifiedUserWithUserId`.
+    - `regsiterIdentifiedUserWithEmail` to `loginIdentifiedUserWithEmail`.
+    - `registerUnidentifiedUser` to `loginUnidentifiedUser`.
+
 ## 7.0.0
 > Note: This release has breaking changes.
 
-* updated `displayArticle` method documentation. ([#224](https://github.com/v3rm0n/intercom_flutter/pull/224))
+* Updated `displayArticle` method documentation. ([#224](https://github.com/v3rm0n/intercom_flutter/pull/224))
 * API methods are now available at instance level instead of static. ([#226](https://github.com/v3rm0n/intercom_flutter/pull/226))
     - Now use `Intercom.instance` instead of just `Intercom`, for e.g: `Intercom.instance.displayMessenger()`.
 
@@ -48,21 +65,21 @@
 * Bump Intercom iOS SDK version to 10.3.4 ([#187](https://github.com/v3rm0n/intercom_flutter/pull/187))
 
 ## 5.1.0+1
-* resolved issue [#181](https://github.com/v3rm0n/intercom_flutter/issues/181)
+* Resolved issue [#181](https://github.com/v3rm0n/intercom_flutter/issues/181)
 
 ## 5.1.0
 * Bump Intercom Android SDK version to 10.4.0 ([#178](https://github.com/v3rm0n/intercom_flutter/pull/178))
 * Bump Intercom iOS SDK version to 10.3.0 ([#178](https://github.com/v3rm0n/intercom_flutter/pull/178))
 
 ## 5.0.3
-* resolved issue [#173](https://github.com/v3rm0n/intercom_flutter/issues/173)
+* Resolved issue [#173](https://github.com/v3rm0n/intercom_flutter/issues/173)
 
 ## 5.0.2
-* updated README: Removed the `<br/>` tag that was being shown on the pub.dev.
-* updated intercom_flutter pod version to `5.0.0`.
+* Updated README: Removed the `<br/>` tag that was being shown on the pub.dev.
+* Updated intercom_flutter pod version to `5.0.0`.
 
 ## 5.0.1
-* clear warning `PushInterceptService.java uses unchecked or unsafe operations.`
+* Clear warning `PushInterceptService.java uses unchecked or unsafe operations.`
 
 ## 5.0.0
 * Added web support
