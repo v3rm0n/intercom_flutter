@@ -221,7 +221,7 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     await _channel.invokeMethod('displayCarousel', {'carouselId': carouselId});
   }
 
-  /// convert the [PlatformException] details to [IntercomError].
+  /// Convert the [PlatformException] details to [IntercomError].
   /// From the Platform side if the intercom operation failed then error details
   /// will be sent as details in [PlatformException].
   IntercomError _convertExceptionToIntercomError(PlatformException e) {
