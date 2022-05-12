@@ -221,6 +221,11 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     await _channel.invokeMethod('displayCarousel', {'carouselId': carouselId});
   }
 
+  @override
+  Future<void> displaySurvey(String surveyId) async {
+    await _channel.invokeMethod('displaySurvey', {'surveyId': surveyId});
+  }
+
   /// Convert the [PlatformException] details to [IntercomError].
   /// From the Platform side if the intercom operation failed then error details
   /// will be sent as details in [PlatformException].

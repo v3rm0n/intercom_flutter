@@ -330,6 +330,8 @@ void main() {
 
       setUp(() {
         channel.setMockMethodCallHandler((MethodCall methodCall) async {
+          // TODO: fix this ignore
+          // ignore: unnecessary_non_null_assertion
           ServicesBinding.instance!.defaultBinaryMessenger
               .handlePlatformMessage(
             channelName,
@@ -369,6 +371,19 @@ void main() {
         <Matcher>[
           isMethodCall('displayCarousel', arguments: {
             'carouselId': testCarouselId,
+          })
+        ],
+      );
+    });
+
+    String testSurveyId = "123456";
+    test('displaySurvey', () async {
+      await intercom.displaySurvey(testSurveyId);
+      expect(
+        log,
+        <Matcher>[
+          isMethodCall('displaySurvey', arguments: {
+            'surveyId': testSurveyId,
           })
         ],
       );
