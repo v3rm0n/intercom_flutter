@@ -1,5 +1,10 @@
 # Changelog
 
+# 0.2.0
+
+- Updated dependency `intercom_flutter_platform_interface: ^1.2.0`.
+- Implemented `displaySurvey` [(startSurvey)](https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomstartsurvey-surveyid)
+
 # 0.1.0
 
 - Added method `loginIdentifiedUser` with `IntercomStatusCallback` support.
