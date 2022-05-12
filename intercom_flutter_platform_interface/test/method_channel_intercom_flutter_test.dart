@@ -373,6 +373,19 @@ void main() {
         ],
       );
     });
+
+    String testSurveyId = "123456";
+    test('displaySurvey', () async {
+      await intercom.displaySurvey(testSurveyId);
+      expect(
+        log,
+        <Matcher>[
+          isMethodCall('displaySurvey', arguments: {
+            'surveyId': testSurveyId,
+          })
+        ],
+      );
+    });
   });
 }
 
