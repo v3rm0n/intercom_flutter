@@ -110,5 +110,13 @@ void main() {
     testWidgets('testStream', (WidgetTester _) async {
       expect(plugin.getUnreadStream().first, completes);
     });
+
+    testWidgets('displayArticle', (WidgetTester _) async {
+      expect(plugin.displayArticle("123456"), completes);
+    });
+
+    testWidgets('displaySurvey', (WidgetTester _) async {
+      expect(plugin.displaySurvey("123456"), completes);
+    });
   });
 }
