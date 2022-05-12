@@ -209,6 +209,7 @@ void main() {
 
     setUp(() {
       channel.setMockMethodCallHandler((MethodCall methodCall) async {
+        // ignore: unnecessary_non_null_assertion
         ServicesBinding.instance!.defaultBinaryMessenger.handlePlatformMessage(
           channelName,
           const StandardMethodCodec().encodeSuccessEnvelope(value),
