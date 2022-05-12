@@ -227,6 +227,13 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
           result.success("displaying carousel $carouselId")
         }
       }
+      "displaySurvey" -> {
+        val surveyId = call.argument<String>("surveyId")
+        if (surveyId != null) {
+          Intercom.client().displaySurvey(surveyId)
+          result.success("displaying survey $surveyId")
+        }
+      }
       else -> result.notImplemented()
     }
   }

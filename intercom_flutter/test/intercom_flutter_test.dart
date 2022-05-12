@@ -243,4 +243,12 @@ void main() {
       'carouselId': testCarouselId,
     });
   });
+
+  test('displaySurvey', () async {
+    final String testSurveyId = "123456";
+    await Intercom.instance.displaySurvey(testSurveyId);
+    expectMethodCall('displaySurvey', arguments: {
+      'surveyId': testSurveyId,
+    });
+  });
 }

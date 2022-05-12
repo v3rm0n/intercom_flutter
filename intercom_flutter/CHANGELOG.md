@@ -1,5 +1,13 @@
 # Changelog
 
+## 7.2.0
+
+* Updated dependency `intercom_flutter_platform_interface: ^1.2.0`
+* Updated dependency `intercom_flutter_web: ^0.2.0`
+* Bump Intercom Android SDK version to 12.2.2
+* Bump Intercom iOS SDK version to 12.2.1
+* Implemented `displaySurvey`.
+
 ## 7.1.0
 
 * Implemented `displayArticle` for web ([#231](https://github.com/v3rm0n/intercom_flutter/pull/231)).

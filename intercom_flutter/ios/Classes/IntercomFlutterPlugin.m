@@ -188,6 +188,12 @@ id unread;
             [Intercom presentCarousel:carouselId];
             result(@"displaying carousel");
         }
+    } else if([@"displaySurvey" isEqualToString:call.method]) {
+        NSString *surveyId = call.arguments[@"surveyId"];
+        if(surveyId != (id)[NSNull null] && surveyId != nil) {
+            [Intercom presentSurvey:surveyId];
+            result(@"displaying survey");
+        }
     }
     else {
         result(FlutterMethodNotImplemented);
