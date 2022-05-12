@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.2.0
+
+- Added method `displaySurvey`.
+
 # 1.1.0
 
 - Added method `loginIdentifiedUser` with `IntercomStatusCallback` support.

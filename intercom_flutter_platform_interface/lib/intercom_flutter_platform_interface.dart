@@ -248,4 +248,13 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   Future<void> displayCarousel(String carouselId) {
     throw UnimplementedError('displayCarousel() has not been implemented.');
   }
+
+  /// To display a Survey, pass in a [surveyId] from your Intercom workspace.
+  ///
+  /// A survey must be ‘live’ to be used in this feature.
+  /// If it is in a draft or paused state,
+  /// end-users will see an error if the app tries to open the content.
+  Future<void> displaySurvey(String surveyId) {
+    throw UnimplementedError('displaySurvey() has not been implemented.');
+  }
 }
