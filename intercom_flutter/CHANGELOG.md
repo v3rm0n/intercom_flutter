@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.3.0
+
+* Bump Intercom Android SDK version to 12.4.2 ([#248](https://github.com/v3rm0n/intercom_flutter/pull/248))
+* Bump Intercom iOS SDK version to 12.4.2 ([#248](https://github.com/v3rm0n/intercom_flutter/pull/248))
+
 ## 7.2.0
 
 * Updated dependency `intercom_flutter_platform_interface: ^1.2.0`
