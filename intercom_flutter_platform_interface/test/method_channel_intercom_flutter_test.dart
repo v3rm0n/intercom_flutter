@@ -264,13 +264,16 @@ void main() {
     });
 
     test('updateUser', () async {
+      final company = <String, dynamic>{
+        'id': 'some_company_llc',
+        'name': 'Some Company LLC',
+      };
       await intercom.updateUser(
         email: 'test@example.com',
         name: 'John Doe',
         userId: '1',
         phone: '+37256123456',
-        company: 'Some Company LLC',
-        companyId: '2',
+        company: company,
         signedUpAt: 1590949800,
         language: 'en',
       );
@@ -282,8 +285,10 @@ void main() {
             'name': 'John Doe',
             'userId': '1',
             'phone': '+37256123456',
-            'company': 'Some Company LLC',
-            'companyId': '2',
+            'company': {
+              'id': 'some_company_llc',
+              'name': 'Some Company LLC',
+            },
             'signedUpAt': 1590949800,
             'language': 'en',
             'customAttributes': null,
