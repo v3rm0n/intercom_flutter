@@ -190,7 +190,7 @@ void main() {
         'phone': '+37256123456',
         'company': {
           'id': 'some_company_llc',
-          'name': 'Soma Company LLC',
+          'name': 'Some Company LLC',
           'customAttributes': {'test': 'test'},
           'createdAt': null,
           'monthlySpend': null,
