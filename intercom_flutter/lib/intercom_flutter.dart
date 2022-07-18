@@ -2,6 +2,7 @@ library intercom_flutter;
 
 import 'dart:async';
 
+import 'package:intercom_flutter/company.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
 import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 
@@ -10,6 +11,7 @@ export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_in
     show IntercomVisibility;
 export 'package:intercom_flutter_platform_interface/intercom_status_callback.dart'
     show IntercomStatusCallback, IntercomError;
+export 'company.dart' show Company;
 
 class Intercom {
   /// private constructor to not allow the object creation from outside.
@@ -107,8 +109,7 @@ class Intercom {
     String? email,
     String? name,
     String? phone,
-    String? company,
-    String? companyId,
+    Company? company,
     String? userId,
     int? signedUpAt,
     String? language,
@@ -119,8 +120,7 @@ class Intercom {
       email: email,
       name: name,
       phone: phone,
-      company: company,
-      companyId: companyId,
+      company: company != null ? mapToNativeParameters(company) : null,
       userId: userId,
       signedUpAt: signedUpAt,
       language: language,
