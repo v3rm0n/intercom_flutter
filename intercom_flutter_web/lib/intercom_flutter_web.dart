@@ -165,12 +165,37 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
         companyObj['name'] = company['name'] as String;
       }
 
-      if (company.containsKey("Country code")) {
-        companyObj['Country code'] = company['Country code'] as String;
+      if (company.containsKey("created_at")) {
+        companyObj['created_at'] = company['created_at'] as String;
       }
 
-      if (company.containsKey("Product")) {
-        companyObj['Product'] = company['Product'] as String;
+      if (company.containsKey("plan")) {
+        companyObj['plan'] = company['plan'] as String;
+      }
+
+      if (company.containsKey("monthly_spend")) {
+        companyObj['monthly_spend'] = company['monthly_spend'] as String;
+      }
+
+      if (company.containsKey("user_count")) {
+        companyObj['user_count'] = company['user_count'] as String;
+      }
+
+      if (company.containsKey("size")) {
+        companyObj['size'] = company['size'] as String;
+      }
+
+      if (company.containsKey("website")) {
+        companyObj['website'] = company['website'] as String;
+      }
+
+      if (company.containsKey("industry")) {
+        companyObj['industry'] = company['industry'] as String;
+      }
+
+      if (company.containsKey("customAttributes")) {
+        companyObj['customAttributes'] =
+            company['customAttributes'] as Map<String, dynamic>;
       }
 
       userAttributes['company'] = companyObj;
