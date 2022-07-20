@@ -129,8 +129,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     String? email,
     String? name,
     String? phone,
-    String? company,
-    String? companyId,
+    Map<String, dynamic>? company,
     String? userId,
     int? signedUpAt,
     String? language,
@@ -155,10 +154,24 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       userAttributes['user_id'] = userId;
     }
 
-    if (company != null && companyId != null) {
+    if (company != null) {
       Map<String, dynamic> companyObj = {};
-      companyObj['company_id'] = companyId;
-      companyObj['name'] = company;
+
+      if (company.containsKey("company_id")) {
+        companyObj['company_id'] = company['company_id'] as String;
+      }
+
+      if (company.containsKey("name")) {
+        companyObj['name'] = company['name'] as String;
+      }
+
+      if (company.containsKey("Country code")) {
+        companyObj['Country code'] = company['Country code'] as String;
+      }
+
+      if (company.containsKey("Product")) {
+        companyObj['Product'] = company['Product'] as String;
+      }
 
       userAttributes['company'] = companyObj;
     }
