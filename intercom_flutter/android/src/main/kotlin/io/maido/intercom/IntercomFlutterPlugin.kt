@@ -253,8 +253,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
     val email = call.argument<String>("email")
     val phone = call.argument<String>("phone")
     val userId = call.argument<String>("userId")
-    val company = call.argument<String>("company")
-    val companyId = call.argument<String>("companyId")
+    val company = call.argument<Map<String, Any?>>("company")
     val customAttributes = call.argument<Map<String, Any?>>("customAttributes")
     val signedUpAt = call.argument<Any?>("signedUpAt")
     val language = call.argument<String>("language")
@@ -277,10 +276,34 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       userAttributes.withUserId(userId)
     }
 
-    if (company != null && companyId != null) {
+    if (company != null) {
       val icmCompany = Company.Builder()
-      icmCompany.withName(company)
-      icmCompany.withCompanyId(companyId)
+
+      if (company.containsKey("id")) {
+        icmCompany.withCompanyId(company["id"] as String?)
+      }
+
+      if (company.containsKey("name")) {
+        icmCompany.withName(company["name"] as String?)
+      }
+
+      if (company.containsKey("customAttributes")) {
+        @Suppress("UNCHECKED_CAST")
+        val attributes = company["customAttributes"] as Map<String, *>
+        icmCompany.withCustomAttributes(attributes)
+      }
+
+      if (company.containsKey("createdAt")) {
+        icmCompany.withCreatedAt(company["createdAt"] as Long?)
+      }
+
+      if (company.containsKey("monthlySpend")) {
+        icmCompany.withMonthlySpend(company["monthlySpend"] as Int?)
+      }
+
+      if (company.containsKey("plan")) {
+        icmCompany.withPlan(company["plan"] as String?)
+      }
       userAttributes.withCompany(icmCompany.build())
     }
 
