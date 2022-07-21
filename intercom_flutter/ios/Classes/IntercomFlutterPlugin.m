@@ -237,8 +237,10 @@ id unread;
         if(name != (id)[NSNull null]) {
             company.name = name;
         }
-        NSDate *createdAt = companyDictionary[@"createdAt"];
-        if(createdAt != (id)[NSNull null]) {
+        NSNumber *millisecondsSinceEpoch = companyDictionary[@"createdAt"];
+        if(millisecondsSinceEpoch != (id)[NSNull null]) {
+            NSTimeInterval secondsSinceEpoch = millisecondsSinceEpoch.doubleValue / 1000.0;
+            NSDate *createdAt = [NSDate dateWithTimeIntervalSince1970: secondsSinceEpoch];
             company.createdAt = createdAt;
         }
         NSNumber *monthlySpend = companyDictionary[@"monthlySpend"];
