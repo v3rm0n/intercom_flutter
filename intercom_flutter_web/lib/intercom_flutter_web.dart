@@ -166,7 +166,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       }
 
       if (company.containsKey("created_at")) {
-        companyObj['created_at'] = company['created_at'] as String;
+        companyObj['created_at'] = company['created_at'] as int;
       }
 
       if (company.containsKey("plan")) {
@@ -174,15 +174,15 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       }
 
       if (company.containsKey("monthly_spend")) {
-        companyObj['monthly_spend'] = company['monthly_spend'] as String;
+        companyObj['monthly_spend'] = company['monthly_spend'] as int;
       }
 
       if (company.containsKey("user_count")) {
-        companyObj['user_count'] = company['user_count'] as String;
+        companyObj['user_count'] = company['user_count'] as int;
       }
 
       if (company.containsKey("size")) {
-        companyObj['size'] = company['size'] as String;
+        companyObj['size'] = company['size'] as int;
       }
 
       if (company.containsKey("website")) {
