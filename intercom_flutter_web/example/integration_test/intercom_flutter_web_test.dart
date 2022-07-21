@@ -95,8 +95,17 @@ void main() {
             company: {
               'company_id': 'Test id',
               'name': 'Some Company LLC',
-              'Country code': 'IT',
-              'Product': 'Host',
+              "created_at": 123,
+              "plan": "Host",
+              "monthly_spend": 1000,
+              "user_count": "Host",
+              "size": 300,
+              "website": "www.google.com",
+              "industry": "communications",
+              "customAttributes": {
+                "custom_attribute_1": "test a",
+                "custom_attribute_2": "test b",
+              }
             },
             signedUpAt: 1590949800,
             language: 'en',
