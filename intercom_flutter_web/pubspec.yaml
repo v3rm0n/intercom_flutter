@@ -23,8 +23,7 @@ dev_dependencies:
     sdk: flutter
   mockito: ^5.0.0
 
-# TODO - remove before publis`z
-  hing
+# TODO - remove before publishing
 dependency_overrides:
   intercom_flutter_platform_interface:
     path: ../intercom_flutter_platform_interface
