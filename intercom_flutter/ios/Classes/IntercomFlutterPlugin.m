@@ -226,12 +226,33 @@ id unread;
     if(userId != (id)[NSNull null]) {
         attributes.userId = userId;
     }
-    NSString *companyName = call.arguments[@"company"];
-    NSString *companyId = call.arguments[@"companyId"];
-    if(companyName != (id)[NSNull null] && companyId != (id)[NSNull null]) {
+    NSDictionary *companyDictionary = call.arguments[@"company"];
+    if(companyDictionary != (id)[NSNull null]) {
         ICMCompany *company = [ICMCompany new];
-        company.name = companyName;
-        company.companyId = companyId;
+        NSString *companyId = companyDictionary[@"id"];
+        if(companyId != (id)[NSNull null]) {
+            company.companyId = companyId;
+        }
+        NSString *name = companyDictionary[@"name"];
+        if(name != (id)[NSNull null]) {
+            company.name = name;
+        }
+        NSDate *createdAt = companyDictionary[@"createdAt"];
+        if(createdAt != (id)[NSNull null]) {
+            company.createdAt = createdAt;
+        }
+        NSNumber *monthlySpend = companyDictionary[@"monthlySpend"];
+        if(monthlySpend != (id)[NSNull null]) {
+            company.monthlySpend = monthlySpend;
+        }
+        NSString *plan = companyDictionary[@"plan"];
+        if(plan != (id)[NSNull null]) {
+            company.plan = plan;
+        }
+        NSDictionary<NSString *, id> *customAttributes = companyDictionary[@"customAttributes"];
+        if(customAttributes != (id)[NSNull null]) {
+            company.customAttributes = customAttributes;
+        }
         attributes.companies = @[company];
     }
     NSDictionary *customAttributes = call.arguments[@"customAttributes"];
