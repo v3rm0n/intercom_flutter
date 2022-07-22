@@ -17,12 +17,6 @@ dev_dependencies:
     sdk: flutter
   collection: ^1.17.2
 
-# TODO - remove before publishing
-dependency_overrides:
-  intercom_flutter_platform_interface:
-    path: ../intercom_flutter_platform_interface
-    version: ^1.2.0
-
 flutter:
   plugin:
     platforms:
