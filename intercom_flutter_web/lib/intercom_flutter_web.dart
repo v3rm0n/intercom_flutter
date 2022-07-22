@@ -129,8 +129,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     String? email,
     String? name,
     String? phone,
-    String? company,
-    String? companyId,
+    Map<String, dynamic>? company,
     String? userId,
     int? signedUpAt,
     String? language,
@@ -155,10 +154,49 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       userAttributes['user_id'] = userId;
     }
 
-    if (company != null && companyId != null) {
+    if (company != null) {
       Map<String, dynamic> companyObj = {};
-      companyObj['company_id'] = companyId;
-      companyObj['name'] = company;
+
+      if (company.containsKey("company_id")) {
+        companyObj['company_id'] = company['company_id'] as String;
+      }
+
+      if (company.containsKey("name")) {
+        companyObj['name'] = company['name'] as String;
+      }
+
+      if (company.containsKey("created_at")) {
+        companyObj['created_at'] = company['created_at'] as int;
+      }
+
+      if (company.containsKey("plan")) {
+        companyObj['plan'] = company['plan'] as String;
+      }
+
+      if (company.containsKey("monthly_spend")) {
+        companyObj['monthly_spend'] = company['monthly_spend'] as int;
+      }
+
+      if (company.containsKey("user_count")) {
+        companyObj['user_count'] = company['user_count'] as int;
+      }
+
+      if (company.containsKey("size")) {
+        companyObj['size'] = company['size'] as int;
+      }
+
+      if (company.containsKey("website")) {
+        companyObj['website'] = company['website'] as String;
+      }
+
+      if (company.containsKey("industry")) {
+        companyObj['industry'] = company['industry'] as String;
+      }
+
+      if (company.containsKey("customAttributes")) {
+        companyObj['customAttributes'] =
+            company['customAttributes'] as Map<String, dynamic>;
+      }
 
       userAttributes['company'] = companyObj;
     }

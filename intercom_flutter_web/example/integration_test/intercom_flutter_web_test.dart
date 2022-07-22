@@ -84,8 +84,21 @@ void main() {
             name: 'John Doe',
             userId: '1',
             phone: '+37256123456',
-            company: 'Some Company LLC',
-            companyId: '2',
+            company: {
+              'company_id': 'Test id',
+              'name': 'Some Company LLC',
+              "created_at": 123,
+              "plan": "premium",
+              "monthly_spend": 1000,
+              "user_count": 32,
+              "size": 300,
+              "website": "www.google.com",
+              "industry": "communications",
+              "customAttributes": {
+                "custom_attribute_1": "test a",
+                "custom_attribute_2": "test b",
+              }
+            },
             signedUpAt: 1590949800,
             language: 'en',
           ),

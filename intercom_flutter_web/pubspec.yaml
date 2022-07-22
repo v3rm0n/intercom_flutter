@@ -23,6 +23,12 @@ dev_dependencies:
     sdk: flutter
   mockito: ^5.0.0
 
+# TODO - remove before publishing
+dependency_overrides:
+  intercom_flutter_platform_interface:
+    path: ../intercom_flutter_platform_interface
+    version: ^1.2.0
+
 environment:
   sdk: '>=2.12.0 <3.0.0'
   flutter: ">=2.0.0"
