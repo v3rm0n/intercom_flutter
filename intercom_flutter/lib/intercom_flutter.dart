@@ -2,16 +2,16 @@ library intercom_flutter;
 
 import 'dart:async';
 
-import 'package:intercom_flutter/company.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
 import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
+import 'package:intercom_flutter_platform_interface/company.dart';
 
 /// export the [IntercomVisibility] enum
 export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart'
     show IntercomVisibility;
 export 'package:intercom_flutter_platform_interface/intercom_status_callback.dart'
     show IntercomStatusCallback, IntercomError;
-export 'company.dart' show Company;
+export 'package:intercom_flutter_platform_interface/company.dart' show Company;
 
 class Intercom {
   /// private constructor to not allow the object creation from outside.

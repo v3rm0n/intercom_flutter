@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+
+- Updated `company` parameter inside `updateUser` method.
+
 ## 2.0.0
 
 * Removed deprecated methods `registerIdentifiedUser` and `registerUnidentifiedUser`.

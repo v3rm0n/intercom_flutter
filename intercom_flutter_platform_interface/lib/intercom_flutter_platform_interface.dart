@@ -1,3 +1,4 @@
+import 'package:intercom_flutter_platform_interface/company.dart';
 import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 import 'package:intercom_flutter_platform_interface/method_channel_intercom_flutter.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
@@ -97,7 +98,7 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     String? email,
     String? name,
     String? phone,
-    Map<String, dynamic>? company,
+    Company? company,
     String? userId,
     int? signedUpAt,
     String? language,

@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:intercom_flutter_platform_interface/company.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
 import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 
@@ -80,7 +81,7 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     String? email,
     String? name,
     String? phone,
-    Map<String, dynamic>? company,
+    Company? company,
     String? userId,
     int? signedUpAt,
     String? language,

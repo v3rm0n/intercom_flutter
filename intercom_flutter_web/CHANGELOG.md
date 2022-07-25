@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2
+
+- Fixed `company` attribute mapping.
+- Updated dependency `intercom_flutter_platform_interface: ^1.3.0`
+
 ## 1.1.1
 
 * Updated window.intercomSettings as Map instead of JSObject.

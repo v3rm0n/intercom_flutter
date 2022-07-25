@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intercom_flutter_platform_interface/company.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
 import 'package:intercom_flutter_platform_interface/method_channel_intercom_flutter.dart';
 import 'package:mockito/mockito.dart';
@@ -285,10 +286,10 @@ void main() {
     });
 
     test('updateUser', () async {
-      final company = <String, dynamic>{
-        'id': 'some_company_llc',
-        'name': 'Some Company LLC',
-      };
+      final company = Company(
+        id: 'some_company_llc',
+        name: 'Some Company LLC',
+      );
       await intercom.updateUser(
         email: 'test@example.com',
         name: 'John Doe',

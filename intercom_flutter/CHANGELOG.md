@@ -1,5 +1,10 @@
 # Changelog
 
+
+## 9.0.10
+* Added `Company` model.
+* Extended `updateUser` method parameters with new `Company` model.
+
 ## 9.0.9
 
 * Bump Intercom Android SDK version to 15.10.2

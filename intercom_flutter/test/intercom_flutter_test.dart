@@ -171,7 +171,7 @@ void main() {
     test('updateUser', () {
       final company = Company(
         id: 'some_company_llc',
-        name: 'Soma Company LLC',
+        name: 'Some Company LLC',
         customAttributes: {'test': 'test'},
       );
       Intercom.instance.updateUser(
