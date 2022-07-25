@@ -1,5 +1,8 @@
 # Changelog
 
+# 1.3.0
+- Updated `company` parameter inside `updateUser` method.
+
 # 1.2.0
 
 - Added method `displaySurvey`.

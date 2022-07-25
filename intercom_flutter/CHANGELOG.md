@@ -1,5 +1,12 @@
 # Changelog
 
+## 7.4.0
+* Added `Company` model.
+* Extended `updateUser` method parameters with new `Company` model.
+* Updated dependency `intercom_flutter_platform_interface: ^1.3.0`
+* Updated dependency `intercom_flutter_web: ^0.3.0`
+
+
 ## 7.3.0
 
 * Bump Intercom Android SDK version to 12.4.2 ([#248](https://github.com/v3rm0n/intercom_flutter/pull/248))

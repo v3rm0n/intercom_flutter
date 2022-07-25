@@ -1,5 +1,9 @@
 # Changelog
 
+# 0.3.0
+- Fixed `company` attribute mapping.
+- Updated dependency `intercom_flutter_platform_interface: ^1.3.0`
+
 # 0.2.0
 
 - Updated dependency `intercom_flutter_platform_interface: ^1.2.0`.
