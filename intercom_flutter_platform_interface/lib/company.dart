@@ -1,10 +1,10 @@
 /// The Company class is used for adding companies to users in Intercom.
 /// You can use [updateUser] method for that.
 ///
-/// All of the fields are optional.
+/// [id] is required. All other fields are optional.
 
 class Company {
-  final String? id;
+  final String id;
   final String? name;
   final Map<String, dynamic>? customAttributes;
   final DateTime? createdAt;
@@ -12,7 +12,7 @@ class Company {
   final String? plan;
 
   Company({
-    this.id,
+    required this.id,
     this.name,
     this.customAttributes,
     this.createdAt,
