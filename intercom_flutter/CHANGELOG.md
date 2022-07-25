@@ -4,6 +4,9 @@
 ## 9.0.10
 * Added `Company` model.
 * Extended `updateUser` method parameters with new `Company` model.
+* Updated dependency `intercom_flutter_platform_interface: ^1.3.0`
+* Updated dependency `intercom_flutter_web: ^0.3.0`
+
 
 ## 9.0.9
 
