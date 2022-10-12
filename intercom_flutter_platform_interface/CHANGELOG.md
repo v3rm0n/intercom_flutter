@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.2.1
+
+- Updated dependencies
+
 # 1.2.0
 
 - Added method `displaySurvey`.
