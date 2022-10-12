@@ -1,5 +1,9 @@
 # Changelog
 
+# 0.2.1
+
+- Updated dependencies
+
 # 0.2.0
 
 - Updated dependency `intercom_flutter_platform_interface: ^1.2.0`.
