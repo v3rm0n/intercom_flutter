@@ -1,7 +1,6 @@
 package io.maido.intercom
 
 import android.app.Application
-import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -33,7 +32,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
   private val intercomPushClient = IntercomPushClient()
   private var unreadConversationCountListener: UnreadConversationCountListener? = null
 
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     val channel = MethodChannel(flutterPluginBinding.binaryMessenger, "maido.io/intercom")
     channel.setMethodCallHandler(IntercomFlutterPlugin())
     val unreadEventChannel = EventChannel(flutterPluginBinding.binaryMessenger, "maido.io/intercom/unread")
@@ -314,7 +313,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
     }
   }
 
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     if (unreadConversationCountListener != null) {
       Intercom.client().removeUnreadConversationCountListener(unreadConversationCountListener)
     }
