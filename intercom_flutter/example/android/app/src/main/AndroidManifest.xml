@@ -16,7 +16,7 @@
       android:icon="@mipmap/ic_launcher"
       android:label="intercom_example">
     <activity
-        android:name="io.flutter.embedding.android.FlutterFragmentActivity"
+        android:name=".MainActivity"
         android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
         android:hardwareAccelerated="true"
         android:exported="true"
