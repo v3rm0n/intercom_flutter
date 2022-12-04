@@ -16,7 +16,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   intercom_flutter_platform_interface: ^1.2.1
-  uuid: ^3.0.6 # to get the random uuid for registerUnidentifiedUser in web
+  uuid: ^3.0.7 # to get the random uuid for registerUnidentifiedUser in web
 
 dev_dependencies:
   flutter_test:

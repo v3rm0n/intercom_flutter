@@ -5,9 +5,9 @@
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android), [iOS](https://github.com/intercom/intercom-ios), and [Web](https://developers.intercom.com/installing-intercom/docs/basic-javascript) projects.
 
-- Uses Intercom Android SDK Version `14.0.0`.
+- Uses Intercom Android SDK Version `14.0.3`.
 - The minimum Android SDK `minSdkVersion` required is 21.
-- Uses Intercom iOS SDK Version `14.0.0`.
+- Uses Intercom iOS SDK Version `14.0.2`.
 - The minimum iOS target version required is 13.
 
 ## Usage
@@ -79,6 +79,7 @@ This plugin works in combination with the [`firebase_messaging`](https://pub.dev
 * Then, add the Firebase server key to Intercom, as described [here](https://developers.intercom.com/installing-intercom/docs/android-fcm-push-notifications#section-step-3-add-your-server-key-to-intercom-for-android-settings) (you can skip 1 and 2 as you have probably done them while configuring `firebase_messaging`)
 * Follow the steps as described [here](https://developers.intercom.com/installing-intercom/docs/ios-push-notifications) to enable push notification in iOS.
 * Starting from Android 13 you may need to ask for notification permissions (as of version 13 `firebase_messaging` should support that)
+* Make sure that your app's `MainActivity` extends `FlutterFragmentActivity` (you can check the example)
 * Ask FirebaseMessaging for the token that we need to send to Intercom, and give it to Intercom (so Intercom can send push messages to the correct device), please note that in order to receive push notifications in your iOS app, you have to send the APNS token to Intercom. The example below uses [`firebase_messaging`](https://pub.dev/packages/firebase_messaging) to get either the FCM or APNS token based on the platform:
 
 ```dart

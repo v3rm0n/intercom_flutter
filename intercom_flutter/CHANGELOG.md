@@ -1,5 +1,11 @@
 # Changelog
 
+## 7.6.1
+
+* Bump Intercom iOS SDK version to 14.0.2
+* Bump Intercom Android SDK version to 14.0.3
+* Added extra documentation to fix Android exception after background push notification is received ([#270](https://github.com/v3rm0n/intercom_flutter/issues/270#issuecomment-1330510979))
+
 ## 7.6.0
 
 * Bump Intercom iOS SDK version to 14.0.0 ([#269](https://github.com/v3rm0n/intercom_flutter/pull/269))
