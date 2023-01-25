@@ -148,6 +148,10 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         Intercom.client().present(IntercomSpace.HelpCenter)
         result.success("Launched")
       }
+      "displayMessagesSpace" -> {
+        Intercom.client().present(IntercomSpace.Messages)
+        result.success("Launched")
+      }
       "setInAppMessagesVisibility" -> {
         val visibility = call.argument<String>("visibility")
         if (visibility != null) {

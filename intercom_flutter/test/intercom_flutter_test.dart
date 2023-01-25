@@ -110,6 +110,11 @@ void main() {
       expectMethodCall('displayHelpCenter');
     });
 
+    test('displayMessagesSpace', () {
+      Intercom.instance.displayMessagesSpace();
+      expectMethodCall('displayMessagesSpace');
+    });
+
     test('unreadConversationCount', () {
       Intercom.instance.unreadConversationCount();
       expectMethodCall('unreadConversationCount');

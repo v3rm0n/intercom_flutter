@@ -21,6 +21,7 @@ But if you want to use this package as alone, first add the dependency `intercom
 - unreadConversationCount
 - setInAppMessagesVisibility
 - displayHelpCenter
+- displayMessagesSpace
 - sendTokenToIntercom
 - handlePushMessage
 - isIntercomPush
