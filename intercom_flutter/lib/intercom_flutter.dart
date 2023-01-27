@@ -198,8 +198,8 @@ class Intercom {
   }
 
   /// To display an Activity with your Messages content.
-  Future<void> displayMessagesSpace() {
-    return IntercomFlutterPlatform.instance.displayMessagesSpace();
+  Future<void> displayMessages() {
+    return IntercomFlutterPlatform.instance.displayMessages();
   }
 
   /// To log events in Intercom that record what users do in your app and when they do it.

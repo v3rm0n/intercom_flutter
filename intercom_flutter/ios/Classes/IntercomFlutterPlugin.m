@@ -127,7 +127,7 @@ id unread;
         [Intercom presentIntercom:helpCenter];
         result(@"Presented help center");
     }
-    else if([@"displayMessagesSpace" isEqualToString:call.method]) {
+    else if([@"displayMessages" isEqualToString:call.method]) {
         [Intercom presentIntercom:messages];
         result(@"Presented messages space");
     }

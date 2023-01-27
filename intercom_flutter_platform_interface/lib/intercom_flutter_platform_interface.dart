@@ -181,8 +181,8 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   }
 
   /// To display an Activity with your Messages content.
-  Future<void> displayMessagesSpace() {
-    throw UnimplementedError('displayMessagesSpace() has not been implemented.');
+  Future<void> displayMessages() {
+    throw UnimplementedError('displayMessages() has not been implemented.');
   }
 
   /// To log events in Intercom that record what users do in your app and when they do it.

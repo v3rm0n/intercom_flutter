@@ -163,8 +163,8 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   }
 
   @override
-  Future<void> displayMessagesSpace() async {
-    await _channel.invokeMethod('displayMessagesSpace');
+  Future<void> displayMessages() async {
+    await _channel.invokeMethod('displayMessages');
   }
 
   @override

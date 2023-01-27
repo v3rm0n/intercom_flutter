@@ -190,11 +190,11 @@ void main() {
       );
     });
 
-    test('displayMessagesSpace', () async {
-      await intercom.displayMessagesSpace();
+    test('displayMessages', () async {
+      await intercom.displayMessages();
       expect(
         log,
-        <Matcher>[isMethodCall('displayMessagesSpace', arguments: null)],
+        <Matcher>[isMethodCall('displayMessages', arguments: null)],
       );
     });
 
