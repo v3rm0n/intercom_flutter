@@ -1,6 +1,6 @@
 # Changelog
 
-# 7.6.3
+## 7.6.3
 
 * Added method `displayMessages`.
 
