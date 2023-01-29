@@ -190,6 +190,14 @@ void main() {
       );
     });
 
+    test('displayMessages', () async {
+      await intercom.displayMessages();
+      expect(
+        log,
+        <Matcher>[isMethodCall('displayMessages', arguments: null)],
+      );
+    });
+
     test('unreadConversationCount', () async {
       await intercom.unreadConversationCount();
       expect(

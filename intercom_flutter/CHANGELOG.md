@@ -1,5 +1,9 @@
 # Changelog
 
+# 7.6.3
+
+* Added method `displayMessages`.
+
 ## 7.6.2
 
 * Bump Intercom iOS SDK version to 14.0.6 ([#280](https://github.com/v3rm0n/intercom_flutter/pull/280))

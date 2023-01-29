@@ -197,6 +197,11 @@ class Intercom {
     return IntercomFlutterPlatform.instance.displayHelpCenter();
   }
 
+  /// To display an Activity with your Messages content.
+  Future<void> displayMessages() {
+    return IntercomFlutterPlatform.instance.displayMessages();
+  }
+
   /// To log events in Intercom that record what users do in your app and when they do it.
   /// For example, you can record when user opened a specific screen in your app.
   /// You can also pass [metaData] about the event.

@@ -163,6 +163,11 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   }
 
   @override
+  Future<void> displayMessages() async {
+    await _channel.invokeMethod('displayMessages');
+  }
+
+  @override
   Future<void> logEvent(String name, [Map<String, dynamic>? metaData]) async {
     await _channel
         .invokeMethod('logEvent', {'name': name, 'metaData': metaData});
