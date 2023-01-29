@@ -1,5 +1,9 @@
 # Changelog
 
+# 0.2.2
+
+- Added method `displayMessages`.
+
 # 0.2.1
 
 - Updated dependencies
