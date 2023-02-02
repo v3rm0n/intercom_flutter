@@ -1,7 +1,17 @@
 # Changelog
 
+<<<<<<< HEAD
 # 1.3.0
 - Updated `company` parameter inside `updateUser` method.
+=======
+# 1.2.2
+
+- Added method `displayMessages`.
+
+# 1.2.1
+
+- Updated dependencies
+>>>>>>> origin/master
 
 # 1.2.0
 

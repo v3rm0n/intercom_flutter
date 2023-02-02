@@ -116,7 +116,7 @@ id unread;
         result(@(count));
     }
     else if([@"displayMessenger" isEqualToString:call.method]) {
-        [Intercom presentMessenger];
+        [Intercom presentIntercom];
         result(@"Presented messenger");
     }
     else if([@"hideMessenger" isEqualToString:call.method]) {
@@ -124,8 +124,12 @@ id unread;
         result(@"Messenger hidden");
     }
     else if([@"displayHelpCenter" isEqualToString:call.method]) {
-        [Intercom presentHelpCenter];
+        [Intercom presentIntercom:helpCenter];
         result(@"Presented help center");
+    }
+    else if([@"displayMessages" isEqualToString:call.method]) {
+        [Intercom presentIntercom:messages];
+        result(@"Presented messages space");
     }
     else if([@"updateUser" isEqualToString:call.method]) {
         [Intercom updateUser:[self getAttributes:call] success:^{
@@ -179,19 +183,19 @@ id unread;
         NSString *articleId = call.arguments[@"articleId"];
         NSLog(@"%@", articleId);
         if(articleId != (id)[NSNull null] && articleId != nil) {
-            [Intercom presentArticle:articleId];
+            [Intercom presentContent:[IntercomContent articleWithId:articleId]];
             result(@"displaying article");
         }
     } else if([@"displayCarousel" isEqualToString:call.method]) {
         NSString *carouselId = call.arguments[@"carouselId"];
         if(carouselId != (id)[NSNull null] && carouselId != nil) {
-            [Intercom presentCarousel:carouselId];
+            [Intercom presentContent:[IntercomContent carouselWithId:carouselId]];
             result(@"displaying carousel");
         }
     } else if([@"displaySurvey" isEqualToString:call.method]) {
         NSString *surveyId = call.arguments[@"surveyId"];
         if(surveyId != (id)[NSNull null] && surveyId != nil) {
-            [Intercom presentSurvey:surveyId];
+            [Intercom presentContent:[IntercomContent surveyWithId:surveyId]];
             result(@"displaying survey");
         }
     }

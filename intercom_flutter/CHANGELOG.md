@@ -1,11 +1,44 @@
 # Changelog
 
-## 7.4.0
+## 7.6.4
+
 * Added `Company` model.
 * Extended `updateUser` method parameters with new `Company` model.
-* Updated dependency `intercom_flutter_platform_interface: ^1.3.0`
-* Updated dependency `intercom_flutter_web: ^0.3.0`
 
+## 7.6.3
+
+* Added method `displayMessages`.
+
+## 7.6.2
+
+* Bump Intercom iOS SDK version to 14.0.6 ([#280](https://github.com/v3rm0n/intercom_flutter/pull/280))
+* Bump Intercom Android SDK version to 14.0.4 ([#280](https://github.com/v3rm0n/intercom_flutter/pull/280))
+
+## 7.6.1
+
+* Bump Intercom iOS SDK version to 14.0.2
+* Bump Intercom Android SDK version to 14.0.3
+* Added extra documentation to fix Android exception after background push notification is received ([#270](https://github.com/v3rm0n/intercom_flutter/issues/270#issuecomment-1330510979))
+
+## 7.6.0
+
+* Bump Intercom iOS SDK version to 14.0.0 ([#269](https://github.com/v3rm0n/intercom_flutter/pull/269))
+* Bump Intercom Android SDK version to 14.0.0 ([#269](https://github.com/v3rm0n/intercom_flutter/pull/269))
+
+## 7.5.0
+
+* Bump Intercom iOS SDK version to 13.0.0
+* Bump Android `compileSdkVersion` to 33
+
+## 7.4.1
+
+* Bump Intercom Android SDK version to 12.5.1 [(#261)](https://github.com/v3rm0n/intercom_flutter/pull/261)
+* Android 13 support
+
+## 7.4.0
+
+* Bump Intercom Android SDK version to 12.4.3 ([#259](https://github.com/v3rm0n/intercom_flutter/pull/259))
+* Bump Intercom iOS SDK version to 12.4.3 ([#259](https://github.com/v3rm0n/intercom_flutter/pull/259))s
 
 ## 7.3.0
 
