@@ -1,10 +1,10 @@
 # Changelog
 
-<<<<<<< HEAD
 # 0.3.0
+- 
 - Fixed `company` attribute mapping.
 - Updated dependency `intercom_flutter_platform_interface: ^1.3.0`
-=======
+
 # 0.2.2
 
 - Added method `displayMessages`.
@@ -12,7 +12,6 @@
 # 0.2.1
 
 - Updated dependencies
->>>>>>> origin/master
 
 # 0.2.0
 
