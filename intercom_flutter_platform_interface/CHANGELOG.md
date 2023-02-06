@@ -1,5 +1,10 @@
 # Changelog
 
+
+# 1.3.0
+
+- Updated `company` parameter inside `updateUser` method.
+
 # 1.2.2
 
 - Added method `displayMessages`.

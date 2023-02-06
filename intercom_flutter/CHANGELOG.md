@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.6.4
+
+* Added `Company` model.
+* Extended `updateUser` method parameters with new `Company` model.
+
 ## 7.6.3
 
 * Added method `displayMessages`.
@@ -33,7 +38,7 @@
 ## 7.4.0
 
 * Bump Intercom Android SDK version to 12.4.3 ([#259](https://github.com/v3rm0n/intercom_flutter/pull/259))
-* Bump Intercom iOS SDK version to 12.4.3 ([#259](https://github.com/v3rm0n/intercom_flutter/pull/259))
+* Bump Intercom iOS SDK version to 12.4.3 ([#259](https://github.com/v3rm0n/intercom_flutter/pull/259))s
 
 ## 7.3.0
 
