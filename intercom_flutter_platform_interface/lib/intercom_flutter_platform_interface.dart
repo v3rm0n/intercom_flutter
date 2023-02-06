@@ -179,6 +179,11 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('displayHelpCenter() has not been implemented.');
   }
 
+  /// To display an Activity with your Messages content.
+  Future<void> displayMessages() {
+    throw UnimplementedError('displayMessages() has not been implemented.');
+  }
+
   /// To log events in Intercom that record what users do in your app and when they do it.
   /// For example, you can record when user opened a specific screen in your app.
   /// You can also pass [metaData] about the event.

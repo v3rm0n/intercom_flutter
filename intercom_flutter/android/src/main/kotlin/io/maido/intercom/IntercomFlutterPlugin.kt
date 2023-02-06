@@ -1,7 +1,6 @@
 package io.maido.intercom
 
 import android.app.Application
-import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -33,7 +32,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
   private val intercomPushClient = IntercomPushClient()
   private var unreadConversationCountListener: UnreadConversationCountListener? = null
 
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     val channel = MethodChannel(flutterPluginBinding.binaryMessenger, "maido.io/intercom")
     channel.setMethodCallHandler(IntercomFlutterPlugin())
     val unreadEventChannel = EventChannel(flutterPluginBinding.binaryMessenger, "maido.io/intercom/unread")
@@ -138,7 +137,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         }
       }
       "displayMessenger" -> {
-        Intercom.client().displayMessenger()
+        Intercom.client().present()
         result.success("Launched")
       }
       "hideMessenger" -> {
@@ -146,7 +145,11 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         result.success("Hidden")
       }
       "displayHelpCenter" -> {
-        Intercom.client().displayHelpCenter()
+        Intercom.client().present(IntercomSpace.HelpCenter)
+        result.success("Launched")
+      }
+      "displayMessages" -> {
+        Intercom.client().present(IntercomSpace.Messages)
         result.success("Launched")
       }
       "setInAppMessagesVisibility" -> {
@@ -180,7 +183,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       }
       "logEvent" -> {
         val name = call.argument<String>("name")
-        val metaData = call.argument<Map<String?, *>>("metaData")
+        val metaData = call.argument<Map<String, *>>("metaData")
         if (name != null) {
           Intercom.client().logEvent(name, metaData)
           result.success("Logged event")
@@ -216,21 +219,21 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       "displayArticle" -> {
         val articleId = call.argument<String>("articleId")
         if (articleId != null) {
-          Intercom.client().displayArticle(articleId)
+          Intercom.client().presentContent(IntercomContent.Article(articleId))
           result.success("displaying article $articleId")
         }
       }
       "displayCarousel" -> {
         val carouselId = call.argument<String>("carouselId")
         if (carouselId != null) {
-          Intercom.client().displayCarousel(carouselId)
+          Intercom.client().presentContent(IntercomContent.Carousel(carouselId))
           result.success("displaying carousel $carouselId")
         }
       }
       "displaySurvey" -> {
         val surveyId = call.argument<String>("surveyId")
         if (surveyId != null) {
-          Intercom.client().displaySurvey(surveyId)
+          Intercom.client().presentContent(IntercomContent.Survey(surveyId))
           result.success("displaying survey $surveyId")
         }
       }
@@ -337,7 +340,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
     }
   }
 
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
     if (unreadConversationCountListener != null) {
       Intercom.client().removeUnreadConversationCountListener(unreadConversationCountListener)
     }

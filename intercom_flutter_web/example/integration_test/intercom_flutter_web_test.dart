@@ -61,6 +61,10 @@ void main() {
       });
     });
 
+    testWidgets('displayMessages', (WidgetTester _) async {
+      expect(plugin.displayMessages(), completes);
+    });
+
     testWidgets('displayMessageComposer', (WidgetTester _) async {
       expect(plugin.displayMessageComposer("message"), completes);
     });

@@ -272,6 +272,12 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
   }
 
   @override
+  Future<void> displayMessages() async {
+    await js.context.callMethod('Intercom', ['showMessages']);
+    print("Launched the Messenger with the message list");
+  }
+
+  @override
   Future<void> setBottomPadding(int padding) async {
     await js.context.callMethod('Intercom', [
       'update',
