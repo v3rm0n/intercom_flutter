@@ -148,6 +148,15 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         Intercom.client().present(IntercomSpace.HelpCenter)
         result.success("Launched")
       }
+      "displayHelpCenterCollections" -> {
+        val collectionIds = call.argument<ArrayList<String>>("collectionIds")
+        Intercom.client().presentContent(
+          content = IntercomContent.HelpCenterCollections(
+            ids = collectionIds ?: emptyList()
+          )
+        )
+        result.success("Launched")
+      }
       "displayMessages" -> {
         Intercom.client().present(IntercomSpace.Messages)
         result.success("Launched")

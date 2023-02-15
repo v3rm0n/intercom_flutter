@@ -197,6 +197,17 @@ class Intercom {
     return IntercomFlutterPlatform.instance.displayHelpCenter();
   }
 
+  /// To display an Activity with your Help Center content for specific collections.
+  ///
+  /// Make sure Help Center is turned on.
+  /// If you don't have Help Center enabled in your Intercom settings the method
+  /// displayHelpCenterCollections will fail to load.
+  /// The [collectionIds] you want to display.
+  Future<void> displayHelpCenterCollections(List<String> collectionIds) {
+    return IntercomFlutterPlatform.instance
+        .displayHelpCenterCollections(collectionIds);
+  }
+
   /// To display an Activity with your Messages content.
   Future<void> displayMessages() {
     return IntercomFlutterPlatform.instance.displayMessages();

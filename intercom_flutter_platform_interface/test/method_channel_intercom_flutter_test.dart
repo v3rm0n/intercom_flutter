@@ -190,6 +190,18 @@ void main() {
       );
     });
 
+    test('displayHelpCenter', () async {
+      final collectionIds = ['collectionId1', 'collectionId2'];
+      await intercom.displayHelpCenterCollections(collectionIds);
+      expect(
+        log,
+        <Matcher>[
+          isMethodCall('displayHelpCenterCollections',
+              arguments: {'collectionIds': collectionIds})
+        ],
+      );
+    });
+
     test('displayMessages', () async {
       await intercom.displayMessages();
       expect(

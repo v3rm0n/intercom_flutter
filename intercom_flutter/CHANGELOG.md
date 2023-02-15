@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.6.4
+
+* Added method `displayHelpCenterCollections`.
+
 ## 7.6.3
 
 * Added method `displayMessages`.
