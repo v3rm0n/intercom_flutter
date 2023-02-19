@@ -1,5 +1,9 @@
 # Changelog
 
+# 0.2.3
+
+- Updated dependency `intercom_flutter_platform_interface: ^1.2.3`.
+
 # 0.2.2
 
 - Added method `displayMessages`.
