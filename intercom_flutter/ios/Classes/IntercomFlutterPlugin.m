@@ -127,6 +127,15 @@ id unread;
         [Intercom presentIntercom:helpCenter];
         result(@"Presented help center");
     }
+    else if([@"displayHelpCenterCollections" isEqualToString:call.method]) {
+        NSArray *collectionIds = call.arguments[@"collectionIds"];
+        if(collectionIds != (id)[NSNull null] && collectionIds != nil) {
+            [Intercom presentContent:[IntercomContent helpCenterCollectionsWithIds:collectionIds]];
+        } else {
+            [Intercom presentContent:[IntercomContent helpCenterCollectionsWithIds:@[]]];
+        }
+        result(@"Presented help center collections");
+    }
     else if([@"displayMessages" isEqualToString:call.method]) {
         [Intercom presentIntercom:messages];
         result(@"Presented messages space");

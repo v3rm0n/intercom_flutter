@@ -163,6 +163,12 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   }
 
   @override
+  Future<void> displayHelpCenterCollections(List<String> collectionIds) {
+    return _channel.invokeMethod(
+        'displayHelpCenterCollections', {'collectionIds': collectionIds});
+  }
+
+  @override
   Future<void> displayMessages() async {
     await _channel.invokeMethod('displayMessages');
   }

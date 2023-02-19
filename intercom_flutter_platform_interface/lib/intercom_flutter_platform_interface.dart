@@ -180,6 +180,17 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('displayHelpCenter() has not been implemented.');
   }
 
+  /// To display an Activity with your Help Center content for specific collections.
+  ///
+  /// Make sure Help Center is turned on.
+  /// If you don't have Help Center enabled in your Intercom settings the method
+  /// displayHelpCenterCollections will fail to load.
+  /// The [collectionIds] you want to display.
+  Future<void> displayHelpCenterCollections(List<String> collectionIds) {
+    throw UnimplementedError(
+        'displayHelpCenterCollections() has not been implemented.');
+  }
+
   /// To display an Activity with your Messages content.
   Future<void> displayMessages() {
     throw UnimplementedError('displayMessages() has not been implemented.');

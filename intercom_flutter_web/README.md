@@ -26,6 +26,7 @@ But if you want to use this package as alone, first add the dependency `intercom
 - isIntercomPush
 - handlePush
 - displayCarousel
+- displayHelpCenterCollections
 
 [1]: ../intercom_flutter
 

@@ -110,6 +110,13 @@ void main() {
       expectMethodCall('displayHelpCenter');
     });
 
+    test('displayHelpCenterCollections', () {
+      final collectionIds = ['collection1', 'collection2'];
+      Intercom.instance.displayHelpCenterCollections(collectionIds);
+      expectMethodCall('displayHelpCenterCollections',
+          arguments: {'collectionIds': collectionIds});
+    });
+
     test('displayMessages', () {
       Intercom.instance.displayMessages();
       expectMethodCall('displayMessages');

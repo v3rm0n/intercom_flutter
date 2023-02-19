@@ -1,5 +1,9 @@
 # Changelog
 
+# 1.2.3
+
+- Added method `displayHelpCenterCollections`.
+
 # 1.2.2
 
 - Added method `displayMessages`.
