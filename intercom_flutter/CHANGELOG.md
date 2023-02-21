@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.6.5
+
+* Bump Intercom iOS SDK version to 14.0.7 ([#289](https://github.com/v3rm0n/intercom_flutter/pull/289))
+* Bump Intercom Android SDK version to 14.0.5 ([#289](https://github.com/v3rm0n/intercom_flutter/pull/289))
+
 ## 7.6.4
 
 * Added method `displayHelpCenterCollections`.
