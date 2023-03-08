@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.6.6
+
+* Bump Intercom Android SDK version to 14.0.6
+* Removed documentation of using `FlutterFragmentActivity` which was added in version 7.6.1 as it is not required now.
+
 ## 7.6.5
 
 * Bump Intercom iOS SDK version to 14.0.7 ([#289](https://github.com/v3rm0n/intercom_flutter/pull/289))
