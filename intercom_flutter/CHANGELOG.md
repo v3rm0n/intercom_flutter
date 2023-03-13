@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.6.7
+
+* Bump Intercom Android SDK version to 14.1.0
+
 ## 7.6.6
 
 * Bump Intercom Android SDK version to 14.0.6
