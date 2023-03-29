@@ -27,6 +27,11 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       val unreadEventChannel = EventChannel(registrar.messenger(), "maido.io/intercom/unread")
       unreadEventChannel.setStreamHandler(IntercomFlutterPlugin())
     }
+
+    @JvmStatic
+    fun initSdk(application: Application, appId: String, androidApiKey: String) {
+      Intercom.initialize(application, apiKey = androidApiKey, appId = appId)
+    }
   }
 
   private val intercomPushClient = IntercomPushClient()
