@@ -24,6 +24,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     // initialize the Intercom.
     // make sure to add keys from your Intercom workspace.
+    // don't forget to set up the custom application class on Android side.
     await Intercom.instance.initialize('appIdHere', iosApiKey: 'iosKeyHere', androidApiKey: 'androidKeyHere');
     runApp(App());
 }
@@ -67,6 +68,40 @@ Enable AndroidX + Jetifier support in your android/gradle.properties file (see e
 ```
 android.useAndroidX=true
 android.enableJetifier=true
+```
+
+According to the documentation, Intercom must be initialized in the Application onCreate. So follow the below steps to achieve the same:
+- Setup custom application class if you don't have any.
+    - Create a custom `android.app.Application` class named `MyApp`.
+    - Add an `onCreate()` override. The class should look like this:
+    ```kotlin
+    import android.app.Application
+
+    class MyApp: Application() {
+
+        override fun onCreate() {
+            super.onCreate()
+        }
+    }
+    ```
+    - Open your `AndroidManifest.xml` and find the `application` tag. In it, add an `android:name` attribute, and set the value to your class' name, prefixed by a dot (.).
+    ```xml
+    <application
+      android:name=".MyApp" >
+    ```
+- Now initialize the Intercom SDK inside the `onCreate()` of custom application class according to the following:
+```kotlin
+import android.app.Application
+import io.maido.intercom.IntercomFlutterPlugin
+
+class MyApp : Application() {
+  override fun onCreate() {
+    super.onCreate()
+
+    // Add this line with your keys
+    IntercomFlutterPlugin.initSdk(this, appId = "appId", androidApiKey = "androidApiKey")
+  }
+}
 ```
 
 ### iOS

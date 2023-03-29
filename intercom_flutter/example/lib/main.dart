@@ -9,6 +9,7 @@ void main() async {
     androidApiKey: 'androidApiKey',
     iosApiKey: 'iosApiKey',
   );
+  // TODO: don't forget to set up the custom application class on Android side.
   runApp(SampleApp());
 }
 
