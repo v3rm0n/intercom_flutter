@@ -34,7 +34,7 @@ jobs:
 
     # Check for any formatting issues in the code.
     - name: check code format
-      run: flutter format --set-exit-if-changed .
+      run: dart format --set-exit-if-changed .
       working-directory: ${{env.source-directory}}
 
     # Run Flutter Analyzer
@@ -69,7 +69,7 @@ jobs:
 
     # Check for any formatting issues in the code.
     - name: check code format
-      run: flutter format --set-exit-if-changed .
+      run: dart format --set-exit-if-changed .
       working-directory: ${{env.source-directory}}
 
     # Run Flutter Analyzer
@@ -116,7 +116,7 @@ jobs:
 
     # Check for any formatting issues in the code.
     - name: check code format
-      run: flutter format --set-exit-if-changed .
+      run: dart format --set-exit-if-changed .
       working-directory: ${{env.source-directory}}
 
     # Run Flutter Analyzer
