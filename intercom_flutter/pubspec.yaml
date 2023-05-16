@@ -15,7 +15,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  collection: ^1.17.2
+  collection: ^1.17.1
 
 flutter:
   plugin:
