@@ -33,7 +33,8 @@ void main() {
   group('$MethodChannelIntercomFlutter', () {
     const MethodChannel channel = MethodChannel('maido.io/intercom');
     final List<MethodCall> log = <MethodCall>[];
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
       log.add(methodCall);
 
       // Return null explicitly instead of relying on the implicit null
@@ -349,20 +350,21 @@ void main() {
       final int value = 9;
 
       setUp(() {
-        channel.setMockMethodCallHandler((MethodCall methodCall) async {
-          // TODO: fix this ignore
-          // ignore: unnecessary_non_null_assertion
-          ServicesBinding.instance!.defaultBinaryMessenger
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
               .handlePlatformMessage(
             channelName,
             const StandardMethodCodec().encodeSuccessEnvelope(value),
             (ByteData? data) {},
           );
+          return;
         });
       });
 
       tearDown(() {
-        channel.setMockMethodCallHandler(null);
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, null);
       });
 
       test('testStream', () async {
