@@ -220,19 +220,21 @@ void main() {
     final int value = 9;
 
     setUp(() {
-      channel.setMockMethodCallHandler((MethodCall methodCall) async {
-        // TODO: fix this ignore
-        // ignore: unnecessary_non_null_assertion
-        ServicesBinding.instance!.defaultBinaryMessenger.handlePlatformMessage(
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .handlePlatformMessage(
           channelName,
           const StandardMethodCodec().encodeSuccessEnvelope(value),
           (ByteData? data) {},
         );
+        return;
       });
     });
 
     tearDown(() {
-      channel.setMockMethodCallHandler(null);
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, null);
     });
 
     test('testStream', () async {
