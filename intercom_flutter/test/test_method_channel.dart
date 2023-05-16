@@ -9,13 +9,15 @@ var _expectCounter = 0;
 
 void setUpTestMethodChannel(String methodChannel) {
   final channel = MethodChannel(methodChannel);
-  channel.setMockMethodCallHandler((methodCall) async {
+  TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+      .setMockMethodCallHandler(channel, (methodCall) async {
     _log.add(methodCall);
     final matchingStubbing =
         _responses.keys.firstWhereOrNull((s) => s.matches(methodCall));
     if (matchingStubbing != null) {
       return _responses[matchingStubbing];
     }
+    return;
   });
   addTearDown(() {
     _log.clear();
