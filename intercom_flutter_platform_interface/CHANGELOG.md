@@ -1,42 +1,46 @@
 # Changelog
 
-# 1.2.3
+## 1.3.0
 
-- Added method `displayHelpCenterCollections`.
+* Update minimum Dart version to Dart 3.
 
-# 1.2.2
+## 1.2.3
 
-- Added method `displayMessages`.
+* Added method `displayHelpCenterCollections`.
 
-# 1.2.1
+## 1.2.2
 
-- Updated dependencies
+* Added method `displayMessages`.
 
-# 1.2.0
+## 1.2.1
 
-- Added method `displaySurvey`.
+* Updated dependencies
 
-# 1.1.0
+## 1.2.0
 
-- Added method `loginIdentifiedUser` with `IntercomStatusCallback` support.
-- Deprecated `registerIdentifiedUser` in favor of `loginIdentifiedUser`.
-- Added method `loginUnidentifiedUser` with `IntercomStatusCallback` support.
-- Deprecated `registerUnidentifiedUser` in favor of `loginUnidentifiedUser`.
-- Added parameter `statusCallback` in `updateUser` to support `IntercomStatusCallback`.
-- Renamed the following methods in the MethodChannel:
-    - `registerIdentifiedUserWithUserId` to `loginIdentifiedUserWithUserId`.
-    - `regsiterIdentifiedUserWithEmail` to `loginIdentifiedUserWithEmail`.
-    - `registerUnidentifiedUser` to `loginUnidentifiedUser`.
+* Added method `displaySurvey`.
 
-# 1.0.1
+## 1.1.0
 
-- Added API documentation.
+* Added method `loginIdentifiedUser` with `IntercomStatusCallback` support.
+* Deprecated `registerIdentifiedUser` in favor of `loginIdentifiedUser`.
+* Added method `loginUnidentifiedUser` with `IntercomStatusCallback` support.
+* Deprecated `registerUnidentifiedUser` in favor of `loginUnidentifiedUser`.
+* Added parameter `statusCallback` in `updateUser` to support `IntercomStatusCallback`.
+* Renamed the following methods in the MethodChannel:
+  * `registerIdentifiedUserWithUserId` to `loginIdentifiedUserWithUserId`.
+  * `regsiterIdentifiedUserWithEmail` to `loginIdentifiedUserWithEmail`.
+  * `registerUnidentifiedUser` to `loginUnidentifiedUser`.
 
-# 1.0.0
+## 1.0.1
 
-- displayCarousel
-- displayArticle
+* Added API documentation.
 
-# 0.0.1
+## 1.0.0
 
-- Initial open source release
+* displayCarousel
+* displayArticle
+
+## 0.0.1
+
+* Initial open source release
