@@ -15,7 +15,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  collection: ^1.16.0
+  collection: ^1.17.1
 
 flutter:
   plugin:
@@ -29,5 +29,4 @@ flutter:
         default_package: intercom_flutter_web
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=3.0.0 <4.0.0"
