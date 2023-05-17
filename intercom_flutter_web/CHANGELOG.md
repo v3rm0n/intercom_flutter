@@ -1,47 +1,51 @@
 # Changelog
 
-# 0.2.3
+## 0.3.0
 
-- Updated dependency `intercom_flutter_platform_interface: ^1.2.3`.
+* Update minimum Dart version to Dart 3.
 
-# 0.2.2
+## 0.2.3
 
-- Added method `displayMessages`.
+* Updated dependency `intercom_flutter_platform_interface: ^1.2.3`.
 
-# 0.2.1
+## 0.2.2
 
-- Updated dependencies
+* Added method `displayMessages`.
 
-# 0.2.0
+## 0.2.1
 
-- Updated dependency `intercom_flutter_platform_interface: ^1.2.0`.
-- Implemented `displaySurvey` [(startSurvey)](https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomstartsurvey-surveyid)
+* Updated dependencies
 
-# 0.1.0
+## 0.2.0
 
-- Added method `loginIdentifiedUser` with `IntercomStatusCallback` support.
-- Deprecated `registerIdentifiedUser` in favor of `loginIdentifiedUser`.
-- Added method `loginUnidentifiedUser` with `IntercomStatusCallback` support.
-- Deprecated `registerUnidentifiedUser` in favor of `loginUnidentifiedUser`.
-- Added parameter `statusCallback` in updateUser to support `IntercomStatusCallback`.
-- Updated `intercom_flutter_platform_interface` version to `1.1.0`.
+* Updated dependency `intercom_flutter_platform_interface: ^1.2.0`.
+* Implemented `displaySurvey` [(startSurvey)](https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomstartsurvey-surveyid)
 
-# 0.0.5
+## 0.1.0
 
-- Implemented `displayArticle` [(showArticle)](https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomshowarticle-articleid)
+* Added method `loginIdentifiedUser` with `IntercomStatusCallback` support.
+* Deprecated `registerIdentifiedUser` in favor of `loginIdentifiedUser`.
+* Added method `loginUnidentifiedUser` with `IntercomStatusCallback` support.
+* Deprecated `registerUnidentifiedUser` in favor of `loginUnidentifiedUser`.
+* Added parameter `statusCallback` in updateUser to support `IntercomStatusCallback`.
+* Updated `intercom_flutter_platform_interface` version to `1.1.0`.
 
-# 0.0.4
+## 0.0.5
 
-- Updated dependency `intercom_flutter_platform_interface: ^1.0.1`
+* Implemented `displayArticle` [(showArticle)](https://developers.intercom.com/installing-intercom/docs/intercom-javascript#intercomshowarticle-articleid)
 
-# 0.0.3
+## 0.0.4
 
-- Resolved issue [#173](https://github.com/v3rm0n/intercom_flutter/issues/173)
+* Updated dependency `intercom_flutter_platform_interface: ^1.0.1`
 
-# 0.0.2
+## 0.0.3
 
-- Updated dependency intercom_flutter_platform_interface: ^1.0.0
+* Resolved issue [#173](https://github.com/v3rm0n/intercom_flutter/issues/173)
 
-# 0.0.1
+## 0.0.2
 
-- Initial open source release
+* Updated dependency intercom_flutter_platform_interface: ^1.0.0
+
+## 0.0.1
+
+* Initial open source release
