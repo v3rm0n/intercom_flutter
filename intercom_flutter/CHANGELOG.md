@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.8.0
+
+* Bump Intercom iOS SDK version to 15.0.0
+* Bump Intercom Android SDK version to 15.0.0
+
 ## 7.7.0
 
 * Update minimum Dart version to Dart 3.
