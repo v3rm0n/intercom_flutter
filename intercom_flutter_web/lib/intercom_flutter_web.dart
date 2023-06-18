@@ -228,6 +228,12 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
   }
 
   @override
+  Future<void> displayHelpCenter() async {
+    await js.context.callMethod('Intercom', ['showSpace', 'help']);
+    print("Launched the Help Center");
+  }
+
+  @override
   Future<void> displayMessageComposer(String message) async {
     await js.context.callMethod('Intercom', ['showNewMessage', message]);
     print("Message composer displayed");
