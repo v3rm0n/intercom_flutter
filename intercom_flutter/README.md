@@ -165,7 +165,7 @@ String iOSKey = String.fromEnvironment("INTERCOM_IOS_KEY", "");
 Intercom.instance.initialize(appId, iosApiKey: iOSKey, androidApiKey: androidKey);
 ```
 
-### Reading keys in android native side and initialize the SDK.
+### Reading keys in Android native side and initialize the SDK.
 
 * Add the following code to `build.gradle`.
 ```
