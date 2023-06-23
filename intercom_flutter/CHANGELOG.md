@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.8.1
+
+* Implemented method `displayHelpCenter` for web.
+
 ## 7.8.0
 
 * Bump Intercom iOS SDK version to 15.0.0
