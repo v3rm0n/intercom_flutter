@@ -145,3 +145,60 @@ Add the below script inside body tag in the index.html file located under web fo
 - [ ] handlePush
 - [ ] displayCarousel
 - [ ] displayHelpCenterCollections
+
+## Using of intercom keys with --dart-define
+
+Use `--dart-define` variables to avoid hardcoding Intercom keys. 
+
+### Pass the Intercom keys with `flutter run` command using `--dart-define`.
+```dart
+flutter run --dart-define="INTERCOM_APP_ID=appID" --dart-define="INTERCOM_ANDROID_KEY=androidKey" --dart-define="INTERCOM_IOS_KEY=iosKey"
+```
+Note: You can also use `--dart-define-from-file` which is introduced in Flutter 3.7.
+
+### Reading keys in dart side and initialize the SDK.
+```dart
+String appId = String.fromEnvironment("INTERCOM_APP_ID", "");
+String androidKey = String.fromEnvironment("INTERCOM_ANDROID_KEY", "");
+String iOSKey = String.fromEnvironment("INTERCOM_IOS_KEY", "");
+
+Intercom.instance.initialize(appId, iosApiKey: iOSKey, androidApiKey: androidKey);
+```
+
+### Reading keys in android native side and initialize the SDK.
+
+* Add the following code to `build.gradle`.
+```
+def dartEnvironmentVariables = []
+if (project.hasProperty('dart-defines')) {
+  dartEnvironmentVariables = project.property('dart-defines')
+      .split(',')
+      .collectEntries { entry ->
+        def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
+        [(pair.first()): pair.last()]
+      }
+}
+```
+
+* Place dartEnvironmentVariables inside the BuildConfig
+```
+defaultConfig {
+    ...
+    buildConfigField 'String', 'INTERCOM_APP_ID', "\"${dartEnvironmentVariables.INTERCOM_APP_ID}\""
+    buildConfigField 'String', 'INTERCOM_ANDROID_KEY', "\"${dartEnvironmentVariables.INTERCOM_ANDROID_KEY}\""
+}
+```
+* Read the BuildConfig fields
+```kotlin
+import android.app.Application
+import io.maido.intercom.IntercomFlutterPlugin
+class MyApp : Application() {
+  override fun onCreate() {
+    super.onCreate()
+    // Add this line with your keys
+    IntercomFlutterPlugin.initSdk(this, 
+      appId = BuildConfig.INTERCOM_APP_ID, 
+      androidApiKey = BuildConfig.INTERCOM_ANDROID_KEY)
+  }
+}
+```
