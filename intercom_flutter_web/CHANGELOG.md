@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+* Implemented method `displayHelpCenter`.
+
 ## 0.3.0
 
 * Update minimum Dart version to Dart 3.
