@@ -150,7 +150,7 @@ Add the below script inside body tag in the index.html file located under web fo
 
 Use `--dart-define` variables to avoid hardcoding Intercom keys. 
 
-### Pass the Intercom keys with `flutter run` command using `--dart-define`.
+### Pass the Intercom keys with `flutter run` or `flutter build` command using `--dart-define`.
 ```dart
 flutter run --dart-define="INTERCOM_APP_ID=appID" --dart-define="INTERCOM_ANDROID_KEY=androidKey" --dart-define="INTERCOM_IOS_KEY=iosKey"
 ```
