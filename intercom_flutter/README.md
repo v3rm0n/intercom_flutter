@@ -188,7 +188,8 @@ defaultConfig {
     buildConfigField 'String', 'INTERCOM_ANDROID_KEY', "\"${dartEnvironmentVariables.INTERCOM_ANDROID_KEY}\""
 }
 ```
-* Read the BuildConfig fields
+
+* Read the build config fields
 ```kotlin
 import android.app.Application
 import android.os.Build
