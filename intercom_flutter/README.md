@@ -104,6 +104,50 @@ class MyApp : Application() {
 }
 ```
 
+Use `--dart-define` variables to avoid hardcoding Intercom tokens:
+
+Add the following code to `build.gradle`. 
+```
+def dartEnvironmentVariables = []
+if (project.hasProperty('dart-defines')) {
+  dartEnvironmentVariables = project.property('dart-defines')
+      .split(',')
+      .collectEntries { entry ->
+        def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
+        [(pair.first()): pair.last()]
+      }
+}
+```
+
+Place dartEnvironmentVariables inside the BuildConfig
+
+```
+defaultConfig {
+    ...
+
+    buildConfigField 'String', 'APP_ID', "\"${dartEnvironmentVariables.APP_ID}\""
+    buildConfigField 'String', 'ANDROID_TOKEN', "\"${dartEnvironmentVariables.ANDROID_TOKEN}\""
+}
+```
+
+Read the BuildConfig fields
+
+```kotlin
+import android.app.Application
+import io.maido.intercom.IntercomFlutterPlugin
+
+class MyApp : Application() {
+  override fun onCreate() {
+    super.onCreate()
+
+    // Add this line with your keys
+    IntercomFlutterPlugin.initSdk(this, 
+      appId = BuildConfig.APP_ID, 
+      androidApiKey = BuildConfig.ANDROID_TOKEN)
+  }
+}
+```
+
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
 
