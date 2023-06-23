@@ -180,7 +180,7 @@ if (project.hasProperty('dart-defines')) {
 }
 ```
 
-* Place dartEnvironmentVariables inside the BuildConfig
+* Place `dartEnvironmentVariables` inside the build config
 ```
 defaultConfig {
     ...
