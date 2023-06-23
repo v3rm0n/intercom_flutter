@@ -104,8 +104,6 @@ class MyApp : Application() {
 }
 ```
 
-
-
 ### iOS
 Make sure that you have a `NSPhotoLibraryUsageDescription` entry in your `Info.plist`.
 
