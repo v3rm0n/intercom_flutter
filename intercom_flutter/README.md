@@ -191,10 +191,13 @@ defaultConfig {
 * Read the BuildConfig fields
 ```kotlin
 import android.app.Application
+import android.os.Build
 import io.maido.intercom.IntercomFlutterPlugin
+
 class MyApp : Application() {
   override fun onCreate() {
     super.onCreate()
+    
     // Add this line with your keys
     IntercomFlutterPlugin.initSdk(this, 
       appId = BuildConfig.INTERCOM_APP_ID, 
