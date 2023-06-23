@@ -139,7 +139,6 @@ Add the below script inside body tag in the index.html file located under web fo
 
 - [ ] unreadConversationCount
 - [ ] setInAppMessagesVisibility
-- [ ] displayHelpCenter
 - [ ] sendTokenToIntercom
 - [ ] handlePushMessage
 - [ ] isIntercomPush
