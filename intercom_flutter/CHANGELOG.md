@@ -3,6 +3,8 @@
 ## 7.8.1
 
 * Implemented method `displayHelpCenter` for web.
+* Bump Intercom iOS SDK version to 15.0.1
+* Bump Intercom Android SDK version to 15.1.1
 
 ## 7.8.0
 
