@@ -146,7 +146,7 @@ Add the below script inside body tag in the index.html file located under web fo
 - [ ] displayCarousel
 - [ ] displayHelpCenterCollections
 
-## Using intercom keys with `--dart-define`
+## Using Intercom keys with `--dart-define`
 
 Use `--dart-define` variables to avoid hardcoding Intercom keys. 
 
