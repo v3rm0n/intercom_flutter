@@ -156,7 +156,7 @@ flutter run --dart-define="INTERCOM_APP_ID=appID" --dart-define="INTERCOM_ANDROI
 ```
 Note: You can also use `--dart-define-from-file` which is introduced in Flutter 3.7.
 
-### Reading keys in dart side and initialize the SDK.
+### Reading keys in Dart side and initialize the SDK.
 ```dart
 String appId = String.fromEnvironment("INTERCOM_APP_ID", "");
 String androidKey = String.fromEnvironment("INTERCOM_ANDROID_KEY", "");
