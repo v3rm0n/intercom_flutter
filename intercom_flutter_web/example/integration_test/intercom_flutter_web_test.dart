@@ -65,6 +65,10 @@ void main() {
       expect(plugin.displayMessages(), completes);
     });
 
+    testWidgets('displayHelpCenter', (WidgetTester _) async {
+      expect(plugin.displayHelpCenter(), completes);
+    });
+
     testWidgets('displayMessageComposer', (WidgetTester _) async {
       expect(plugin.displayMessageComposer("message"), completes);
     });
