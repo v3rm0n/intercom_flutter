@@ -9,7 +9,7 @@
 * Implemented method `displayHelpCenter` for web.
 * Bump Intercom iOS SDK version to 15.0.1
 * Bump Intercom Android SDK version to 15.1.1
-* Added readMe section `Using Intercom keys with --dart-define`. ((Thanks @sirTomasson)[https://github.com/sirTomasson]).
+* Added readMe section `Using Intercom keys with --dart-define`. (Thanks [@sirTomasson](https://github.com/sirTomasson)).
 
 ## 7.8.0
 
