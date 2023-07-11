@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.8.2
+
+* Implemented `isIntercomPush` and `handlePush` in iOS.
+
 ## 7.8.1
 
 * Implemented method `displayHelpCenter` for web.
