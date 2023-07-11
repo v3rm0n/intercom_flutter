@@ -3,6 +3,9 @@
 ## 7.8.2
 
 * Implemented `isIntercomPush` and `handlePush` in iOS.
+* Bump Intercom iOS SDK version to 15.0.3
+* Bump Intercom Android SDK version to 15.1.3
+* Removed **Optimistic operator (~>)** from iOS podspec to use the exact version instead of getting the next *major | minor | patch* version.
 
 ## 7.8.1
 
