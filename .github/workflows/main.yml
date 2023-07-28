@@ -90,15 +90,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    - name: Print chrome version
-      run: google-chrome --version
     
-    # intsall chrome driver
+    # install chrome driver
     - name: Install ChromeDriver
       run: |
-        CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1) \
-        && CHROMEDRIVER_VERSION=$(echo $CHROME_VERSION | sed 's/[^0-9.]//g') \
+        CHROMEDRIVER_VERSION=$(google-chrome --version | sed 's/[^0-9.]//g') \
         && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip" \
         && cd /tmp \
         && unzip chromedriver_linux64.zip \
