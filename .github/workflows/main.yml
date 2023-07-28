@@ -90,6 +90,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Print chrome version
+      run: CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1) \
+        && CHROMEDRIVER_VERSION=$(echo $CHROME_VERSION | sed 's/[^0-9.]//g') \
+        && echo $CHROME_VERSION \
+        && echo $CHROMEDRIVER_VERSION
     
     # intsall chrome driver
     - name: Install ChromeDriver
