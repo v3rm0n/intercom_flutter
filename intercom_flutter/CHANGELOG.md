@@ -1,5 +1,10 @@
 # Changelog
 
+## 7.8.3
+
+* Bump Intercom iOS SDK version to 15.1.3
+* Bump Intercom Android SDK version to 15.1.4
+
 ## 7.8.2
 
 * Implemented `isIntercomPush` and `handlePush` in iOS.
