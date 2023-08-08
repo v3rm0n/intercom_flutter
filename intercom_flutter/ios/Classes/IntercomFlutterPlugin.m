@@ -218,6 +218,12 @@ id unread;
         NSDictionary *message = call.arguments[@"message"];
         [Intercom handleIntercomPushNotification:message];
         result(@"handle push");
+    } else if([@"displayConversation" isEqualToString:call.method]) {
+        NSString *conversationId = call.arguments[@"conversationId"];
+        if(conversationId != (id)[NSNull null] && conversationId != nil) {
+            [Intercom presentContent:[IntercomContent conversationWithId:conversationId]];
+            result(@"displaying conversation");
+        }
     }
     else {
         result(FlutterMethodNotImplemented);
