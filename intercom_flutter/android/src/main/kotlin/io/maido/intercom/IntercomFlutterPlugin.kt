@@ -251,6 +251,13 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
           result.success("displaying survey $surveyId")
         }
       }
+      "displayConversation" -> {
+        val conversationId = call.argument<String>("conversationId")
+        if (conversationId != null) {
+          Intercom.client().presentContent(IntercomContent.Conversation(conversationId))
+          result.success("displaying conversation $conversationId")
+        }
+      }
       else -> result.notImplemented()
     }
   }
