@@ -265,4 +265,12 @@ void main() {
       'surveyId': testSurveyId,
     });
   });
+
+  test('displayConversation', () async {
+    final String testConversationId = "123456";
+    await Intercom.instance.displayConversation(testConversationId);
+    expectMethodCall('displayConversation', arguments: {
+      'conversationId': testConversationId,
+    });
+  });
 }
