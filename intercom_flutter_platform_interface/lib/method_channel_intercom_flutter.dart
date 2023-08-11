@@ -237,9 +237,10 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     await _channel.invokeMethod('displaySurvey', {'surveyId': surveyId});
   }
 
-   @override
+  @override
   Future<void> displayConversation(String conversationId) async {
-    await _channel.invokeMethod('displayConversation', {'conversationId': conversationId});
+    await _channel.invokeMethod(
+        'displayConversation', {'conversationId': conversationId});
   }
 
   /// Convert the [PlatformException] details to [IntercomError].
