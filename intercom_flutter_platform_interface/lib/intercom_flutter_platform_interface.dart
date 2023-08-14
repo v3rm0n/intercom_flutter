@@ -273,4 +273,9 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   Future<void> displaySurvey(String surveyId) {
     throw UnimplementedError('displaySurvey() has not been implemented.');
   }
+
+  /// To display a Conversation, pass in a [conversationId] from your Intercom workspace.
+  Future<void> displayConversation(String conversationId) {
+    throw UnimplementedError('displayConversation() has not been implemented.');
+  }
 }

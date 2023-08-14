@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1
+
+* Added method `displayConversation`
+
 ## 1.3.0
 
 * Update minimum Dart version to Dart 3.

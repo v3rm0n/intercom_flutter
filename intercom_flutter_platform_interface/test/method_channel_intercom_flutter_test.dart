@@ -410,6 +410,19 @@ void main() {
         ],
       );
     });
+
+    String testConversationId = "123456";
+    test('displayConversation', () async {
+      await intercom.displayConversation(testConversationId);
+      expect(
+        log,
+        <Matcher>[
+          isMethodCall('displayConversation', arguments: {
+            'conversationId': testConversationId,
+          })
+        ],
+      );
+    });
   });
 }
 
