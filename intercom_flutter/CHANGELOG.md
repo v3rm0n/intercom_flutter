@@ -1,5 +1,11 @@
 # Changelog
 
+## 7.8.4
+
+* Bump Intercom iOS SDK version to 15.1.4
+* Bump Intercom Android SDK version to 15.1.6
+* Implemented `displayConversation` for all platforms.
+
 ## 7.8.3
 
 * Bump Intercom iOS SDK version to 15.1.3
