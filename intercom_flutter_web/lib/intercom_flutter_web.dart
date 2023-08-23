@@ -268,6 +268,12 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     await js.context.callMethod('Intercom', ['startSurvey', surveyId]);
   }
 
+  @override
+  Future<void> displayConversation(String conversationId) async {
+    await js.context
+        .callMethod('Intercom', ['showConversation', conversationId]);
+  }
+
   /// get the [window.IntercomSettings]
   js.JsObject getIntercomSettings() {
     if (js.context.hasProperty('intercomSettings')) {

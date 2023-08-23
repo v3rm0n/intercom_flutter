@@ -126,5 +126,9 @@ void main() {
     testWidgets('displaySurvey', (WidgetTester _) async {
       expect(plugin.displaySurvey("123456"), completes);
     });
+
+    testWidgets('displayConversation', (WidgetTester _) async {
+      expect(plugin.displayConversation("123456"), completes);
+    });
   });
 }

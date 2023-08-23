@@ -281,4 +281,9 @@ class Intercom {
   Future<void> displaySurvey(String surveyId) {
     return IntercomFlutterPlatform.instance.displaySurvey(surveyId);
   }
+
+  /// To display a Conversation, pass in a [conversationId] from your Intercom workspace.
+  Future<void> displayConversation(String conversationId) {
+    return IntercomFlutterPlatform.instance.displayConversation(conversationId);
+  }
 }

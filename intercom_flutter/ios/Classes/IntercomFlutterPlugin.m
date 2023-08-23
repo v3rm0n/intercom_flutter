@@ -207,6 +207,23 @@ id unread;
             [Intercom presentContent:[IntercomContent surveyWithId:surveyId]];
             result(@"displaying survey");
         }
+    } else if([@"isIntercomPush" isEqualToString:call.method]) {
+        NSDictionary *message = call.arguments[@"message"];
+        if([Intercom isIntercomPushNotification:message]) {
+            result(@(YES));
+        }else{
+            result(@(NO));
+        }
+    } else if([@"handlePush" isEqualToString:call.method]) {
+        NSDictionary *message = call.arguments[@"message"];
+        [Intercom handleIntercomPushNotification:message];
+        result(@"handle push");
+    } else if([@"displayConversation" isEqualToString:call.method]) {
+        NSString *conversationId = call.arguments[@"conversationId"];
+        if(conversationId != (id)[NSNull null] && conversationId != nil) {
+            [Intercom presentContent:[IntercomContent conversationWithId:conversationId]];
+            result(@"displaying conversation");
+        }
     }
     else {
         result(FlutterMethodNotImplemented);

@@ -1,11 +1,29 @@
 # Changelog
 
+## 7.8.4
+
+* Bump Intercom iOS SDK version to 15.1.4
+* Bump Intercom Android SDK version to 15.1.6
+* Implemented `displayConversation` for all platforms.
+
+## 7.8.3
+
+* Bump Intercom iOS SDK version to 15.1.3
+* Bump Intercom Android SDK version to 15.1.4
+
+## 7.8.2
+
+* Implemented `isIntercomPush` and `handlePush` in iOS.
+* Bump Intercom iOS SDK version to 15.0.3
+* Bump Intercom Android SDK version to 15.1.3
+* Removed **Optimistic operator (~>)** from iOS podspec to use the exact version instead of getting the next *major | minor | patch* version.
+
 ## 7.8.1
 
 * Implemented method `displayHelpCenter` for web.
 * Bump Intercom iOS SDK version to 15.0.1
 * Bump Intercom Android SDK version to 15.1.1
-* Added readMe section `Using Intercom keys with --dart-define`.
+* Added readMe section `Using Intercom keys with --dart-define`. (Thanks [@sirTomasson](https://github.com/sirTomasson))
 
 ## 7.8.0
 

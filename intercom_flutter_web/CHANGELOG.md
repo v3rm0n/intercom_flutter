@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.2
+
+* Implemented method `displayConversation`.
+
 ## 0.3.1
 
 * Implemented method `displayHelpCenter`.
