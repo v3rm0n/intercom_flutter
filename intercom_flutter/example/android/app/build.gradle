@@ -28,6 +28,8 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 android {
     compileSdkVersion 33
 
+    namespace 'io.maido.intercomexample'
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
