@@ -423,6 +423,14 @@ void main() {
         ],
       );
     });
+
+    test('displayTickets', () async {
+      await intercom.displayTickets();
+      expect(
+        log,
+        <Matcher>[isMethodCall('displayTickets', arguments: null)],
+      );
+    });
   });
 }
 
