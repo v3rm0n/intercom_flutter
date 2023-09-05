@@ -279,8 +279,8 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('displayConversation() has not been implemented.');
   }
 
-  /// To display an Activity with your Messages content.
+  /// To display an activity with all your tickets.
   Future<void> displayTickets() {
-    throw UnimplementedError('displayMessages() has not been implemented.');
+    throw UnimplementedError('displayTickets() has not been implemented.');
   }
 }
