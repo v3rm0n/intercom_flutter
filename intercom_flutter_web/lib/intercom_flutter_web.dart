@@ -274,6 +274,12 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
         .callMethod('Intercom', ['showConversation', conversationId]);
   }
 
+  @override
+  Future<void> displayTickets() async {
+    await js.context.callMethod('Intercom', ['showSpace', 'tickets']);
+    print("Launched Tickets space");
+  }
+
   /// get the [window.IntercomSettings]
   js.JsObject getIntercomSettings() {
     if (js.context.hasProperty('intercomSettings')) {
