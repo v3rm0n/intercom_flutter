@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.3
+
+* Implemented method `displayTickets`.
+
 ## 0.3.2
 
 * Implemented method `displayConversation`.
