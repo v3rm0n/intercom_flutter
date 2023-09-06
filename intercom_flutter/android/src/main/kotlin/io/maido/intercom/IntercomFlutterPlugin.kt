@@ -258,6 +258,10 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
           result.success("displaying conversation $conversationId")
         }
       }
+      "displayTickets" -> {
+        Intercom.client().present(IntercomSpace.Tickets)
+        result.success("Launched Tickets space")
+      }
       else -> result.notImplemented()
     }
   }

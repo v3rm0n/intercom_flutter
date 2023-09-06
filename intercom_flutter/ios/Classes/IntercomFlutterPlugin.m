@@ -224,6 +224,9 @@ id unread;
             [Intercom presentContent:[IntercomContent conversationWithId:conversationId]];
             result(@"displaying conversation");
         }
+    } else if([@"displayTickets" isEqualToString:call.method]) {
+        [Intercom presentIntercom:tickets];
+        result(@"Presented tickets space");
     }
     else {
         result(FlutterMethodNotImplemented);
