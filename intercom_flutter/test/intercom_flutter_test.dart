@@ -273,4 +273,9 @@ void main() {
       'conversationId': testConversationId,
     });
   });
+
+  test('displayTickets', () async {
+    await Intercom.instance.displayTickets();
+    expectMethodCall('displayTickets');
+  });
 }
