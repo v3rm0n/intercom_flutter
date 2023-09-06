@@ -278,4 +278,9 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   Future<void> displayConversation(String conversationId) {
     throw UnimplementedError('displayConversation() has not been implemented.');
   }
+
+  /// To display an activity with all your tickets.
+  Future<void> displayTickets() {
+    throw UnimplementedError('displayTickets() has not been implemented.');
+  }
 }
