@@ -3,7 +3,7 @@
 ## 7.8.5
 
 * Bump Intercom iOS SDK version to 15.2.1
-* Bump Intercom Android SDK version to 15.2.1
+* Bump Intercom Android SDK version to 15.2.0
 * Implemented `displayTickets` for all platforms.
 
 ## 7.8.4
