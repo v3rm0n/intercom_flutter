@@ -286,4 +286,9 @@ class Intercom {
   Future<void> displayConversation(String conversationId) {
     return IntercomFlutterPlatform.instance.displayConversation(conversationId);
   }
+
+  /// To display an activity with all your tickets.
+  Future<void> displayTickets() {
+    return IntercomFlutterPlatform.instance.displayTickets();
+  }
 }
