@@ -90,6 +90,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    # chrome version
+    - name: Chrome version
+      run: google-chrome --version
     
     # install chrome driver
     - name: Install ChromeDriver
