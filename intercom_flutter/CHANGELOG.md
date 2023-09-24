@@ -3,7 +3,7 @@
 ## 7.8.6
 
 * Bump Intercom iOS SDK version to [15.2.3](https://github.com/intercom/intercom-ios/releases/tag/15.2.3)
-* Bump Intercom Android SDK version to [15.2.2](https://github.com/intercom/intercom-android/releases/tag/15.2.2)
+* Bump Intercom Android SDK version to [15.2.2](https://github.com/intercom/intercom-android/releases/tag/15.2.2), requires **Android SDK 34**
 
 ## 7.8.5
 
