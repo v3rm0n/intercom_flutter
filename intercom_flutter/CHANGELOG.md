@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.8.6
+
+* Bump Intercom iOS SDK version to 16.0.0. This supports Xcode 15 and iOS 17. (Note: Xcode 15 is required when using Intercom iOS SDK 16.0.0) 
+
 ## 7.8.5
 
 * Bump Intercom iOS SDK version to 15.2.1
