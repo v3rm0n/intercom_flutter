@@ -1,5 +1,11 @@
 # Changelog
 
+## 7.9.0
+
+* Bump Intercom iOS SDK version to [15.2.3](https://github.com/intercom/intercom-ios/releases/tag/15.2.3)
+* Bump Intercom Android SDK version to [15.2.2](https://github.com/intercom/intercom-android/releases/tag/15.2.2), requires **Android SDK 34**
+* Added documentation about using `FlutterFragmentActivity` instead of `FlutterActivity` in Android.
+
 ## 7.8.5
 
 * Bump Intercom iOS SDK version to 15.2.1
