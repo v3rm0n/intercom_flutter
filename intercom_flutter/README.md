@@ -50,6 +50,8 @@ See Intercom [Android](https://developers.intercom.com/installing-intercom/docs/
 
 ### Android
 
+Make sure that your app's `MainActivity` extends `FlutterFragmentActivity` (you can check the example).
+
 Permissions:
 ```xml
 <uses-permission android:name="android.permission.INTERNET"/>
