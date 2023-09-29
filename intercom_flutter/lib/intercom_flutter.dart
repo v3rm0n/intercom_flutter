@@ -73,16 +73,6 @@ class Intercom {
     return IntercomFlutterPlatform.instance.setUserHash(userHash);
   }
 
-  /// Function to create a identified user in Intercom.
-  /// You need to register your users before you can talk to them and
-  /// track their activity in your app.
-  ///
-  /// You can register a identified user either with [userId] or with [email],
-  /// but not with both.
-  @Deprecated("use loginIdentifiedUser")
-  Future<void> registerIdentifiedUser({String? userId, String? email}) {
-    return loginIdentifiedUser(userId: userId, email: email);
-  }
 
   /// Function to create a identified user in Intercom.
   /// You need to register your users before you can talk to them and
@@ -94,14 +84,6 @@ class Intercom {
       {String? userId, String? email, IntercomStatusCallback? statusCallback}) {
     return IntercomFlutterPlatform.instance.loginIdentifiedUser(
         userId: userId, email: email, statusCallback: statusCallback);
-  }
-
-  /// Function to create a unidentified user in Intercom.
-  /// You need to register your users before you can talk to them and
-  /// track their activity in your app.
-  @Deprecated("use loginUnidentifiedUser")
-  Future<void> registerUnidentifiedUser() {
-    return loginUnidentifiedUser();
   }
 
   /// Function to create a unidentified user in Intercom.
