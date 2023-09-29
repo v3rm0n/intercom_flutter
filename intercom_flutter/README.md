@@ -5,9 +5,10 @@
 
 Flutter wrapper for Intercom [Android](https://github.com/intercom/intercom-android), [iOS](https://github.com/intercom/intercom-ios), and [Web](https://developers.intercom.com/installing-intercom/docs/basic-javascript) projects.
 
-- Uses Intercom Android SDK Version `15.2.0`.
-- The minimum Android SDK `minSdkVersion` required is 21.
-- Uses Intercom iOS SDK Version `15.2.1`.
+- Uses Intercom Android SDK Version `15.2.2`.
+- The minimum Android SDK `minSdk` required is 21.
+- The compile Android SDK `compileSdk` required is 34.
+- Uses Intercom iOS SDK Version `15.2.3`.
 - The minimum iOS target version required is 13.
 
 ## Usage
@@ -49,6 +50,8 @@ class App extends StatelessWidget {
 See Intercom [Android](https://developers.intercom.com/installing-intercom/docs/intercom-for-android) and [iOS](https://developers.intercom.com/installing-intercom/docs/intercom-for-ios) package documentation for more information.
 
 ### Android
+
+Make sure that your app's `MainActivity` extends `FlutterFragmentActivity` (you can check the example).
 
 Permissions:
 ```xml
