@@ -73,7 +73,6 @@ class Intercom {
     return IntercomFlutterPlatform.instance.setUserHash(userHash);
   }
 
-
   /// Function to create a identified user in Intercom.
   /// You need to register your users before you can talk to them and
   /// track their activity in your app.
