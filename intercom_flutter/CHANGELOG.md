@@ -1,8 +1,9 @@
 # Changelog
 
-## 7.10.0
+## 8.0.0
 
-* Bump Intercom iOS SDK version to 16.0.0. This supports Xcode 15 and iOS 17. (Note: Xcode 15 is required when using Intercom iOS SDK 16.0.0) 
+* Bump Intercom iOS SDK version to 16.0.0. This supports Xcode 15 and iOS 17. (Note: Xcode 15 is required when using Intercom iOS SDK 16.0.0)
+* Removed deprecated methods `registerIdentifiedUser` and `registerUnidentifiedUser`.
 
 ## 7.9.0
 

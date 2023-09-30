@@ -61,12 +61,6 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     print("user hash added");
   }
 
-  @Deprecated("use loginIdentifiedUser")
-  @override
-  Future<void> registerIdentifiedUser({String? userId, String? email}) {
-    return loginIdentifiedUser(userId: userId, email: email);
-  }
-
   @override
   Future<void> loginIdentifiedUser({
     String? userId,
@@ -101,12 +95,6 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       throw ArgumentError(
           'An identification method must be provided as a parameter, either `userId` or `email`.');
     }
-  }
-
-  @Deprecated("use loginUnidentifiedUser")
-  @override
-  Future<void> registerUnidentifiedUser() {
-    return loginUnidentifiedUser();
   }
 
   @override

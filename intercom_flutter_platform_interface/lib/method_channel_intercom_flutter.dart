@@ -30,12 +30,6 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     await _channel.invokeMethod('setUserHash', {'userHash': userHash});
   }
 
-  @Deprecated("use loginIdentifiedUser")
-  @override
-  Future<void> registerIdentifiedUser({String? userId, String? email}) {
-    return loginIdentifiedUser(userId: userId, email: email);
-  }
-
   @override
   Future<void> loginIdentifiedUser({
     String? userId,
@@ -68,12 +62,6 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
       throw ArgumentError(
           'An identification method must be provided as a parameter, either `userId` or `email`.');
     }
-  }
-
-  @Deprecated("use loginUnidentifiedUser")
-  @override
-  Future<void> registerUnidentifiedUser() {
-    return loginUnidentifiedUser();
   }
 
   @override

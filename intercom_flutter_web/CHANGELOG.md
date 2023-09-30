@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0
+
+* Removed deprecated methods `registerIdentifiedUser` and `registerUnidentifiedUser`.
+
 ## 0.3.3
 
 * Implemented method `displayTickets`.
