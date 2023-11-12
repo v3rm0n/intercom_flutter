@@ -39,6 +39,15 @@ android {
     if (project.android.hasProperty('namespace')) {
         namespace 'io.maido.intercom'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
 }
 
 dependencies {
