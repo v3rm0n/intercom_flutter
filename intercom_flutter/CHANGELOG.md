@@ -1,5 +1,10 @@
 # Changelog
 
+## 8.0.5
+
+* Bump Intercom iOS SDK version to 16.3.0
+* Bump Intercom Android SDK version to 15.5.0
+
 ## 8.0.4
 
 * Bump Intercom iOS SDK version to 16.2.3
