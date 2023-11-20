@@ -3,6 +3,7 @@
 ## 8.0.6
 
 * Bump `intercom_flutter_web` to `1.0.1` to support `uuid: ^4.2.1`.
+* Bump Intercom iOS SDK version to 16.3.1
 
 ## 8.0.5
 
