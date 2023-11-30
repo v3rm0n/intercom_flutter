@@ -6,7 +6,8 @@
 pubspec.lock
 
 build/
-.idea/
+.idea/*
+!.idea/runConfigurations
 android/bin/
 example/.flutter-plugins-dependencies
 example/ios/Flutter/flutter_export_environment.sh
