@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.7
+
+* Added support of AGP 8.
+
 ## 8.0.6
 
 * Bump `intercom_flutter_web` to `1.0.1` to support `uuid: ^4.2.1`.
