@@ -90,24 +90,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    # chrome version
-    - name: Chrome version
-      run: google-chrome --version
-    
-    # install chrome driver
-    - name: Install ChromeDriver
-      run: |
-        CHROMEDRIVER_VERSION=$(google-chrome --version | sed 's/[^0-9.]//g') \
-        && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip" \
-        && cd /tmp \
-        && unzip chromedriver_linux64.zip \
-        && rm -rf chromedriver_linux64.zip \
-        && sudo mv chromedriver-linux64 /usr/local/bin/chromedriver \
-        && sudo chmod +x /usr/local/bin/chromedriver \
-        && chromedriver --version
-      
-    - uses: actions/checkout@v2
+    - uses: nanasess/setup-chromedriver@v2      
     - uses: subosito/flutter-action@v1
       with:
         channel: 'master'
