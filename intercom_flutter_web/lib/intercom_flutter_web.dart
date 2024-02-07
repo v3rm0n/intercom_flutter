@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:html';
 import 'dart:js' as js;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -43,10 +44,24 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     String? androidApiKey,
     String? iosApiKey,
   }) async {
-    await js.context.callMethod('Intercom', [
-      'boot',
-      convertJsObjectToDartObject(updateIntercomSettings('app_id', appId)),
-    ]);
+    if (js.context['Intercom'] == null) {
+      // Intercom script is not added yet
+      // Inject it from here in the body
+      var script = ScriptElement();
+      script.text = """
+          window.intercomSettings = ${convertJsObjectToDartObject(updateIntercomSettings('app_id', "'$appId'"))};
+          (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/' + '$appId';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();  
+      """;
+      if (document.body != null) {
+        document.body!.append(script);
+      }
+    } else {
+      // boot the Intercom
+      await js.context.callMethod('Intercom', [
+        'boot',
+        convertJsObjectToDartObject(updateIntercomSettings('app_id', appId)),
+      ]);
+    }
     print("initialized");
   }
 
