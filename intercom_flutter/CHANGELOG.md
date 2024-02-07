@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.11
+
+* Automatically Injected Intercom Script, if it is not added.
+
 ## 8.0.10
 
 * Bump Intercom iOS SDK version to 16.5.5
