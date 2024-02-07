@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2
+
+* Automatically Injected Intercom script, if it is not added.
+
 ## 1.0.1
 
 * Updated dependency `uuid: ^4.2.1`.
