@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.0.12
+
+* Fix never completing future when calling displayMessageComposer on iOS
+
 ## 8.0.11
 
 * Automatically Injected Intercom Script, if it is not added.
