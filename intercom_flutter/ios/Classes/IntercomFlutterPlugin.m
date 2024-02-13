@@ -176,6 +176,7 @@ id unread;
     else if([@"displayMessageComposer" isEqualToString:call.method]) {
         NSString *message = call.arguments[@"message"];
         [Intercom presentMessageComposer:message];
+        result(@"Presented message composer");
     } else if([@"sendTokenToIntercom" isEqualToString:call.method]){
         NSString *token = call.arguments[@"token"];
         if(token != (id)[NSNull null] && token != nil) {
