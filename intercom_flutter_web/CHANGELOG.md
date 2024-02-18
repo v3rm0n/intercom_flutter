@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+* Migrated to js_interop to be compatible with WASM.
+
 ## 1.0.2
 
 * Automatically Injected Intercom script, if it is not added.
