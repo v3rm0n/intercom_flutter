@@ -73,7 +73,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     globalContext.callMethod(
       'Intercom'.toJS,
       'update'.toJS,
-      {'user_hash': userHash}.toJSBox,
+      {'user_hash': userHash}.jsify(),
     );
     print("user hash added");
   }
@@ -93,7 +93,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       globalContext.callMethod(
         'Intercom'.toJS,
         'update'.toJS,
-        {'user_id': userId}.toJSBox,
+        {'user_id': userId}.jsify(),
       );
       // send the success callback only as web does not support the statusCallback.
       statusCallback?.onSuccess?.call();
@@ -102,7 +102,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       globalContext.callMethod(
         'Intercom'.toJS,
         'update'.toJS,
-        {'email': email}.toJSBox,
+        {'email': email}.jsify(),
       );
       // send the success callback only as web does not support the statusCallback.
       statusCallback?.onSuccess?.call();
@@ -120,7 +120,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     globalContext.callMethod(
       'Intercom'.toJS,
       'update'.toJS,
-      {'user_id': userId}.toJSBox,
+      {'user_id': userId}.jsify(),
     );
     // send the success callback only as web does not support the statusCallback.
     statusCallback?.onSuccess?.call();
@@ -180,7 +180,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     }
 
     globalContext.callMethod(
-        'Intercom'.toJS, 'update'.toJS, userAttributes.toJSBox);
+        'Intercom'.toJS, 'update'.toJS, userAttributes.jsify());
     // send the success callback only as web does not support the statusCallback.
     statusCallback?.onSuccess?.call();
   }
@@ -191,7 +191,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       'Intercom'.toJS,
       'trackEvent'.toJS,
       name.toJS,
-      metaData != null ? metaData.toJSBox : null,
+      metaData != null ? metaData.jsify() : null,
     );
 
     print("Logged event");
