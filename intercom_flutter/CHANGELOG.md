@@ -1,5 +1,11 @@
 # Changelog
 
+## 8.1.0
+
+* Bump Intercom iOS SDK version to 16.5.6
+* Migrated web to js_interop to be compatible with WASM
+* Updated minimum Dart version to 3.2.
+
 ## 8.0.12
 
 * Fix never completing future when calling displayMessageComposer on iOS
