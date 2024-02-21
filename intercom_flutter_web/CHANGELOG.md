@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+* Updated window.intercomSettings as Map instead of JSObject.
+
 ## 1.1.0
 
 * Migrated to js_interop to be compatible with WASM.
