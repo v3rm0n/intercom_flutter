@@ -51,7 +51,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       web.HTMLScriptElement script =
           web.document.createElement("script") as web.HTMLScriptElement;
       script.text = """
-          window.intercomSettings = ${updateIntercomSettings('app_id', "'$appId'").dartify()};
+          window.intercomSettings = ${updateIntercomSettings('app_id', "'$appId'")};
           (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/' + '$appId';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();  
       """;
       if (web.document.body != null) {
@@ -62,7 +62,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       globalContext.callMethod(
         'Intercom'.toJS,
         'boot'.toJS,
-        updateIntercomSettings('app_id', appId),
+        updateIntercomSettings('app_id', appId).jsify(),
       );
     }
     print("initialized");
@@ -205,7 +205,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       updateIntercomSettings(
         'hide_default_launcher',
         visibility == IntercomVisibility.visible ? false : true,
-      ),
+      ).jsify(),
     );
 
     print("Showing launcher: $visibility");
@@ -256,7 +256,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       updateIntercomSettings(
         'vertical_padding',
         padding,
-      ),
+      ).jsify(),
     );
 
     print("Bottom padding set");
@@ -286,20 +286,28 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     print("Launched Tickets space");
   }
 
-  /// get the [window.IntercomSettings]
-  JSObject getIntercomSettings() {
+  /// get the [window.intercomSettings]
+  Map<dynamic, dynamic> getIntercomSettings() {
     if (globalContext.hasProperty('intercomSettings'.toJS).toDart) {
-      return globalContext.getProperty('intercomSettings'.toJS) as JSObject;
+      var settings =
+          globalContext.getProperty('intercomSettings'.toJS).dartify();
+      // settings are of type LinkedMap<Object?, Object?>
+      return settings as Map;
     }
 
-    return JSObject();
+    return {};
   }
 
-  /// add/update property to [window.IntercomSettings]
+  /// add/update property to [window.intercomSettings]
   /// and returns the updated object
-  JSObject updateIntercomSettings(String key, dynamic value) {
+  Map<dynamic, dynamic> updateIntercomSettings(String key, dynamic value) {
     var intercomSettings = getIntercomSettings();
     intercomSettings[key] = value;
+
+    // Update the [window.intercomSettings]
+    globalContext.setProperty(
+        "intercomSettings".toJS, intercomSettings.jsify());
+
     return intercomSettings;
   }
 }
