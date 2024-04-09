@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'intercom_flutter'
-  s.version          = '7.5.0'
+  s.version          = '9.0.0'
   s.summary          = 'Intercom integration for Flutter'
   s.description      = <<-DESC
 A new flutter plugin project.
@@ -17,6 +17,6 @@ A new flutter plugin project.
   s.dependency 'Flutter'
   s.dependency 'Intercom'
   s.static_framework = true
-  s.dependency 'Intercom', '16.6.1'
-  s.ios.deployment_target = '13.0'
+  s.dependency 'Intercom', '17.0.0'
+  s.ios.deployment_target = '15.0'
 end
