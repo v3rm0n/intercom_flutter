@@ -1,5 +1,10 @@
 # Changelog
 
+## 9.0.2
+
+* Bump Intercom Android SDK version to 15.8.2
+* Bump Intercom iOS SDK version to 17.0.2
+
 ## 9.0.1
 
 * Bump Intercom Android SDK version to 15.8.1
@@ -9,6 +14,19 @@
 
 * Bump Intercom Android SDK version to 15.8.0
 * Bump Intercom iOS SDK version to 17.0.0 (requires minimum iOS 15)
+
+## 8.1.4
+
+* Bump Intercom iOS SDK version to 16.6.2
+> Note: This version is not published on pub.dev. So to use this version:
+```
+dependencies:
+  intercom_flutter:
+    git:
+      url: https://github.com/v3rm0n/intercom_flutter
+      ref: v8.1.4
+      path: intercom_flutter
+```
 
 ## 8.1.3
 
