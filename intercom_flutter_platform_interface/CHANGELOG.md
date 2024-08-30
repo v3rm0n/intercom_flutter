@@ -1,14 +1,27 @@
 # Changelog
 
+<<<<<<< HEAD
 ## 2.0.1
 
 - Updated `company` parameter inside `updateUser` method.
+=======
+
+# 1.3.0
+
+- Updated `company` parameter inside `updateUser` method.
+
+# 1.2.2
+>>>>>>> 92ec646 (Unpushed changes)
 
 ## 2.0.0
 
 * Removed deprecated methods `registerIdentifiedUser` and `registerUnidentifiedUser`.
 
+<<<<<<< HEAD
 ## 1.3.2
+=======
+- Updated dependencies
+>>>>>>> 92ec646 (Unpushed changes)
 
 * Added method `displayTickets`
 

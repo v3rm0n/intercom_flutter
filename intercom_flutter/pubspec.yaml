@@ -9,8 +9,15 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
+<<<<<<< HEAD
   intercom_flutter_platform_interface: ^2.0.1
   intercom_flutter_web: ^1.1.2
+=======
+  intercom_flutter_platform_interface:
+    path: ../intercom_flutter_platform_interface
+  intercom_flutter_web:
+    path: ../intercom_flutter_web
+>>>>>>> 92ec646 (Unpushed changes)
 
 dev_dependencies:
   flutter_test:
