@@ -1,28 +1,15 @@
 # Changelog
 
-<<<<<<< HEAD
 ## 1.1.2
 
 - Fixed `company` attribute mapping.
 - Updated dependency `intercom_flutter_platform_interface: ^1.3.0`
-=======
-# 0.3.0
-- 
-- Fixed `company` attribute mapping.
-- Updated dependency `intercom_flutter_platform_interface: ^1.3.0`
-
-# 0.2.2
->>>>>>> 92ec646 (Unpushed changes)
 
 ## 1.1.1
 
 * Updated window.intercomSettings as Map instead of JSObject.
 
-<<<<<<< HEAD
 ## 1.1.0
-=======
-- Updated dependencies
->>>>>>> 92ec646 (Unpushed changes)
 
 * Migrated to js_interop to be compatible with WASM.
 
