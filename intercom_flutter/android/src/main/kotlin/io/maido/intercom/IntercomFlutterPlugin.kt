@@ -308,7 +308,7 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
       val icmCompany = Company.Builder()
 
       if (company.containsKey("id")) {
-        icmCompany.withCompanyId(company["id"] as String?)
+        icmCompany.withCompanyId(company["id"] as String)
       }
 
       if (company.containsKey("name")) {
