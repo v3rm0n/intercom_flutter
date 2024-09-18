@@ -1,6 +1,7 @@
 # Changelog
 
 ## 9.0.10
+
 * Bump `intercom_flutter_web` to `1.1.2` supporting `web` `^1.0.0`.
 
 ## 9.0.9
