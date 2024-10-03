@@ -262,4 +262,9 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   Future<void> displayTickets() {
     throw UnimplementedError('displayTickets() has not been implemented.');
   }
+
+  /// To display an Intercom Home space.
+  Future<void> displayHome() {
+    throw UnimplementedError('displayHome() has not been implemented.');
+  }
 }
