@@ -9,7 +9,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
 import io.intercom.android.sdk.*
 import io.intercom.android.sdk.identity.Registration
 import io.intercom.android.sdk.push.IntercomPushClient
@@ -18,15 +17,6 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
   companion object {
     @JvmStatic
     lateinit var application: Application
-
-    @JvmStatic
-    fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "maido.io/intercom")
-      application = registrar.context() as Application
-      channel.setMethodCallHandler(IntercomFlutterPlugin())
-      val unreadEventChannel = EventChannel(registrar.messenger(), "maido.io/intercom/unread")
-      unreadEventChannel.setStreamHandler(IntercomFlutterPlugin())
-    }
 
     @JvmStatic
     fun initSdk(application: Application, appId: String, androidApiKey: String) {
