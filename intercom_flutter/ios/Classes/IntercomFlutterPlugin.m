@@ -228,6 +228,9 @@ id unread;
     } else if([@"displayTickets" isEqualToString:call.method]) {
         [Intercom presentIntercom:tickets];
         result(@"Presented tickets space");
+    } else if([@"displayHome" isEqualToString:call.method]) {
+        [Intercom presentIntercom:home];
+        result(@"Presented home space");
     }
     else {
         result(FlutterMethodNotImplemented);

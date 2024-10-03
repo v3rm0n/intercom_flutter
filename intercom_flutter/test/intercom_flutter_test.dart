@@ -278,4 +278,9 @@ void main() {
     await Intercom.instance.displayTickets();
     expectMethodCall('displayTickets');
   });
+
+  test('displayHome', () async {
+    await Intercom.instance.displayHome();
+    expectMethodCall('displayHome');
+  });
 }

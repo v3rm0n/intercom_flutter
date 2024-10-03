@@ -252,6 +252,10 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         Intercom.client().present(IntercomSpace.Tickets)
         result.success("Launched Tickets space")
       }
+      "displayHome" -> {
+        Intercom.client().present(IntercomSpace.Home)
+        result.success("Launched Home space")
+      }
       else -> result.notImplemented()
     }
   }
