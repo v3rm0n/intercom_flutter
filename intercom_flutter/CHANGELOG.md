@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.11
+
+* Removed references to v1 embedding.
+
 ## 9.0.10
 
 * Bump `intercom_flutter_web` to `1.1.2` supporting `web` `^1.0.0`.
