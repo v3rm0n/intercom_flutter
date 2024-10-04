@@ -272,4 +272,9 @@ class Intercom {
   Future<void> displayTickets() {
     return IntercomFlutterPlatform.instance.displayTickets();
   }
+
+  /// To display an Intercom Home space.
+  Future<void> displayHome() {
+    return IntercomFlutterPlatform.instance.displayHome();
+  }
 }

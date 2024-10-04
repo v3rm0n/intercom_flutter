@@ -3,6 +3,7 @@
 ## 9.0.11
 
 * Removed references to v1 embedding.
+* Implemented `displayHome` for all platforms.
 
 ## 9.0.10
 

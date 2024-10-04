@@ -134,5 +134,9 @@ void main() {
     testWidgets('displayTickets', (WidgetTester _) async {
       expect(plugin.displayTickets(), completes);
     });
+
+    testWidgets('displayHome', (WidgetTester _) async {
+      expect(plugin.displayHome(), completes);
+    });
   });
 }

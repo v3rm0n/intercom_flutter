@@ -431,6 +431,14 @@ void main() {
         <Matcher>[isMethodCall('displayTickets', arguments: null)],
       );
     });
+
+    test('displayHome', () async {
+      await intercom.displayHome();
+      expect(
+        log,
+        <Matcher>[isMethodCall('displayHome', arguments: null)],
+      );
+    });
   });
 }
 

@@ -286,6 +286,12 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     print("Launched Tickets space");
   }
 
+  @override
+  Future<void> displayHome() async {
+    globalContext.callMethod('Intercom'.toJS, 'showSpace'.toJS, 'home'.toJS);
+    print("Launched Home space");
+  }
+
   /// get the [window.intercomSettings]
   Map<dynamic, dynamic> getIntercomSettings() {
     if (globalContext.hasProperty('intercomSettings'.toJS).toDart) {

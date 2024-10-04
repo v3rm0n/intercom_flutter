@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+
+* Added method `displayHome`.
+
 ## 2.0.0
 
 * Removed deprecated methods `registerIdentifiedUser` and `registerUnidentifiedUser`.
