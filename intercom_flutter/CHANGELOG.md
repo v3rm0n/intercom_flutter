@@ -4,6 +4,8 @@
 
 * Removed references to v1 embedding.
 * Implemented `displayHome` for all platforms.
+* Bump Intercom Android SDK version to 15.10.3
+* Bump Intercom iOS SDK version to 17.4.0
 
 ## 9.0.10
 
