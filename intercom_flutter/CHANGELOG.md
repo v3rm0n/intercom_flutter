@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.1.1
+
+* Bump Intercom iOS SDK version to 18.1.0
+
 ## 9.1.0
 
 * Bump Intercom iOS SDK version to 18.0.0
