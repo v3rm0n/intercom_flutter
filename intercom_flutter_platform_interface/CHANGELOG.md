@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.2
+
+* Added method `isUserLoggedIn`.
+* Added method `fetchLoggedInUserAttributes`.
+
 ## 2.0.1
 
 * Added method `displayHome`.

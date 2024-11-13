@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.4
+
+* Updated dependency `intercom_flutter_platform_interface: ^2.0.2`.
+
 ## 1.1.3
 
 * Implemented method `displayHome`.

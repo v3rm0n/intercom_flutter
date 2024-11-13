@@ -256,6 +256,19 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         Intercom.client().present(IntercomSpace.Home)
         result.success("Launched Home space")
       }
+      "isUserLoggedIn" -> {
+        result.success(Intercom.client().isUserLoggedIn())
+      }
+      "fetchLoggedInUserAttributes" -> {
+        val reg = Intercom.client().fetchLoggedInUserAttributes()
+        val map = reg?.attributes?.toMap() ?: mutableMapOf<String, Any>()
+        if(reg != null){
+          // put the user_id and email from registration
+          map["user_id"] = reg.userId
+          map["email"] = reg.email
+        }
+        result.success(map)
+      }
       else -> result.notImplemented()
     }
   }

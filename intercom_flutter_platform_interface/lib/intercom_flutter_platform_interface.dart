@@ -267,4 +267,15 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   Future<void> displayHome() {
     throw UnimplementedError('displayHome() has not been implemented.');
   }
+
+  /// Determine if a user is currently logged in to Intercom.
+  Future<bool> isUserLoggedIn() {
+    throw UnimplementedError('isUserLoggedIn() has not been implemented.');
+  }
+
+  /// Retrieve the details of the currently logged in user.
+  Future<Map<String, dynamic>> fetchLoggedInUserAttributes() {
+    throw UnimplementedError(
+        'fetchLoggedInUserAttributes() has not been implemented.');
+  }
 }
