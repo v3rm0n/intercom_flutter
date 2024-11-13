@@ -1,5 +1,12 @@
 # Changelog
 
+## 9.2.0
+
+* Bump Intercom Android SDK version to 15.11.1
+* Bump Intercom iOS SDK version to 18.2.0
+* Added API `isUserLoggedIn`.
+* Added API `fetchLoggedInUserAttributes`.
+
 ## 9.1.1
 
 * Bump Intercom iOS SDK version to 18.1.0

@@ -439,6 +439,22 @@ void main() {
         <Matcher>[isMethodCall('displayHome', arguments: null)],
       );
     });
+
+    test('isUserLoggedIn', () async {
+      await intercom.isUserLoggedIn();
+      expect(
+        log,
+        <Matcher>[isMethodCall('isUserLoggedIn', arguments: null)],
+      );
+    });
+
+    test('fetchLoggedInUserAttributes', () async {
+      await intercom.fetchLoggedInUserAttributes();
+      expect(
+        log,
+        <Matcher>[isMethodCall('fetchLoggedInUserAttributes', arguments: null)],
+      );
+    });
   });
 }
 

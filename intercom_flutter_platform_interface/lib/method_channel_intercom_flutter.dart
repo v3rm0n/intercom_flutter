@@ -241,6 +241,18 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     await _channel.invokeMethod('displayHome');
   }
 
+  @override
+  Future<bool> isUserLoggedIn() async {
+    return await _channel.invokeMethod<bool>('isUserLoggedIn') ?? false;
+  }
+
+  @override
+  Future<Map<String, dynamic>> fetchLoggedInUserAttributes() async {
+    var attributes = Map<String, dynamic>.from(
+        await _channel.invokeMethod<Map>('fetchLoggedInUserAttributes') ?? {});
+    return attributes;
+  }
+
   /// Convert the [PlatformException] details to [IntercomError].
   /// From the Platform side if the intercom operation failed then error details
   /// will be sent as details in [PlatformException].

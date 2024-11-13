@@ -277,4 +277,14 @@ class Intercom {
   Future<void> displayHome() {
     return IntercomFlutterPlatform.instance.displayHome();
   }
+
+  /// Determine if a user is currently logged in to Intercom.
+  Future<bool> isUserLoggedIn() {
+    return IntercomFlutterPlatform.instance.isUserLoggedIn();
+  }
+
+  /// Retrieve the details of the currently logged in user.
+  Future<Map<String, dynamic>> fetchLoggedInUserAttributes() {
+    return IntercomFlutterPlatform.instance.fetchLoggedInUserAttributes();
+  }
 }
