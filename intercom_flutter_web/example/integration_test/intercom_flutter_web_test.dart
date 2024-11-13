@@ -138,5 +138,13 @@ void main() {
     testWidgets('displayHome', (WidgetTester _) async {
       expect(plugin.displayHome(), completes);
     });
+
+    testWidgets('isUserLoggedIn', (WidgetTester _) async {
+      expect(plugin.isUserLoggedIn(), completes);
+    });
+
+    testWidgets('fetchLoggedInUserAttributes', (WidgetTester _) async {
+      expect(plugin.fetchLoggedInUserAttributes(), completes);
+    });
   });
 }

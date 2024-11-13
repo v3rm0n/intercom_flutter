@@ -297,6 +297,35 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     print("Launched Home space");
   }
 
+  @override
+  Future<bool> isUserLoggedIn() async {
+    // There is no direct JS API available
+    // Here we check if intercomSettings has user_id or email then user is
+    // logged in
+    var settings = getIntercomSettings();
+    var user_id = settings['user_id'] as String? ?? "";
+    var email = settings['email'] as String? ?? "";
+
+    return user_id.isNotEmpty || email.isNotEmpty;
+  }
+
+  @override
+  Future<Map<String, dynamic>> fetchLoggedInUserAttributes() async {
+    // There is no direct JS API available
+    // Just return the user_id or email from intercomSettings
+    var settings = getIntercomSettings();
+    var user_id = settings['user_id'] as String? ?? "";
+    var email = settings['email'] as String? ?? "";
+
+    if (user_id.isNotEmpty) {
+      return {'user_id': user_id};
+    } else if (email.isNotEmpty) {
+      return {'email': email};
+    }
+
+    return {};
+  }
+
   /// get the [window.intercomSettings]
   Map<dynamic, dynamic> getIntercomSettings() {
     if (globalContext.hasProperty('intercomSettings'.toJS).toDart) {
