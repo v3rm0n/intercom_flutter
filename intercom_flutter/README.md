@@ -149,8 +149,6 @@ But you can pre-define some Intercom settings, if you want (optional).
 - [ ] handlePush
 - [ ] displayCarousel
 - [ ] displayHelpCenterCollections
-- [ ] isUserLoggedIn
-- [ ] fetchLoggedInUserAttributes
 
 ## Using Intercom keys with `--dart-define`
 

@@ -6,6 +6,8 @@
 * Bump Intercom iOS SDK version to 18.2.0
 * Added API `isUserLoggedIn`.
 * Added API `fetchLoggedInUserAttributes`.
+* Fixed [#479](https://github.com/v3rm0n/intercom_flutter/issues/479).
+* Fixed [#481](https://github.com/v3rm0n/intercom_flutter/issues/481).
 
 ## 9.1.1
 

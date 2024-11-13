@@ -10,7 +10,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   intercom_flutter_platform_interface: ^2.0.2
-  intercom_flutter_web: ^1.1.4
+  intercom_flutter_web: ^1.1.5
 
 dev_dependencies:
   flutter_test:
