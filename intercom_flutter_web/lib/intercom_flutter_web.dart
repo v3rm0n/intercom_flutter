@@ -73,7 +73,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     globalContext.callMethod(
       'Intercom'.toJS,
       'update'.toJS,
-      {'user_hash': userHash}.jsify(),
+      updateIntercomSettings('user_hash', userHash).jsify(),
     );
     print("user hash added");
   }
@@ -93,7 +93,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       globalContext.callMethod(
         'Intercom'.toJS,
         'update'.toJS,
-        {'user_id': userId}.jsify(),
+        updateIntercomSettings('user_id', userId).jsify(),
       );
       // send the success callback only as web does not support the statusCallback.
       statusCallback?.onSuccess?.call();
@@ -102,7 +102,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       globalContext.callMethod(
         'Intercom'.toJS,
         'update'.toJS,
-        {'email': email}.jsify(),
+        updateIntercomSettings('email', email).jsify(),
       );
       // send the success callback only as web does not support the statusCallback.
       statusCallback?.onSuccess?.call();
@@ -120,7 +120,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     globalContext.callMethod(
       'Intercom'.toJS,
       'update'.toJS,
-      {'user_id': userId}.jsify(),
+      updateIntercomSettings('user_id', userId).jsify(),
     );
     // send the success callback only as web does not support the statusCallback.
     statusCallback?.onSuccess?.call();
@@ -213,6 +213,11 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
 
   @override
   Future<void> logout() async {
+    // shutdown will effectively clear out any user data that you have been passing through the JS API.
+    // but not from intercomSettings
+    // so manually clear some intercom settings
+    removeIntercomSettings(['user_hash', 'user_id', 'email']);
+    // shutdown
     globalContext.callMethod('Intercom'.toJS, 'shutdown'.toJS);
     print("logout");
   }
@@ -292,6 +297,35 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     print("Launched Home space");
   }
 
+  @override
+  Future<bool> isUserLoggedIn() async {
+    // There is no direct JS API available
+    // Here we check if intercomSettings has user_id or email then user is
+    // logged in
+    var settings = getIntercomSettings();
+    var user_id = settings['user_id'] as String? ?? "";
+    var email = settings['email'] as String? ?? "";
+
+    return user_id.isNotEmpty || email.isNotEmpty;
+  }
+
+  @override
+  Future<Map<String, dynamic>> fetchLoggedInUserAttributes() async {
+    // There is no direct JS API available
+    // Just return the user_id or email from intercomSettings
+    var settings = getIntercomSettings();
+    var user_id = settings['user_id'] as String? ?? "";
+    var email = settings['email'] as String? ?? "";
+
+    if (user_id.isNotEmpty) {
+      return {'user_id': user_id};
+    } else if (email.isNotEmpty) {
+      return {'email': email};
+    }
+
+    return {};
+  }
+
   /// get the [window.intercomSettings]
   Map<dynamic, dynamic> getIntercomSettings() {
     if (globalContext.hasProperty('intercomSettings'.toJS).toDart) {
@@ -309,6 +343,22 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
   Map<dynamic, dynamic> updateIntercomSettings(String key, dynamic value) {
     var intercomSettings = getIntercomSettings();
     intercomSettings[key] = value;
+
+    // Update the [window.intercomSettings]
+    globalContext.setProperty(
+        "intercomSettings".toJS, intercomSettings.jsify());
+
+    return intercomSettings;
+  }
+
+  /// Remove properties from [window.intercomSettings]
+  Map<dynamic, dynamic> removeIntercomSettings(List<String> keys) {
+    var intercomSettings = getIntercomSettings();
+
+    // remove the keys
+    for (var key in keys) {
+      intercomSettings.remove(key);
+    }
 
     // Update the [window.intercomSettings]
     globalContext.setProperty(
