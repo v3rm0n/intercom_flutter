@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.2.1
+
+* Bump Intercom Android SDK version to 15.11.2
+
 ## 9.2.0
 
 * Bump Intercom Android SDK version to 15.11.1
