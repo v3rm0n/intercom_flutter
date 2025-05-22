@@ -337,10 +337,14 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
   }
 
   override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
-    unreadConversationCountListener = UnreadConversationCountListener { count -> events?.success(count) }
-        .also {
-          Intercom.client().addUnreadConversationCountListener(it)
+    unreadConversationCountListener = UnreadConversationCountListener { count ->
+        val handler = android.os.Handler(android.os.Looper.getMainLooper())
+        handler.post {
+          events?.success(count)
         }
+      }.also {
+        Intercom.client().addUnreadConversationCountListener(it)
+      }
   }
 
   override fun onCancel(arguments: Any?) {
