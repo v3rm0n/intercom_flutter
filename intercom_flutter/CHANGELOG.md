@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.2.11
+
+* Post event result on main thread in Android. ([#518](https://github.com/v3rm0n/intercom_flutter/pull/518))
+
 ## 9.2.10
 
 * Bump Intercom Android SDK version to 15.16.1
