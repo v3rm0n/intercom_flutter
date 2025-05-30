@@ -1,5 +1,11 @@
 # Changelog
 
+## 9.3.0
+
+* Bump Intercom Android SDK version to 16.2.0
+* Bump Intercom iOS SDK version to 18.7.3
+* This version requires `compileSdk` version to be at least 35.
+
 ## 9.2.11
 
 * Post event result on main thread in Android. ([#518](https://github.com/v3rm0n/intercom_flutter/pull/518))
