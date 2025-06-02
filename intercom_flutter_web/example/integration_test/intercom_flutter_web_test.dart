@@ -146,5 +146,9 @@ void main() {
     testWidgets('fetchLoggedInUserAttributes', (WidgetTester _) async {
       expect(plugin.fetchLoggedInUserAttributes(), completes);
     });
+
+    testWidgets('setUserJwt', (WidgetTester _) async {
+      expect(plugin.setUserJwt('test'), completes);
+    });
   });
 }

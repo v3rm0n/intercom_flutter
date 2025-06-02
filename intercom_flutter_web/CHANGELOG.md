@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.6
+
+* Implemented method `setUserJwt`.
+
 ## 1.1.5
 
 * Set user_hash, user_id, email in intercomSettings.
