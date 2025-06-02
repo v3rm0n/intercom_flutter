@@ -253,6 +253,11 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     return attributes;
   }
 
+  @override
+  Future<void> setUserJwt(String jwt) async {
+    await _channel.invokeMethod('setUserJwt', {'jwt': jwt});
+  }
+
   /// Convert the [PlatformException] details to [IntercomError].
   /// From the Platform side if the intercom operation failed then error details
   /// will be sent as details in [PlatformException].
