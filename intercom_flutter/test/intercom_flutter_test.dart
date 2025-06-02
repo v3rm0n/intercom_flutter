@@ -283,4 +283,11 @@ void main() {
     await Intercom.instance.displayHome();
     expectMethodCall('displayHome');
   });
+
+  test('setUserJwt', () {
+    Intercom.instance.setUserJwt('test');
+    expectMethodCall('setUserJwt', arguments: {
+      'jwt': 'test',
+    });
+  });
 }

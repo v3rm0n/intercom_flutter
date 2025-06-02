@@ -269,6 +269,13 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
         }
         result.success(map)
       }
+      "setUserJwt" -> {
+        val jwt = call.argument<String>("jwt")
+        if (jwt != null) {
+          Intercom.client().setUserJwt(jwt)
+          result.success("Jwt added")
+        }
+      }
       else -> result.notImplemented()
     }
   }
