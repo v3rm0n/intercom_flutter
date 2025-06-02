@@ -326,6 +326,16 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     return {};
   }
 
+  @override
+  Future<void> setUserJwt(String jwt) async {
+    globalContext.callMethod(
+      'Intercom'.toJS,
+      'update'.toJS,
+      updateIntercomSettings('intercom_user_jwt', jwt).jsify(),
+    );
+    print("jwt added");
+  }
+
   /// get the [window.intercomSettings]
   Map<dynamic, dynamic> getIntercomSettings() {
     if (globalContext.hasProperty('intercomSettings'.toJS).toDart) {
