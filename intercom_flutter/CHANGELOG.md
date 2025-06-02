@@ -1,5 +1,10 @@
 # Changelog
 
+## 9.3.1
+
+* Added API `setUserJwt`.
+* Bump Intercom Android SDK version to 16.2.1
+
 ## 9.3.0
 
 * Bump Intercom Android SDK version to 16.2.0

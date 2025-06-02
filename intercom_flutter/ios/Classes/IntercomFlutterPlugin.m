@@ -258,6 +258,10 @@ id unread;
             result(map);
         }
         result([NSMutableDictionary dictionary]);
+    } else if([@"setUserJwt" isEqualToString:call.method]) {
+        NSString *jwt = call.arguments[@"jwt"];
+        [Intercom setUserJwt:jwt];
+        result(@"Jwt added");
     }
     else {
         result(FlutterMethodNotImplemented);
