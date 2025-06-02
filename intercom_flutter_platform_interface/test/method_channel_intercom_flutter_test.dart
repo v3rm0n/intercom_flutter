@@ -455,6 +455,18 @@ void main() {
         <Matcher>[isMethodCall('fetchLoggedInUserAttributes', arguments: null)],
       );
     });
+
+    test('setUserJwt', () async {
+      await intercom.setUserJwt('test');
+      expect(
+        log,
+        <Matcher>[
+          isMethodCall('setUserJwt', arguments: {
+            'jwt': 'test',
+          })
+        ],
+      );
+    });
   });
 }
 

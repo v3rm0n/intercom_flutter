@@ -278,4 +278,11 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
     throw UnimplementedError(
         'fetchLoggedInUserAttributes() has not been implemented.');
   }
+
+  /// JWT (JSON Web Token) is the recommended method to secure your Messenger.
+  /// With JWT, you can ensure that bad actors can't impersonate your users,
+  /// see their conversation history, or make unauthorized updates to data.
+  Future<void> setUserJwt(String jwt) {
+    throw UnimplementedError('setUserJwt() has not been implemented.');
+  }
 }
