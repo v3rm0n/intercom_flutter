@@ -210,3 +210,10 @@ class MyApp : Application() {
   }
 }
 ```
+
+## Support
+
+If you find this package helpful, you can support the development by:
+
+- [Buy Me A Coffee](https://buymeacoffee.com/deepakdroid)
+- [PayPal](https://paypal.me/deepakdroid)
