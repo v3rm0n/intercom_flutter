@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.7
+
+* Implemented method `setAuthTokens`.
+
 ## 1.1.6
 
 * Implemented method `setUserJwt`.
