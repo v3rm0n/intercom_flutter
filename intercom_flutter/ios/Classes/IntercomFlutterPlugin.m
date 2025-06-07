@@ -262,6 +262,22 @@ id unread;
         NSString *jwt = call.arguments[@"jwt"];
         [Intercom setUserJwt:jwt];
         result(@"Jwt added");
+    } else if([@"setAuthTokens" isEqualToString:call.method]) {
+        NSDictionary *tokens = call.arguments[@"tokens"];
+        if (tokens != nil && [tokens count] > 0) {
+            [Intercom setAuthTokens:tokens success:^{
+                // Handle success
+                result(@"Auth tokens added");
+            } failure:^(NSError * _Nonnull error) {
+                // Handle failure
+                NSInteger errorCode = error.code;
+                NSString *errorMsg = error.localizedDescription;
+                
+                result([FlutterError errorWithCode:[@(errorCode) stringValue]
+                                           message:errorMsg
+                                           details: [self getIntercomError:errorCode:errorMsg]]);
+            }];
+        }
     }
     else {
         result(FlutterMethodNotImplemented);
