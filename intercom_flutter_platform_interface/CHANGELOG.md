@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.4
+
+* Added method `setAuthTokens`.
+
 ## 2.0.3
 
 * Added method `setUserJwt`.

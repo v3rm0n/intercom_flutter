@@ -150,5 +150,9 @@ void main() {
     testWidgets('setUserJwt', (WidgetTester _) async {
       expect(plugin.setUserJwt('test'), completes);
     });
+
+    testWidgets('setAuthTokens', (WidgetTester _) async {
+      expect(plugin.setAuthTokens({'security_token': 'test'}), completes);
+    });
   });
 }

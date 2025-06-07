@@ -296,4 +296,12 @@ class Intercom {
   Future<void> setUserJwt(String jwt) {
     return IntercomFlutterPlatform.instance.setUserJwt(jwt);
   }
+
+  /// Set up the authentication (user-defined token) to secure your Data
+  /// connectors. These tokens can be used for functionality such as Fin Actions.
+  ///  You can provide multiple tokens at once. Please ensure you have created
+  ///  the correct keys [here](https://www.intercom.com/a/apps/_/settings/app-settings/authentication)
+  Future<void> setAuthTokens(Map<String, String> tokens) {
+    return IntercomFlutterPlatform.instance.setAuthTokens(tokens);
+  }
 }
