@@ -194,6 +194,8 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   /// such as the URI in your message or the conversation to open.
   ///
   /// When you want Intercom to act on that data, use this method.
+  @Deprecated(
+      "Calling this API is no longer required. Intercom will directly open the chat screen when a push notification is clicked.")
   Future<void> handlePushMessage() {
     throw UnimplementedError('handlePushMessage() has not been implemented.');
   }

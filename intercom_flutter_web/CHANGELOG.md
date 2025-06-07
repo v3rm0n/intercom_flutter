@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.8
+
+* Deprecated `handlePushMessage`.
+
 ## 1.1.7
 
 * Implemented method `setAuthTokens`.

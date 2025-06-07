@@ -6,6 +6,7 @@
 * Bump Intercom Android SDK version to 16.3.0
 * Bump Intercom iOS SDK version to 18.8.0
 * Updated gradle and kotlin version
+* Deprecated `handlePushMessage`
 
 ## 9.3.1
 
