@@ -3,6 +3,8 @@
 ## 9.3.2
 
 * Added API `setAuthTokens`.
+* Bump Intercom Android SDK version to 16.3.0
+* Bump Intercom iOS SDK version to 18.8.0
 
 ## 9.3.1
 
