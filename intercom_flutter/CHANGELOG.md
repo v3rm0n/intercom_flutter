@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.3.2
+
+* Added API `setAuthTokens`.
+
 ## 9.3.1
 
 * Added API `setUserJwt`.
