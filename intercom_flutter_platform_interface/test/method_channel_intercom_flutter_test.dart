@@ -467,6 +467,18 @@ void main() {
         ],
       );
     });
+
+    test('setAuthTokens', () async {
+      await intercom.setAuthTokens({'security_token': 'test'});
+      expect(
+        log,
+        <Matcher>[
+          isMethodCall('setAuthTokens', arguments: {
+            'tokens': {'security_token': 'test'},
+          })
+        ],
+      );
+    });
   });
 }
 

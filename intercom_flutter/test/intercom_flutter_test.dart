@@ -290,4 +290,11 @@ void main() {
       'jwt': 'test',
     });
   });
+
+  test('setAuthTokens', () {
+    Intercom.instance.setAuthTokens({'security_token': 'test'});
+    expectMethodCall('setAuthTokens', arguments: {
+      'tokens': {'security_token': 'test'},
+    });
+  });
 }
