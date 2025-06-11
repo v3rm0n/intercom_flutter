@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.3.3
+
+* Bump Intercom iOS SDK version to 18.8.1
+
 ## 9.3.2
 
 * Added API `setAuthTokens`.
