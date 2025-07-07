@@ -1,5 +1,11 @@
 # Changelog
 
+## 9.4.0
+
+* Bump Intercom iOS SDK version to 19.0.1 (includes dark mode beta)
+* Bump Intercom Android SDK version to 17.0.0 (includes dark mode beta)
+* loosen the com.google.firebase:firebase-messaging constraint to `24.1.+` to support latest version.
+
 ## 9.3.3
 
 * Bump Intercom iOS SDK version to 18.8.1
