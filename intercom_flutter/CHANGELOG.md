@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.4.1
+
+* Bump Intercom Android SDK version to [17.0.1](https://github.com/intercom/intercom-android/releases/tag/17.0.1)
+
 ## 9.4.0
 
 * Bump Intercom iOS SDK version to 19.0.1 (includes dark mode beta)
