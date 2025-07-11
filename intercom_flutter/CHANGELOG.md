@@ -153,7 +153,7 @@
 ## 9.0.1
 
 * Bump Intercom Android SDK version to 15.8.1
-* Bump Intercom iOS SDK version to 17.0.2
+* Bump Intercom iOS SDK version to 17.0.1
 
 ## 9.0.0
 
