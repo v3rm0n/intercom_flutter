@@ -50,6 +50,6 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'io.intercom.android:intercom-sdk:17.0.1'
+    implementation 'io.intercom.android:intercom-sdk:17.0.2'
     implementation 'com.google.firebase:firebase-messaging:24.1.1'
 }
