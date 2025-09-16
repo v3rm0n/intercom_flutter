@@ -183,11 +183,18 @@ id unread;
             NSData *encodedToken=[self createDataWithHexString:token];
             // NSData* encodedToken=[token dataUsingEncoding:NSUTF8StringEncoding];
             NSLog(@"%@", encodedToken);
-            [Intercom setDeviceToken:encodedToken failure:^(NSError * _Nonnull error) {
+            [Intercom setDeviceToken:encodedToken success:^{
+                // Handle success
+                result(@"Token set");
+            } failure:^(NSError * _Nonnull error) {
                 // Handle failure
-                NSLog(@"Error setting device token: %@", error.localizedDescription);
+                NSInteger errorCode = error.code;
+                NSString *errorMsg = error.localizedDescription;
+                
+                result([FlutterError errorWithCode:[@(errorCode) stringValue]
+                                           message:errorMsg
+                                           details: [self getIntercomError:errorCode:errorMsg]]);
             }];
-            result(@"Token set");
         }
     } else if([@"displayArticle" isEqualToString:call.method]) {
         NSString *articleId = call.arguments[@"articleId"];
