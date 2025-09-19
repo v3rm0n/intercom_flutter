@@ -216,7 +216,13 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     // shutdown will effectively clear out any user data that you have been passing through the JS API.
     // but not from intercomSettings
     // so manually clear some intercom settings
-    removeIntercomSettings(['user_hash', 'intercom_user_jwt', 'user_id', 'email']);
+    removeIntercomSettings([
+      'user_hash',
+      'intercom_user_jwt',
+      'user_id',
+      'email',
+      'auth_tokens',
+    ]);
     // shutdown
     globalContext.callMethod('Intercom'.toJS, 'shutdown'.toJS);
     print("logout");
