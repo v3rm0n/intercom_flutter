@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.9
+
+* Removed `auth_tokens` and `intercom_user_jwt` from intercomSettings on logout.
+
 ## 1.1.8
 
 * Deprecated `handlePushMessage`.
