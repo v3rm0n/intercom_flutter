@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.4.9
+
+* Bump Intercom iOS SDK version to [19.2.1](https://github.com/intercom/intercom-ios/releases/tag/19.2.1)
+
 ## 9.4.8
 
 * Bump `intercom_flutter_web` to `1.1.9`
