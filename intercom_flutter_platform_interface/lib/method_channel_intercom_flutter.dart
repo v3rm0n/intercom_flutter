@@ -265,6 +265,11 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
     await _channel.invokeMethod('setAuthTokens', {'tokens': tokens});
   }
 
+  @override
+  Future<void> changeWorkspace(String appId, {String? androidApiKey, String? iosApiKey}) async {
+    await _channel.invokeMethod('changeWorkspace', {'appId': appId, 'androidApiKey': androidApiKey, 'iosApiKey': iosApiKey});
+  }
+
   /// Convert the [PlatformException] details to [IntercomError].
   /// From the Platform side if the intercom operation failed then error details
   /// will be sent as details in [PlatformException].
