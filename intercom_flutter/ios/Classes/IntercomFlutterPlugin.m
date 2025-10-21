@@ -285,6 +285,20 @@ id unread;
                                            details: [self getIntercomError:errorCode:errorMsg]]);
             }];
         }
+    } else if([@"changeWorkspace" isEqualToString:call.method]) {
+        NSString *iosApiKey = call.arguments[@"iosApiKey"];
+        NSString *appId = call.arguments[@"appId"];
+        if (iosApiKey != nil && iosApiKey != (id)[NSNull null] &&
+            appId != nil && appId != (id)[NSNull null]) {
+            // iOS doesn't have native changeWorkspace, so logout and re-initialize
+            [Intercom logout];
+            [Intercom setApiKey:iosApiKey forAppId:appId];
+            result(@"Workspace changed");
+        } else {
+            result([FlutterError errorWithCode:@"INVALID_ARGUMENTS"
+                                       message:@"appId and iosApiKey are required"
+                                       details:nil]);
+        }
     }
     else {
         result(FlutterMethodNotImplemented);

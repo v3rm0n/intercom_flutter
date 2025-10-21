@@ -298,6 +298,16 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
           })
         }
       }
+      "changeWorkspace" -> {
+        val appId = call.argument<String>("appId")
+        val androidApiKey = call.argument<String>("androidApiKey")
+        if (appId != null && androidApiKey != null) {
+          Intercom.client().changeWorkspace(androidApiKey, appId)
+          result.success("Workspace changed")
+        } else {
+          result.error("INVALID_ARGUMENTS", "appId and androidApiKey are required", null)
+        }
+      }
       else -> result.notImplemented()
     }
   }
