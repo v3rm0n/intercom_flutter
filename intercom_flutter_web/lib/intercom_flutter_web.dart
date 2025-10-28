@@ -352,6 +352,18 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     print("Auth tokens added");
   }
 
+  @override
+  Future<void> changeWorkspace(String appId, {String? androidApiKey, String? iosApiKey}) async {
+    // For web, we shutdown the current workspace and boot with the new appId
+    // Clear user data first
+    removeIntercomSettings(['user_hash', 'intercom_user_jwt', 'user_id', 'email', 'auth_tokens']);
+    // Shutdown current workspace
+    globalContext.callMethod('Intercom'.toJS, 'shutdown'.toJS);
+    // Boot with new workspace
+    globalContext.callMethod('Intercom'.toJS, 'boot'.toJS, updateIntercomSettings('app_id', appId).jsify());
+    print("Workspace changed");
+  }
+
   /// get the [window.intercomSettings]
   Map<dynamic, dynamic> getIntercomSettings() {
     if (globalContext.hasProperty('intercomSettings'.toJS).toDart) {

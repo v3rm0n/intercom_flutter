@@ -295,4 +295,19 @@ abstract class IntercomFlutterPlatform extends PlatformInterface {
   Future<void> setAuthTokens(Map<String, String> tokens) {
     throw UnimplementedError('setAuthTokens() has not been implemented.');
   }
+
+  /// Changes the Intercom workspace.
+  ///
+  /// On Android: Uses native changeWorkspace API (SDK 16.1.0+)
+  /// On iOS: Logs out and re-initializes with new credentials
+  ///
+  /// This will logout the current user and clear all SDK data.
+  /// You must call login again after changing workspace.
+  ///
+  /// [appId] is required for both platforms.
+  /// [androidApiKey] is required for Android.
+  /// [iosApiKey] is required for iOS.
+  Future<void> changeWorkspace(String appId, {String? androidApiKey, String? iosApiKey}) {
+    throw UnimplementedError('changeWorkspace() has not been implemented.');
+  }
 }
