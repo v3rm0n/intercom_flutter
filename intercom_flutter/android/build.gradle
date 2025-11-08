@@ -2,14 +2,14 @@ group 'io.maido.intercom'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '2.1.21'
+    ext.kotlin_version = '2.2.21'
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-      classpath("com.android.tools.build:gradle:8.10.1")
+      classpath("com.android.tools.build:gradle:8.13.0")
       classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
@@ -51,5 +51,6 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'io.intercom.android:intercom-sdk:17.3.0'
+    implementation 'io.intercom.android:intercom-sdk-ui:17.3.0'
     implementation 'com.google.firebase:firebase-messaging:24.1.2'
 }

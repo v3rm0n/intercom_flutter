@@ -285,6 +285,19 @@ id unread;
                                            details: [self getIntercomError:errorCode:errorMsg]]);
             }];
         }
+    } else if([@"setThemeMode" isEqualToString:call.method]) {
+        NSString *theme = call.arguments[@"theme"];
+        
+        if([@"dark" isEqualToString:theme]){
+            [Intercom setThemeOverride:ICMThemeOverrideDark];
+        } else if([@"light" isEqualToString:theme]){
+            [Intercom setThemeOverride:ICMThemeOverrideLight];
+        } else if([@"system" isEqualToString:theme]){
+            [Intercom setThemeOverride:ICMThemeOverrideSystem];
+        } else {
+            [Intercom setThemeOverride:ICMThemeOverrideNone];
+        }
+        result(@"Theme overridden");
     }
     else {
         result(FlutterMethodNotImplemented);
