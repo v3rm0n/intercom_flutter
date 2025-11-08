@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.6
+
+* Added method `setThemeMode`.
+
 ## 2.0.5
 
 * Deprecated `handlePushMessage`

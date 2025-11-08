@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:intercom_flutter_platform_interface/enumeral.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
 import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 
@@ -263,6 +264,11 @@ class MethodChannelIntercomFlutter extends IntercomFlutterPlatform {
   @override
   Future<void> setAuthTokens(Map<String, String> tokens) async {
     await _channel.invokeMethod('setAuthTokens', {'tokens': tokens});
+  }
+
+  @override
+  Future<void> setThemeMode(IntercomTheme theme) async {
+    await _channel.invokeMethod('setThemeMode', {'theme': theme.name});
   }
 
   /// Convert the [PlatformException] details to [IntercomError].
