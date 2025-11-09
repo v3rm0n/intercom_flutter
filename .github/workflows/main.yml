@@ -87,8 +87,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       source-directory: ./intercom_flutter_web/example
-      DISPLAY: :99
-      CHROME_NO_SANDBOX: true
 
     steps:
     - uses: actions/checkout@v2
@@ -96,9 +94,6 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         channel: 'stable'
-
-    - name: Install xvfb (virtual display)
-      run: sudo apt-get update && sudo apt-get install -y xvfb
     
     # Download all Flutter packages
     - name: Download dependencies
@@ -122,6 +117,5 @@ jobs:
 
     # Run all integration tests
     - name: Run integration tests
-      timeout-minutes: 10
-      run: xvfb-run -s "-screen 0 1024x768x24" flutter test --platform=chrome --headless integration_test/intercom_flutter_web_test.dart
+      run: flutter drive -d web-server --browser-name=chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart
       working-directory: ${{env.source-directory}}
