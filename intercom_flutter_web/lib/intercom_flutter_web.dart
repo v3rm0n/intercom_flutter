@@ -3,14 +3,15 @@ import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:intercom_flutter_platform_interface/enumeral.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
 import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 import 'package:uuid/uuid.dart';
 import 'package:web/web.dart' as web;
 
 /// export the enum [IntercomVisibility]
-export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart'
-    show IntercomVisibility;
+export 'package:intercom_flutter_platform_interface/enumeral.dart'
+    show IntercomVisibility, IntercomTheme;
 export 'package:intercom_flutter_platform_interface/intercom_status_callback.dart'
     show IntercomStatusCallback, IntercomError;
 
@@ -350,6 +351,19 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       updateIntercomSettings('auth_tokens', tokens).jsify(),
     );
     print("Auth tokens added");
+  }
+
+  @override
+  Future<void> setThemeMode(IntercomTheme theme) async {
+    globalContext.callMethod(
+      'Intercom'.toJS,
+      'update'.toJS,
+      updateIntercomSettings(
+        'theme_mode',
+        theme == IntercomTheme.none ? null : theme.name,
+      ).jsify(),
+    );
+    print("Theme overridden");
   }
 
   /// get the [window.intercomSettings]

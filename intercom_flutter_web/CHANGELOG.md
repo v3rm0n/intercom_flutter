@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.10
+
+* Implemented method `setThemeMode`.
+
 ## 1.1.9
 
 * Removed `auth_tokens` and `intercom_user_jwt` from intercomSettings on logout.

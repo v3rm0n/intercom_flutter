@@ -12,6 +12,7 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.intercom.android.sdk.*
 import io.intercom.android.sdk.identity.Registration
 import io.intercom.android.sdk.push.IntercomPushClient
+import io.intercom.android.sdk.ui.theme.ThemeMode
 
 class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.StreamHandler, ActivityAware {
   companion object {
@@ -297,6 +298,24 @@ class IntercomFlutterPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Str
             }
           })
         }
+      }
+      "setThemeMode" -> {
+        val theme = call.argument<String>("theme")
+        when (theme) {
+            "dark" -> {
+              Intercom.client().setThemeMode(ThemeMode.DARK)
+            }
+            "light" -> {
+              Intercom.client().setThemeMode(ThemeMode.LIGHT)
+            }
+            "system" -> {
+              Intercom.client().setThemeMode(ThemeMode.SYSTEM)
+            }
+            else -> {
+              Intercom.client().setThemeMode(null)
+            }
+        }
+        result.success("Theme overridden")
       }
       else -> result.notImplemented()
     }

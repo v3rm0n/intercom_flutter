@@ -297,4 +297,34 @@ void main() {
       'tokens': {'security_token': 'test'},
     });
   });
+
+  group('setThemeMode', () {
+    test('dark', () {
+      Intercom.instance.setThemeMode(IntercomTheme.dark);
+      expectMethodCall('setThemeMode', arguments: {
+        'theme': 'dark',
+      });
+    });
+
+    test('light', () {
+      Intercom.instance.setThemeMode(IntercomTheme.light);
+      expectMethodCall('setThemeMode', arguments: {
+        'theme': 'light',
+      });
+    });
+
+    test('system', () {
+      Intercom.instance.setThemeMode(IntercomTheme.system);
+      expectMethodCall('setThemeMode', arguments: {
+        'theme': 'system',
+      });
+    });
+
+    test('none', () {
+      Intercom.instance.setThemeMode(IntercomTheme.none);
+      expectMethodCall('setThemeMode', arguments: {
+        'theme': 'none',
+      });
+    });
+  });
 }
