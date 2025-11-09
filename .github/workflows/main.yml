@@ -94,6 +94,9 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         channel: 'master'
+
+    - name: Install xvfb (virtual display)
+      run: sudo apt-get update && sudo apt-get install -y xvfb
     
     # Download all Flutter packages
     - name: Download dependencies
@@ -117,5 +120,8 @@ jobs:
 
     # Run all integration tests
     - name: Run integration tests
-      run: flutter drive -d web-server --browser-name=chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart --headless
+      timeout-minutes: 10
+      env:
+        CHROME_NO_SANDBOX: true
+      run: xvfb-run flutter drive -d chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart --headless
       working-directory: ${{env.source-directory}}
