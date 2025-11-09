@@ -123,5 +123,5 @@ jobs:
     # Run all integration tests
     - name: Run integration tests
       timeout-minutes: 10
-      run: xvfb-run -s "-screen 0 1024x768x24" flutter drive -d chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart --headless
+      run: xvfb-run -s "-screen 0 1024x768x24" flutter test --platform=chrome --headless integration_test/intercom_flutter_web_test.dart
       working-directory: ${{env.source-directory}}
