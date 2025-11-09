@@ -87,13 +87,15 @@ jobs:
     runs-on: ubuntu-latest
     env:
       source-directory: ./intercom_flutter_web/example
+      DISPLAY: :99
+      CHROME_NO_SANDBOX: true
 
     steps:
     - uses: actions/checkout@v2
     - uses: nanasess/setup-chromedriver@v2      
     - uses: subosito/flutter-action@v1
       with:
-        channel: 'master'
+        channel: 'stable'
 
     - name: Install xvfb (virtual display)
       run: sudo apt-get update && sudo apt-get install -y xvfb
@@ -121,7 +123,5 @@ jobs:
     # Run all integration tests
     - name: Run integration tests
       timeout-minutes: 10
-      env:
-        CHROME_NO_SANDBOX: true
-      run: xvfb-run flutter drive -d chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart --headless
+      run: xvfb-run -s "-screen 0 1024x768x24" flutter drive -d chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart --headless
       working-directory: ${{env.source-directory}}
