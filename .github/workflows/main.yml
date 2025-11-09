@@ -117,5 +117,5 @@ jobs:
 
     # Run all integration tests
     - name: Run integration tests
-      run: flutter drive -d chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart --web-renderer=html --headless
+      run: flutter drive -d chrome --driver=test_driver/integration_test.dart --target=integration_test/intercom_flutter_web_test.dart --headless
       working-directory: ${{env.source-directory}}
