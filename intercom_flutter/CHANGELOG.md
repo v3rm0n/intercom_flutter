@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.4.16
+
+* Bump Intercom Android SDK version to [17.3.1](https://github.com/intercom/intercom-android/releases/tag/17.3.1)
+
 ## 9.4.15
 
 * Added API `setThemeMode`.
