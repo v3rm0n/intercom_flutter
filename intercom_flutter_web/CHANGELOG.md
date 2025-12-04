@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.11
+
+* JSON-encode `intercomSettings` before injecting the Intercom script to avoid invalid JavaScript
+  syntax. Fixes [#582](https://github.com/v3rm0n/intercom_flutter/issues/582)
+
 ## 1.1.10
 
 * Implemented method `setThemeMode`.

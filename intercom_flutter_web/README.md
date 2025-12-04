@@ -8,7 +8,7 @@ This package is already included as part of the `intercom_flutter` package depen
 
 But if you want to use this package as alone, add the dependency `intercom_flutter_web`.
 You don't need to add Intercom script in the index.html file, it will be automatically injected.
-But you can pre-define some Intercom settings, if you want (optional).
+But you can pre-define some Intercom settings, if you want (optional), such as `api_base`, `hide_default_launcher`, etc.
 ```html
 <script>
     window.intercomSettings = {
