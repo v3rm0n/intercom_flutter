@@ -2,12 +2,13 @@ library intercom_flutter;
 
 import 'dart:async';
 
+import 'package:intercom_flutter_platform_interface/enumeral.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
 import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 
 /// export the [IntercomVisibility] enum
-export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart'
-    show IntercomVisibility;
+export 'package:intercom_flutter_platform_interface/enumeral.dart'
+    show IntercomVisibility, IntercomTheme;
 export 'package:intercom_flutter_platform_interface/intercom_status_callback.dart'
     show IntercomStatusCallback, IntercomError;
 
@@ -312,5 +313,13 @@ class Intercom {
   ///  the correct keys [here](https://www.intercom.com/a/apps/_/settings/app-settings/authentication)
   Future<void> setAuthTokens(Map<String, String> tokens) {
     return IntercomFlutterPlatform.instance.setAuthTokens(tokens);
+  }
+
+  /// The theme mode controls whether the SDK displays in light mode, dark mode,
+  /// or follows the system theme.
+  /// The theme selection will be reset when the app restarts i.e. You can
+  /// override the server-provided theme setting for the current session only.
+  Future<void> setThemeMode(IntercomTheme theme) {
+    return IntercomFlutterPlatform.instance.setThemeMode(theme);
   }
 }

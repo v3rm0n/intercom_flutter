@@ -1,5 +1,96 @@
 # Changelog
 
+## 9.4.21
+
+* Bump Intercom iOS SDK version to [19.4.1](https://github.com/intercom/intercom-ios/releases/tag/19.4.1)
+
+## 9.4.20
+
+* Bump Intercom iOS SDK version to [19.4.0](https://github.com/intercom/intercom-ios/releases/tag/19.4.0)
+
+## 9.4.19
+
+* Bump `intercom_flutter_web` to `1.1.11`
+
+## 9.4.18
+
+* Bump Intercom iOS SDK version to [19.3.4](https://github.com/intercom/intercom-ios/releases/tag/19.3.4)
+
+## 9.4.17
+
+* Bump Intercom iOS SDK version to [19.3.3](https://github.com/intercom/intercom-ios/releases/tag/19.3.3)
+
+## 9.4.16
+
+* Bump Intercom Android SDK version to [17.3.1](https://github.com/intercom/intercom-android/releases/tag/17.3.1)
+
+## 9.4.15
+
+* Added API `setThemeMode`.
+
+## 9.4.14
+
+* Bump Intercom iOS SDK version to [19.3.2](https://github.com/intercom/intercom-ios/releases/tag/19.3.2)
+
+## 9.4.13
+
+* Bump Intercom iOS SDK version to [19.3.1](https://github.com/intercom/intercom-ios/releases/tag/19.3.1)
+
+## 9.4.12
+
+* Bump Intercom iOS SDK version to [19.3.0](https://github.com/intercom/intercom-ios/releases/tag/19.3.0)
+
+## 9.4.11
+
+* Bump Intercom Android SDK version to [17.3.0](https://github.com/intercom/intercom-android/releases/tag/17.3.0)
+
+## 9.4.10
+
+* Bump Intercom Android SDK version to [17.2.0](https://github.com/intercom/intercom-android/releases/tag/17.2.0)
+
+## 9.4.9
+
+* Bump Intercom iOS SDK version to [19.2.1](https://github.com/intercom/intercom-ios/releases/tag/19.2.1)
+
+## 9.4.8
+
+* Bump `intercom_flutter_web` to `1.1.9`
+
+## 9.4.7
+
+* Bump Intercom iOS SDK version to [19.2.0](https://github.com/intercom/intercom-ios/releases/tag/19.2.0)
+* Bump Intercom Android SDK version to [17.1.1](https://github.com/intercom/intercom-android/releases/tag/17.1.1)
+
+## 9.4.6
+
+* Bump Intercom iOS SDK version to [19.1.2](https://github.com/intercom/intercom-ios/releases/tag/19.1.2)
+* Bump Intercom Android SDK version to [17.1.0](https://github.com/intercom/intercom-android/releases/tag/17.1.0)
+
+## 9.4.5
+
+* Bump Intercom Android SDK version to [17.0.4](https://github.com/intercom/intercom-android/releases/tag/17.0.4)
+
+## 9.4.4
+
+* Bump Intercom iOS SDK version to [19.1.1](https://github.com/intercom/intercom-ios/releases/tag/19.1.1)
+
+## 9.4.3
+
+* Bump Intercom Android SDK version to [17.0.3](https://github.com/intercom/intercom-android/releases/tag/17.0.3)
+
+## 9.4.2
+
+* Bump Intercom iOS SDK version to [19.1.0](https://github.com/intercom/intercom-ios/releases/tag/19.1.0)
+
+## 9.4.1
+
+* Bump Intercom Android SDK version to [17.0.2](https://github.com/intercom/intercom-android/releases/tag/17.0.2)
+
+## 9.4.0
+
+* Bump Intercom iOS SDK version to 19.0.1 (includes dark mode beta)
+* Bump Intercom Android SDK version to 17.0.0 (includes dark mode beta)
+
 ## 9.3.3
 
 * Bump Intercom iOS SDK version to 18.8.1

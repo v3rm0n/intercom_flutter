@@ -1,16 +1,18 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:intercom_flutter_platform_interface/enumeral.dart';
 import 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart';
 import 'package:intercom_flutter_platform_interface/intercom_status_callback.dart';
 import 'package:uuid/uuid.dart';
 import 'package:web/web.dart' as web;
 
 /// export the enum [IntercomVisibility]
-export 'package:intercom_flutter_platform_interface/intercom_flutter_platform_interface.dart'
-    show IntercomVisibility;
+export 'package:intercom_flutter_platform_interface/enumeral.dart'
+    show IntercomVisibility, IntercomTheme;
 export 'package:intercom_flutter_platform_interface/intercom_status_callback.dart'
     show IntercomStatusCallback, IntercomError;
 
@@ -51,7 +53,7 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       web.HTMLScriptElement script =
           web.document.createElement("script") as web.HTMLScriptElement;
       script.text = """
-          window.intercomSettings = ${updateIntercomSettings('app_id', "'$appId'")};
+          window.intercomSettings = ${jsonEncode(updateIntercomSettings('app_id', appId))};
           (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/' + '$appId';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();  
       """;
       if (web.document.body != null) {
@@ -216,7 +218,13 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
     // shutdown will effectively clear out any user data that you have been passing through the JS API.
     // but not from intercomSettings
     // so manually clear some intercom settings
-    removeIntercomSettings(['user_hash', 'user_id', 'email']);
+    removeIntercomSettings([
+      'user_hash',
+      'intercom_user_jwt',
+      'user_id',
+      'email',
+      'auth_tokens',
+    ]);
     // shutdown
     globalContext.callMethod('Intercom'.toJS, 'shutdown'.toJS);
     print("logout");
@@ -344,6 +352,19 @@ class IntercomFlutterWeb extends IntercomFlutterPlatform {
       updateIntercomSettings('auth_tokens', tokens).jsify(),
     );
     print("Auth tokens added");
+  }
+
+  @override
+  Future<void> setThemeMode(IntercomTheme theme) async {
+    globalContext.callMethod(
+      'Intercom'.toJS,
+      'update'.toJS,
+      updateIntercomSettings(
+        'theme_mode',
+        theme == IntercomTheme.none ? null : theme.name,
+      ).jsify(),
+    );
+    print("Theme overridden");
   }
 
   /// get the [window.intercomSettings]
