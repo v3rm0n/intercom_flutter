@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.6.25
+
+* Android: apply the Kotlin Gradle Plugin only when AGP built-in Kotlin is not active.
+
 ## 9.6.24
 
 * Bump Intercom Android SDK version to [18.9.1](https://github.com/intercom/intercom-android/releases/tag/18.9.1)
